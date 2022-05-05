@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitBuilder {
 
-    private const val BASE_URL = "https://10446575390cd2.lhrtunnel.link/api/"
+    private const val BASE_URL = "https://35c9bcaa143150.lhrtunnel.link/api/"
 
     private fun getRetrofit(): Retrofit {
         return Retrofit.Builder()

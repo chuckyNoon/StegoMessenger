@@ -25,19 +25,18 @@ class TestMiddleware(
         when (action) {
             is TestAction.ClickLoad ->
                 GlobalScope.launch(Dispatchers.Main) {
-                    loadMessage()
+                    loadMessage(dispatchable)
                 }
         }
     }
 
-    private suspend fun loadMessage() {
+    private suspend fun loadMessage(dispatchable: Dispatchable) {
         try {
             val resp = apiHelper.getResponse()
             Log.d("ff", resp.value)
-            resp.value
+            dispatchable.dispatch(TestAction.DataLoaded(resp.value))
         } catch (e: Exception) {
             Log.d("ff", e.message.toString())
-            null
         }
     }
 }

@@ -6,6 +6,7 @@ import android.widget.Button
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.aita.adapter.composable.ComposableListAdapter
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.infra.AbsFragment
 import com.example.diplomclient.test.model.MessageAdapterDelegate
@@ -32,10 +33,14 @@ class TestFragment : AbsFragment(R.layout.fragment_test) {
             MessageAdapterDelegate(layoutInflater)
         )
 
+        val adapter = ComposableListAdapter(delegates).apply {
+            recyclerView.adapter = this
+        }
+
         viewModel.viewStateLiveData.observe(viewLifecycleOwner) { viewState: TestViewState? ->
             viewState ?: return@observe
 
-
+            adapter.submitList(viewState.cells)
         }
     }
 
