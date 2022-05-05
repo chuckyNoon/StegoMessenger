@@ -4,4 +4,6 @@ import com.example.diplomclient.arch.flux.Action
 
 sealed class TestAction : Action {
     object Init : TestAction()
+    object ClickLoad : TestAction()
+    data class DataLoaded(val value: String) : TestAction()
 }

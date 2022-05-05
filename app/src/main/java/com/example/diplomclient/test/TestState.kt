@@ -1,17 +1,23 @@
 package com.example.diplomclient.test
 
+import com.aita.adapter.composable.DelegateDiffable
+
 data class TestState(
+    val values: List<String>,
     val viewState: TestViewState
 ) {
     companion object {
-        val EMPTY = TestState(viewState = TestViewState.EMPTY)
+        val EMPTY = TestState(
+            values = emptyList(),
+            viewState = TestViewState.EMPTY
+        )
     }
 }
 
 data class TestViewState(
-    val text: String?
+    val cells: List<DelegateDiffable<*>>
 ) {
     companion object {
-        val EMPTY = TestViewState(text = null)
+        val EMPTY = TestViewState(cells = emptyList())
     }
 }
