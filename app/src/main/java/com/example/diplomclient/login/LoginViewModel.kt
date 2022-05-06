@@ -1,4 +1,4 @@
-package com.example.diplomclient.test
+package com.example.diplomclient.login
 
 import android.app.Application
 import androidx.lifecycle.LiveData
@@ -8,22 +8,22 @@ import com.example.diplomclient.arch.infra.AbsViewModel
 import com.example.diplomclient.arch.network.ApiHelper
 import com.example.diplomclient.arch.network.RetrofitBuilder
 
-class TestViewModel(app: Application, appDepsProvider: AppDepsProvider) :
+class LoginViewModel(app: Application, appDepsProvider: AppDepsProvider) :
     AbsViewModel(app, appDepsProvider) {
 
-    private val _viewStateLiveData: MutableLiveData<TestViewState> = MutableLiveData()
-    val viewStateLiveData: LiveData<TestViewState> = _viewStateLiveData
+    private val _viewStateLiveData: MutableLiveData<LoginViewState> = MutableLiveData()
+    val viewStateLiveData: LiveData<LoginViewState> = _viewStateLiveData
 
     init {
         val apiHelper = ApiHelper(RetrofitBuilder.apiService)
 
         attachManagedStore(
-            initialState = TestState.EMPTY,
-            reducer = TestReducer(),
+            initialState = LoginState.EMPTY,
+            reducer = LoginReducer(),
             middleware = listOf(
-                TestMiddleware(apiHelper)
+                LoginMiddleware(apiHelper)
             ),
-        ) { newState: TestState ->
+        ) { newState: LoginState ->
             _viewStateLiveData.value = newState.viewState
         }
     }

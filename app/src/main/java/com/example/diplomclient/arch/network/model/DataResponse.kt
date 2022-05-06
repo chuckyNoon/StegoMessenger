@@ -1,8 +1,8 @@
-package com.example.diplomclient.test.model
+package com.example.diplomclient.arch.network.model
 
 import com.google.gson.annotations.SerializedName
 
-data class TestResponse(
+data class DataResponse(
     @SerializedName("value")
     val value: String
 )

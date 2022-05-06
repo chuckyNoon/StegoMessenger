@@ -1,12 +1,10 @@
-package com.example.diplomclient.test.network
+package com.example.diplomclient.test
 
 import android.util.Log
 import com.aita.arch.dispatcher.Dispatchable
 import com.aita.arch.store.Middleware
 import com.example.diplomclient.arch.flux.Action
 import com.example.diplomclient.arch.network.ApiHelper
-import com.example.diplomclient.test.TestAction
-import com.example.diplomclient.test.TestState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

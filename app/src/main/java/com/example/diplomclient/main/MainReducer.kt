@@ -13,6 +13,8 @@ class MainReducer : Reducer<MainState> {
         when (action) {
             is MainAction.ShowTestFragment ->
                 oldState.copy(navigationEvent = Event(MainNavigation.Test))
+            is MainAction.ShowLogin ->
+                oldState.copy(navigationEvent = Event(MainNavigation.Login))
             else -> oldState
         }
 }

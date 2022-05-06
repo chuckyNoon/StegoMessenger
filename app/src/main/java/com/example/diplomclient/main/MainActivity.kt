@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.infra.AbsFragment
+import com.example.diplomclient.login.LoginFragment
 import com.example.diplomclient.test.TestFragment
 
 class MainActivity : AppCompatActivity() {
@@ -28,9 +29,10 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel.navigationLiveData.observe(this) { navigation: MainNavigation? ->
             when (navigation) {
-                is MainNavigation.Test -> {
+                is MainNavigation.Test ->
                     showFragment(TestFragment())
-                }
+                is MainNavigation.Login ->
+                    showFragment(LoginFragment())
             }
         }
     }

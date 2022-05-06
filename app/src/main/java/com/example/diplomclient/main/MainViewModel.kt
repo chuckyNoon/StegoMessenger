@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import com.aita.arch.di.regular.AppDepsProvider
 import com.example.diplomclient.arch.SingleEventLiveData
 import com.example.diplomclient.arch.infra.AbsViewModel
-import com.example.diplomclient.test.TestAction
 
 class MainViewModel(app: Application, appDepsProvider: AppDepsProvider) :
     AbsViewModel(app, appDepsProvider) {
@@ -24,7 +23,6 @@ class MainViewModel(app: Application, appDepsProvider: AppDepsProvider) :
             }
         }
 
-        dispatch(MainAction.ShowTestFragment)
-        dispatch(TestAction.Init)
+        dispatch(MainAction.ShowLogin)
     }
 }
