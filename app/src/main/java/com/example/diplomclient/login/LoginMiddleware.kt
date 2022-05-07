@@ -5,6 +5,8 @@ import com.aita.arch.dispatcher.Dispatchable
 import com.aita.arch.store.Middleware
 import com.example.diplomclient.arch.flux.Action
 import com.example.diplomclient.arch.network.ApiHelper
+import com.example.diplomclient.common.PrefsContract
+import com.example.diplomclient.common.PrefsHelper
 import com.example.diplomclient.main.MainAction
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -35,6 +37,7 @@ class LoginMiddleware(
             GlobalScope.launch(Dispatchers.Main) {
                 val token = loadToken(name, password)
                 if (!token.isNullOrEmpty()) {
+                    PrefsHelper.getEditor().putString(PrefsContract.TOKEN, token).commit()
                     dispatchable.dispatch(LoginAction.LoginSuccess)
                     dispatchable.dispatch(MainAction.ShowTestFragment)
                 } else {

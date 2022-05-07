@@ -34,7 +34,7 @@ class TestMiddleware(
             Log.d("ff", resp.value)
             dispatchable.dispatch(TestAction.DataLoaded(resp.value))
         } catch (e: Exception) {
-            Log.d("ff", e.message.toString())
+            Log.d("ff", "fail" + e.message.toString() + " " + e.cause)
         }
     }
 }
