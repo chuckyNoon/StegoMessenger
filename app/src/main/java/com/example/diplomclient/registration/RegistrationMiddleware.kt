@@ -1,4 +1,4 @@
-package com.example.diplomclient.login
+package com.example.diplomclient.registration
 
 import android.util.Log
 import com.aita.arch.dispatcher.Dispatchable
@@ -13,46 +13,45 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class LoginMiddleware(
+class RegistrationMiddleware(
     private val apiHelper: ApiHelper
-) : Middleware<LoginState> {
+) : Middleware<RegistrationState> {
 
     override fun onReduced(
         dispatchable: Dispatchable,
         action: Action,
-        oldState: LoginState,
-        newState: LoginState
+        oldState: RegistrationState,
+        newState: RegistrationState
     ) {
         when (action) {
-            is LoginAction.OnLoginClick -> handleLoginClick(dispatchable, action)
+            is RegistrationAction.OnRegisterClick -> handleLoginClick(dispatchable, action)
         }
     }
 
-    private fun handleLoginClick(dispatchable: Dispatchable, action: LoginAction.OnLoginClick) {
-        val name = action.name
+    private fun handleLoginClick(dispatchable: Dispatchable, action: RegistrationAction.OnRegisterClick) {
+        val login = action.login
         val password = action.password
 
-        if (name.isNotEmpty() && password.isNotEmpty()) {
-            dispatchable.dispatch(LoginAction.LoginStarted)
+        if (password.isNotEmpty() && login.isNotEmpty()) {
+            dispatchable.dispatch(RegistrationAction.RegistrationStarted)
             GlobalScope.launch(Dispatchers.Main) {
-                val token = loadToken(name, password)
+                val token = register(login, password)
                 if (!token.isNullOrEmpty()) {
                     PrefsHelper.getEditor().putString(PrefsContract.TOKEN, token).commit()
-                    dispatchable.dispatch(LoginAction.LoginSuccess)
+                    dispatchable.dispatch(RegistrationAction.RegistrationSuccess)
                     dispatchable.dispatch(CoreNavAction.ShowTestFragment)
                 } else {
-                    dispatchable.dispatch(CoreNavAction.ShowError("smth wrong"))
-                    dispatchable.dispatch(LoginAction.LoginFail)
+                    dispatchable.dispatch(RegistrationAction.RegistrationFail)
                 }
             }
         } else {
-            dispatchable.dispatch(LoginAction.InvalidAttempt)
+            dispatchable.dispatch(RegistrationAction.InvalidAttempt)
         }
     }
 
-    private suspend fun loadToken(name: String, password: String): String? =
+    private suspend fun register(name: String, password: String): String? =
         try {
-            val token = apiHelper.doLogin(name, password).value
+            val token = apiHelper.doRegister(name, password).value
             Log.d("network", token)
             token
         } catch (e: Exception) {

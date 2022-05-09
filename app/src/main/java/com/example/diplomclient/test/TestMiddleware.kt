@@ -31,10 +31,10 @@ class TestMiddleware(
     private suspend fun loadMessage(dispatchable: Dispatchable) {
         try {
             val resp = apiHelper.getResponse()
-            Log.d("ff", resp.value)
+            Log.d("ff", "r")
             dispatchable.dispatch(TestAction.DataLoaded(resp.value))
         } catch (e: Exception) {
-            Log.d("ff", "fail" + e.message.toString() + " " + e.cause)
+            Log.d("ff", "fail" + e.message.toString() + " " + e.stackTraceToString())
         }
     }
 }

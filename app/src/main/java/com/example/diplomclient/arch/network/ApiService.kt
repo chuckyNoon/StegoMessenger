@@ -12,10 +12,17 @@ interface ApiService {
     @GET("text")
     suspend fun getData(): DataResponse
 
-    @POST("token")
+    @POST("login")
     @FormUrlEncoded
-    suspend fun getToken(
-        @Field("name") name: String,
+    suspend fun doLogin(
+        @Field("login") login: String,
+        @Field("password") password: String
+    ): TokenResponse
+
+    @POST("register")
+    @FormUrlEncoded
+    suspend fun doRegister(
+        @Field("login") login: String,
         @Field("password") password: String
     ): TokenResponse
 }

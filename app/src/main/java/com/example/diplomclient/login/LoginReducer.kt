@@ -19,7 +19,7 @@ class LoginReducer : Reducer<LoginState> {
 
     private fun rebuildViewState(state: LoginState): LoginState {
         val viewState = LoginViewState(
-            isProgressBarVisible = state.isLoading
+            isLoading = state.isLoading
         )
         return state.copy(
             viewState = viewState

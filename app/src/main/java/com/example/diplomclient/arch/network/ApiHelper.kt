@@ -4,6 +4,9 @@ class ApiHelper(private val apiService: ApiService) {
 
     suspend fun getResponse() = apiService.getData()
 
-    suspend fun getToken(name: String, password: String) =
-        apiService.getToken(name, password)
+    suspend fun doLogin(login: String, password: String) =
+        apiService.doLogin(login, password)
+
+    suspend fun doRegister(login: String, password: String) =
+        apiService.doRegister(login, password)
 }

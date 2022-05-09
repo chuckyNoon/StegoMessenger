@@ -1,4 +1,4 @@
-package com.example.diplomclient.login
+package com.example.diplomclient.registration
 
 import android.os.Bundle
 import android.view.View
@@ -8,49 +8,45 @@ import android.widget.ProgressBar
 import androidx.lifecycle.ViewModelProvider
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.infra.AbsFragment
-import com.example.diplomclient.main.navigation.CoreNavAction
 
-class LoginFragment : AbsFragment(R.layout.fragment_login) {
+class RegistrationFragment : AbsFragment(R.layout.fragment_registration) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val viewModelProvider = ViewModelProvider(this, appViewModelFactory)
-        val viewModel = viewModelProvider.get(LoginViewModel::class.java)
+        val viewModel = viewModelProvider.get(RegistrationViewModel::class.java)
 
         val progressBar = view.findViewById<ProgressBar>(R.id.pb)
-        val nameEditText = view.findViewById<EditText>(R.id.name_et)
+        val visibleNameEditText = view.findViewById<EditText>(R.id.visible_name_et)
+        val loginEditText = view.findViewById<EditText>(R.id.login_et)
         val passwordEditText = view.findViewById<EditText>(R.id.password_et)
-        val loginButton = view.findViewById<Button>(R.id.login_btn).apply {
+        val registrationButton = view.findViewById<Button>(R.id.register_btn).apply {
             setOnClickListener {
                 viewModel.dispatch(
-                    LoginAction.OnLoginClick(
-                        name = nameEditText.text.toString(),
+                    RegistrationAction.OnRegisterClick(
+                        visibleName = visibleNameEditText.text.toString(),
+                        login = loginEditText.text.toString(),
                         password = passwordEditText.text.toString()
                     )
                 )
             }
         }
 
-        val registrationButton = view.findViewById<Button>(R.id.register_btn).apply {
-            setOnClickListener {
-                viewModel.dispatch(CoreNavAction.ShowRegistration)
-            }
-        }
-
-        viewModel.viewStateLiveData.observe(viewLifecycleOwner) { viewState: LoginViewState? ->
+        viewModel.viewStateLiveData.observe(viewLifecycleOwner) { viewState: RegistrationViewState? ->
             viewState ?: return@observe
 
             if (viewState.isLoading) {
-                loginButton.isEnabled = false
-                nameEditText.isEnabled = false
-                passwordEditText.isEnabled = false
                 registrationButton.isEnabled = false
+                visibleNameEditText.isEnabled = false
+                loginEditText.isEnabled = false
+                passwordEditText.isEnabled = false
 
                 progressBar.visibility = View.VISIBLE
             } else {
-                loginButton.isEnabled = true
-                nameEditText.isEnabled = true
+                registrationButton.isEnabled = true
+                visibleNameEditText.isEnabled = true
+                loginEditText.isEnabled = true
                 passwordEditText.isEnabled = true
                 registrationButton.isEnabled = true
 

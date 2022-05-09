@@ -2,6 +2,8 @@ package com.example.diplomclient.main
 
 import android.app.Application
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
@@ -11,6 +13,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.infra.AbsFragment
 import com.example.diplomclient.login.LoginFragment
+import com.example.diplomclient.main.navigation.CoreNav
+import com.example.diplomclient.main.navigation.CoreNavViewModel
+import com.example.diplomclient.registration.RegistrationFragment
 import com.example.diplomclient.test.TestFragment
 
 class MainActivity : AppCompatActivity() {
@@ -25,14 +30,24 @@ class MainActivity : AppCompatActivity() {
 
         val appViewModelFactory = appViewModel.appViewModelFactory
         val thisFactoryViewModelProvider = ViewModelProvider(this, appViewModelFactory)
-        val mainViewModel = thisFactoryViewModelProvider.get(MainViewModel::class.java)
+        val mainViewModel = thisFactoryViewModelProvider.get(CoreNavViewModel::class.java)
 
-        mainViewModel.navigationLiveData.observe(this) { navigation: MainNavigation? ->
+        mainViewModel.navigationLiveData.observe(this) { navigation: CoreNav? ->
             when (navigation) {
-                is MainNavigation.Test ->
+                is CoreNav.Test ->
                     showFragment(TestFragment())
-                is MainNavigation.Login ->
+                is CoreNav.Login ->
                     showFragment(LoginFragment())
+                is CoreNav.Registration ->
+                    showFragment(RegistrationFragment())
+            }
+        }
+
+        mainViewModel.errorLiveData.observe(this) { error: String? ->
+            Log.d("error", "1")
+            if (error != null) {
+                Log.d("error", "2")
+                Toast.makeText(this, error, Toast.LENGTH_LONG).show()
             }
         }
     }

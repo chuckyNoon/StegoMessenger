@@ -13,12 +13,12 @@ data class LoginState(
 }
 
 data class LoginViewState(
-    val isProgressBarVisible: Boolean
+    val isLoading: Boolean
 ) {
     companion object {
         val EMPTY =
             LoginViewState(
-                isProgressBarVisible = false
+                isLoading = false
             )
     }
 }
