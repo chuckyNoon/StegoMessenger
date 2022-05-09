@@ -4,7 +4,7 @@ import com.example.diplomclient.arch.flux.Action
 
 sealed class LoginAction() : Action {
     data class OnLoginClick(
-        val name: String,
+        val login: String,
         val password: String
     ) : LoginAction()
 

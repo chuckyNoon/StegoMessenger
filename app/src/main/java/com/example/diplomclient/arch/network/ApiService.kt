@@ -19,7 +19,7 @@ interface ApiService {
         @Field("password") password: String
     ): TokenResponse
 
-    @POST("register")
+    @POST("registration")
     @FormUrlEncoded
     suspend fun doRegister(
         @Field("login") login: String,

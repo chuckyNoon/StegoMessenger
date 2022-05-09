@@ -1,17 +1,14 @@
 package com.example.diplomclient.login
 
-import android.util.Log
 import com.aita.arch.dispatcher.Dispatchable
 import com.aita.arch.store.Middleware
 import com.example.diplomclient.arch.flux.Action
 import com.example.diplomclient.arch.network.ApiHelper
 import com.example.diplomclient.common.PrefsContract
 import com.example.diplomclient.common.PrefsHelper
+import com.example.diplomclient.common.launchBackgroundWork
+import com.example.diplomclient.common.safeApiCall
 import com.example.diplomclient.main.navigation.CoreNavAction
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class LoginMiddleware(
     private val apiHelper: ApiHelper
@@ -29,34 +26,29 @@ class LoginMiddleware(
     }
 
     private fun handleLoginClick(dispatchable: Dispatchable, action: LoginAction.OnLoginClick) {
-        val name = action.name
+        val login = action.login
         val password = action.password
 
-        if (name.isNotEmpty() && password.isNotEmpty()) {
+        if (login.isNotEmpty() && password.isNotEmpty()) {
             dispatchable.dispatch(LoginAction.LoginStarted)
-            GlobalScope.launch(Dispatchers.Main) {
-                val token = loadToken(name, password)
-                if (!token.isNullOrEmpty()) {
-                    PrefsHelper.getEditor().putString(PrefsContract.TOKEN, token).commit()
-                    dispatchable.dispatch(LoginAction.LoginSuccess)
-                    dispatchable.dispatch(CoreNavAction.ShowTestFragment)
-                } else {
-                    dispatchable.dispatch(CoreNavAction.ShowError("smth wrong"))
-                    dispatchable.dispatch(LoginAction.LoginFail)
-                }
+            launchBackgroundWork {
+                safeApiCall(
+                    apiCall = { apiHelper.doLogin(login, password) },
+                    onSuccess = {
+                        PrefsHelper.getEditor()
+                            .putString(PrefsContract.TOKEN, it.value)
+                            .commit()
+                        dispatchable.dispatch(LoginAction.LoginSuccess)
+                        dispatchable.dispatch(CoreNavAction.ShowTestFragment)
+                    },
+                    onError = {
+                        dispatchable.dispatch(CoreNavAction.ShowError(it.message ?: "f2"))
+                        dispatchable.dispatch(LoginAction.LoginFail)
+                    }
+                )
             }
         } else {
             dispatchable.dispatch(LoginAction.InvalidAttempt)
         }
     }
-
-    private suspend fun loadToken(name: String, password: String): String? =
-        try {
-            val token = apiHelper.doLogin(name, password).value
-            Log.d("network", token)
-            token
-        } catch (e: Exception) {
-            Log.d("network", e.message.toString())
-            null
-        }
 }

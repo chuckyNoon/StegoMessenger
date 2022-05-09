@@ -7,10 +7,9 @@ import com.example.diplomclient.arch.flux.Action
 import com.example.diplomclient.arch.network.ApiHelper
 import com.example.diplomclient.common.PrefsContract
 import com.example.diplomclient.common.PrefsHelper
+import com.example.diplomclient.common.launchBackgroundWork
+import com.example.diplomclient.common.safeApiCall
 import com.example.diplomclient.main.navigation.CoreNavAction
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class RegistrationMiddleware(
@@ -28,21 +27,30 @@ class RegistrationMiddleware(
         }
     }
 
-    private fun handleLoginClick(dispatchable: Dispatchable, action: RegistrationAction.OnRegisterClick) {
+    private fun handleLoginClick(
+        dispatchable: Dispatchable,
+        action: RegistrationAction.OnRegisterClick
+    ) {
         val login = action.login
         val password = action.password
 
         if (password.isNotEmpty() && login.isNotEmpty()) {
             dispatchable.dispatch(RegistrationAction.RegistrationStarted)
-            GlobalScope.launch(Dispatchers.Main) {
-                val token = register(login, password)
-                if (!token.isNullOrEmpty()) {
-                    PrefsHelper.getEditor().putString(PrefsContract.TOKEN, token).commit()
-                    dispatchable.dispatch(RegistrationAction.RegistrationSuccess)
-                    dispatchable.dispatch(CoreNavAction.ShowTestFragment)
-                } else {
-                    dispatchable.dispatch(RegistrationAction.RegistrationFail)
-                }
+            launchBackgroundWork {
+                safeApiCall(
+                    apiCall = { apiHelper.doRegister(login, password) },
+                    onSuccess = {
+                        PrefsHelper.getEditor()
+                            .putString(PrefsContract.TOKEN, it.value)
+                            .commit()
+                        dispatchable.dispatch(RegistrationAction.RegistrationSuccess)
+                        dispatchable.dispatch(CoreNavAction.ShowTestFragment)
+                    },
+                    onError = {
+                        dispatchable.dispatch(CoreNavAction.ShowError(it.message ?: "f2"))
+                        dispatchable.dispatch(RegistrationAction.RegistrationFail)
+                    }
+                )
             }
         } else {
             dispatchable.dispatch(RegistrationAction.InvalidAttempt)

@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitBuilder {
 
-    private const val BASE_URL = "https://c98597bf6f168d.lhrtunnel.link/api/"
+    private const val BASE_URL = " https://3fbd6ce68abab8.lhrtunnel.link/api/"
 
     private fun getRetrofit(): Retrofit {
         val gson = GsonBuilder()
@@ -25,7 +25,7 @@ object RetrofitBuilder {
         val httpClient = OkHttpClient.Builder()
             .addInterceptor { chain ->
                 val token = prefs.getString(PrefsContract.TOKEN, null)
-                Log.d("intercepter", "here2 ${token}")
+                Log.d("intercepter", "here2 $token")
                 val request: Request = chain
                     .request()
                     .newBuilder()

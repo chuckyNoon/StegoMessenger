@@ -25,7 +25,7 @@ class LoginFragment : AbsFragment(R.layout.fragment_login) {
             setOnClickListener {
                 viewModel.dispatch(
                     LoginAction.OnLoginClick(
-                        name = nameEditText.text.toString(),
+                        login = nameEditText.text.toString(),
                         password = passwordEditText.text.toString()
                     )
                 )
