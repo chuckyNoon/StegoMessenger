@@ -11,14 +11,16 @@ class CoreNavReducer : Reducer<CoreNavState> {
 
     override fun reduce(oldState: CoreNavState, action: Action): CoreNavState =
         when (action) {
-            is CoreNavAction.ShowTestFragment ->
-                oldState.copy(navigationEvent = Event(CoreNav.Test))
+            is CoreNavAction.ShowOverviewFragment ->
+                oldState.copy(navigationEvent = Event(CoreNav.Overview))
             is CoreNavAction.ShowLogin ->
                 oldState.copy(navigationEvent = Event(CoreNav.Login))
             is CoreNavAction.ShowRegistration ->
                 oldState.copy(navigationEvent = Event(CoreNav.Registration))
             is CoreNavAction.ShowError ->
                 oldState.copy(errorEvent = Event(action.text))
+            is CoreNavAction.ShowChat ->
+                oldState.copy(navigationEvent = Event(CoreNav.Chat))
             else -> oldState
         }
 }

@@ -12,11 +12,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.infra.AbsFragment
+import com.example.diplomclient.chat.ChatFragment
 import com.example.diplomclient.login.LoginFragment
 import com.example.diplomclient.main.navigation.CoreNav
 import com.example.diplomclient.main.navigation.CoreNavViewModel
+import com.example.diplomclient.overview.OverviewFragment
 import com.example.diplomclient.registration.RegistrationFragment
-import com.example.diplomclient.test.TestFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,12 +35,14 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel.navigationLiveData.observe(this) { navigation: CoreNav? ->
             when (navigation) {
-                is CoreNav.Test ->
-                    showFragment(TestFragment())
+                is CoreNav.Overview ->
+                    showFragment(OverviewFragment())
                 is CoreNav.Login ->
                     showFragment(LoginFragment())
                 is CoreNav.Registration ->
                     showFragment(RegistrationFragment())
+                is CoreNav.Chat ->
+                    showFragment(ChatFragment())
             }
         }
 

@@ -39,7 +39,7 @@ class LoginMiddleware(
                             .putString(PrefsContract.TOKEN, it.value)
                             .commit()
                         dispatchable.dispatch(LoginAction.LoginSuccess)
-                        dispatchable.dispatch(CoreNavAction.ShowTestFragment)
+                        dispatchable.dispatch(CoreNavAction.ShowOverviewFragment)
                     },
                     onError = {
                         dispatchable.dispatch(CoreNavAction.ShowError(it.message ?: "f2"))

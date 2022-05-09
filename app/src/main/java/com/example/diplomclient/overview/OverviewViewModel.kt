@@ -1,4 +1,4 @@
-package com.example.diplomclient.test
+package com.example.diplomclient.overview
 
 import android.app.Application
 import androidx.lifecycle.LiveData
@@ -8,23 +8,25 @@ import com.example.diplomclient.arch.infra.AbsViewModel
 import com.example.diplomclient.arch.network.ApiHelper
 import com.example.diplomclient.arch.network.RetrofitBuilder
 
-class TestViewModel(app: Application, appDepsProvider: AppDepsProvider) :
+class OverviewViewModel(app: Application, appDepsProvider: AppDepsProvider) :
     AbsViewModel(app, appDepsProvider) {
 
-    private val _viewStateLiveData: MutableLiveData<TestViewState> = MutableLiveData()
-    val viewStateLiveData: LiveData<TestViewState> = _viewStateLiveData
+    private val _viewStateLiveData: MutableLiveData<OverviewViewState> = MutableLiveData()
+    val viewStateLiveData: LiveData<OverviewViewState> = _viewStateLiveData
 
     init {
         val apiHelper = ApiHelper(RetrofitBuilder.apiService)
 
         attachManagedStore(
-            initialState = TestState.EMPTY,
-            reducer = TestReducer(),
+            initialState = OverviewState.EMPTY,
+            reducer = OverviewReducer(),
             middleware = listOf(
-                TestMiddleware(apiHelper)
+                OverviewMiddleware(apiHelper)
             ),
-        ) { newState: TestState ->
+        ) { newState: OverviewState ->
             _viewStateLiveData.value = newState.viewState
         }
+
+        dispatch(OverviewAction.LoadChats)
     }
 }

@@ -44,7 +44,7 @@ class RegistrationMiddleware(
                             .putString(PrefsContract.TOKEN, it.value)
                             .commit()
                         dispatchable.dispatch(RegistrationAction.RegistrationSuccess)
-                        dispatchable.dispatch(CoreNavAction.ShowTestFragment)
+                        dispatchable.dispatch(CoreNavAction.ShowOverviewFragment)
                     },
                     onError = {
                         dispatchable.dispatch(CoreNavAction.ShowError(it.message ?: "f2"))

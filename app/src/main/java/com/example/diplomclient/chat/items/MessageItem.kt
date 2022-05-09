@@ -1,4 +1,4 @@
-package com.example.diplomclient.test.model
+package com.example.diplomclient.overview.model
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,24 +9,27 @@ import com.aita.adapter.composable.DelegateDiffable
 import com.example.diplomclient.R
 
 data class MessageCell(
-    val text: String
+    val contentText: String,
+    val dateText: String
 ) : DelegateDiffable<MessageCell> {
 
     override fun isSame(other: DelegateDiffable<*>): Boolean =
-        other is MessageCell && text == other.text
+        other is MessageCell && contentText == other.contentText
 }
 
 class MessageHolder(
-    private val parent: ViewGroup,
-    private val inflater: LayoutInflater
+    parent: ViewGroup,
+    inflater: LayoutInflater
 ) : AbsDelegateViewHolder<MessageCell>(
-    inflater.inflate(R.layout.message_item, parent, false)
+    inflater.inflate(R.layout.item_message, parent, false)
 ) {
 
-    private val textTv = itemView.findViewById<TextView>(R.id.text_tv)
+    private val contentTextView = itemView.findViewById<TextView>(R.id.content_tv)
+    private val dateTextView = itemView.findViewById<TextView>(R.id.date_tv)
 
     override fun bind(cell: MessageCell, payloads: List<Any>?) {
-        textTv.text = cell.text
+        contentTextView.text = cell.contentText
+        dateTextView.text = cell.dateText
     }
 }
 

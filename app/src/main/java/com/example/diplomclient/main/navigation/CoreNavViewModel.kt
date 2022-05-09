@@ -31,7 +31,8 @@ class CoreNavViewModel(app: Application, appDepsProvider: AppDepsProvider) :
             }
         }
 
-        performInitialNavigation()
+        dispatch(CoreNavAction.ShowOverviewFragment)
+        // performInitialNavigation()
     }
 
     private fun performInitialNavigation() {
