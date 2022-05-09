@@ -25,7 +25,7 @@ object RetrofitBuilder {
         val httpClient = OkHttpClient.Builder()
             .addInterceptor { chain ->
                 val token = prefs.getString(PrefsContract.TOKEN, null)
-                Log.d("intercepter", "here2 $token")
+                Log.d("intercepter", "here2 $token ")
                 val request: Request = chain
                     .request()
                     .newBuilder()
