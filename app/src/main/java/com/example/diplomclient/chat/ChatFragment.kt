@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aita.adapter.composable.ComposableListAdapter
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.infra.AbsFragment
+import com.example.diplomclient.common.InsetSide
+import com.example.diplomclient.common.ViewUtils
 import com.example.diplomclient.overview.model.DividerAdapterDelegate
 import com.example.diplomclient.overview.model.MessageAdapterDelegate
 
@@ -25,6 +27,11 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler).apply {
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            ViewUtils.handleInsetsWithPaddingForSides(
+                this,
+                InsetSide.BOTTOM,
+                InsetSide.START,
+            )
         }
         val chatNameTextView = view.findViewById<TextView>(R.id.chat_name_tv)
         val messageEditText = view.findViewById<EditText>(R.id.message_et).apply {
@@ -36,6 +43,22 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
             setOnClickListener {
                 viewModel.dispatch(ChatAction.ClickSend)
             }
+        }
+        val typeBlock = view.findViewById<View>(R.id.type_block).apply {
+            ViewUtils.handleInsetsWithPaddingForSides(
+                this,
+                InsetSide.BOTTOM,
+                InsetSide.START,
+                InsetSide.END
+            )
+        }
+        val toolbar = view.findViewById<View>(R.id.toolbar).apply {
+            ViewUtils.handleInsetsWithPaddingForSides(
+                this,
+                InsetSide.TOP,
+                InsetSide.START,
+                InsetSide.END
+            )
         }
 
         val delegates = listOf(

@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.infra.AbsFragment
 import com.example.diplomclient.chat.ChatFragment
+import com.example.diplomclient.common.SystemUiUtils
 import com.example.diplomclient.login.LoginFragment
 import com.example.diplomclient.main.navigation.CoreNav
 import com.example.diplomclient.main.navigation.CoreNavViewModel
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val window = window!!
         val sessionAppViewModelFactory = AppSessionViewModelFactory(application)
         val appViewModelProvider = ViewModelProvider(this, sessionAppViewModelFactory)
         val appViewModel = appViewModelProvider.get(AppViewModel::class.java)
@@ -32,6 +34,8 @@ class MainActivity : AppCompatActivity() {
         val appViewModelFactory = appViewModel.appViewModelFactory
         val thisFactoryViewModelProvider = ViewModelProvider(this, appViewModelFactory)
         val mainViewModel = thisFactoryViewModelProvider.get(CoreNavViewModel::class.java)
+
+        SystemUiUtils.makeStatusAndNavBarsTransparent(this, window)
 
         mainViewModel.navigationLiveData.observe(this) { navigation: CoreNav? ->
             when (navigation) {
@@ -47,9 +51,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         mainViewModel.errorLiveData.observe(this) { error: String? ->
-            Log.d("error", "1")
             if (error != null) {
-                Log.d("error", "2")
                 Toast.makeText(this, error, Toast.LENGTH_LONG).show()
             }
         }
