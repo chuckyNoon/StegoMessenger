@@ -1,6 +1,5 @@
 package com.example.diplomclient.registration
 
-import android.util.Log
 import com.aita.arch.dispatcher.Dispatchable
 import com.aita.arch.store.Middleware
 import com.example.diplomclient.arch.flux.Action
@@ -10,7 +9,6 @@ import com.example.diplomclient.common.PrefsHelper
 import com.example.diplomclient.common.launchBackgroundWork
 import com.example.diplomclient.common.safeApiCall
 import com.example.diplomclient.main.navigation.CoreNavAction
-import java.lang.Exception
 
 class RegistrationMiddleware(
     private val apiHelper: ApiHelper
@@ -56,14 +54,4 @@ class RegistrationMiddleware(
             dispatchable.dispatch(RegistrationAction.InvalidAttempt)
         }
     }
-
-    private suspend fun register(name: String, password: String): String? =
-        try {
-            val token = apiHelper.doRegister(name, password).value
-            Log.d("network", token)
-            token
-        } catch (e: Exception) {
-            Log.d("network", e.message.toString())
-            null
-        }
 }
