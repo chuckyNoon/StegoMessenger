@@ -4,6 +4,7 @@ import androidx.annotation.CheckResult
 import com.example.diplomclient.arch.flux.Action
 import com.aita.arch.ErrorListener
 import com.aita.arch.dispatcher.Dispatchable
+import com.example.diplomclient.common.AppLogger
 
 class Store<T : Any>(
     initialState: T,
@@ -24,6 +25,7 @@ class Store<T : Any>(
         dispatchable: Dispatchable,
         onError: ErrorListener,
     ): T {
+        AppLogger.log(action.logMsg)
         val oldState = state
         val newState = try {
             reducer.reduce(oldState, action)

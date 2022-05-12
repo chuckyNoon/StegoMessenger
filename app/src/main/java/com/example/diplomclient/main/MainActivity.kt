@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
                 is CoreNav.Login ->
                     showFragment(
                         fragment = LoginFragment(),
-                        mustAddToBackStack = false
+                        mustAddToBackStack = true
                     )
                 is CoreNav.Registration ->
                     showFragment(RegistrationFragment())

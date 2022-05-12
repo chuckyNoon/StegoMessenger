@@ -22,15 +22,20 @@ class OverviewFragment : AbsFragment(R.layout.fragment_overview) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val activity = requireActivity()
         val viewModelProvider = ViewModelProvider(this, appViewModelFactory)
         val viewModel = viewModelProvider.get(OverviewViewModel::class.java)
 
+        val fragmentManager = activity.supportFragmentManager
         val navView = view.findViewById<NavigationView>(R.id.nav_view).apply {
             setNavigationItemSelectedListener { item ->
                 AppLogger.log("nav click")
                 when (item.itemId) {
                     R.id.log_out -> {
                         PrefsHelper.getEditor().remove(PrefsContract.TOKEN).commit()
+                        for (i in 0 until fragmentManager.backStackEntryCount) {
+                            fragmentManager.popBackStack()
+                        }
                         viewModel.dispatch(CoreAction.ShowLogin)
                         true
                     }
