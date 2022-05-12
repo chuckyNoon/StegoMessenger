@@ -5,4 +5,5 @@ sealed class CoreNav {
     object Login : CoreNav()
     object Registration : CoreNav()
     object Chat : CoreNav()
+    object Search : CoreNav()
 }

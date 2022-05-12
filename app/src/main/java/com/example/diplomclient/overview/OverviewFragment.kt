@@ -12,6 +12,7 @@ import com.example.diplomclient.R
 import com.example.diplomclient.arch.infra.AbsFragment
 import com.example.diplomclient.common.InsetSide
 import com.example.diplomclient.common.ViewUtils
+import com.example.diplomclient.main.navigation.CoreNavAction
 import com.example.diplomclient.overview.model.ChatAdapterDelegate
 import com.example.diplomclient.overview.model.DividerAdapterDelegate
 import com.example.diplomclient.overview.model.MessageAdapterDelegate
@@ -45,7 +46,7 @@ class OverviewFragment : AbsFragment(R.layout.fragment_overview) {
 
         view.findViewById<ImageButton>(R.id.plus_btn).apply {
             setOnClickListener {
-                viewModel.dispatch(OverviewAction.ClickPlus)
+                viewModel.dispatch(CoreNavAction.ShowSearch)
             }
         }
 

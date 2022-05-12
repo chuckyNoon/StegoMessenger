@@ -24,7 +24,7 @@ class MessageHolder(
     inflater.inflate(R.layout.item_message, parent, false)
 ) {
 
-    private val contentTextView = itemView.findViewById<TextView>(R.id.content_tv)
+    private val contentTextView = itemView.findViewById<TextView>(R.id.name_tv)
     private val dateTextView = itemView.findViewById<TextView>(R.id.date_tv)
 
     override fun bind(cell: MessageCell, payloads: List<Any>?) {

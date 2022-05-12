@@ -7,5 +7,6 @@ sealed class CoreNavAction : Action {
     object ShowLogin : CoreNavAction()
     object ShowRegistration : CoreNavAction()
     object ShowChat : CoreNavAction()
+    object ShowSearch : CoreNavAction()
     data class ShowError(val text: String) : CoreNavAction()
 }

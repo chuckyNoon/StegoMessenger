@@ -21,6 +21,8 @@ class CoreNavReducer : Reducer<CoreNavState> {
                 oldState.copy(errorEvent = Event(action.text))
             is CoreNavAction.ShowChat ->
                 oldState.copy(navigationEvent = Event(CoreNav.Chat))
+            is CoreNavAction.ShowSearch ->
+                oldState.copy(navigationEvent = Event(CoreNav.Search))
             else -> oldState
         }
 }

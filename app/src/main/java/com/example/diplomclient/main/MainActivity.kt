@@ -2,7 +2,6 @@ package com.example.diplomclient.main
 
 import android.app.Application
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +18,7 @@ import com.example.diplomclient.main.navigation.CoreNav
 import com.example.diplomclient.main.navigation.CoreNavViewModel
 import com.example.diplomclient.overview.OverviewFragment
 import com.example.diplomclient.registration.RegistrationFragment
+import com.example.diplomclient.search.SearchFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -47,6 +47,8 @@ class MainActivity : AppCompatActivity() {
                     showFragment(RegistrationFragment())
                 is CoreNav.Chat ->
                     showFragment(ChatFragment())
+                is CoreNav.Search ->
+                    showFragment(SearchFragment())
             }
         }
 
