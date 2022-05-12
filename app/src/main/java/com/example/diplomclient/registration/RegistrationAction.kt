@@ -4,9 +4,10 @@ import com.example.diplomclient.arch.flux.Action
 
 sealed class RegistrationAction() : Action {
     data class OnRegisterClick(
-        val visibleName: String,
         val login: String,
-        val password: String
+        val password: String,
+        val id: String,
+        val name: String
     ) : RegistrationAction()
 
     object RegistrationStarted : RegistrationAction()

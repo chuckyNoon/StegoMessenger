@@ -1,9 +1,6 @@
 package com.example.diplomclient.arch.network
 
-import com.example.diplomclient.arch.network.model.ChatsResponse
-import com.example.diplomclient.arch.network.model.SearchResponse
-import com.example.diplomclient.arch.network.model.StartChatResponse
-import com.example.diplomclient.arch.network.model.TokenResponse
+import com.example.diplomclient.arch.network.model.*
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -25,12 +22,17 @@ interface ApiService {
     @FormUrlEncoded
     suspend fun doRegister(
         @Field("login") login: String,
-        @Field("password") password: String
+        @Field("password") password: String,
+        @Field("id") id: String,
+        @Field("name") name: String
     ): TokenResponse
 
-    @POST("chat/start")
+    @POST("send")
     @FormUrlEncoded
-    suspend fun startChat(@Field("id") id: String): StartChatResponse
+    suspend fun sendText(
+        @Field("receiverId") receiverId: String,
+        @Field("text") text: String
+    )
 
     @POST("search")
     @FormUrlEncoded

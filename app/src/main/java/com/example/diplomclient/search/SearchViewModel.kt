@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.aita.arch.di.regular.AppDepsProvider
+import com.example.diplomclient.arch.SingleEventLiveData
 import com.example.diplomclient.arch.infra.AbsViewModel
 import com.example.diplomclient.arch.network.ApiHelper
 import com.example.diplomclient.arch.network.RetrofitBuilder
@@ -13,6 +14,9 @@ class SearchViewModel(app: Application, appDepsProvider: AppDepsProvider) :
 
     private val _viewStateLiveData: MutableLiveData<SearchViewState> = MutableLiveData()
     val viewStateLiveData: LiveData<SearchViewState> = _viewStateLiveData
+
+    private val _backLiveData: SingleEventLiveData<Unit> = SingleEventLiveData<Unit>()
+    val backLiveData: LiveData<Unit> = _backLiveData
 
     init {
         val apiHelper = ApiHelper(RetrofitBuilder.apiService)
@@ -25,6 +29,9 @@ class SearchViewModel(app: Application, appDepsProvider: AppDepsProvider) :
             ),
         ) { newState: SearchState ->
             _viewStateLiveData.value = newState.viewState
+            newState.backEvent?.readValue()?.let {
+                _backLiveData.value = Unit
+            }
         }
     }
 }

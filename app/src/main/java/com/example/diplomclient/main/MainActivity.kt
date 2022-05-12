@@ -42,7 +42,10 @@ class MainActivity : AppCompatActivity() {
                 is CoreNav.Overview ->
                     showFragment(OverviewFragment())
                 is CoreNav.Login ->
-                    showFragment(LoginFragment())
+                    showFragment(
+                        fragment = LoginFragment(),
+                        mustAddToBackStack = false
+                    )
                 is CoreNav.Registration ->
                     showFragment(RegistrationFragment())
                 is CoreNav.Chat ->
@@ -59,17 +62,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showFragment(fragment: AbsFragment) =
+    private fun showFragment(fragment: AbsFragment, mustAddToBackStack: Boolean = true) =
         showFragmentInternal(
             fragment = fragment,
             fragmentManager = supportFragmentManager,
             containerViewId = R.id.content,
+            mustAddToBackStack = mustAddToBackStack
         )
 
     private fun showFragmentInternal(
         fragment: AbsFragment,
         fragmentManager: FragmentManager,
         @IdRes containerViewId: Int = R.id.content,
+        mustAddToBackStack: Boolean
     ) {
         if (!fragmentManager.isSafeToCommit) {
             return
@@ -79,7 +84,9 @@ class MainActivity : AppCompatActivity() {
         fragmentManager.commit(allowStateLoss = false) {
             setReorderingAllowed(false)
             replace(containerViewId, fragment, backStackTag)
-            addToBackStack(backStackTag)
+            if (mustAddToBackStack) {
+                addToBackStack(backStackTag)
+            }
         }
     }
 

@@ -2,11 +2,15 @@ package com.example.diplomclient.chat
 
 import com.aita.arch.store.Reducer
 import com.example.diplomclient.arch.flux.Action
+import com.example.diplomclient.common.AppLogger
+import com.example.diplomclient.main.navigation.CoreAction
 import com.example.diplomclient.overview.model.MessageCell
 
 class ChatReducer : Reducer<ChatState> {
 
-    override fun acceptsAction(action: Action): Boolean = action is ChatAction
+    override fun acceptsAction(action: Action): Boolean =
+        action is ChatAction ||
+            action is CoreAction.ChatsReloaded
 
     override fun reduce(oldState: ChatState, action: Action): ChatState =
         when (action) {
@@ -14,7 +18,12 @@ class ChatReducer : Reducer<ChatState> {
                 rebuildViewState(oldState.copy(chat = action.chat))
             is ChatAction.TextTyped ->
                 rebuildViewState(oldState.copy(typedText = action.text))
-            is ChatAction.ClickSend -> oldState
+            is CoreAction.ChatsReloaded -> {
+                val oldChat = requireNotNull(oldState.chat)
+                val updatedChat = action.chats.firstOrNull { it.id == oldChat.id }!!
+                AppLogger.log("reload chat ins ${oldChat.messages.size}-${updatedChat.messages.size}")
+                rebuildViewState(oldState.copy(chat = updatedChat))
+            }
             else -> oldState
         }
 
@@ -23,7 +32,7 @@ class ChatReducer : Reducer<ChatState> {
         val cells = chat.messages.map { message ->
             MessageCell(
                 contentText = message.text,
-                dateText = "some date"
+                dateText = message.createdAtUtcSeconds.toString()
             )
         }
         val viewState = ChatViewState(

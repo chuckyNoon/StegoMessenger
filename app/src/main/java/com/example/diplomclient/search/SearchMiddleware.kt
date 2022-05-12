@@ -4,10 +4,10 @@ import com.aita.arch.dispatcher.Dispatchable
 import com.aita.arch.store.Middleware
 import com.example.diplomclient.arch.flux.Action
 import com.example.diplomclient.arch.network.ApiHelper
-import com.example.diplomclient.chat.ChatAction
+import com.example.diplomclient.common.AppLogger
 import com.example.diplomclient.common.launchBackgroundWork
 import com.example.diplomclient.common.safeApiCall
-import com.example.diplomclient.main.navigation.CoreNavAction
+import com.example.diplomclient.main.navigation.CoreAction
 
 class SearchMiddleware(private val apiHelper: ApiHelper) : Middleware<SearchState> {
 
@@ -29,14 +29,18 @@ class SearchMiddleware(private val apiHelper: ApiHelper) : Middleware<SearchStat
     ) {
         launchBackgroundWork {
             safeApiCall(
-                apiCall = { apiHelper.startChat(userId) },
+                apiCall = {
+                    apiHelper.sendText(
+                        receiverId = userId,
+                        text = "rr"
+                    )
+                },
                 onSuccess = {
-                    val chat = it.chat
-                    dispatchable.dispatch(CoreNavAction.ShowChat)
-                    dispatchable.dispatch(ChatAction.Init(chat))
+                    dispatchable.dispatch(CoreAction.ReloadChats)
+                    dispatchable.dispatch(SearchAction.Back)
                 },
                 onError = {
-                    dispatchable.dispatch(CoreNavAction.ShowError(it.message ?: "f2"))
+                    dispatchable.dispatch(CoreAction.ShowError(it.message ?: "f2"))
                 }
             )
         }
@@ -55,7 +59,7 @@ class SearchMiddleware(private val apiHelper: ApiHelper) : Middleware<SearchStat
                     )
                 },
                 onError = {
-                    dispatchable.dispatch(CoreNavAction.ShowError(it.message ?: "f2"))
+                    dispatchable.dispatch(CoreAction.ShowError(it.message ?: "f2"))
                 }
             )
         }

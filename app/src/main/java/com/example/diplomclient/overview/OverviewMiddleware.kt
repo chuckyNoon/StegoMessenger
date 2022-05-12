@@ -7,7 +7,7 @@ import com.example.diplomclient.arch.network.ApiHelper
 import com.example.diplomclient.chat.ChatAction
 import com.example.diplomclient.common.launchBackgroundWork
 import com.example.diplomclient.common.safeApiCall
-import com.example.diplomclient.main.navigation.CoreNavAction
+import com.example.diplomclient.main.navigation.CoreAction
 import com.example.diplomclient.overview.model.Chat
 import com.example.diplomclient.overview.model.Message
 
@@ -22,24 +22,7 @@ class OverviewMiddleware(
         newState: OverviewState
     ) {
         when (action) {
-            is OverviewAction.LoadChats -> loadChatsTest(dispatchable) // loadChats()
             is OverviewAction.ClickChat -> handleClickChat(newState, action, dispatchable)
-        }
-    }
-
-    private fun loadChats(dispatchable: Dispatchable) {
-        dispatchable.dispatch(OverviewAction.ChatsLoadingStarted)
-        launchBackgroundWork {
-            safeApiCall(
-                apiCall = { apiHelper.getChats() },
-                onSuccess = {
-                    dispatchable.dispatch(OverviewAction.ChatsLoadingSuccess(it.chats))
-                },
-                onError = {
-                    dispatchable.dispatch(CoreNavAction.ShowError(it.message ?: "f2"))
-                    dispatchable.dispatch(OverviewAction.ChatsLoadingFail)
-                }
-            )
         }
     }
 
@@ -94,7 +77,7 @@ class OverviewMiddleware(
         val clickedCell = action.cell
         val clickedChat = newState.chats.first { it.id == clickedCell.id }
 
-        dispatchable.dispatch(CoreNavAction.ShowChat)
+        dispatchable.dispatch(CoreAction.ShowChat)
         dispatchable.dispatch(ChatAction.Init(clickedChat))
     }
 }

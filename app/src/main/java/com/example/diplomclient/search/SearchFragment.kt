@@ -21,6 +21,7 @@ class SearchFragment : AbsFragment(R.layout.fragment_search) {
 
         val viewModelProvider = ViewModelProvider(this, appViewModelFactory)
         val viewModel = viewModelProvider.get(SearchViewModel::class.java)
+        val activity = requireActivity()
 
         val toolbarBlock = view.findViewById<View>(R.id.toolbar_block).apply {
             ViewUtils.handleInsetsWithPaddingForSides(
@@ -65,6 +66,12 @@ class SearchFragment : AbsFragment(R.layout.fragment_search) {
             if (searchEditText.text.toString().isEmpty()) {
                 searchEditText.setText(viewState.searchText)
             }
+        }
+
+        viewModel.backLiveData.observe(viewLifecycleOwner) { unit: Unit? ->
+            unit ?: return@observe
+
+            activity.onBackPressed()
         }
     }
 

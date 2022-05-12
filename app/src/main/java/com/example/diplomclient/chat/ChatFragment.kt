@@ -29,7 +29,7 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             ViewUtils.handleInsetsWithPaddingForSides(
                 this,
-                InsetSide.BOTTOM,
+                InsetSide.END,
                 InsetSide.START,
             )
         }
@@ -74,7 +74,11 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
             viewState ?: return@observe
 
             chatNameTextView.text = viewState.chatName
-            messageEditText.setText(viewState.typedText)
+
+            if (messageEditText.text.toString().isNullOrEmpty()) {
+                messageEditText.setText(viewState.typedText)
+            }
+
             adapter.submitList(viewState.cells)
         }
     }

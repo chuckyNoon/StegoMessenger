@@ -22,7 +22,7 @@ class SearchUserHolder(
     inflater: LayoutInflater,
     private val onClick: ((SearchUserCell) -> Unit)
 ) : AbsDelegateViewHolder<SearchUserCell>(
-    inflater.inflate(R.layout.item_message, parent, false)
+    inflater.inflate(R.layout.item_search_user, parent, false)
 ) {
 
     private val nameTextView = itemView.findViewById<TextView>(R.id.name_tv)

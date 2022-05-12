@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import com.aita.arch.di.regular.AppDepsProvider
 import com.example.diplomclient.arch.SingleEventLiveData
 import com.example.diplomclient.arch.infra.AbsViewModel
+import com.example.diplomclient.arch.network.ApiHelper
+import com.example.diplomclient.arch.network.RetrofitBuilder
 import com.example.diplomclient.common.PrefsContract
 import com.example.diplomclient.common.PrefsHelper
 
@@ -18,10 +20,13 @@ class CoreNavViewModel(app: Application, appDepsProvider: AppDepsProvider) :
     val errorLiveData: LiveData<String> = _errorLiveData
 
     init {
+        val apiService = ApiHelper(RetrofitBuilder.apiService)
         attachManagedStore(
             initialState = CoreNavState.EMPTY,
             reducer = CoreNavReducer(),
-            middleware = emptyList(),
+            middleware = listOf(
+                CoreMiddleware(apiHelper = apiService)
+            ),
         ) { newState: CoreNavState ->
             newState.navigationEvent?.readValue()?.let {
                 _navigationLiveData.value = it
@@ -30,17 +35,15 @@ class CoreNavViewModel(app: Application, appDepsProvider: AppDepsProvider) :
                 _errorLiveData.value = it
             }
         }
-
-        dispatch(CoreNavAction.ShowOverviewFragment)
-        // performInitialNavigation()
+        performInitialNavigation()
     }
 
     private fun performInitialNavigation() {
         val savedToken = PrefsHelper.getPrefs().getString(PrefsContract.TOKEN, null)
         if (savedToken == null) {
-            dispatch(CoreNavAction.ShowLogin)
+            dispatch(CoreAction.ShowLogin)
         } else {
-            dispatch(CoreNavAction.ShowLogin)
+            dispatch(CoreAction.ShowOverviewFragment)
         }
     }
 }

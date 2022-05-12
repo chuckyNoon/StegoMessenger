@@ -7,6 +7,7 @@ import com.aita.arch.di.regular.AppDepsProvider
 import com.example.diplomclient.arch.infra.AbsViewModel
 import com.example.diplomclient.arch.network.ApiHelper
 import com.example.diplomclient.arch.network.RetrofitBuilder
+import com.example.diplomclient.main.navigation.CoreAction
 
 class OverviewViewModel(app: Application, appDepsProvider: AppDepsProvider) :
     AbsViewModel(app, appDepsProvider) {
@@ -27,6 +28,6 @@ class OverviewViewModel(app: Application, appDepsProvider: AppDepsProvider) :
             _viewStateLiveData.value = newState.viewState
         }
 
-        dispatch(OverviewAction.LoadChats)
+        dispatch(CoreAction.ReloadChats)
     }
 }

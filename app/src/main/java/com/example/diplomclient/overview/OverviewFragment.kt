@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aita.adapter.composable.ComposableListAdapter
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.infra.AbsFragment
-import com.example.diplomclient.common.InsetSide
-import com.example.diplomclient.common.ViewUtils
-import com.example.diplomclient.main.navigation.CoreNavAction
+import com.example.diplomclient.common.*
+import com.example.diplomclient.main.navigation.CoreAction
 import com.example.diplomclient.overview.model.ChatAdapterDelegate
 import com.example.diplomclient.overview.model.DividerAdapterDelegate
 import com.example.diplomclient.overview.model.MessageAdapterDelegate
+import com.google.android.material.navigation.NavigationView
 
 class OverviewFragment : AbsFragment(R.layout.fragment_overview) {
 
@@ -24,6 +24,21 @@ class OverviewFragment : AbsFragment(R.layout.fragment_overview) {
 
         val viewModelProvider = ViewModelProvider(this, appViewModelFactory)
         val viewModel = viewModelProvider.get(OverviewViewModel::class.java)
+
+        val navView = view.findViewById<NavigationView>(R.id.nav_view).apply {
+            setNavigationItemSelectedListener { item ->
+                AppLogger.log("nav click")
+                when (item.itemId) {
+                    R.id.log_out -> {
+                        PrefsHelper.getEditor().remove(PrefsContract.TOKEN).commit()
+                        viewModel.dispatch(CoreAction.ShowLogin)
+                        true
+                    }
+                    else ->
+                        false
+                }
+            }
+        }
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler).apply {
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
@@ -46,7 +61,7 @@ class OverviewFragment : AbsFragment(R.layout.fragment_overview) {
 
         view.findViewById<ImageButton>(R.id.plus_btn).apply {
             setOnClickListener {
-                viewModel.dispatch(CoreNavAction.ShowSearch)
+                viewModel.dispatch(CoreAction.ShowSearch)
             }
         }
 

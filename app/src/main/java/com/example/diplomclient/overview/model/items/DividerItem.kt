@@ -10,7 +10,7 @@ import com.example.diplomclient.R
 object DividerCell : DelegateDiffable<DividerCell> {
 
     override fun isSame(other: DelegateDiffable<*>): Boolean =
-        other is ChatCell
+        other is DividerCell
 }
 
 class DividerHolder(

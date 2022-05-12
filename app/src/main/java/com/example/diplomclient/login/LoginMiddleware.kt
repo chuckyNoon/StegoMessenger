@@ -8,7 +8,7 @@ import com.example.diplomclient.common.PrefsContract
 import com.example.diplomclient.common.PrefsHelper
 import com.example.diplomclient.common.launchBackgroundWork
 import com.example.diplomclient.common.safeApiCall
-import com.example.diplomclient.main.navigation.CoreNavAction
+import com.example.diplomclient.main.navigation.CoreAction
 
 class LoginMiddleware(
     private val apiHelper: ApiHelper
@@ -39,10 +39,10 @@ class LoginMiddleware(
                             .putString(PrefsContract.TOKEN, it.value)
                             .commit()
                         dispatchable.dispatch(LoginAction.LoginSuccess)
-                        dispatchable.dispatch(CoreNavAction.ShowOverviewFragment)
+                        dispatchable.dispatch(CoreAction.ShowOverviewFragment)
                     },
                     onError = {
-                        dispatchable.dispatch(CoreNavAction.ShowError(it.message ?: "f2"))
+                        dispatchable.dispatch(CoreAction.ShowError(it.message ?: "f2"))
                         dispatchable.dispatch(LoginAction.LoginFail)
                     }
                 )

@@ -16,7 +16,7 @@
         tools:text="Name Surname" />
 
     <TextView
-        android:id="@+id/date_tv"
+        android:id="@+id/id_tv"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"

@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitBuilder {
 
-    private const val BASE_URL = "https://95007c1a187bea.lhrtunnel.link/api/"
+    private const val BASE_URL = "https://dc291328e7e5c0.lhrtunnel.link/api/"
 
     private fun getRetrofit(): Retrofit {
         val gson = GsonBuilder()

@@ -8,7 +8,9 @@ import android.widget.ProgressBar
 import androidx.lifecycle.ViewModelProvider
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.infra.AbsFragment
-import com.example.diplomclient.main.navigation.CoreNavAction
+import com.example.diplomclient.common.InsetSide
+import com.example.diplomclient.common.ViewUtils
+import com.example.diplomclient.main.navigation.CoreAction
 
 class LoginFragment : AbsFragment(R.layout.fragment_login) {
 
@@ -17,6 +19,13 @@ class LoginFragment : AbsFragment(R.layout.fragment_login) {
 
         val viewModelProvider = ViewModelProvider(this, appViewModelFactory)
         val viewModel = viewModelProvider.get(LoginViewModel::class.java)
+
+        ViewUtils.handleInsetsWithPaddingForSides(
+            view,
+            InsetSide.TOP,
+            InsetSide.START,
+            InsetSide.END
+        )
 
         val progressBar = view.findViewById<ProgressBar>(R.id.pb)
         val nameEditText = view.findViewById<EditText>(R.id.name_et)
@@ -34,7 +43,7 @@ class LoginFragment : AbsFragment(R.layout.fragment_login) {
 
         val registrationButton = view.findViewById<Button>(R.id.register_btn).apply {
             setOnClickListener {
-                viewModel.dispatch(CoreNavAction.ShowRegistration)
+                viewModel.dispatch(CoreAction.ShowRegistration)
             }
         }
 

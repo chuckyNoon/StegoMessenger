@@ -8,7 +8,7 @@ import com.example.diplomclient.common.PrefsContract
 import com.example.diplomclient.common.PrefsHelper
 import com.example.diplomclient.common.launchBackgroundWork
 import com.example.diplomclient.common.safeApiCall
-import com.example.diplomclient.main.navigation.CoreNavAction
+import com.example.diplomclient.main.navigation.CoreAction
 
 class RegistrationMiddleware(
     private val apiHelper: ApiHelper
@@ -31,21 +31,30 @@ class RegistrationMiddleware(
     ) {
         val login = action.login
         val password = action.password
+        val id = action.id
+        val name = action.name
 
-        if (password.isNotEmpty() && login.isNotEmpty()) {
+        if (password.isNotEmpty() && login.isNotEmpty() && id.isNotEmpty() && name.isNotEmpty()) {
             dispatchable.dispatch(RegistrationAction.RegistrationStarted)
             launchBackgroundWork {
                 safeApiCall(
-                    apiCall = { apiHelper.doRegister(login, password) },
+                    apiCall = {
+                        apiHelper.doRegister(
+                            login = login,
+                            password = password,
+                            id = id,
+                            name = name
+                        )
+                    },
                     onSuccess = {
                         PrefsHelper.getEditor()
                             .putString(PrefsContract.TOKEN, it.value)
                             .commit()
                         dispatchable.dispatch(RegistrationAction.RegistrationSuccess)
-                        dispatchable.dispatch(CoreNavAction.ShowOverviewFragment)
+                        dispatchable.dispatch(CoreAction.ShowOverviewFragment)
                     },
                     onError = {
-                        dispatchable.dispatch(CoreNavAction.ShowError(it.message ?: "f2"))
+                        dispatchable.dispatch(CoreAction.ShowError(it.message ?: "f2"))
                         dispatchable.dispatch(RegistrationAction.RegistrationFail)
                     }
                 )
