@@ -9,10 +9,13 @@ import com.example.diplomclient.arch.network.ApiHelper
 import com.example.diplomclient.common.AppLogger
 import com.example.diplomclient.common.launchBackgroundWork
 import com.example.diplomclient.common.safeApiCall
+import com.example.diplomclient.main.SyncHelper
 import com.example.diplomclient.overview.OverviewAction
+import java.util.concurrent.TimeUnit
 
 class CoreMiddleware(
-    private val apiHelper: ApiHelper
+    private val apiHelper: ApiHelper,
+    private val syncHelper: SyncHelper
 ) : Middleware<CoreNavState> {
 
     private val handler = Handler(Looper.getMainLooper())
@@ -25,10 +28,23 @@ class CoreMiddleware(
     ) {
         when (action) {
             CoreAction.ReloadChats -> loadChats(dispatchable)
+            CoreAction.SyncWithServer -> {
+                if (syncHelper.shouldSync()) {
+                    loadChats(dispatchable)
+                }
+                handler.postDelayed(
+                    {
+                        dispatchable.dispatch(CoreAction.SyncWithServer)
+                    },
+                    TimeUnit.SECONDS.toMillis(SyncHelper.SYNC_DELAY_SECONDS)
+                )
+            }
         }
     }
 
     private fun loadChats(dispatchable: Dispatchable) {
+        syncHelper.saveSyncTime()
+
         dispatchable.dispatch(OverviewAction.ChatsLoadingStarted)
         AppLogger.log("chats st")
         launchBackgroundWork {

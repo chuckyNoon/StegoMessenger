@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aita.adapter.composable.ComposableListAdapter
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.infra.AbsFragment
+import com.example.diplomclient.arch.util.hideKeyboard
 import com.example.diplomclient.common.InsetSide
 import com.example.diplomclient.common.ViewUtils
 import com.example.diplomclient.overview.model.DividerAdapterDelegate
@@ -22,6 +23,7 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val context = requireContext()
         val viewModelProvider = ViewModelProvider(this, appViewModelFactory)
         val viewModel = viewModelProvider.get(ChatViewModel::class.java)
 
@@ -80,6 +82,13 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
             }
 
             adapter.submitList(viewState.cells)
+        }
+
+        viewModel.completeLiveData.observe(viewLifecycleOwner) { unit: Unit? ->
+            unit ?: return@observe
+
+            this.hideKeyboard()
+            messageEditText.setText("")
         }
     }
 

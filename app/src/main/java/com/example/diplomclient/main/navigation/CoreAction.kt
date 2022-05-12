@@ -12,4 +12,5 @@ sealed class CoreAction : Action {
     data class ShowError(val text: String) : CoreAction()
     object ReloadChats : CoreAction()
     data class ChatsReloaded(val chats: List<Chat>) : CoreAction()
+    object SyncWithServer : CoreAction()
 }

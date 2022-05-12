@@ -27,6 +27,12 @@ class ChatMiddleware(
     private fun sendTextMessage(newState: ChatState, dispatchable: Dispatchable) {
         val typedText = newState.typedText ?: return
 
+        if (typedText.isEmpty()) {
+            return
+        } else {
+            dispatchable.dispatch(ChatAction.CompleteSending)
+        }
+
         val chat = requireNotNull(newState.chat)
         val userId = chat.id
 

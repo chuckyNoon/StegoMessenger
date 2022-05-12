@@ -1,18 +1,21 @@
 package com.example.diplomclient.chat
 
 import com.aita.adapter.composable.DelegateDiffable
+import com.aita.arch.util.Event
 import com.example.diplomclient.overview.model.Chat
 
 data class ChatState(
     val chat: Chat?,
     val typedText: String?,
-    val viewState: ChatViewState
+    val viewState: ChatViewState,
+    val completeEvent: Event<Unit>?
 ) {
     companion object {
         val EMPTY = ChatState(
             chat = null,
             typedText = null,
-            viewState = ChatViewState.EMPTY
+            viewState = ChatViewState.EMPTY,
+            completeEvent = null
         )
     }
 }

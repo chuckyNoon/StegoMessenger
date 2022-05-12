@@ -1,6 +1,7 @@
 package com.example.diplomclient.chat
 
 import com.aita.arch.store.Reducer
+import com.aita.arch.util.Event
 import com.example.diplomclient.arch.flux.Action
 import com.example.diplomclient.common.AppLogger
 import com.example.diplomclient.main.navigation.CoreAction
@@ -18,6 +19,10 @@ class ChatReducer : Reducer<ChatState> {
                 rebuildViewState(oldState.copy(chat = action.chat))
             is ChatAction.TextTyped ->
                 rebuildViewState(oldState.copy(typedText = action.text))
+            is ChatAction.CompleteSending ->
+                rebuildViewState(
+                    oldState.copy(typedText = "", completeEvent = Event(Unit))
+                )
             is CoreAction.ChatsReloaded -> {
                 val oldChat = requireNotNull(oldState.chat)
                 val updatedChat = action.chats.firstOrNull { it.id == oldChat.id }!!

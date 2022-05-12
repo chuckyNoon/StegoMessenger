@@ -27,7 +27,5 @@ class OverviewViewModel(app: Application, appDepsProvider: AppDepsProvider) :
         ) { newState: OverviewState ->
             _viewStateLiveData.value = newState.viewState
         }
-
-        dispatch(CoreAction.ReloadChats)
     }
 }

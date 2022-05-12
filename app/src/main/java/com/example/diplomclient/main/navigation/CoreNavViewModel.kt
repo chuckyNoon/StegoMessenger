@@ -9,6 +9,7 @@ import com.example.diplomclient.arch.network.ApiHelper
 import com.example.diplomclient.arch.network.RetrofitBuilder
 import com.example.diplomclient.common.PrefsContract
 import com.example.diplomclient.common.PrefsHelper
+import com.example.diplomclient.main.SyncHelper
 
 class CoreNavViewModel(app: Application, appDepsProvider: AppDepsProvider) :
     AbsViewModel(app, appDepsProvider) {
@@ -25,7 +26,10 @@ class CoreNavViewModel(app: Application, appDepsProvider: AppDepsProvider) :
             initialState = CoreNavState.EMPTY,
             reducer = CoreNavReducer(),
             middleware = listOf(
-                CoreMiddleware(apiHelper = apiService)
+                CoreMiddleware(
+                    apiHelper = apiService,
+                    syncHelper = SyncHelper(prefs = PrefsHelper.getPrefs())
+                )
             ),
         ) { newState: CoreNavState ->
             newState.navigationEvent?.readValue()?.let {
@@ -35,6 +39,7 @@ class CoreNavViewModel(app: Application, appDepsProvider: AppDepsProvider) :
                 _errorLiveData.value = it
             }
         }
+        dispatch(CoreAction.SyncWithServer)
         performInitialNavigation()
     }
 
