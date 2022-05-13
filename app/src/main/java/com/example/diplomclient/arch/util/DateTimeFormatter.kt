@@ -8,7 +8,16 @@ import java.util.TimeZone
 class DateTimeFormatter(private val context: Context) {
 
     fun formatDateWithDefaultLocaleInUtc(pattern: String, millis: Long): String {
-        val formatter = SimpleDateFormat(pattern, Locale.getDefault()).apply { timeZone = TimeZone.getTimeZone("UTC") }
+        val formatter = SimpleDateFormat(pattern, Locale.getDefault()).apply {
+            timeZone = TimeZone.getTimeZone("UTC")
+        }
         return formatter.format(millis)
+    }
+
+    fun formatDateWithDefaultLocale(pattern: String, millis: Long): String {
+        val formatter = SimpleDateFormat(pattern, Locale.getDefault()).apply {
+            timeZone = TimeZone.getTimeZone("UTC")
+        }
+        return formatter.format(millis + TimeZone.getDefault().rawOffset)
     }
 }

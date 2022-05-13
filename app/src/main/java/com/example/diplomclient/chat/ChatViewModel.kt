@@ -23,7 +23,7 @@ class ChatViewModel(app: Application, appDepsProvider: AppDepsProvider) :
 
         attachManagedStore(
             initialState = ChatState.EMPTY,
-            reducer = ChatReducer(),
+            reducer = ChatReducer(appDepsProvider.dateTimeFormatter),
             middleware = listOf(
                 ChatMiddleware(apiHelper)
             ),

@@ -1,13 +1,17 @@
 package com.example.diplomclient.chat
 
+import com.aita.arch.di.regular.DateTimeFormatter
 import com.aita.arch.store.Reducer
 import com.aita.arch.util.Event
 import com.example.diplomclient.arch.flux.Action
 import com.example.diplomclient.common.AppLogger
 import com.example.diplomclient.main.navigation.CoreAction
 import com.example.diplomclient.overview.model.MessageCell
+import java.util.*
 
-class ChatReducer : Reducer<ChatState> {
+class ChatReducer(
+    private val dateTimeFormatter: DateTimeFormatter
+) : Reducer<ChatState> {
 
     override fun acceptsAction(action: Action): Boolean =
         action is ChatAction ||
@@ -37,7 +41,11 @@ class ChatReducer : Reducer<ChatState> {
         val cells = chat.messages.map { message ->
             MessageCell(
                 contentText = message.text,
-                dateText = message.createdAtUtcSeconds.toString()
+                dateText = dateTimeFormatter.formatDateWithDefaultLocale(
+                    pattern = "HH-mm",
+                    millis = message.createdAtUtcSeconds
+                ),
+                isMine = message.isMine
             )
         }
         val viewState = ChatViewState(

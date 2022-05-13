@@ -1,27 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="16dp"
-    android:layout_marginVertical="8dp"
-    android:orientation="vertical">
+    android:layout_marginVertical="8dp">
 
-    <TextView
-        android:id="@+id/name_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="8dp"
-        android:gravity="center"
-        tools:text="Name Surname" />
-
-    <TextView
-        android:id="@+id/date_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+    <FrameLayout
+        android:id="@+id/from_container"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:layout_marginEnd="8dp"
-        android:gravity="center"
-        tools:text="test12" />
+        android:visibility="visible">
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:background="@color/teal_200"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/from_content_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:gravity="start"
+                tools:text="Name" />
+
+            <TextView
+                android:id="@+id/from_date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_marginEnd="8dp"
+                android:gravity="start"
+                tools:text="test12" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/to_container"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:background="@color/teal_700"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/to_content_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_marginEnd="8dp"
+                android:gravity="end"
+                tools:text="Name" />
+
+            <TextView
+                android:id="@+id/to_date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_marginEnd="8dp"
+                android:gravity="end"
+                tools:text="test12" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+</FrameLayout>

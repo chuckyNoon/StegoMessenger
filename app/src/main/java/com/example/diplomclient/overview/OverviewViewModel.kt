@@ -7,7 +7,6 @@ import com.aita.arch.di.regular.AppDepsProvider
 import com.example.diplomclient.arch.infra.AbsViewModel
 import com.example.diplomclient.arch.network.ApiHelper
 import com.example.diplomclient.arch.network.RetrofitBuilder
-import com.example.diplomclient.main.navigation.CoreAction
 
 class OverviewViewModel(app: Application, appDepsProvider: AppDepsProvider) :
     AbsViewModel(app, appDepsProvider) {
@@ -20,7 +19,7 @@ class OverviewViewModel(app: Application, appDepsProvider: AppDepsProvider) :
 
         attachManagedStore(
             initialState = OverviewState.EMPTY,
-            reducer = OverviewReducer(),
+            reducer = OverviewReducer(appDepsProvider.dateTimeFormatter),
             middleware = listOf(
                 OverviewMiddleware(apiHelper)
             ),
