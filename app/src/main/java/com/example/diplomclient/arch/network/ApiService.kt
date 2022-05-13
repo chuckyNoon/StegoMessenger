@@ -14,16 +14,15 @@ interface ApiService {
     @POST("login")
     @FormUrlEncoded
     suspend fun doLogin(
-        @Field("login") login: String,
+        @Field("id") id: String,
         @Field("password") password: String
     ): TokenResponse
 
     @POST("registration")
     @FormUrlEncoded
     suspend fun doRegister(
-        @Field("login") login: String,
-        @Field("password") password: String,
         @Field("id") id: String,
+        @Field("password") password: String,
         @Field("name") name: String
     ): TokenResponse
 

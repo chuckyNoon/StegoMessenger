@@ -28,7 +28,6 @@ class RegistrationFragment : AbsFragment(R.layout.fragment_registration) {
 
         val progressBar = view.findViewById<ProgressBar>(R.id.pb)
         val visibleNameEditText = view.findViewById<EditText>(R.id.visible_name_et)
-        val loginEditText = view.findViewById<EditText>(R.id.login_et)
         val passwordEditText = view.findViewById<EditText>(R.id.password_et)
         val idEditText = view.findViewById<EditText>(R.id.id_et)
         val nameEditText = view.findViewById<EditText>(R.id.name_et)
@@ -36,9 +35,8 @@ class RegistrationFragment : AbsFragment(R.layout.fragment_registration) {
             setOnClickListener {
                 viewModel.dispatch(
                     RegistrationAction.OnRegisterClick(
-                        login = loginEditText.text.toString(),
-                        password = passwordEditText.text.toString(),
                         id = idEditText.text.toString(),
+                        password = passwordEditText.text.toString(),
                         name = nameEditText.text.toString()
                     )
                 )
@@ -51,7 +49,6 @@ class RegistrationFragment : AbsFragment(R.layout.fragment_registration) {
             if (viewState.isLoading) {
                 registrationButton.isEnabled = false
                 visibleNameEditText.isEnabled = false
-                loginEditText.isEnabled = false
                 passwordEditText.isEnabled = false
                 idEditText.isEnabled = false
                 nameEditText.isEnabled = false
@@ -60,7 +57,6 @@ class RegistrationFragment : AbsFragment(R.layout.fragment_registration) {
             } else {
                 registrationButton.isEnabled = true
                 visibleNameEditText.isEnabled = true
-                loginEditText.isEnabled = true
                 passwordEditText.isEnabled = true
                 registrationButton.isEnabled = true
                 idEditText.isEnabled = true

@@ -5,16 +5,19 @@ class ApiHelper(private val apiService: ApiService) {
     suspend fun getChats() =
         apiService.getChats()
 
-    suspend fun doLogin(login: String, password: String) =
-        apiService.doLogin(login, password)
+    suspend fun doLogin(id: String, password: String) =
+        apiService.doLogin(id, password)
 
     suspend fun doRegister(
-        login: String,
-        password: String,
         id: String,
+        password: String,
         name: String
     ) =
-        apiService.doRegister(login, password, id, name)
+        apiService.doRegister(
+            id = id,
+            password = password,
+            name = name
+        )
 
     suspend fun sendText(receiverId: String, text: String) =
         apiService.sendText(

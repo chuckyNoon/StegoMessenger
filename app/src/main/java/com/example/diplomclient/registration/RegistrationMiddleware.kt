@@ -29,18 +29,16 @@ class RegistrationMiddleware(
         dispatchable: Dispatchable,
         action: RegistrationAction.OnRegisterClick
     ) {
-        val login = action.login
         val password = action.password
         val id = action.id
         val name = action.name
 
-        if (password.isNotEmpty() && login.isNotEmpty() && id.isNotEmpty() && name.isNotEmpty()) {
+        if (password.isNotEmpty() && id.isNotEmpty() && name.isNotEmpty()) {
             dispatchable.dispatch(RegistrationAction.RegistrationStarted)
             launchBackgroundWork {
                 safeApiCall(
                     apiCall = {
                         apiHelper.doRegister(
-                            login = login,
                             password = password,
                             id = id,
                             name = name
