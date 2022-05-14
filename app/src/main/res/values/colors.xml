@@ -10,4 +10,5 @@
 
     <color name="transparent_status_bar">#80FFFFFF</color>
     <color name="transparent_navigation_bar">#80FFFFFF</color>
+    <color name="light_blue">#37ceff</color>
 </resources>

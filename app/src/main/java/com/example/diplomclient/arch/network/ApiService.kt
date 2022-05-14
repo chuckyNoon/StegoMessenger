@@ -1,10 +1,7 @@
 package com.example.diplomclient.arch.network
 
 import com.example.diplomclient.arch.network.model.*
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -32,6 +29,10 @@ interface ApiService {
         @Field("receiverId") receiverId: String,
         @Field("text") text: String
     )
+
+    @POST("image")
+    @FormUrlEncoded
+    suspend fun sendImage(@Field("image") imageStr: String)
 
     @POST("search")
     @FormUrlEncoded

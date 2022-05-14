@@ -1,5 +1,7 @@
 package com.example.diplomclient.arch.network
 
+import okhttp3.MultipartBody
+
 class ApiHelper(private val apiService: ApiService) {
 
     suspend fun getChats() =
@@ -24,6 +26,9 @@ class ApiHelper(private val apiService: ApiService) {
             receiverId = receiverId,
             text = text
         )
+
+    suspend fun sendImage(imageStr: String) =
+        apiService.sendImage(imageStr)
 
     suspend fun search(text: String) =
         apiService.search(text)
