@@ -1,21 +1,21 @@
 package com.example.diplomclient.chat
 
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Base64
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aita.adapter.composable.ComposableListAdapter
 import com.aita.arch.dispatcher.Dispatchable
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.infra.AbsFragment
 import com.example.diplomclient.arch.util.hideKeyboard
@@ -23,9 +23,9 @@ import com.example.diplomclient.common.InsetSide
 import com.example.diplomclient.common.PickImageRequest
 import com.example.diplomclient.common.ViewUtils
 import com.example.diplomclient.common.launchBackgroundWork
+import com.example.diplomclient.main.MainApplication
 import com.example.diplomclient.overview.model.DividerAdapterDelegate
 import com.example.diplomclient.overview.model.MessageAdapterDelegate
-import java.io.ByteArrayOutputStream
 
 class ChatFragment : AbsFragment(R.layout.fragment_chat) {
 
@@ -51,7 +51,10 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
         val chatNameTextView = view.findViewById<TextView>(R.id.chat_name_tv)
         val messageEditText = view.findViewById<EditText>(R.id.message_et).apply {
             addTextChangedListener {
-                viewModel.dispatch(ChatAction.TextTyped(it.toString()))
+                val text = it?.toString()
+                if (!text.isNullOrEmpty()) {
+                    viewModel.dispatch(ChatAction.TextTyped(it.toString()))
+                }
             }
         }
         val sendButton = view.findViewById<Button>(R.id.send_btn).apply {
@@ -82,7 +85,7 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
         }
 
         val delegates = listOf(
-            MessageAdapterDelegate(layoutInflater),
+            MessageAdapterDelegate(layoutInflater, requestManager = getPicassoInstance(this)),
             DividerAdapterDelegate(layoutInflater)
         )
 
@@ -132,5 +135,13 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
 
     companion object {
         private const val REQUEST_CODE = 1299
+    }
+}
+
+fun getPicassoInstance(fragment: Fragment): RequestManager {
+    return if (fragment.isAdded && fragment.activity != null) {
+        Glide.with(fragment)
+    } else {
+        Glide.with(MainApplication.getInstance())
     }
 }

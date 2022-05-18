@@ -5,6 +5,7 @@ import com.aita.arch.store.Reducer
 import com.aita.arch.util.Event
 import com.example.diplomclient.arch.flux.Action
 import com.example.diplomclient.common.AppLogger
+import com.example.diplomclient.common.BitmapUtils
 import com.example.diplomclient.main.navigation.CoreAction
 import com.example.diplomclient.overview.model.MessageCell
 import java.util.*
@@ -45,7 +46,14 @@ class ChatReducer(
                     pattern = "HH-mm",
                     millis = message.createdAtUtcSeconds
                 ),
-                isMine = message.isMine
+                isMine = message.isMine,
+                image = if (message.image.isNotEmpty()) {
+                    //AppLogger.log("im")
+                   // AppLogger.log(message.image.length.toString())
+                    BitmapUtils.base64ToBitmap(message.image)
+                } else {
+                    null
+                }
             )
         }
         val viewState = ChatViewState(

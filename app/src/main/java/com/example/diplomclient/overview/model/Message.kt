@@ -8,5 +8,7 @@ data class Message(
     @SerializedName("date")
     val createdAtUtcSeconds: Long,
     @SerializedName("mine")
-    val isMine: Boolean
+    val isMine: Boolean,
+    @SerializedName("image")
+    val image: String
 )

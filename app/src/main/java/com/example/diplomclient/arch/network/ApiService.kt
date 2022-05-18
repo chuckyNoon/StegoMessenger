@@ -5,8 +5,9 @@ import retrofit2.http.*
 
 interface ApiService {
 
-    @GET("chats")
-    suspend fun getChats(): ChatsResponse
+    @POST("chats")
+    @FormUrlEncoded
+    suspend fun getChats(@Field("forced") isForced: Boolean): ChatsResponse
 
     @POST("login")
     @FormUrlEncoded
@@ -32,7 +33,10 @@ interface ApiService {
 
     @POST("image")
     @FormUrlEncoded
-    suspend fun sendImage(@Field("image") imageStr: String): SendImageResponse
+    suspend fun sendImage(
+        @Field("receiverId") receiverId: String,
+        @Field("image") imageStr: String
+    ): SendImageResponse
 
     @POST("search")
     @FormUrlEncoded

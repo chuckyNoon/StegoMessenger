@@ -27,10 +27,10 @@ class CoreMiddleware(
         newState: CoreNavState
     ) {
         when (action) {
-            CoreAction.ReloadChats -> loadChats(dispatchable)
+            CoreAction.ReloadChats -> loadChats(dispatchable, isForced = true)
             CoreAction.SyncWithServer -> {
                 if (syncHelper.shouldSync()) {
-                    loadChats(dispatchable)
+                    loadChats(dispatchable, isForced = false)
                 }
                 handler.postDelayed(
                     {
@@ -42,14 +42,14 @@ class CoreMiddleware(
         }
     }
 
-    private fun loadChats(dispatchable: Dispatchable) {
+    private fun loadChats(dispatchable: Dispatchable, isForced: Boolean) {
         syncHelper.saveSyncTime()
 
         dispatchable.dispatch(OverviewAction.ChatsLoadingStarted)
         AppLogger.log("chats st")
         launchBackgroundWork {
             safeApiCall(
-                apiCall = { apiHelper.getChats() },
+                apiCall = { apiHelper.getChats(isForced) },
                 onSuccess = {
                     AppLogger.log("chats scu")
                     dispatchable.dispatch(CoreAction.ChatsReloaded(it.chats))

@@ -4,8 +4,8 @@ import com.example.diplomclient.arch.network.model.SendImageResponse
 
 class ApiHelper(private val apiService: ApiService) {
 
-    suspend fun getChats() =
-        apiService.getChats()
+    suspend fun getChats(isForced: Boolean) =
+        apiService.getChats(isForced)
 
     suspend fun doLogin(id: String, password: String) =
         apiService.doLogin(id, password)
@@ -27,9 +27,13 @@ class ApiHelper(private val apiService: ApiService) {
             text = text
         )
 
-    suspend fun sendImage(imageStr: String): SendImageResponse =
+    suspend fun sendImage(
+        receiverId: String,
+        imageStr: String
+    ): SendImageResponse =
         apiService.sendImage(
-            imageStr
+            receiverId = receiverId,
+            imageStr = imageStr
         )
 
     suspend fun search(text: String) =

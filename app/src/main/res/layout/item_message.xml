@@ -73,6 +73,13 @@
                 android:gravity="end"
                 tools:text="test12" />
 
+            <ImageView
+                android:id="@+id/to_iv"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside" />
+
         </LinearLayout>
 
     </FrameLayout>

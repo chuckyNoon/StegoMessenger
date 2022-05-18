@@ -31,7 +31,7 @@ class ChatMiddleware(
     ) {
         when (action) {
             is ChatAction.ClickSend -> sendTextMessage(newState, dispatchable)
-            is ChatAction.FilePicked -> handleFilePicked(action.bitmap, dispatchable)
+            is ChatAction.FilePicked -> handleFilePicked(action.bitmap, dispatchable, newState)
         }
     }
 
@@ -63,14 +63,20 @@ class ChatMiddleware(
         }
     }
 
-    private fun handleFilePicked(bitmap: Bitmap, dispatchable: Dispatchable) {
+    private fun handleFilePicked(bitmap: Bitmap, dispatchable: Dispatchable, newState: ChatState) {
+        val chat = requireNotNull(newState.chat)
+        val userId = chat.id
+
         launchBackgroundWork {
             val sourceBase64 = BitmapUtils.bitmapToBase64(bitmap)!!
             AppLogger.log("rrr ${sourceBase64.length}")
 
             safeApiCall(
                 apiCall = {
-                    apiHelper.sendImage(imageStr = sourceBase64)
+                    apiHelper.sendImage(
+                        receiverId = userId,
+                        imageStr = sourceBase64
+                    )
                 },
                 onSuccess = { response: SendImageResponse ->
                     val str = response.base64Str
@@ -79,8 +85,15 @@ class ChatMiddleware(
                         AppLogger.log("${returnedBitmap.height}-${returnedBitmap.width}")
                     } else{
                         AppLogger.log("zz")
-                        AppLogger.log(sourceBase64.substring(0, 30))
-                        AppLogger.log(str.substring(0, 30))
+                        for (i in str.indices){
+                            if (str[i] != sourceBase64[i]){
+                                AppLogger.log("${sourceBase64[i]}|${str[i]}|${i}")
+                            }
+                        }
+                    }
+                    val test = BitmapUtils.base64ToBitmap(sourceBase64)
+                    if (test == null){
+                        AppLogger.log("test")
                     }
                     AppLogger.log("file send s ${str.length}")
                 },

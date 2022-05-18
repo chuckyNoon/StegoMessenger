@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aita.adapter.composable.ComposableListAdapter
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.infra.AbsFragment
+import com.example.diplomclient.chat.getPicassoInstance
 import com.example.diplomclient.common.*
 import com.example.diplomclient.main.navigation.CoreAction
 import com.example.diplomclient.overview.model.ChatAdapterDelegate
@@ -71,7 +72,7 @@ class OverviewFragment : AbsFragment(R.layout.fragment_overview) {
         }
 
         val delegates = listOf(
-            MessageAdapterDelegate(layoutInflater),
+            MessageAdapterDelegate(layoutInflater, requestManager = getPicassoInstance(this)),
             ChatAdapterDelegate(
                 layoutInflater,
                 onChatClick = {
