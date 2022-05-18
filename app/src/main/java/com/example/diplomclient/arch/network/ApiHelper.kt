@@ -1,6 +1,6 @@
 package com.example.diplomclient.arch.network
 
-import okhttp3.MultipartBody
+import com.example.diplomclient.arch.network.model.SendImageResponse
 
 class ApiHelper(private val apiService: ApiService) {
 
@@ -27,8 +27,10 @@ class ApiHelper(private val apiService: ApiService) {
             text = text
         )
 
-    suspend fun sendImage(imageStr: String) =
-        apiService.sendImage(imageStr)
+    suspend fun sendImage(imageStr: String): SendImageResponse =
+        apiService.sendImage(
+            imageStr
+        )
 
     suspend fun search(text: String) =
         apiService.search(text)

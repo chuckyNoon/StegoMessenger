@@ -8,10 +8,11 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 object RetrofitBuilder {
 
-    private const val BASE_URL = "https://7f8c79fcfa60a6.lhrtunnel.link/api/"
+    private const val BASE_URL = "https://fdd38563e8ceb2.lhrtunnel.link/api/"
 
     private fun getRetrofit(): Retrofit {
         val gson = GsonBuilder()
@@ -23,6 +24,9 @@ object RetrofitBuilder {
         val prefs = PrefsHelper.getPrefs()
 
         val httpClient = OkHttpClient.Builder()
+            .readTimeout(600, TimeUnit.SECONDS)
+            .connectTimeout(600, TimeUnit.SECONDS)
+            .writeTimeout(600, TimeUnit.SECONDS)
             .addInterceptor { chain ->
                 val token = prefs.getString(PrefsContract.TOKEN, null)
                 Log.d("intercepter", "here2 $token ")

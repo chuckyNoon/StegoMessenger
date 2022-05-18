@@ -32,7 +32,7 @@ interface ApiService {
 
     @POST("image")
     @FormUrlEncoded
-    suspend fun sendImage(@Field("image") imageStr: String)
+    suspend fun sendImage(@Field("image") imageStr: String): SendImageResponse
 
     @POST("search")
     @FormUrlEncoded

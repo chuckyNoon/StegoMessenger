@@ -9,7 +9,7 @@ object BitmapUtils {
 
     fun bitmapToBase64(bitmap: Bitmap): String? {
         val baos = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, baos)
         val b: ByteArray = baos.toByteArray()
         return Base64.encodeToString(b, Base64.DEFAULT)
     }
@@ -20,7 +20,7 @@ object BitmapUtils {
                 Base64.decode(encodedString, Base64.DEFAULT)
             BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.size)
         } catch (e: Exception) {
-            e.message
+            AppLogger.log(e.message.toString())
             null
         }
     }
