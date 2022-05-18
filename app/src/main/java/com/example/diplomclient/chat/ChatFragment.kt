@@ -2,7 +2,6 @@ package com.example.diplomclient.chat
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -20,12 +19,12 @@ import com.example.diplomclient.R
 import com.example.diplomclient.arch.infra.AbsFragment
 import com.example.diplomclient.arch.util.hideKeyboard
 import com.example.diplomclient.common.InsetSide
-import com.example.diplomclient.common.PickImageRequest
 import com.example.diplomclient.common.ViewUtils
-import com.example.diplomclient.common.launchBackgroundWork
 import com.example.diplomclient.main.MainApplication
 import com.example.diplomclient.overview.model.DividerAdapterDelegate
 import com.example.diplomclient.overview.model.MessageAdapterDelegate
+import com.example.diplomclient.stego_dialog.StegoAction
+import com.example.diplomclient.stego_dialog.StegoImageDialog
 
 class ChatFragment : AbsFragment(R.layout.fragment_chat) {
 
@@ -64,7 +63,8 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
         }
         val attachButton = view.findViewById<Button>(R.id.attach_btn).apply {
             setOnClickListener {
-                PickImageRequest(REQUEST_CODE).start(this@ChatFragment)
+                StegoImageDialog().show(childFragmentManager, "rf")
+                viewModel.dispatch(ChatAction.ClickImage)
             }
         }
         val typeBlock = view.findViewById<View>(R.id.type_block).apply {
@@ -120,21 +120,16 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
             val dispatchable = dispatchble ?: return
             val imageUri = data?.data ?: return
 
-            launchBackgroundWork {
-                val bitmap =
-                    MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, imageUri)
-
-                dispatchable.dispatch(
-                    ChatAction.FilePicked(bitmap = bitmap)
-                )
-            }
+            dispatchable.dispatch(
+                StegoAction.HandleImagePicked(imageUri.toString())
+            )
         }
     }
 
     override fun getBackStackTag(): String = "ChatFragment"
 
     companion object {
-        private const val REQUEST_CODE = 1299
+        const val REQUEST_CODE = 1299
     }
 }
 
