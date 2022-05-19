@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.FrameLayout
+import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
@@ -18,10 +19,11 @@ import com.aita.arch.dispatcher.Dispatchable
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.flux.util.AppViewModelFactory
 import com.example.diplomclient.chat.ChatFragment
+import com.example.diplomclient.chat.getPicassoInstance
 import com.example.diplomclient.common.PickImageRequest
 import com.example.diplomclient.main.AppViewModel
 
-class StegoImageDialog() : DialogFragment() {
+class StegoDialog() : DialogFragment() {
 
     @LayoutRes
     private var contentId = 0
@@ -61,6 +63,7 @@ class StegoImageDialog() : DialogFragment() {
         val viewModel = viewModelProvider.get(StegoViewModel::class.java)
         val activity = requireActivity()
         val parentFragment = requireParentFragment()
+        val requestManager = getPicassoInstance(this)
 
         val selectImageButton = view.findViewById<Button>(R.id.select_image).apply {
             setOnClickListener {
@@ -68,19 +71,26 @@ class StegoImageDialog() : DialogFragment() {
             }
         }
         val selectContainerButton = view.findViewById<Button>(R.id.select_container).apply {
-            setOnClickListener { }
+            setOnClickListener {
+                PickImageRequest(ChatFragment.CONTAINER_REQUEST_CODE).start(parentFragment)
+            }
         }
         val sendButton = view.findViewById<Button>(R.id.send).apply {
             setOnClickListener {
                 viewModel.dispatch(StegoAction.ClickSend(activity.contentResolver))
             }
         }
+        val displayImageView = view.findViewById<ImageView>(R.id.display_iv)
 
         viewModel.viewStateLiveData.observe(viewLifecycleOwner) { viewState: StegoViewState? ->
             viewState ?: return@observe
 
             sendButton.isEnabled = viewState.isSendButtonAvailable
             selectImageButton.text = viewState.imageButtonText
+            selectContainerButton.text = viewState.containerButtonText
+            if (viewState.displayBitmap != null) {
+                requestManager.load(viewState.displayBitmap).into(displayImageView)
+            }
         }
     }
 

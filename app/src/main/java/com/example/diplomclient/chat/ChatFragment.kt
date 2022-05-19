@@ -18,13 +18,19 @@ import com.bumptech.glide.RequestManager
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.infra.AbsFragment
 import com.example.diplomclient.arch.util.hideKeyboard
+import com.example.diplomclient.common.AppLogger
 import com.example.diplomclient.common.InsetSide
 import com.example.diplomclient.common.ViewUtils
+import com.example.diplomclient.common.launchBackgroundWork
+import com.example.diplomclient.koch.Algorithm
 import com.example.diplomclient.main.MainApplication
+import com.example.diplomclient.main.navigation.CoreAction
 import com.example.diplomclient.overview.model.DividerAdapterDelegate
 import com.example.diplomclient.overview.model.MessageAdapterDelegate
+import com.example.diplomclient.overview.model.MessageCell
+import com.example.diplomclient.result.ResultAction
 import com.example.diplomclient.stego_dialog.StegoAction
-import com.example.diplomclient.stego_dialog.StegoImageDialog
+import com.example.diplomclient.stego_dialog.StegoDialog
 
 class ChatFragment : AbsFragment(R.layout.fragment_chat) {
 
@@ -63,7 +69,7 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
         }
         val attachButton = view.findViewById<Button>(R.id.attach_btn).apply {
             setOnClickListener {
-                StegoImageDialog().show(childFragmentManager, "rf")
+                StegoDialog().show(childFragmentManager, "rf")
                 viewModel.dispatch(ChatAction.ClickImage)
             }
         }
@@ -85,7 +91,20 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
         }
 
         val delegates = listOf(
-            MessageAdapterDelegate(layoutInflater, requestManager = getPicassoInstance(this)),
+            MessageAdapterDelegate(
+                layoutInflater,
+                requestManager = getPicassoInstance(this),
+                onImageClick = { cell: MessageCell ->
+                    AppLogger.log("1")
+                    launchBackgroundWork {
+                        AppLogger.log("2")
+                        val hiddenBitmap = Algorithm().lsbDecode(cell.image!!)
+                        AppLogger.log("3")
+                        viewModel.dispatch(CoreAction.ShowResult)
+                        viewModel.dispatch(ResultAction.Init(hiddenBitmap!!))
+                    }
+                }
+            ),
             DividerAdapterDelegate(layoutInflater)
         )
 
@@ -123,6 +142,13 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
             dispatchable.dispatch(
                 StegoAction.HandleImagePicked(imageUri.toString())
             )
+        } else if (requestCode == CONTAINER_REQUEST_CODE) {
+            val dispatchable = dispatchble ?: return
+            val imageUri = data?.data ?: return
+
+            dispatchable.dispatch(
+                StegoAction.HandleContainerPicked(imageUri.toString())
+            )
         }
     }
 
@@ -130,6 +156,7 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
 
     companion object {
         const val REQUEST_CODE = 1299
+        const val CONTAINER_REQUEST_CODE = 1300
     }
 }
 

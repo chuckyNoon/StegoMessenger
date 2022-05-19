@@ -16,6 +16,15 @@ class StegoReducer : Reducer<StegoState> {
             rebuildViewState(
                 oldState.copy(imageUriStr = action.imageUriStr)
             )
+        is StegoAction.HandleContainerPicked ->
+            rebuildViewState(
+                oldState.copy(containerUriStr = action.containerUriStr)
+            )
+        is StegoAction.UpdateDisplayImage ->
+            rebuildViewState(
+                oldState.copy(displayBitmap = action.bitmap)
+            )
+
         else -> oldState
     }
 
@@ -26,7 +35,13 @@ class StegoReducer : Reducer<StegoState> {
                 "Image selected"
             } else {
                 "Select image"
-            }
+            },
+            containerButtonText = if (state.containerUriStr != null) {
+                "Container selected"
+            } else {
+                "Select container"
+            },
+            displayBitmap = state.displayBitmap
         )
         return state.copy(viewState = viewState)
     }

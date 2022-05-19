@@ -41,6 +41,7 @@ class ChatReducer(
         val chat = state.chat!!
         val cells = chat.messages.map { message ->
             MessageCell(
+                id = message.createdAtUtcSeconds.toString(),
                 contentText = message.text,
                 dateText = dateTimeFormatter.formatDateWithDefaultLocale(
                     pattern = "HH-mm",

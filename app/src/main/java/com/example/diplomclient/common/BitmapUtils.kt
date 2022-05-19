@@ -7,9 +7,14 @@ import java.io.ByteArrayOutputStream
 
 object BitmapUtils {
 
-    fun bitmapToBase64(bitmap: Bitmap): String? {
+    fun bitmapToBase64(bitmap: Bitmap, isLossless: Boolean): String? {
         val baos = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, baos)
+        if (isLossless) {
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos)
+        } else {
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        }
+
         val b: ByteArray = baos.toByteArray()
         return Base64.encodeToString(b, Base64.URL_SAFE)
     }

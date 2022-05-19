@@ -18,6 +18,7 @@ import com.example.diplomclient.main.navigation.CoreNav
 import com.example.diplomclient.main.navigation.CoreNavViewModel
 import com.example.diplomclient.overview.OverviewFragment
 import com.example.diplomclient.registration.RegistrationFragment
+import com.example.diplomclient.result.ResultFragment
 import com.example.diplomclient.search.SearchFragment
 
 class MainActivity : AppCompatActivity() {
@@ -52,6 +53,8 @@ class MainActivity : AppCompatActivity() {
                     showFragment(ChatFragment())
                 is CoreNav.Search ->
                     showFragment(SearchFragment())
+                is CoreNav.Result ->
+                    showFragment(ResultFragment())
             }
         }
 

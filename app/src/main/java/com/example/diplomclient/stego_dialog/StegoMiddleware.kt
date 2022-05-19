@@ -11,6 +11,7 @@ import com.example.diplomclient.common.AppLogger
 import com.example.diplomclient.common.BitmapUtils
 import com.example.diplomclient.common.launchBackgroundWork
 import com.example.diplomclient.common.safeApiCall
+import com.example.diplomclient.koch.Algorithm
 import com.example.diplomclient.main.navigation.CoreAction
 
 class StegoMiddleware(
@@ -37,41 +38,30 @@ class StegoMiddleware(
         newState: StegoState,
         action: StegoAction.ClickSend
     ) {
+        val userId = requireNotNull(newState.receiverId)
+
         val imageUriStr = newState.imageUriStr
         val uri = Uri.parse(imageUriStr)
         val bitmap = MediaStore.Images.Media.getBitmap(action.contentResolver, uri)
 
-        val userId = requireNotNull(newState.receiverId)
+        val containerUriStr = newState.containerUriStr
+        val containerUri = Uri.parse(containerUriStr)
+        val containerBitmap =
+            MediaStore.Images.Media.getBitmap(action.contentResolver, containerUri)
 
         launchBackgroundWork {
-            val sourceBase64 = BitmapUtils.bitmapToBase64(bitmap)!!
-            AppLogger.log("rrr ${sourceBase64.length}")
-
+            val stegoBitmap = Algorithm().lsbEncode(bitmap, containerBitmap)!!
+            val base64Stego = BitmapUtils.bitmapToBase64(stegoBitmap, isLossless = true)!!
             safeApiCall(
                 apiCall = {
                     apiHelper.sendImage(
                         receiverId = userId,
-                        imageStr = sourceBase64
+                        imageStr = base64Stego
                     )
                 },
                 onSuccess = { response: SendImageResponse ->
-                    val str = response.base64Str
-                    val returnedBitmap = BitmapUtils.base64ToBitmap(str)
-                    if (returnedBitmap != null) {
-                        AppLogger.log("${returnedBitmap.height}-${returnedBitmap.width}")
-                    } else {
-                        AppLogger.log("zz")
-                        for (i in str.indices) {
-                            if (str[i] != sourceBase64[i]) {
-                                AppLogger.log("${sourceBase64[i]}|${str[i]}|$i")
-                            }
-                        }
-                    }
-                    val test = BitmapUtils.base64ToBitmap(sourceBase64)
-                    if (test == null) {
-                        AppLogger.log("test")
-                    }
-                    AppLogger.log("file send s ${str.length}")
+                    AppLogger.log("file send s")
+                    dispatchable.dispatch(StegoAction.ImageSendingSuccess)
                 },
                 onError = {
                     AppLogger.log("file send f")

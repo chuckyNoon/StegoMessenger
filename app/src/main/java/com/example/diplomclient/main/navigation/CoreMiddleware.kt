@@ -56,7 +56,8 @@ class CoreMiddleware(
                 },
                 onError = {
                     AppLogger.log("chats f")
-                    dispatchable.dispatch(CoreAction.ShowError(it.message ?: "f2"))
+                    AppLogger.log(it.message  ?: "hz")
+                    //dispatchable.dispatch(CoreAction.ShowError(it.message ?: "f2"))
                 }
             )
         }

@@ -9,6 +9,7 @@ sealed class CoreAction : Action {
     object ShowRegistration : CoreAction()
     object ShowChat : CoreAction()
     object ShowSearch : CoreAction()
+    object ShowResult : CoreAction()
     data class ShowError(val text: String) : CoreAction()
     object ReloadChats : CoreAction()
     data class ChatsReloaded(val chats: List<Chat>) : CoreAction()

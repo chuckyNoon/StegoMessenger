@@ -13,6 +13,7 @@ import com.bumptech.glide.RequestManager
 import com.example.diplomclient.R
 
 data class MessageCell(
+    val id: String,
     val contentText: String,
     val dateText: String,
     val isMine: Boolean,
@@ -20,7 +21,7 @@ data class MessageCell(
 ) : DelegateDiffable<MessageCell> {
 
     override fun isSame(other: DelegateDiffable<*>): Boolean =
-        other is MessageCell && this.contentText == other.contentText
+        other is MessageCell && this.id == other.id
 
     override fun getChangePayload(newCell: MessageCell): Any = newCell
 }
@@ -28,7 +29,8 @@ data class MessageCell(
 class MessageHolder(
     parent: ViewGroup,
     inflater: LayoutInflater,
-    private val requestManager: RequestManager
+    private val requestManager: RequestManager,
+    private val onImageClick: ((MessageCell) -> Unit)
 ) : AbsDelegateViewHolder<MessageCell>(
     inflater.inflate(R.layout.item_message, parent, false)
 ) {
@@ -36,13 +38,21 @@ class MessageHolder(
     private val toDateTextView = itemView.findViewById<TextView>(R.id.to_date_tv)
     private val toContentTextView = itemView.findViewById<TextView>(R.id.to_content_tv)
     private val toContainer = itemView.findViewById<View>(R.id.to_container)
-    private val toImageView = itemView.findViewById<ImageView>(R.id.to_iv)
+    private val toImageView = itemView.findViewById<ImageView>(R.id.to_iv).apply {
+        setOnClickListener {
+            latestCell?.let(onImageClick)
+        }
+    }
 
     private val fromDateTextView = itemView.findViewById<TextView>(R.id.from_date_tv)
     private val fromContentTextView = itemView.findViewById<TextView>(R.id.from_content_tv)
     private val fromContainer = itemView.findViewById<View>(R.id.from_container)
 
+    private var latestCell: MessageCell? = null
+
     override fun bind(cell: MessageCell, payloads: List<Any>?) {
+        latestCell = cell
+
         if (cell.isMine) {
             fromContainer.visibility = View.GONE
             toContainer.visibility = View.VISIBLE
@@ -53,6 +63,7 @@ class MessageHolder(
                 toImageView.visibility = View.GONE
             } else {
                 toImageView.visibility = View.VISIBLE
+                // requestManager.load("fef").into(toImageView)
                 requestManager.load(cell.image).into(toImageView)
             }
         } else {
@@ -68,7 +79,8 @@ class MessageHolder(
 
 class MessageAdapterDelegate(
     private val inflater: LayoutInflater,
-    private val requestManager: RequestManager
+    private val requestManager: RequestManager,
+    private val onImageClick: ((MessageCell) -> Unit)
 ) : AdapterDelegate<MessageCell, MessageHolder> {
 
     override val cellClass: Class<MessageCell> = MessageCell::class.java
@@ -77,7 +89,8 @@ class MessageAdapterDelegate(
         MessageHolder(
             parent,
             inflater,
-            requestManager
+            requestManager,
+            onImageClick
         )
 
     override fun isUsingCellAsPayload(): Boolean = true

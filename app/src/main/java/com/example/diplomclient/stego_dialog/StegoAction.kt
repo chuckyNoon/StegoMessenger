@@ -1,7 +1,7 @@
 package com.example.diplomclient.stego_dialog
 
 import android.content.ContentResolver
-import android.content.ContextWrapper
+import android.graphics.Bitmap
 import com.example.diplomclient.arch.flux.Action
 
 sealed class StegoAction : Action {
@@ -10,7 +10,14 @@ sealed class StegoAction : Action {
     ) : StegoAction()
 
     data class HandleImagePicked(val imageUriStr: String) : StegoAction()
+    data class HandleContainerPicked(val containerUriStr: String) : StegoAction()
     data class ClickSend(
         val contentResolver: ContentResolver
     ) : StegoAction()
+
+    data class UpdateDisplayImage(
+        val bitmap: Bitmap
+    ) : StegoAction()
+
+    object ImageSendingSuccess : StegoAction()
 }

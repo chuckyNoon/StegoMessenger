@@ -1,12 +1,13 @@
 package com.example.diplomclient.stego_dialog
 
-import com.aita.arch.util.Event
+import android.graphics.Bitmap
 
 data class StegoState(
     val viewState: StegoViewState,
     val receiverId: String?,
     val imageUriStr: String?,
     val containerUriStr: String?,
+    val displayBitmap: Bitmap?
 ) {
     companion object {
         val EMPTY = StegoState(
@@ -14,6 +15,7 @@ data class StegoState(
             receiverId = null,
             imageUriStr = null,
             containerUriStr = null,
+            displayBitmap = null
         )
     }
 }
@@ -21,11 +23,15 @@ data class StegoState(
 data class StegoViewState(
     val isSendButtonAvailable: Boolean,
     val imageButtonText: String?,
+    val containerButtonText: String?,
+    val displayBitmap: Bitmap?
 ) {
     companion object {
         val EMPTY = StegoViewState(
             isSendButtonAvailable = false,
-            imageButtonText = null
+            imageButtonText = null,
+            containerButtonText = null,
+            displayBitmap = null
         )
     }
 }
