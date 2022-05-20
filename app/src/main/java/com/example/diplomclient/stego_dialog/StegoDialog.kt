@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.ProgressBar
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
@@ -81,6 +82,8 @@ class StegoDialog() : DialogFragment() {
             }
         }
         val displayImageView = view.findViewById<ImageView>(R.id.display_iv)
+        val contentBlock = view.findViewById<View>(R.id.content_block)
+        val progressBar = view.findViewById<ProgressBar>(R.id.progress_block)
 
         viewModel.viewStateLiveData.observe(viewLifecycleOwner) { viewState: StegoViewState? ->
             viewState ?: return@observe
@@ -91,6 +94,18 @@ class StegoDialog() : DialogFragment() {
             if (viewState.displayBitmap != null) {
                 requestManager.load(viewState.displayBitmap).into(displayImageView)
             }
+            if (viewState.isInPgoress) {
+                contentBlock.visibility = View.INVISIBLE
+                progressBar.visibility = View.VISIBLE
+            } else {
+                contentBlock.visibility = View.VISIBLE
+                progressBar.visibility = View.GONE
+            }
+        }
+
+        viewModel.closeLiveData.observe(viewLifecycleOwner) { unit: Unit? ->
+            unit ?: return@observe
+            dismiss()
         }
     }
 

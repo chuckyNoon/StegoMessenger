@@ -42,7 +42,7 @@ class LoginMiddleware(
                         dispatchable.dispatch(CoreAction.ShowOverviewFragment)
                     },
                     onError = {
-                        dispatchable.dispatch(CoreAction.ShowError(it.message ?: "f2"))
+                        dispatchable.dispatch(CoreAction.ShowToast(it.message ?: "f2"))
                         dispatchable.dispatch(LoginAction.LoginFail)
                     }
                 )

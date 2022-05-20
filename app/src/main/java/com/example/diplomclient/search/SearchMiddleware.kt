@@ -4,7 +4,6 @@ import com.aita.arch.dispatcher.Dispatchable
 import com.aita.arch.store.Middleware
 import com.example.diplomclient.arch.flux.Action
 import com.example.diplomclient.arch.network.ApiHelper
-import com.example.diplomclient.common.AppLogger
 import com.example.diplomclient.common.launchBackgroundWork
 import com.example.diplomclient.common.safeApiCall
 import com.example.diplomclient.main.navigation.CoreAction
@@ -40,7 +39,7 @@ class SearchMiddleware(private val apiHelper: ApiHelper) : Middleware<SearchStat
                     dispatchable.dispatch(SearchAction.Back)
                 },
                 onError = {
-                    dispatchable.dispatch(CoreAction.ShowError(it.message ?: "f2"))
+                    dispatchable.dispatch(CoreAction.ShowToast(it.message ?: "f2"))
                 }
             )
         }
@@ -59,7 +58,7 @@ class SearchMiddleware(private val apiHelper: ApiHelper) : Middleware<SearchStat
                     )
                 },
                 onError = {
-                    dispatchable.dispatch(CoreAction.ShowError(it.message ?: "f2"))
+                    dispatchable.dispatch(CoreAction.ShowToast(it.message ?: "f2"))
                 }
             )
         }

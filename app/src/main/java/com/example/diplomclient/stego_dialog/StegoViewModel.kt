@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.aita.arch.di.regular.AppDepsProvider
+import com.example.diplomclient.arch.SingleEventLiveData
 import com.example.diplomclient.arch.infra.AbsViewModel
 import com.example.diplomclient.arch.network.ApiHelper
 import com.example.diplomclient.arch.network.RetrofitBuilder
@@ -13,6 +14,9 @@ class StegoViewModel(app: Application, appDepsProvider: AppDepsProvider) :
 
     private val _viewStateLiveData: MutableLiveData<StegoViewState> = MutableLiveData()
     val viewStateLiveData: LiveData<StegoViewState> = _viewStateLiveData
+
+    private val _closeLiveData: SingleEventLiveData<Unit> = SingleEventLiveData()
+    val closeLiveData: LiveData<Unit> = _closeLiveData
 
     init {
         val apiHelper = ApiHelper(RetrofitBuilder.apiService)
@@ -25,6 +29,9 @@ class StegoViewModel(app: Application, appDepsProvider: AppDepsProvider) :
             ),
         ) { newState: StegoState ->
             _viewStateLiveData.value = newState.viewState
+            newState.closeEvent?.readValue()?.let {
+                _closeLiveData.value = Unit
+            }
         }
     }
 }

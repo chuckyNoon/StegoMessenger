@@ -90,7 +90,7 @@ class ChatMiddleware(
                     dispatchable.dispatch(SearchAction.Back)
                 },
                 onError = {
-                    dispatchable.dispatch(CoreAction.ShowError(it.message ?: "f2"))
+                    dispatchable.dispatch(CoreAction.ShowToast(it.message ?: "f2"))
                 }
             )
         }

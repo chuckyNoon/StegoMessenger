@@ -17,7 +17,7 @@ class CoreNavReducer : Reducer<CoreNavState> {
                 oldState.copy(navigationEvent = Event(CoreNav.Login))
             is CoreAction.ShowRegistration ->
                 oldState.copy(navigationEvent = Event(CoreNav.Registration))
-            is CoreAction.ShowError ->
+            is CoreAction.ShowToast ->
                 oldState.copy(errorEvent = Event(action.text))
             is CoreAction.ShowChat ->
                 oldState.copy(navigationEvent = Event(CoreNav.Chat))

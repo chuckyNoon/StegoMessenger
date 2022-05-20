@@ -18,19 +18,14 @@ class Algorithm {
 
         val resizedContainer =
             getResizedBitmap(containerBitmap, newWidth = newWidth, newHeight = newHeight)!!
-        val mutableContainer = resizedContainer.copy(Bitmap.Config.ARGB_8888, true)
-
-        mutableContainer.reconfigure(
-            newWidth,
-            newHeight,
-            Bitmap.Config.ARGB_8888
-        )
 
         val dataPixels = IntArray(dataWidth * dataHeight, { Int.MIN_VALUE })
         dataBitmap.getPixels(dataPixels, 0, dataWidth, 0, 0, dataWidth, dataHeight)
+        dataBitmap.recycle()
 
         val containerPixels = IntArray(newWidth * newHeight, { Int.MIN_VALUE })
-        mutableContainer.getPixels(containerPixels, 0, newWidth, 0, 0, newWidth, newHeight)
+        resizedContainer.getPixels(containerPixels, 0, newWidth, 0, 0, newWidth, newHeight)
+        resizedContainer.recycle()
 
         val originalSet = mutableSetOf<Int>()
         val resultSet = mutableSetOf<Int>()
@@ -83,7 +78,7 @@ class Algorithm {
             }
         }
         // AppLogger.log("cmp ${resultSet.size} ${originalSet.size}")
-
+        resizedContainer.recycle()
         val newBitmap = Bitmap.createBitmap(newWidth, newHeight, Bitmap.Config.ARGB_8888)
         newBitmap.setPixels(containerPixels, 0, newWidth, 0, 0, newWidth, newHeight)
         AppLogger.log("Image ended")

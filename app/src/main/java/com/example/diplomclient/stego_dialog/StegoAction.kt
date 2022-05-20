@@ -19,5 +19,7 @@ sealed class StegoAction : Action {
         val bitmap: Bitmap
     ) : StegoAction()
 
+    object ImageSendingStarted : StegoAction()
     object ImageSendingSuccess : StegoAction()
+    object ImageSendingFail : StegoAction()
 }

@@ -50,6 +50,7 @@ class StegoMiddleware(
             MediaStore.Images.Media.getBitmap(action.contentResolver, containerUri)
 
         launchBackgroundWork {
+            dispatchable.dispatch(StegoAction.ImageSendingStarted)
             val stegoBitmap = Algorithm().lsbEncode(bitmap, containerBitmap)!!
             val base64Stego = BitmapUtils.bitmapToBase64(stegoBitmap, isLossless = true)!!
             safeApiCall(
@@ -62,10 +63,13 @@ class StegoMiddleware(
                 onSuccess = { response: SendImageResponse ->
                     AppLogger.log("file send s")
                     dispatchable.dispatch(StegoAction.ImageSendingSuccess)
+                    dispatchable.dispatch(CoreAction.ReloadChats)
+                    dispatchable.dispatch(CoreAction.ShowToast("Image was successfully sent"))
                 },
                 onError = {
                     AppLogger.log("file send f")
-                    dispatchable.dispatch(CoreAction.ShowError(it.message ?: "no m"))
+                    dispatchable.dispatch(StegoAction.ImageSendingFail)
+                    dispatchable.dispatch(CoreAction.ShowToast(it.message ?: "no m"))
                 }
             )
         }

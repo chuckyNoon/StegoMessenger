@@ -1,6 +1,7 @@
 package com.example.diplomclient.stego_dialog
 
 import com.aita.arch.store.Reducer
+import com.aita.arch.util.Event
 import com.example.diplomclient.arch.flux.Action
 
 class StegoReducer : Reducer<StegoState> {
@@ -24,6 +25,21 @@ class StegoReducer : Reducer<StegoState> {
             rebuildViewState(
                 oldState.copy(displayBitmap = action.bitmap)
             )
+        is StegoAction.ImageSendingStarted ->
+            rebuildViewState(
+                oldState.copy(isInPgoress = true)
+            )
+        is StegoAction.ImageSendingFail ->
+            rebuildViewState(
+                oldState.copy(isInPgoress = false)
+            )
+        is StegoAction.ImageSendingSuccess ->
+            rebuildViewState(
+                oldState.copy(
+                    closeEvent = Event(Unit),
+                    isInPgoress = false,
+                )
+            )
 
         else -> oldState
     }
@@ -41,7 +57,8 @@ class StegoReducer : Reducer<StegoState> {
             } else {
                 "Select container"
             },
-            displayBitmap = state.displayBitmap
+            displayBitmap = state.displayBitmap,
+            isInPgoress = state.isInPgoress
         )
         return state.copy(viewState = viewState)
     }
