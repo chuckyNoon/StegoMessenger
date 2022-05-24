@@ -19,13 +19,6 @@ class RegistrationFragment : AbsFragment(R.layout.fragment_registration) {
         val viewModelProvider = ViewModelProvider(this, appViewModelFactory)
         val viewModel = viewModelProvider.get(RegistrationViewModel::class.java)
 
-        ViewUtils.handleInsetsWithPaddingForSides(
-            view,
-            InsetSide.TOP,
-            InsetSide.START,
-            InsetSide.END
-        )
-
         val progressBar = view.findViewById<ProgressBar>(R.id.pb)
         val visibleNameEditText = view.findViewById<EditText>(R.id.visible_name_et)
         val passwordEditText = view.findViewById<EditText>(R.id.password_et)
@@ -41,6 +34,22 @@ class RegistrationFragment : AbsFragment(R.layout.fragment_registration) {
                     )
                 )
             }
+        }
+        view.findViewById<View>(R.id.button_block).apply {
+            ViewUtils.handleInsetsWithPaddingForSides(
+                this,
+                InsetSide.BOTTOM,
+                InsetSide.START,
+                InsetSide.END
+            )
+        }
+        view.findViewById<View>(R.id.toolbar).apply {
+            ViewUtils.handleInsetsWithPaddingForSides(
+                this,
+                InsetSide.TOP,
+                InsetSide.START,
+                InsetSide.END
+            )
         }
 
         viewModel.viewStateLiveData.observe(viewLifecycleOwner) { viewState: RegistrationViewState? ->

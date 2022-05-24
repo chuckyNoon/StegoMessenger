@@ -12,4 +12,236 @@
     <color name="transparent_status_bar">#80FFFFFF</color>
     <color name="transparent_navigation_bar">#80FFFFFF</color>
     <color name="light_blue">#37ceff</color>
+
+
+
+
+    <color name="system_blue">#007aff</color>
+    <color name="system_blue_70">#b3007aff</color>
+    <color name="system_blue_50">#80007aff</color>
+    <color name="system_blue_25">#40007aff</color>
+    <color name="system_blue_20">#33007aff</color>
+    <color name="system_blue_10">#19007aff</color>
+    <color name="system_blue_5">#0c007aff</color>
+
+    <color name="system_green">#34c759</color>
+    <color name="system_green_50">#8034c759</color>
+
+    <color name="system_red">#ff3b30</color>
+    <color name="system_red_50">#80ff3b30</color>
+    <color name="system_red_20">#33ff3b30</color>
+
+    <color name="primaryColor">@color/white</color>
+    <color name="primaryDarkColor">#d0d0d0</color>
+    <color name="primaryLightColor">#979797</color>
+
+    <color name="backgroundTertiary">#EFEFEF</color>
+    <color name="contentPositive">#20AC48</color>
+    <color name="contentWarning">#E6A303</color>
+    <color name="contentNegative">#EA1A0E</color>
+    <color name="contentSecondary">#8F8F8F</color>
+    <color name="contentSecondary_20">#338F8F8F</color>
+    <color name="contentSecondaryDark">#ADADAD</color>
+    <color name="contentAccent">#3D72EC</color>
+    <color name="contentTertiary">#CCCCCC</color>
+    <color name="tagPositive">#0D451D</color>
+    <color name="backgroundPositive">#E2F6E8</color>
+
+    <color name="primary_text_inverse">@color/white</color>
+
+    <color name="secondary_text">@color/contentSecondary</color>
+    <color name="secondary_text_50">@color/dark_grey_50</color>
+    <color name="secondary_text_20">@color/dark_grey_20</color>
+
+    <color name="grey">#eaebed</color>
+
+    <color name="light_grey">#f6f6f7</color>
+    <color name="light_grey_50">#80f6f6f7</color>
+
+    <color name="dark_grey_50">#8080848f</color>
+    <color name="dark_grey_20">#3380848f</color>
+
+
+    <color name="tag_primary">#242424</color>
+    <color name="tag_primary_bg">#0F000000</color>
+    <color name="brand_sustainability">#20AC48</color>
+    <color name="brand_sustainability_bg">#E2F6E8</color>
+    <color name="brand_southwest">#D19402</color>
+    <color name="brand_southwest_bg">#FFF6E1</color>
+
+
+
+    <color name="dark_grey_button">#323c46</color>
+    <color name="contentPrimary">#000000</color>
+    <color name="contentPrimaryInverse">#FFFFFF</color>
+    <color name="contentStateDisabled">#ADADAD</color>
+    <!-- shouldn't be used if you want to use it probably you need secondary_text  -->
+    <color name="unknown_gray_2">#9fa3a7</color>
+    <color name="unknown_gray_323c46">#323c46</color>
+    <color name="dark_grey_80">#CC80848f</color>
+    <color name="dark_grey_40">#6680848f</color>
+
+    <color name="light_grey_eaebed">#eaebed</color>
+    <color name="light_grey_eaebed_70">#c7eaebed</color>
+
+    <color name="system_blue_disabled">#c0d5ee</color>
+    <color name="system_red_10">#19ff3b30</color>
+    <color name="light_red">#e05151</color>
+    <color name="system_orange">#ff9500</color>
+    <color name="system_yellow">#ffcc00</color>
+    <color name="system_yellow_10">#19ffcc00</color>
+
+    <color name="system_green_10">#1934c759</color>
+    <color name="light_green">#7dc18e</color>
+    <color name="unknown_gray_booking">#f2f2f7</color>
+
+    <!-- PRIMITIVES -->
+    <color name="new_hint_color">@color/dark_grey_80</color>
+    <color name="edit_text_line_color">#1F000000</color>
+    <color name="edit_text_line_color_activated">#4D000000</color>
+    <color name="blue50">#e6f2ff</color>
+    <color name="white_78">#c7ffffff</color>
+    <color name="white_60">#99ffffff</color>
+    <color name="white_30">#33ffffff</color>
+    <color name="white_10">#1AFFFFFF</color>
+
+    <color name="landing_progress_bar_white">#ffffff</color>
+    <color name="app_gray">#b6b6b6</color><!--31bd8c-->
+    <color name="app_gray_darker">#808080</color><!--31bd8c-->
+    <color name="dark_grey_button_disabled">#989da2</color>
+    <color name="dark_grey_book_button_disabled">#989da2</color>
+    <color name="unknown_gray_2_30">#339fa3a7</color>
+    <color name="unknown_gray_232323">#232323</color>
+    <color name="unknown_gray_404042">#404042</color>
+    <color name="unknown_grey_1A">#1A000000</color>
+    <color name="unknown_white_F8F8F8">#F8F8F8</color>
+    <color name="unknown_white_fafafa">#fafafa</color>
+    <color name="unknown_blue_e6f2ff">#e6f2ff</color>
+
+    <color name="app_yellow_light_light">#ec9c00</color>
+    <color name="yellow_light">#fcf0d9</color>
+
+    <!-- BASIC COLORS -->
+    <color name="backgroundPrimary">#FFFFFF</color>
+    <color name="backgroundStateDisabled">#F8F8F8</color>
+    <color name="backgroundPrimaryInverse">@color/black</color>
+    <color name="backgroundPositiveLight">#E2F6E8</color>
+    <color name="backgroundWarningLight">#FFF6E1</color>
+    <color name="backgroundElevatedPrimary">#FFFFFF</color>
+    <color name="backgroundAccent">#3D72EC</color>
+    <color name="backgroundWithAlpha">#10000000</color>
+    <color name="southwest">#D19402</color>
+    <color name="sustainability">#20AC48</color>
+    <color name="inactive_gray">@color/grey</color>
+
+    <color name="arrow_indicator_color">@color/secondary_text_50</color>
+
+    <color name="indicator_gray">@color/app_gray</color>
+    <color name="indicator_yellow">@color/system_yellow</color><!--F2EA2A-->
+    <color name="indicator_green">@color/system_green</color>
+    <color name="indicator_red">@color/system_red</color><!--EC514A-->
+
+    <color name="default_background">@color/windowBackground</color>
+    <color name="hint_color">@color/app_gray_darker</color>
+    <color name="warning_hint_color">@color/system_red</color>
+
+    <color name="icon_black_background_color">@color/primaryColor</color>
+    <color name="icon_tint_blue_color">@color/system_blue</color>
+    <color name="icon_tint_gray_darker_color">@color/app_gray_darker</color>
+    <color name="bottom_bar_tint_color_unselected">@color/secondary_text</color>
+
+    <color name="dark_inactive_text">#6a7177</color>
+    <!-- BACKGROUND -->
+    <color name="windowBackground">@color/light_grey</color>
+    <color name="windowBackgroundSharing">@color/windowBackground</color>
+    <!-- It's windowBackground with alpha -->
+    <color name="myTrips_blockingProgressBackground">@color/light_grey_50</color>
+    <color name="darkbackgroundcolor">#1C202C</color>
+    <!-- end of Background -->
+
+    <!-- TOOLBAR COLORS! -->
+    <color name="primary_text">@color/black</color>
+    <color name="dark_grey">#80848f</color>
+
+
+    <color name="toolbar_selected_color">@color/black</color>
+    <color name="toolbar_unselected_color">@color/dark_grey</color>
+    <color name="toolbar_background_color">@color/primaryColor</color>
+
+    <color name="toolbar_selected_text_color">@color/primary_text</color>
+    <color name="toolbar_unselected_text_color">@color/dark_grey</color>
+    <color name="toolbar_title_text_color">@color/primary_text</color>
+    <color name="toolbar_icon_color">@color/primary_text</color>
+    <color name="toolbar_subtitle_text_color">@color/secondary_text</color>
+    <color name="toolbar_tab_unselected_text_color">@color/toolbar_unselected_text_color</color>
+    <color name="toolbar_tab_selected_text_color">@color/toolbar_selected_text_color</color>
+    <color name="toolbar_tab_selector_color">@color/toolbar_selected_text_color</color>
+    <color name="toolbar_backdrop_selected_color">@color/grey</color>
+    <color name="toolbar_backdrop_unselected_color">@color/white</color>
+
+    <color name="my_flights_selection_mode_toolbar_text_color">#626262</color>
+    <!-- end of toolbar colors -->
+
+    <color name="secondary_text_40">@color/dark_grey_40</color>
+    <!-- DIVIDER COLORS! -->
+    <color name="feed_divider">@color/divider</color>
+    <color name="inbox_divider">@color/divider</color>
+    <color name="divider">#1f000000</color>
+    <color name="divider_restrictions">@color/unknown_gray_2_30</color>
+    <color name="my_trips_divider">#9980848F</color>
+    <color name="divider_tertiary">#0D000000</color>
+    <!-- end of divider colors -->
+
+    <!-- TEXT COLORS! -->
+    <color name="primary_text_sharing">@color/material_dark_900</color>
+    <color name="primary_text_night">#DEDEDE</color>
+    <color name="secondary_text_sharing">#757575</color>
+    <color name="secondary_text_inverse">#c7ffffff</color>
+    <color name="secondary_text_active_card">#b3ffffff</color>
+    <!-- end of TEXT colors -->
+
+    <color name="circle_pager_indicator_background_color">#3effffff</color>
+
+    <color name="discount_label_text_color">@color/white</color>
+    <color name="feed_text_secondary_color">@color/secondary_text</color>
+
+    <color name="warning_text_color">@color/system_orange</color>
+
+    <color name="StartScreenTextColor">@color/primary_text</color>
+    <color name="feed_text_color">@color/primary_text</color>
+    <color name="add_flight_text_color">@color/primary_text</color>
+    <color name="feed_secondary_text_color">@color/secondary_text</color>
+    <color name="transparent_white">#99ffffff</color>
+    <color name="calendar_red">@color/system_red</color>
+    <color name="calendar_green">@color/system_green</color>
+    <color name="calendar_yellow">@color/system_yellow</color>
+    <color name="calendar_secondary">#7e8490</color>
+    <color name="calendar_selected_today_circle_color">@color/white</color>
+    <color name="calendar_unselected_today_circle_color">@color/black</color>
+
+    <color name="material_dark_900">#212121</color>
+
+    <!--TODO:REVIEW THIS BACKGROUND-->
+    <color name="timeline_card_background">#37474F</color>
+    <color name="timeline_progress_bar_background">@color/grey</color>
+    <color name="timeline_circle_page_indicator_active">@color/black</color>
+    <color name="timeline_circle_page_indicator_inactive">@color/inactive_gray</color>
+    <color name="timeline_gray">@color/app_gray</color>
+    <color name="timeline_green">@color/indicator_green</color>
+    <color name="timeline_yellow">@color/indicator_yellow</color>
+    <color name="timeline_red">@color/indicator_red</color>
+    <color name="timeline_dialog_active_background">@color/grey</color>
+    <color name="checklist_progress">#F9B82D</color>
+    <color name="snackbar_background">#323232</color>
+
+    <color name="tint_background">#bb000000</color>
+
+    <!-- card colors -->
+    <color name="unsorted_tint_background">#f709151a</color>
+    <color name="card_background">@color/white</color>
+    <color name="card_background_night">#172633</color>
+    <color name="card_shadow_1">#d4d4d4</color>
+    <color name="card_shadow_2">#dddddd</color>
+    <color name="arrive_at_background">@color/light_grey_eaebed</color>
+
 </resources>

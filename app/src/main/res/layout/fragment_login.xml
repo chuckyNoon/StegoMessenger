@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:layout_marginHorizontal="16dp"
     android:orientation="vertical">
 
@@ -16,28 +17,42 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                style="@style/Headline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Let's get started" />
+
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Name">
+                android:layout_marginTop="24dp"
+                android:hint="Id">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/name_et"
+                    style="@style/RobotoTextInputEditTextStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_form_field" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password_et"
+                    style="@style/RobotoTextInputEditTextStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_form_field" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -59,12 +74,31 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/login_btn"
+        <LinearLayout
+            android:id="@+id/end_action_btn_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Login" />
+            android:layout_marginStart="8dp"
+            android:background="@drawable/bg_button_main"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+
+            <TextView
+                android:id="@+id/end_action_btn_tv"
+                style="@style/Subtitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                tools:text="Book hotel" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/register_btn"
