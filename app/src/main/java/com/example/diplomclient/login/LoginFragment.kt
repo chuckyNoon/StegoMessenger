@@ -20,17 +20,10 @@ class LoginFragment : AbsFragment(R.layout.fragment_login) {
         val viewModelProvider = ViewModelProvider(this, appViewModelFactory)
         val viewModel = viewModelProvider.get(LoginViewModel::class.java)
 
-        ViewUtils.handleInsetsWithPaddingForSides(
-            view,
-            InsetSide.TOP,
-            InsetSide.START,
-            InsetSide.END
-        )
-
         val progressBar = view.findViewById<ProgressBar>(R.id.pb)
         val nameEditText = view.findViewById<EditText>(R.id.name_et)
         val passwordEditText = view.findViewById<EditText>(R.id.password_et)
-        val loginButton = view.findViewById<Button>(R.id.login_btn).apply {
+        val loginButton = view.findViewById<View>(R.id.login_btn).apply {
             setOnClickListener {
                 viewModel.dispatch(
                     LoginAction.OnLoginClick(
@@ -45,6 +38,24 @@ class LoginFragment : AbsFragment(R.layout.fragment_login) {
             setOnClickListener {
                 viewModel.dispatch(CoreAction.ShowRegistration)
             }
+        }
+
+        view.findViewById<View>(R.id.content).apply {
+            ViewUtils.handleInsetsWithPaddingForSides(
+                this,
+                InsetSide.TOP,
+                InsetSide.START,
+                InsetSide.END
+            )
+        }
+
+        view.findViewById<View>(R.id.btn_block).apply {
+            ViewUtils.handleInsetsWithPaddingForSides(
+                this,
+                InsetSide.BOTTOM,
+                InsetSide.START,
+                InsetSide.END
+            )
         }
 
         viewModel.viewStateLiveData.observe(viewLifecycleOwner) { viewState: LoginViewState? ->

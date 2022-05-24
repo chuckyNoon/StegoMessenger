@@ -2,15 +2,19 @@ package com.example.diplomclient.overview.model
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import com.aita.adapter.composable.AbsDelegateViewHolder
 import com.aita.adapter.composable.AdapterDelegate
 import com.aita.adapter.composable.DelegateDiffable
+import com.bumptech.glide.RequestManager
 import com.example.diplomclient.R
+import com.example.diplomclient.common.view.LettersAvatarDrawable
 
 data class ChatCell(
     val id: String,
-    val nameText: String,
+    val chatNameText: String,
+    val messageText: String,
     val dateText: String
 ) : DelegateDiffable<ChatCell> {
 
@@ -21,13 +25,16 @@ data class ChatCell(
 class ChatHolder(
     parent: ViewGroup,
     inflater: LayoutInflater,
+    private val requestManager: RequestManager,
     private val onChatClick: (ChatCell) -> Unit
 ) : AbsDelegateViewHolder<ChatCell>(
     inflater.inflate(R.layout.item_chat, parent, false)
 ) {
 
-    private val nameTextView = itemView.findViewById<TextView>(R.id.name_tv)
+    private val chatTextView = itemView.findViewById<TextView>(R.id.chat_tv)
+    private val messageTextView = itemView.findViewById<TextView>(R.id.message_tv)
     private val dateTextView = itemView.findViewById<TextView>(R.id.date_tv)
+    private val avatarImageView = itemView.findViewById<ImageView>(R.id.avatar_iv)
 
     private var latestCell: ChatCell? = null
 
@@ -40,13 +47,26 @@ class ChatHolder(
     override fun bind(cell: ChatCell, payloads: List<Any>?) {
         latestCell = cell
 
-        nameTextView.text = cell.nameText
+        chatTextView.text = cell.chatNameText
         dateTextView.text = cell.dateText
+        messageTextView.text = cell.messageText
+
+        val initials = cell.chatNameText.split(" ")
+        val firstInitial = initials[0].uppercase()
+        val fullText = if (initials.size > 1) {
+            firstInitial + initials[1].uppercase()
+        } else {
+            firstInitial
+        }
+        requestManager
+            .load(LettersAvatarDrawable(context = itemView.context, letters = fullText))
+            .into(avatarImageView)
     }
 }
 
 class ChatAdapterDelegate(
     private val inflater: LayoutInflater,
+    private val requestManager: RequestManager,
     private val onChatClick: ((ChatCell) -> Unit)
 ) : AdapterDelegate<ChatCell, ChatHolder> {
 
@@ -56,6 +76,7 @@ class ChatAdapterDelegate(
         ChatHolder(
             parent,
             inflater,
+            requestManager,
             onChatClick
         )
 }

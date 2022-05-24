@@ -67,6 +67,13 @@
         <item name="android:textColorPrimary">@color/black</item>
     </style>
 
+    <style name="Big1">
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textSize">34sp</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <!-- 'app:typeface' attribute is deprecated-ish. We'll get rid of it later -->
+        <item name="font">@font/roboto_bold</item>
+    </style>
 
     <style name="Headline1">
         <item name="android:textColor">@color/primary_text</item>
@@ -156,6 +163,10 @@
         <item name="android:minHeight">@dimen/toolbar_default_height</item>
         <item name="contentInsetStart">@dimen/toolbar_default_content_inset_start</item>
         <item name="android:theme">@style/ToolbarTheme</item>
+    </style>
+
+    <style name="Toolbar.Generic.NoElev" parent="Toolbar.Generic">
+        <item name="android:elevation">0dp</item>
     </style>
 
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.DayNight.ActionBar">

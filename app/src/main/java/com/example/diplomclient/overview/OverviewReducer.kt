@@ -31,11 +31,16 @@ class OverviewReducer(
             val topMessage = chat.messages.maxByOrNull { it.createdAtUtcSeconds }!!
             val chatCell = ChatCell(
                 id = chat.id,
-                nameText = chat.name,
+                chatNameText = chat.name,
                 dateText = dateTimeFormatter.formatDateWithDefaultLocale(
                     pattern = "HH-mm",
                     millis = topMessage.createdAtUtcSeconds
-                )
+                ),
+                messageText = if (topMessage.text.isEmpty()) {
+                    "Image..."
+                } else {
+                    topMessage.text
+                }
             )
             listOf(chatCell, DividerCell)
         }

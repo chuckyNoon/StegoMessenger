@@ -82,6 +82,7 @@ class OverviewFragment : AbsFragment(R.layout.fragment_overview) {
             ),
             ChatAdapterDelegate(
                 layoutInflater,
+                requestManager = getPicassoInstance(this),
                 onChatClick = {
                     viewModel.dispatch(OverviewAction.ClickChat(it))
                 }

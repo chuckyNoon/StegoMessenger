@@ -20,11 +20,10 @@ class RegistrationFragment : AbsFragment(R.layout.fragment_registration) {
         val viewModel = viewModelProvider.get(RegistrationViewModel::class.java)
 
         val progressBar = view.findViewById<ProgressBar>(R.id.pb)
-        val visibleNameEditText = view.findViewById<EditText>(R.id.visible_name_et)
+        val nameEditText = view.findViewById<EditText>(R.id.name_et)
         val passwordEditText = view.findViewById<EditText>(R.id.password_et)
         val idEditText = view.findViewById<EditText>(R.id.id_et)
-        val nameEditText = view.findViewById<EditText>(R.id.name_et)
-        val registrationButton = view.findViewById<Button>(R.id.register_btn).apply {
+        val registrationButton = view.findViewById<View>(R.id.sign_up).apply {
             setOnClickListener {
                 viewModel.dispatch(
                     RegistrationAction.OnRegisterClick(
@@ -35,7 +34,7 @@ class RegistrationFragment : AbsFragment(R.layout.fragment_registration) {
                 )
             }
         }
-        view.findViewById<View>(R.id.button_block).apply {
+        view.findViewById<View>(R.id.btn_block).apply {
             ViewUtils.handleInsetsWithPaddingForSides(
                 this,
                 InsetSide.BOTTOM,
@@ -57,7 +56,7 @@ class RegistrationFragment : AbsFragment(R.layout.fragment_registration) {
 
             if (viewState.isLoading) {
                 registrationButton.isEnabled = false
-                visibleNameEditText.isEnabled = false
+                nameEditText.isEnabled = false
                 passwordEditText.isEnabled = false
                 idEditText.isEnabled = false
                 nameEditText.isEnabled = false
@@ -65,7 +64,7 @@ class RegistrationFragment : AbsFragment(R.layout.fragment_registration) {
                 progressBar.visibility = View.VISIBLE
             } else {
                 registrationButton.isEnabled = true
-                visibleNameEditText.isEnabled = true
+                nameEditText.isEnabled = true
                 passwordEditText.isEnabled = true
                 registrationButton.isEnabled = true
                 idEditText.isEnabled = true

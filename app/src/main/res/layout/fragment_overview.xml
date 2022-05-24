@@ -20,24 +20,36 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
+                style="@style/Toolbar.Generic"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/light_blue"
-                android:elevation="4dp"
-                android:paddingVertical="8dp">
+                android:layout_height="wrap_content">
 
                 <LinearLayout
+                    style="@style/Toolbar.Container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
+                    <ImageButton
+                        android:id="@+id/main_btn"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginHorizontal="16dp"
+                        android:adjustViewBounds="false"
+                        android:background="@null"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic__52270_close_icon"
+                        app:tint="@color/black" />
+
                     <TextView
+                        style="@style/Toolbar.Title.Generic.Small"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="16dp"
                         android:layout_weight="1"
-                        android:text="Chats"
-                        android:textSize="24sp" />
+                        android:text="Chats" />
 
                     <ImageButton
                         android:id="@+id/plus_btn"
@@ -45,7 +57,10 @@
                         android:layout_height="24dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginHorizontal="16dp"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:adjustViewBounds="false"
+                        android:background="@null"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic__669253_ic_search_icon" />
 
                 </LinearLayout>
 
@@ -55,8 +70,9 @@
                 android:id="@+id/recycler"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginHorizontal="16dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:clipChildren="false"
+                android:clipToPadding="false" />
 
         </LinearLayout>
 
