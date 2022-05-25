@@ -20,6 +20,7 @@ import com.example.diplomclient.overview.OverviewFragment
 import com.example.diplomclient.registration.RegistrationFragment
 import com.example.diplomclient.result.ResultFragment
 import com.example.diplomclient.search.SearchFragment
+import com.example.diplomclient.stego_dialog.StegoDialog
 
 class MainActivity : AppCompatActivity() {
 
@@ -55,6 +56,8 @@ class MainActivity : AppCompatActivity() {
                     showFragment(SearchFragment())
                 is CoreNav.Result ->
                     showFragment(ResultFragment())
+                is CoreNav.StegoDialog ->
+                    StegoDialog().show(supportFragmentManager, "stego")
             }
         }
 

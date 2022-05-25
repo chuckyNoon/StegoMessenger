@@ -31,8 +31,8 @@
                 app:tint="@color/black" />
 
             <TextView
-                style="@style/Toolbar.Title.Generic.Small"
                 android:id="@+id/chat_name_tv"
+                style="@style/Toolbar.Title.Generic.Small"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -59,42 +59,77 @@
         android:id="@+id/type_block"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-
-        <com.google.android.material.textfield.TextInputLayout
+        <LinearLayout
+            android:id="@+id/send_text_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
             android:layout_weight="1"
-            android:hint="Message">
+            android:background="@drawable/bg_button_main"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="visible">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/message_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:adjustViewBounds="false"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_text"
+                android:tint="@color/white"
+                android:translationY="2dp" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                style="@style/Subtitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:text="Send text"
+                android:textColor="@color/white" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/attach_btn"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/send_img_btn"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Attach"
-            android:textColor="@color/black" />
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_button_main"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="visible">
 
-        <Button
-            android:id="@+id/send_btn"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Send"
-            android:textColor="@color/black" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:adjustViewBounds="false"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_image"
+                android:tint="@color/white" />
+
+            <TextView
+                style="@style/Subtitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:text="Send image"
+                android:textColor="@color/white" />
+        </LinearLayout>
 
     </LinearLayout>
 

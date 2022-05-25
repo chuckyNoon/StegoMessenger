@@ -34,6 +34,10 @@ class ChatMiddleware(
                 val receiverId = newState.chat!!.id
                 dispatchable.dispatch(StegoAction.Init(receiverId))
             }
+            is ChatAction.ClickSendText -> {
+                val receiverId = newState.chat!!.id
+                dispatchable.dispatch(StegoAction.Init(receiverId))
+            }
         }
     }
 

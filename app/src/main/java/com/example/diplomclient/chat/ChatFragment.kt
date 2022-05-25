@@ -3,10 +3,7 @@ package com.example.diplomclient.chat
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,17 +15,12 @@ import com.bumptech.glide.RequestManager
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.infra.AbsFragment
 import com.example.diplomclient.arch.util.hideKeyboard
-import com.example.diplomclient.common.AppLogger
 import com.example.diplomclient.common.InsetSide
 import com.example.diplomclient.common.ViewUtils
-import com.example.diplomclient.common.launchBackgroundWork
-import com.example.diplomclient.koch.Algorithm
 import com.example.diplomclient.main.MainApplication
-import com.example.diplomclient.main.navigation.CoreAction
 import com.example.diplomclient.overview.model.DividerAdapterDelegate
 import com.example.diplomclient.overview.model.TextMessageAdapterDelegate
 import com.example.diplomclient.overview.model.TextMessageCell
-import com.example.diplomclient.result.ResultAction
 import com.example.diplomclient.stego_dialog.StegoAction
 import com.example.diplomclient.stego_dialog.StegoDialog
 
@@ -54,33 +46,7 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
             )
         }
         val chatNameTextView = view.findViewById<TextView>(R.id.chat_name_tv)
-        val messageEditText = view.findViewById<EditText>(R.id.message_et).apply {
-            addTextChangedListener {
-                val text = it?.toString()
-                if (!text.isNullOrEmpty()) {
-                    viewModel.dispatch(ChatAction.TextTyped(it.toString()))
-                }
-            }
-        }
-        val sendButton = view.findViewById<Button>(R.id.send_btn).apply {
-            setOnClickListener {
-                viewModel.dispatch(ChatAction.ClickSend)
-            }
-        }
-        val attachButton = view.findViewById<Button>(R.id.attach_btn).apply {
-            setOnClickListener {
-                StegoDialog().show(childFragmentManager, "rf")
-                viewModel.dispatch(ChatAction.ClickImage)
-            }
-        }
-        val typeBlock = view.findViewById<View>(R.id.type_block).apply {
-            ViewUtils.handleInsetsWithPaddingForSides(
-                this,
-                InsetSide.BOTTOM,
-                InsetSide.START,
-                InsetSide.END
-            )
-        }
+
         val toolbar = view.findViewById<View>(R.id.toolbar).apply {
             ViewUtils.handleInsetsWithPaddingForSides(
                 this,
@@ -90,19 +56,35 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
             )
         }
 
+        view.findViewById<View>(R.id.type_block).apply {
+            ViewUtils.handleInsetsWithPaddingForSides(
+                this,
+                InsetSide.BOTTOM,
+                InsetSide.START,
+                InsetSide.END,
+            )
+        }
+
+        view.findViewById<View>(R.id.send_text_btn).apply {
+            setOnClickListener {
+                viewModel.dispatch(ChatAction.ClickSendText)
+                StegoDialog().show(childFragmentManager, "f")
+            }
+        }
+
         val delegates = listOf(
             TextMessageAdapterDelegate(
                 layoutInflater,
                 requestManager = getPicassoInstance(this),
                 onImageClick = { cell: TextMessageCell ->
-                   /* AppLogger.log("1")
-                    launchBackgroundWork {
-                        AppLogger.log("2")
-                        val hiddenBitmap = Algorithm().lsbDecode(cell.image!!)
-                        AppLogger.log("3")
-                        viewModel.dispatch(CoreAction.ShowResult)
-                        viewModel.dispatch(ResultAction.Init(hiddenBitmap!!))
-                    }*/
+                    /* AppLogger.log("1")
+                     launchBackgroundWork {
+                         AppLogger.log("2")
+                         val hiddenBitmap = Algorithm().lsbDecode(cell.image!!)
+                         AppLogger.log("3")
+                         viewModel.dispatch(CoreAction.ShowResult)
+                         viewModel.dispatch(ResultAction.Init(hiddenBitmap!!))
+                     }*/
                 }
             ),
             DividerAdapterDelegate(layoutInflater)
@@ -116,11 +98,6 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
             viewState ?: return@observe
 
             chatNameTextView.text = viewState.chatName
-
-            if (messageEditText.text.toString().isNullOrEmpty()) {
-                messageEditText.setText(viewState.typedText)
-            }
-
             adapter.submitList(viewState.cells)
         }
 
@@ -128,7 +105,6 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
             unit ?: return@observe
 
             this.hideKeyboard()
-            messageEditText.setText("")
         }
     }
 

@@ -7,4 +7,5 @@ sealed class CoreNav {
     object Chat : CoreNav()
     object Search : CoreNav()
     object Result : CoreNav()
+    object StegoDialog : CoreNav()
 }

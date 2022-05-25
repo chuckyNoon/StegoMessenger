@@ -25,6 +25,8 @@ class CoreNavReducer : Reducer<CoreNavState> {
                 oldState.copy(navigationEvent = Event(CoreNav.Search))
             is CoreAction.ShowResult ->
                 oldState.copy(navigationEvent = Event(CoreNav.Result))
+            is CoreAction.ShowStegoDialog ->
+                oldState.copy(navigationEvent = Event(CoreNav.StegoDialog))
             else -> oldState
         }
 }
