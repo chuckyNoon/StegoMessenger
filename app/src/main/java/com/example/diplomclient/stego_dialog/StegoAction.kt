@@ -9,6 +9,8 @@ sealed class StegoAction : Action {
         val receiverId: String
     ) : StegoAction()
 
+    object ClickCheckBox : StegoAction()
+
     data class HandleImagePicked(val imageUriStr: String) : StegoAction()
     data class HandleContainerPicked(val containerUriStr: String) : StegoAction()
     data class ClickSend(

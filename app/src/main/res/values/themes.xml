@@ -206,4 +206,70 @@
         <item name="android:minHeight">@dimen/toolbar_default_height</item>
     </style>
 
+    <style name="NoBgBottomSheetStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@color/transparent</item>
+    </style>
+
+    <style name="NoBgBottomSheetTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <!-- Required for resizing bottom sheet content on keyboard open -->
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="bottomSheetStyle">@style/NoBgBottomSheetStyle</item><!--
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/accent</item>-->
+    </style>
+
+
+    <style name="BottomSheetContainerSizeStyle"
+        parent="list_item_size_style">
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+
+    <style name="ListItemSizeWithLandscapeStyle"
+        parent="list_item_size_style">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="BottomSheetContainer"
+        parent="BottomSheetContainerSizeStyle">
+        <item name="android:background">@drawable/bottom_sheet_background</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="list_item_size_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="StateListAnimator">
+        <item name="android:stateListAnimator">@animator/toolbar_elevation</item>
+    </style>
+
+    <style name="BottomSheetHeaderBlock"
+        parent="StateListAnimator">
+        <item name="android:background">@drawable/bottom_sheet_background</item>
+    </style>
+
+    <style name="BottomSheetSwiper">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">4dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:background">@drawable/bottom_sheet_swiper_shape</item>
+    </style>
+
+    <style name="BottomSheetFooterBlock">
+        <item name="android:stateListAnimator">@animator/toolbar_elevation</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+
 </resources>

@@ -1,72 +1,32 @@
 package com.example.diplomclient.stego_dialog
 
-import android.annotation.SuppressLint
-import android.app.Dialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.ProgressBar
-import androidx.annotation.LayoutRes
-import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
-import com.aita.arch.dispatcher.Dispatchable
 import com.example.diplomclient.R
-import com.example.diplomclient.arch.flux.util.AppViewModelFactory
-import com.example.diplomclient.chat.ChatFragment
+import com.example.diplomclient.arch.bottomsheets.AbsArchBottomSheetDialogFragment
 import com.example.diplomclient.chat.getPicassoInstance
-import com.example.diplomclient.common.PickImageRequest
-import com.example.diplomclient.main.AppViewModel
+import com.example.diplomclient.common.view.MyCheckBox
 
-class StegoDialog() : DialogFragment() {
+class StegoDialog : AbsArchBottomSheetDialogFragment(R.layout.dialog_stego) {
 
-    @LayoutRes
-    private var contentId = 0
-
-    private var dispatchable: Dispatchable? = null
-
-    private val appViewModelFactory: AppViewModelFactory by lazy {
-        val activity = requireActivity()
-        val activityViewModelProvider = ViewModelProvider(activity)
-        val appViewModel = activityViewModelProvider.get(AppViewModel::class.java)
-        return@lazy appViewModel.appViewModelFactory
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setStyle(STYLE_NORMAL, R.style.DefaultDialogFragmentTheme)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val rootView: View =
-            inflater.inflate(R.layout.dialog_stego, container, false)
-        val contentContainer = rootView.findViewById<FrameLayout>(R.id.content)
-        if (contentId != 0) {
-            contentContainer.addView(inflater.inflate(contentId, null))
-        }
-        return rootView
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onStart() {
+        super.onStart()
 
         val viewModelProvider = ViewModelProvider(this, appViewModelFactory)
         val viewModel = viewModelProvider.get(StegoViewModel::class.java)
         val activity = requireActivity()
+        val view = requireView()
         val parentFragment = requireParentFragment()
         val requestManager = getPicassoInstance(this)
 
-        val selectImageButton = view.findViewById<Button>(R.id.select_image).apply {
+        val checkBox = view.findViewById<MyCheckBox>(R.id.checkbox).apply {
+            onClick = {
+                viewModel.dispatch(StegoAction.ClickCheckBox)
+            }
+            setIsChecked(requestManager, true)
+            setText("Protect with steganography")
+        }
+
+        /*val selectImageButton = view.findViewById<Button>(R.id.select_image).apply {
             setOnClickListener {
                 PickImageRequest(ChatFragment.REQUEST_CODE).start(parentFragment)
             }
@@ -106,30 +66,10 @@ class StegoDialog() : DialogFragment() {
         viewModel.closeLiveData.observe(viewLifecycleOwner) { unit: Unit? ->
             unit ?: return@observe
             dismiss()
-        }
+        }*/
     }
 
-    @SuppressLint("ClickableViewAccessibility")
-    override fun onResume() {
-        super.onResume()
-        val dialog: Dialog = requireDialog()
-        val view: View = requireView()
-        val window = dialog.window
+    override fun getRequestCode(): Int = 0
 
-        if (window != null) {
-            val params: ViewGroup.LayoutParams = window.attributes
-            params.width = ViewGroup.LayoutParams.MATCH_PARENT
-            params.height = ViewGroup.LayoutParams.MATCH_PARENT
-            window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        }
-
-        view.setOnTouchListener { v: View, event: MotionEvent ->
-            val action = event.action and MotionEvent.ACTION_MASK
-            if (action == MotionEvent.ACTION_UP && v.id == R.id.root) {
-                dialog.cancel()
-                return@setOnTouchListener false
-            }
-            true
-        }
-    }
+    override fun isExpandFull(): Boolean = true
 }
