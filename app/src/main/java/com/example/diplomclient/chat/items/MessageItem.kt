@@ -1,10 +1,8 @@
 package com.example.diplomclient.overview.model
 
-import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import com.aita.adapter.composable.AbsDelegateViewHolder
 import com.aita.adapter.composable.AdapterDelegate
@@ -12,45 +10,37 @@ import com.aita.adapter.composable.DelegateDiffable
 import com.bumptech.glide.RequestManager
 import com.example.diplomclient.R
 
-data class MessageCell(
+data class TextMessageCell(
     val id: String,
     val contentText: String,
     val dateText: String,
     val isMine: Boolean,
-    val image: Bitmap?
-) : DelegateDiffable<MessageCell> {
+) : DelegateDiffable<TextMessageCell> {
 
     override fun isSame(other: DelegateDiffable<*>): Boolean =
-        other is MessageCell && this.id == other.id
+        other is TextMessageCell && this.id == other.id
 
-    override fun getChangePayload(newCell: MessageCell): Any = newCell
+    override fun getChangePayload(newCell: TextMessageCell): Any = newCell
 }
 
-class MessageHolder(
+class TextMessageHolder(
     parent: ViewGroup,
-    inflater: LayoutInflater,
-    private val requestManager: RequestManager,
-    private val onImageClick: ((MessageCell) -> Unit)
-) : AbsDelegateViewHolder<MessageCell>(
-    inflater.inflate(R.layout.item_message, parent, false)
+    inflater: LayoutInflater
+) : AbsDelegateViewHolder<TextMessageCell>(
+    inflater.inflate(R.layout.item_text_message, parent, false)
 ) {
 
     private val toDateTextView = itemView.findViewById<TextView>(R.id.to_date_tv)
     private val toContentTextView = itemView.findViewById<TextView>(R.id.to_content_tv)
     private val toContainer = itemView.findViewById<View>(R.id.to_container)
-    private val toImageView = itemView.findViewById<ImageView>(R.id.to_iv).apply {
-        setOnClickListener {
-            latestCell?.let(onImageClick)
-        }
-    }
 
     private val fromDateTextView = itemView.findViewById<TextView>(R.id.from_date_tv)
     private val fromContentTextView = itemView.findViewById<TextView>(R.id.from_content_tv)
     private val fromContainer = itemView.findViewById<View>(R.id.from_container)
 
-    private var latestCell: MessageCell? = null
+    private var latestCell: TextMessageCell? = null
 
-    override fun bind(cell: MessageCell, payloads: List<Any>?) {
+    override fun bind(cell: TextMessageCell, payloads: List<Any>?) {
         latestCell = cell
 
         if (cell.isMine) {
@@ -59,17 +49,17 @@ class MessageHolder(
 
             toContentTextView.text = cell.contentText
             toDateTextView.text = cell.dateText
+            /*
             if (cell.image == null) {
                 toImageView.visibility = View.GONE
             } else {
                 toImageView.visibility = View.VISIBLE
                 // requestManager.load("fef").into(toImageView)
                 requestManager.load(cell.image).into(toImageView)
-            }
+            }*/
         } else {
             fromContainer.visibility = View.VISIBLE
             toContainer.visibility = View.GONE
-            toImageView.visibility = View.GONE
 
             fromContentTextView.text = cell.contentText
             fromDateTextView.text = cell.dateText
@@ -77,20 +67,18 @@ class MessageHolder(
     }
 }
 
-class MessageAdapterDelegate(
+class TextMessageAdapterDelegate(
     private val inflater: LayoutInflater,
     private val requestManager: RequestManager,
-    private val onImageClick: ((MessageCell) -> Unit)
-) : AdapterDelegate<MessageCell, MessageHolder> {
+    private val onImageClick: ((TextMessageCell) -> Unit)
+) : AdapterDelegate<TextMessageCell, TextMessageHolder> {
 
-    override val cellClass: Class<MessageCell> = MessageCell::class.java
+    override val cellClass: Class<TextMessageCell> = TextMessageCell::class.java
 
-    override fun onCreateViewHolder(parent: ViewGroup): MessageHolder =
-        MessageHolder(
+    override fun onCreateViewHolder(parent: ViewGroup): TextMessageHolder =
+        TextMessageHolder(
             parent,
-            inflater,
-            requestManager,
-            onImageClick
+            inflater
         )
 
     override fun isUsingCellAsPayload(): Boolean = true

@@ -15,8 +15,8 @@ import com.example.diplomclient.common.*
 import com.example.diplomclient.main.navigation.CoreAction
 import com.example.diplomclient.overview.model.ChatAdapterDelegate
 import com.example.diplomclient.overview.model.DividerAdapterDelegate
-import com.example.diplomclient.overview.model.MessageAdapterDelegate
-import com.example.diplomclient.overview.model.MessageCell
+import com.example.diplomclient.overview.model.TextMessageAdapterDelegate
+import com.example.diplomclient.overview.model.TextMessageCell
 import com.google.android.material.navigation.NavigationView
 
 class OverviewFragment : AbsFragment(R.layout.fragment_overview) {
@@ -73,10 +73,10 @@ class OverviewFragment : AbsFragment(R.layout.fragment_overview) {
         }
 
         val delegates = listOf(
-            MessageAdapterDelegate(
+            TextMessageAdapterDelegate(
                 layoutInflater,
                 requestManager = getPicassoInstance(this),
-                onImageClick = { cell: MessageCell ->
+                onImageClick = { cell: TextMessageCell ->
 
                 }
             ),

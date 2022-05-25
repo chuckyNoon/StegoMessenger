@@ -26,8 +26,8 @@ import com.example.diplomclient.koch.Algorithm
 import com.example.diplomclient.main.MainApplication
 import com.example.diplomclient.main.navigation.CoreAction
 import com.example.diplomclient.overview.model.DividerAdapterDelegate
-import com.example.diplomclient.overview.model.MessageAdapterDelegate
-import com.example.diplomclient.overview.model.MessageCell
+import com.example.diplomclient.overview.model.TextMessageAdapterDelegate
+import com.example.diplomclient.overview.model.TextMessageCell
 import com.example.diplomclient.result.ResultAction
 import com.example.diplomclient.stego_dialog.StegoAction
 import com.example.diplomclient.stego_dialog.StegoDialog
@@ -91,18 +91,18 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
         }
 
         val delegates = listOf(
-            MessageAdapterDelegate(
+            TextMessageAdapterDelegate(
                 layoutInflater,
                 requestManager = getPicassoInstance(this),
-                onImageClick = { cell: MessageCell ->
-                    AppLogger.log("1")
+                onImageClick = { cell: TextMessageCell ->
+                   /* AppLogger.log("1")
                     launchBackgroundWork {
                         AppLogger.log("2")
                         val hiddenBitmap = Algorithm().lsbDecode(cell.image!!)
                         AppLogger.log("3")
                         viewModel.dispatch(CoreAction.ShowResult)
                         viewModel.dispatch(ResultAction.Init(hiddenBitmap!!))
-                    }
+                    }*/
                 }
             ),
             DividerAdapterDelegate(layoutInflater)

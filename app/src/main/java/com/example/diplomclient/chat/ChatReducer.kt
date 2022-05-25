@@ -7,8 +7,7 @@ import com.example.diplomclient.arch.flux.Action
 import com.example.diplomclient.common.AppLogger
 import com.example.diplomclient.common.BitmapUtils
 import com.example.diplomclient.main.navigation.CoreAction
-import com.example.diplomclient.overview.model.MessageCell
-import java.util.*
+import com.example.diplomclient.overview.model.TextMessageCell
 
 class ChatReducer(
     private val dateTimeFormatter: DateTimeFormatter
@@ -40,7 +39,7 @@ class ChatReducer(
     private fun rebuildViewState(state: ChatState): ChatState {
         val chat = state.chat!!
         val cells = chat.messages.map { message ->
-            MessageCell(
+            TextMessageCell(
                 id = message.createdAtUtcSeconds.toString(),
                 contentText = message.text,
                 dateText = dateTimeFormatter.formatDateWithDefaultLocale(
@@ -48,13 +47,13 @@ class ChatReducer(
                     millis = message.createdAtUtcSeconds
                 ),
                 isMine = message.isMine,
-                image = if (message.image.isNotEmpty()) {
+                /*image = if (message.image.isNotEmpty()) {
                     //AppLogger.log("im")
                    // AppLogger.log(message.image.length.toString())
                     BitmapUtils.base64ToBitmap(message.image)
                 } else {
                     null
-                }
+                }*/
             )
         }
         val viewState = ChatViewState(

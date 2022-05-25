@@ -8,27 +8,37 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
+        style="@style/Toolbar.Generic"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/light_blue"
-        android:paddingVertical="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
+            style="@style/Toolbar.Container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <ImageButton
+                android:id="@+id/main_btn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="16dp"
+                android:adjustViewBounds="false"
+                android:background="@null"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_back_24"
+                app:tint="@color/black" />
+
             <TextView
+                style="@style/Toolbar.Title.Generic.Small"
                 android:id="@+id/chat_name_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
-                android:text="Alex"
-                android:textSize="24sp" />
+                tools:text="Chat" />
 
         </LinearLayout>
 
