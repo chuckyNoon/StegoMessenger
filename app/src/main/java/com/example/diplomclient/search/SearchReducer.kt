@@ -3,6 +3,7 @@ package com.example.diplomclient.search
 import com.aita.arch.store.Reducer
 import com.aita.arch.util.Event
 import com.example.diplomclient.arch.flux.Action
+import com.example.diplomclient.overview.model.DividerCell
 import com.example.diplomclient.search.item.SearchUserCell
 
 class SearchReducer : Reducer<SearchState> {
@@ -21,10 +22,13 @@ class SearchReducer : Reducer<SearchState> {
         }
 
     private fun rebuildViewState(state: SearchState): SearchState {
-        val cells = state.matchingUsers.map { matchingUser ->
-            SearchUserCell(
-                idText = matchingUser.id,
-                nameText = matchingUser.name
+        val cells = state.matchingUsers.flatMap { matchingUser ->
+            listOf(
+                SearchUserCell(
+                    idText = "@" + matchingUser.id,
+                    nameText = matchingUser.name
+                ),
+                DividerCell
             )
         }
         val viewState = SearchViewState(

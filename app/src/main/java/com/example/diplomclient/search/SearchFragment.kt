@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aita.adapter.composable.ComposableListAdapter
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.infra.AbsFragment
+import com.example.diplomclient.chat.getPicassoInstance
 import com.example.diplomclient.common.InsetSide
 import com.example.diplomclient.common.ViewUtils
+import com.example.diplomclient.overview.model.DividerAdapterDelegate
 import com.example.diplomclient.search.item.SearchUserDelegate
 
 class SearchFragment : AbsFragment(R.layout.fragment_search) {
@@ -49,10 +51,12 @@ class SearchFragment : AbsFragment(R.layout.fragment_search) {
         val delegates = listOf(
             SearchUserDelegate(
                 inflater = layoutInflater,
+                requestManager = getPicassoInstance(this),
                 onClick = { cell ->
                     viewModel.dispatch(SearchAction.ClickStartChat(cell))
                 }
-            )
+            ),
+            DividerAdapterDelegate(layoutInflater)
         )
 
         val adapter = ComposableListAdapter(delegates).apply {

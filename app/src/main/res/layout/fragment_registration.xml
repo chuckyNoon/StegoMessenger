@@ -57,7 +57,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/id_et"
-                style="@style/RobotoTextInputEditTextStyle"
+                style="@style/TextInputEditTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_form_field" />
@@ -75,7 +75,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password_et"
-                style="@style/RobotoTextInputEditTextStyle"
+                style="@style/TextInputEditTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_form_field" />
@@ -92,7 +92,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/name_et"
-                style="@style/RobotoTextInputEditTextStyle"
+                style="@style/TextInputEditTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_form_field" />
