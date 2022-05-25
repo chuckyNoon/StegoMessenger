@@ -17,7 +17,7 @@ class SearchMiddleware(private val apiHelper: ApiHelper) : Middleware<SearchStat
         newState: SearchState
     ) {
         when (action) {
-            is SearchAction.ClickStartChat -> loadChatForUser(dispatchable, action.cell.idText)
+            is SearchAction.ClickStartChat -> loadChatForUser(dispatchable, action.cell.idText.value.drop(1))
             is SearchAction.TextTyped -> loadMatchingUsers(dispatchable, action.text)
         }
     }
@@ -58,7 +58,7 @@ class SearchMiddleware(private val apiHelper: ApiHelper) : Middleware<SearchStat
                     )
                 },
                 onError = {
-                    dispatchable.dispatch(CoreAction.ShowToast(it.message ?: "f2"))
+                    //dispatchable.dispatch(CoreAction.ShowToast(it.message ?: "f2"))
                 }
             )
         }

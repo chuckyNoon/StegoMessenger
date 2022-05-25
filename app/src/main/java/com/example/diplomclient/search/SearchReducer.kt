@@ -2,7 +2,9 @@ package com.example.diplomclient.search
 
 import com.aita.arch.store.Reducer
 import com.aita.arch.util.Event
+import com.example.diplomclient.R
 import com.example.diplomclient.arch.flux.Action
+import com.example.diplomclient.common.ColoredText
 import com.example.diplomclient.overview.model.DividerCell
 import com.example.diplomclient.search.item.SearchUserCell
 
@@ -13,7 +15,7 @@ class SearchReducer : Reducer<SearchState> {
     override fun reduce(oldState: SearchState, action: Action): SearchState =
         when (action) {
             is SearchAction.TextTyped ->
-                rebuildViewState(oldState.copy(typedId = action.text))
+                rebuildViewState(oldState.copy(typedText = action.text))
             is SearchAction.UsersLoaded ->
                 rebuildViewState(oldState.copy(matchingUsers = action.matchingUsers))
             is SearchAction.Back ->
@@ -22,17 +24,54 @@ class SearchReducer : Reducer<SearchState> {
         }
 
     private fun rebuildViewState(state: SearchState): SearchState {
+        val typedText = state.typedText
+        if (typedText.isNullOrEmpty()) {
+            return state.copy(viewState = SearchViewState.EMPTY)
+        }
+
         val cells = state.matchingUsers.flatMap { matchingUser ->
-            listOf(
-                SearchUserCell(
-                    idText = "@" + matchingUser.id,
-                    nameText = matchingUser.name
-                ),
-                DividerCell
-            )
+            when {
+                matchingUser.id.startsWith(typedText) -> {
+                    val idText = "@" + matchingUser.id
+                    listOf(
+                        SearchUserCell(
+                            nameText = ColoredText(
+                                value = matchingUser.name,
+                                colorRes = R.color.black
+                            ),
+                            idText = ColoredText(
+                                value = idText,
+                                startIndex = 0,
+                                endIndex = typedText.length + 1,
+                                colorRes = R.color.system_blue
+                            ),
+                        ),
+                        DividerCell
+                    )
+                }
+                matchingUser.name.startsWith(typedText) -> {
+                    listOf(
+                        SearchUserCell(
+                            nameText = ColoredText(
+                                value = matchingUser.name,
+                                endIndex = typedText.length,
+                                colorRes = R.color.system_blue
+                            ),
+                            idText = ColoredText(
+                                value = matchingUser.id,
+                                colorRes = R.color.contentSecondary
+                            ),
+                        ),
+                        DividerCell
+                    )
+                }
+                else -> {
+                    emptyList()
+                }
+            }
         }
         val viewState = SearchViewState(
-            searchText = state.typedId,
+            searchText = state.typedText,
             cells = cells
         )
         return state.copy(viewState = viewState)

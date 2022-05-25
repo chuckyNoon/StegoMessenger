@@ -9,11 +9,13 @@ import com.aita.adapter.composable.AdapterDelegate
 import com.aita.adapter.composable.DelegateDiffable
 import com.bumptech.glide.RequestManager
 import com.example.diplomclient.R
+import com.example.diplomclient.common.ColoredText
+import com.example.diplomclient.common.setColoredText
 import com.example.diplomclient.common.view.LettersAvatarDrawable
 
 data class SearchUserCell(
-    val nameText: String,
-    val idText: String
+    val nameText: ColoredText,
+    val idText: ColoredText
 ) : DelegateDiffable<SearchUserCell> {
 
     override fun isSame(other: DelegateDiffable<*>): Boolean =
@@ -44,10 +46,10 @@ class SearchUserHolder(
     override fun bind(cell: SearchUserCell, payloads: List<Any>?) {
         latestCell = cell
 
-        nameTextView.text = cell.nameText
-        idTextView.text = cell.idText
+        nameTextView.setColoredText(cell.nameText)
+        idTextView.setColoredText(cell.idText)
 
-        val initials = cell.nameText.split(" ")
+        val initials = cell.nameText.value.split(" ")
         val firstInitial = initials[0].uppercase()
         val fullText = if (initials.size > 1) {
             firstInitial + initials[1].uppercase()

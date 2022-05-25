@@ -5,14 +5,14 @@ import com.aita.arch.util.Event
 import com.example.diplomclient.search.model.MatchingUser
 
 data class SearchState(
-    val typedId: String?,
+    val typedText: String?,
     val matchingUsers: List<MatchingUser>,
     val viewState: SearchViewState,
     val backEvent: Event<Unit>?
 ) {
     companion object {
         val EMPTY = SearchState(
-            typedId = null,
+            typedText = null,
             matchingUsers = emptyList(),
             viewState = SearchViewState.EMPTY,
             backEvent = null
