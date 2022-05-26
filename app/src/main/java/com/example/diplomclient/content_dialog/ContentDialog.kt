@@ -1,12 +1,15 @@
 package com.example.diplomclient.content_dialog
 
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aita.adapter.composable.ComposableListAdapter
+import com.aita.base.bottomsheets.ScrollBottomSheetHelper
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.bottomsheets.AbsArchBottomSheetDialogFragment
 import com.example.diplomclient.chat.getPicassoInstance
+import com.example.diplomclient.chat.items.ImageMessageCell
 import com.example.diplomclient.chat.items.ImageMessageDelegate
 import com.example.diplomclient.common.InsetSide
 import com.example.diplomclient.common.ViewUtils
@@ -34,6 +37,16 @@ class ContentDialog : AbsArchBottomSheetDialogFragment(R.layout.dialog_content) 
                 InsetSide.BOTTOM
             )
         }
+        val downloadButton = view.findViewById<View>(R.id.download_btn).apply {
+            setOnClickListener {
+            }
+        }
+
+        ScrollBottomSheetHelper(
+            recyclerView,
+            view.findViewById(R.id.button_block),
+            view.findViewById(R.id.title_block),
+        )
 
         val delegates = listOf(
             TextMessageAdapterDelegate(
@@ -56,7 +69,14 @@ class ContentDialog : AbsArchBottomSheetDialogFragment(R.layout.dialog_content) 
         viewModel.viewStateLiveData.observe(viewLifecycleOwner) { viewState: ContentViewState? ->
             viewState ?: return@observe
 
+            val cell = viewState.cells.firstOrNull()
             adapter.submitList(viewState.cells)
+
+            if (cell is ImageMessageCell) {
+                downloadButton.visibility = View.VISIBLE
+            } else {
+                downloadButton.visibility = View.GONE
+            }
         }
     }
 
