@@ -2,10 +2,9 @@ package com.example.diplomclient.chat
 
 import com.aita.arch.di.regular.DateTimeFormatter
 import com.aita.arch.store.Reducer
-import com.aita.arch.util.Event
 import com.example.diplomclient.arch.flux.Action
+import com.example.diplomclient.chat.items.ImageMessageCell
 import com.example.diplomclient.common.AppLogger
-import com.example.diplomclient.common.BitmapUtils
 import com.example.diplomclient.main.navigation.CoreAction
 import com.example.diplomclient.overview.model.TextMessageCell
 
@@ -32,24 +31,34 @@ class ChatReducer(
 
     private fun rebuildViewState(state: ChatState): ChatState {
         val chat = state.chat!!
-        val cells = chat.messages.map { message ->
-            TextMessageCell(
-                id = message.createdAtUtcSeconds.toString(),
-                contentText = message.text,
-                dateText = dateTimeFormatter.formatDateWithDefaultLocale(
-                    pattern = "HH-mm",
-                    millis = message.createdAtUtcSeconds
-                ),
-                isMine = message.isMine,
-                /*image = if (message.image.isNotEmpty()) {
-                    //AppLogger.log("im")
-                   // AppLogger.log(message.image.length.toString())
-                    BitmapUtils.base64ToBitmap(message.image)
-                } else {
-                    null
-                }*/
-            )
+        AppLogger.log("rrr")
+        AppLogger.log(state.chat?.messages?.size?.toString())
+        val cells = chat.messages.mapNotNull { message ->
+            if (message.text.isNotEmpty()) {
+                TextMessageCell(
+                    id = message.createdAtUtcSeconds.toString(),
+                    contentText = message.text,
+                    dateText = dateTimeFormatter.formatDateWithDefaultLocale(
+                        pattern = "HH-mm",
+                        millis = message.createdAtUtcSeconds
+                    ),
+                    isMine = message.isMine,
+                )
+            } else if (message.imageUrl.isNotEmpty()) {
+                ImageMessageCell(
+                    id = message.createdAtUtcSeconds.toString() + Math.random().toInt(),
+                    imageSource = ImageMessageCell.ImageSource.Url(message.imageUrl),
+                    dateText = dateTimeFormatter.formatDateWithDefaultLocale(
+                        pattern = "HH-mm",
+                        millis = message.createdAtUtcSeconds
+                    ),
+                    isMine = message.isMine,
+                )
+            } else {
+                null
+            }
         }
+        AppLogger.log(cells.size.toString())
         val viewState = ChatViewState(
             chatName = chat.name,
             cells = cells,

@@ -1,6 +1,9 @@
 package com.example.diplomclient.arch.network
 
-import com.example.diplomclient.arch.network.model.SendImageResponse
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.File
 
 class ApiHelper(private val apiService: ApiService) {
 
@@ -29,11 +32,15 @@ class ApiHelper(private val apiService: ApiService) {
 
     suspend fun sendImage(
         receiverId: String,
-        imageStr: String
-    ): SendImageResponse =
+        imageFile: File
+    ) =
         apiService.sendImage(
-            receiverId = receiverId,
-            imageStr = imageStr
+            file = MultipartBody.Part.createFormData(
+                "image",
+                imageFile.name,
+                RequestBody.create(MediaType.parse("image/*"), imageFile)
+            ),
+            receiverId = MultipartBody.Part.createFormData("receiverId", receiverId)
         )
 
     suspend fun search(text: String) =

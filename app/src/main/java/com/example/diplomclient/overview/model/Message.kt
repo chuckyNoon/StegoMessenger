@@ -10,5 +10,5 @@ data class Message(
     @SerializedName("mine")
     val isMine: Boolean,
     @SerializedName("image")
-    val image: String
+    val imageUrl: String
 )

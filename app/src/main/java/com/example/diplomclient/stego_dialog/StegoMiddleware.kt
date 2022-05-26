@@ -1,18 +1,22 @@
 package com.example.diplomclient.stego_dialog
 
+import android.graphics.Bitmap
 import android.net.Uri
 import android.provider.MediaStore
 import com.aita.arch.dispatcher.Dispatchable
 import com.aita.arch.store.Middleware
 import com.example.diplomclient.arch.flux.Action
 import com.example.diplomclient.arch.network.ApiHelper
-import com.example.diplomclient.arch.network.model.SendImageResponse
 import com.example.diplomclient.common.AppLogger
-import com.example.diplomclient.common.BitmapUtils
+import com.example.diplomclient.common.getName
 import com.example.diplomclient.common.launchBackgroundWork
 import com.example.diplomclient.common.safeApiCall
 import com.example.diplomclient.koch.Algorithm
+import com.example.diplomclient.main.MainApplication
 import com.example.diplomclient.main.navigation.CoreAction
+import java.io.BufferedOutputStream
+import java.io.File
+import java.io.FileOutputStream
 
 class StegoMiddleware(
     private val apiHelper: ApiHelper
@@ -74,29 +78,49 @@ class StegoMiddleware(
         newState: StegoState,
         action: StegoAction.ClickSend
     ) {
+        val context = MainApplication.getInstance()
         val userId = requireNotNull(newState.receiverId)
 
-        val imageUriStr = newState.containerUriStr
-        val uri = Uri.parse(imageUriStr)
-        val bitmap = MediaStore.Images.Media.getBitmap(action.contentResolver, uri)
+        val containerUri = newState.containerUriStr?.let { Uri.parse(it) }
+        val containerBitmap = containerUri?.let {
+            MediaStore.Images.Media.getBitmap(action.contentResolver, it)
+        }
 
-        val containerUriStr = newState.containerUriStr
-        val containerUri = Uri.parse(containerUriStr)
-        val containerBitmap =
-            MediaStore.Images.Media.getBitmap(action.contentResolver, containerUri)
+        val contentUri = newState.contentUriStr?.let { Uri.parse(it) }
+        val contentBitmap = contentUri?.let {
+            MediaStore.Images.Media.getBitmap(action.contentResolver, it)
+        }
 
         launchBackgroundWork {
             dispatchable.dispatch(StegoAction.ImageSendingStarted)
-            val stegoBitmap = Algorithm().lsbEncode(bitmap, containerBitmap)!!
-            val base64Stego = BitmapUtils.bitmapToBase64(stegoBitmap, isLossless = true)!!
+
+            val bitmapToSend = when {
+                containerBitmap != null && contentBitmap != null -> {
+                    Algorithm().lsbEncode(contentBitmap, containerBitmap)!!
+                }
+                contentBitmap != null -> {
+                    contentBitmap
+                }
+                else -> {
+                    error("No valid bitmap")
+                }
+            }
+            val file = File(
+                context.getCacheDir(),
+                contentUri.getName(context) ?: "wtf"
+            )
+            val os = BufferedOutputStream(FileOutputStream(file))
+            bitmapToSend.compress(Bitmap.CompressFormat.PNG, 100, os)
+            os.close()
+
             safeApiCall(
                 apiCall = {
                     apiHelper.sendImage(
                         receiverId = userId,
-                        imageStr = base64Stego
+                        imageFile = file
                     )
                 },
-                onSuccess = { response: SendImageResponse ->
+                onSuccess = {
                     AppLogger.log("file send s")
                     dispatchable.dispatch(StegoAction.ImageSendingSuccess)
                     dispatchable.dispatch(CoreAction.ReloadChats)

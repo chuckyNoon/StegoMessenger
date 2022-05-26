@@ -7,6 +7,7 @@ import com.aita.adapter.composable.ComposableListAdapter
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.bottomsheets.AbsArchBottomSheetDialogFragment
 import com.example.diplomclient.chat.getPicassoInstance
+import com.example.diplomclient.chat.items.ImageMessageDelegate
 import com.example.diplomclient.common.InsetSide
 import com.example.diplomclient.common.ViewUtils
 import com.example.diplomclient.overview.model.TextMessageAdapterDelegate
@@ -39,6 +40,12 @@ class ContentDialog : AbsArchBottomSheetDialogFragment(R.layout.dialog_content) 
                 inflater = layoutInflater,
                 requestManager = requestManager,
                 onImageClick = {}
+            ),
+            ImageMessageDelegate(
+                inflater = layoutInflater,
+                requestManager = requestManager,
+                onImageClick = {
+                }
             )
         )
 

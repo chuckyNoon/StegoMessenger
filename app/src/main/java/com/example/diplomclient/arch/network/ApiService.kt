@@ -1,6 +1,7 @@
 package com.example.diplomclient.arch.network
 
 import com.example.diplomclient.arch.network.model.*
+import okhttp3.MultipartBody
 import retrofit2.http.*
 
 interface ApiService {
@@ -31,12 +32,12 @@ interface ApiService {
         @Field("text") text: String
     )
 
-    @POST("image")
-    @FormUrlEncoded
+    @Multipart
+    @POST("sendimage")
     suspend fun sendImage(
-        @Field("receiverId") receiverId: String,
-        @Field("image") imageStr: String
-    ): SendImageResponse
+        @Part file: MultipartBody.Part,
+        @Part receiverId: MultipartBody.Part
+    )
 
     @POST("search")
     @FormUrlEncoded

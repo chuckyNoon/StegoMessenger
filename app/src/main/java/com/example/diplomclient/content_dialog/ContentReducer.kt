@@ -1,7 +1,9 @@
 package com.example.diplomclient.content_dialog
 
+import com.aita.adapter.composable.DelegateDiffable
 import com.aita.arch.store.Reducer
 import com.example.diplomclient.arch.flux.Action
+import com.example.diplomclient.chat.items.ImageMessageCell
 import com.example.diplomclient.overview.model.TextMessageCell
 
 class ContentReducer : Reducer<ContentState> {
@@ -24,10 +26,16 @@ class ContentReducer : Reducer<ContentState> {
     }
 
     private fun rebuildViewState(state: ContentState): ContentState {
-        val cells = mutableListOf<TextMessageCell>()
+        val cells = mutableListOf<DelegateDiffable<*>>()
         when (state.type) {
-            ContentStateType.IMAGE -> {
-            }
+            ContentStateType.IMAGE -> cells.add(
+                ImageMessageCell(
+                    id = "1",
+                    imageSource = ImageMessageCell.ImageSource.LoadedBitmap(state.image!!),
+                    dateText = "",
+                    isMine = false
+                )
+            )
             ContentStateType.TEXT -> cells.add(
                 TextMessageCell(
                     id = "1",

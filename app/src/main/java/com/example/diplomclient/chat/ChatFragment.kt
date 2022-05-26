@@ -1,6 +1,8 @@
 package com.example.diplomclient.chat
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -12,14 +14,22 @@ import com.aita.adapter.composable.ComposableListAdapter
 import com.aita.arch.dispatcher.Dispatchable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.infra.AbsFragment
 import com.example.diplomclient.arch.util.hideKeyboard
+import com.example.diplomclient.chat.items.ImageMessageCell
+import com.example.diplomclient.chat.items.ImageMessageDelegate
+import com.example.diplomclient.common.AppLogger
 import com.example.diplomclient.common.InsetSide
 import com.example.diplomclient.common.ViewUtils
+import com.example.diplomclient.common.launchBackgroundWork
 import com.example.diplomclient.content_dialog.ContentAction
 import com.example.diplomclient.content_dialog.ContentDialog
+import com.example.diplomclient.koch.Algorithm
 import com.example.diplomclient.main.MainApplication
+import com.example.diplomclient.main.navigation.CoreAction
 import com.example.diplomclient.overview.model.DividerAdapterDelegate
 import com.example.diplomclient.overview.model.TextMessageAdapterDelegate
 import com.example.diplomclient.stego_dialog.StegoAction
@@ -80,13 +90,20 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
             }
         }
 
+        val requestManager = getPicassoInstance(this)
+
         val delegates = listOf(
             TextMessageAdapterDelegate(
                 layoutInflater,
-                requestManager = getPicassoInstance(this),
+                requestManager = requestManager,
                 onImageClick = {
                     ContentDialog().show(childFragmentManager, "cont")
-                    viewModel.dispatch(ContentAction.Init(text = "Test content.Test contentTest contentTest contentTest contentTest contentTest contentTest contentTest contentTest contentTest content", image = null))
+                    viewModel.dispatch(
+                        ContentAction.Init(
+                            text = "Test content.Test contentTest contentTest contentTest contentTest contentTest contentTest contentTest contentTest contentTest content",
+                            image = null
+                        )
+                    )
                     /* AppLogger.log("1")
                      launchBackgroundWork {
                          AppLogger.log("2")
@@ -95,6 +112,47 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
                          viewModel.dispatch(CoreAction.ShowResult)
                          viewModel.dispatch(ResultAction.Init(hiddenBitmap!!))
                      }*/
+                }
+            ),
+            ImageMessageDelegate(
+                layoutInflater,
+                requestManager = requestManager,
+                onImageClick = { cell: ImageMessageCell ->
+                    AppLogger.log("1")
+                    val imageUrl = (cell.imageSource as? ImageMessageCell.ImageSource.Url)
+                        ?.url
+                        ?: return@ImageMessageDelegate
+                    requestManager
+                        .asBitmap()
+                        .load(imageUrl)
+                        .into(
+                            object : CustomTarget<Bitmap>() {
+                                override fun onResourceReady(
+                                    resource: Bitmap,
+                                    transition: Transition<in Bitmap>?
+                                ) {
+                                    launchBackgroundWork {
+                                        AppLogger.log("2")
+                                        val decoded = Algorithm().lsbDecode(resource)
+                                        AppLogger.log("3 ${decoded == null}")
+                                        if (decoded == null) {
+                                            viewModel.dispatch(CoreAction.ShowToast("Failed to find hidden message"))
+                                        } else {
+                                            ContentDialog().show(childFragmentManager, "ff")
+                                            viewModel.dispatch(
+                                                ContentAction.Init(
+                                                    text = null,
+                                                    image = decoded
+                                                )
+                                            )
+                                        }
+                                    }
+                                }
+
+                                override fun onLoadCleared(placeholder: Drawable?) {
+                                }
+                            }
+                        )
                 }
             ),
             DividerAdapterDelegate(layoutInflater)
