@@ -13,13 +13,18 @@
         android:layout_gravity="start"
         android:visibility="visible">
 
-        <ImageView
-            android:id="@+id/from_iv"
+        <FrameLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            tools:background="@color/dark_grey_80" />
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/from_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                tools:background="@color/dark_grey_80" />
+        </FrameLayout>
 
     </FrameLayout>
 
@@ -30,14 +35,20 @@
         android:layout_gravity="end"
         android:visibility="visible">
 
-        <ImageView
-            android:id="@+id/to_iv"
+        <FrameLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            tools:background="@color/calendar_red" />
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/to_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                tools:background="@color/calendar_red" />
+
+        </FrameLayout>
 
 
     </FrameLayout>

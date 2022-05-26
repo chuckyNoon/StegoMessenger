@@ -10,6 +10,7 @@ import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.diplomclient.R
+import com.example.diplomclient.arch.FragmentTransition
 import com.example.diplomclient.arch.infra.AbsFragment
 import com.example.diplomclient.chat.ChatFragment
 import com.example.diplomclient.common.SystemUiUtils
@@ -42,20 +43,35 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.navigationLiveData.observe(this) { navigation: CoreNav? ->
             when (navigation) {
                 is CoreNav.Overview ->
-                    showFragment(OverviewFragment())
+                    showFragment(
+                        fragment = OverviewFragment(),
+                        fragmentTransition = FragmentTransition.NONE
+                    )
                 is CoreNav.Login ->
                     showFragment(
                         fragment = LoginFragment(),
-                        mustAddToBackStack = true
+                        fragmentTransition = FragmentTransition.EMERGE,
                     )
                 is CoreNav.Registration ->
-                    showFragment(RegistrationFragment())
+                    showFragment(
+                        fragment = RegistrationFragment(),
+                        fragmentTransition = FragmentTransition.SLIDE
+                    )
                 is CoreNav.Chat ->
-                    showFragment(ChatFragment())
+                    showFragment(
+                        fragment = ChatFragment(),
+                        fragmentTransition = FragmentTransition.SLIDE
+                    )
                 is CoreNav.Search ->
-                    showFragment(SearchFragment())
+                    showFragment(
+                        fragment = SearchFragment(),
+                        fragmentTransition = FragmentTransition.EMERGE
+                    )
                 is CoreNav.Result ->
-                    showFragment(ResultFragment())
+                    showFragment(
+                        fragment = ResultFragment(),
+                        fragmentTransition = FragmentTransition.EMERGE
+                    )
                 is CoreNav.StegoDialog ->
                     StegoDialog().show(supportFragmentManager, "stego")
             }
@@ -68,10 +84,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showFragment(fragment: AbsFragment, mustAddToBackStack: Boolean = true) =
+    private fun showFragment(
+        fragment: AbsFragment,
+        fragmentTransition: FragmentTransition,
+        mustAddToBackStack: Boolean = true
+    ) =
         showFragmentInternal(
             fragment = fragment,
             fragmentManager = supportFragmentManager,
+            fragmentTransition = fragmentTransition,
             containerViewId = R.id.content,
             mustAddToBackStack = mustAddToBackStack
         )
@@ -79,6 +100,7 @@ class MainActivity : AppCompatActivity() {
     private fun showFragmentInternal(
         fragment: AbsFragment,
         fragmentManager: FragmentManager,
+        fragmentTransition: FragmentTransition,
         @IdRes containerViewId: Int = R.id.content,
         mustAddToBackStack: Boolean
     ) {
@@ -89,6 +111,7 @@ class MainActivity : AppCompatActivity() {
         val backStackTag = fragment.getBackStackTag()
         fragmentManager.commit(allowStateLoss = false) {
             setReorderingAllowed(false)
+            fragmentTransition.apply(MainApplication.getInstance(), this)
             replace(containerViewId, fragment, backStackTag)
             if (mustAddToBackStack) {
                 addToBackStack(backStackTag)

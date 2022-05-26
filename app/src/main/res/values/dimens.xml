@@ -8,4 +8,5 @@
     <dimen name="toolbar_title_margin_start">16dp</dimen>
     <dimen name="toolbar_small_title_text_size">16sp</dimen>
     <dimen name="image_cornder_radius">12dp</dimen>
+    <dimen name="chat_image_cornder_radius">20dp</dimen>
 </resources>

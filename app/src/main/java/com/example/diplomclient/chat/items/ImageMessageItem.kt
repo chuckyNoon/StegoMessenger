@@ -9,6 +9,9 @@ import com.aita.adapter.composable.AbsDelegateViewHolder
 import com.aita.adapter.composable.AdapterDelegate
 import com.aita.adapter.composable.DelegateDiffable
 import com.bumptech.glide.RequestManager
+import com.bumptech.glide.load.MultiTransformation
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.diplomclient.R
 
 data class ImageMessageCell(
@@ -43,6 +46,7 @@ class ImageMessageHolder(
     private val fromImageView = itemView.findViewById<ImageView>(R.id.from_iv)
     private val fromContainer = itemView.findViewById<View>(R.id.from_container)
 
+    private val context = itemView.context
     private var latestCell: ImageMessageCell? = null
 
     init {
