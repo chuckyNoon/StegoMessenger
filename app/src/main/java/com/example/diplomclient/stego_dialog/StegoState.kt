@@ -38,18 +38,21 @@ sealed class StegoViewState(
     open val isStegoCheckBoxSelected: Boolean,
     open val containerBitmapUriStr: String?,
     open val isSendButtonEnabled: Boolean,
+    open val isProgressBarVisible: Boolean
 ) {
     data class Text(
         override val titleText: String?,
         override val isStegoCheckBoxSelected: Boolean,
         override val containerBitmapUriStr: String?,
         override val isSendButtonEnabled: Boolean,
+        override val isProgressBarVisible: Boolean,
         val contentText: String?,
     ) : StegoViewState(
         titleText,
         isStegoCheckBoxSelected,
         containerBitmapUriStr,
-        isSendButtonEnabled
+        isSendButtonEnabled,
+        isProgressBarVisible
     )
 
     data class Image(
@@ -57,20 +60,23 @@ sealed class StegoViewState(
         override val isStegoCheckBoxSelected: Boolean,
         override val containerBitmapUriStr: String?,
         override val isSendButtonEnabled: Boolean,
+        override val isProgressBarVisible: Boolean,
         val contentBitmapUriStr: String?
     ) : StegoViewState(
         titleText,
         isStegoCheckBoxSelected,
         containerBitmapUriStr,
-        isSendButtonEnabled
+        isSendButtonEnabled,
+        isProgressBarVisible
     )
 
     companion object {
-        val EMPTY = StegoViewState.Text(
+        val EMPTY = Text(
             titleText = null,
             isSendButtonEnabled = false,
             containerBitmapUriStr = null,
             isStegoCheckBoxSelected = false,
+            isProgressBarVisible = false,
             contentText = null
         )
     }

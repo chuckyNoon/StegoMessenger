@@ -72,6 +72,13 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
             }
         }
 
+        view.findViewById<View>(R.id.send_img_btn).apply {
+            setOnClickListener {
+                viewModel.dispatch(ChatAction.ClickSendImage)
+                StegoDialog().show(childFragmentManager, "i")
+            }
+        }
+
         val delegates = listOf(
             TextMessageAdapterDelegate(
                 layoutInflater,
@@ -111,7 +118,7 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == REQUEST_CODE) {
+        if (requestCode == CONTENT_REQUEST_CODE) {
             val dispatchable = dispatchble ?: return
             val imageUri = data?.data ?: return
 
@@ -131,7 +138,7 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
     override fun getBackStackTag(): String = "ChatFragment"
 
     companion object {
-        const val REQUEST_CODE = 1299
+        const val CONTENT_REQUEST_CODE = 1299
         const val CONTAINER_REQUEST_CODE = 1300
     }
 }

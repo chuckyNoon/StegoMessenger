@@ -8,20 +8,14 @@ import com.aita.arch.store.Middleware
 import com.example.diplomclient.arch.flux.Action
 import com.example.diplomclient.arch.network.ApiHelper
 import com.example.diplomclient.common.AppLogger
-import com.example.diplomclient.common.launchBackgroundWork
-import com.example.diplomclient.common.safeApiCall
 import com.example.diplomclient.main.MainApplication
-import com.example.diplomclient.main.navigation.CoreAction
-import com.example.diplomclient.search.SearchAction
 import com.example.diplomclient.stego_dialog.StegoAction
 import com.example.diplomclient.stego_dialog.StegoStateType
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 
-class ChatMiddleware(
-    private val apiHelper: ApiHelper
-) : Middleware<ChatState> {
+class ChatMiddleware : Middleware<ChatState> {
 
     override fun onReduced(
         dispatchable: Dispatchable,
@@ -30,7 +24,7 @@ class ChatMiddleware(
         newState: ChatState
     ) {
         when (action) {
-            is ChatAction.ClickImage -> {
+            is ChatAction.ClickSendImage -> {
                 val receiverId = newState.chat!!.id
                 dispatchable.dispatch(
                     StegoAction.Init(
@@ -76,37 +70,6 @@ class ChatMiddleware(
             AppLogger.log("file size = " + f.length().toString())
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
-        }
-    }
-
-    private fun sendTextMessage(newState: ChatState, dispatchable: Dispatchable) {
-        val typedText = newState.typedText ?: return
-
-        if (typedText.isEmpty()) {
-            return
-        } else {
-            dispatchable.dispatch(ChatAction.CompleteSending)
-        }
-
-        val chat = requireNotNull(newState.chat)
-        val userId = chat.id
-
-        launchBackgroundWork {
-            safeApiCall(
-                apiCall = {
-                    apiHelper.sendText(
-                        receiverId = userId,
-                        text = typedText
-                    )
-                },
-                onSuccess = {
-                    dispatchable.dispatch(CoreAction.ReloadChats)
-                    dispatchable.dispatch(SearchAction.Back)
-                },
-                onError = {
-                    dispatchable.dispatch(CoreAction.ShowToast(it.message ?: "f2"))
-                }
-            )
         }
     }
 }

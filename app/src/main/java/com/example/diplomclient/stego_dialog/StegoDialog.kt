@@ -3,7 +3,9 @@ package com.example.diplomclient.stego_dialog
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -47,13 +49,37 @@ class StegoDialog : AbsArchBottomSheetDialogFragment(R.layout.dialog_stego) {
                 PickImageRequest(ChatFragment.CONTAINER_REQUEST_CODE).start(parentFragment)
             }
         }
-        val contentEditText = view.findViewById<EditText>(R.id.content_et)
+        // text state only. start
+        val contentEditText = view.findViewById<EditText>(R.id.content_et).apply {
+            addTextChangedListener {
+                val editable = it ?: return@addTextChangedListener
+                val text = editable.toString()
+                viewModel.dispatch(StegoAction.HandleContentTextChanged(text))
+            }
+        }
+        // text state only. ned
 
         val sendButton = view.findViewById<View>(R.id.send_btn).apply {
             setOnClickListener {
                 viewModel.dispatch(StegoAction.ClickSend(activity.contentResolver))
             }
         }
+        val progressBar = view.findViewById<ProgressBar>(R.id.pb)
+        val dialogContent = view.findViewById<View>(R.id.dialog_content)
+
+        // image state only. start
+        val stegoContent = view.findViewById<View>(R.id.stego_content_block)
+        val addedContentImageView = view.findViewById<ImageView>(R.id.added_content_iv).apply {
+            setOnClickListener {
+                PickImageRequest(ChatFragment.CONTENT_REQUEST_CODE).start(parentFragment)
+            }
+        }
+        val addContent = view.findViewById<View>(R.id.add_content_block).apply {
+            setOnClickListener {
+                PickImageRequest(ChatFragment.CONTENT_REQUEST_CODE).start(parentFragment)
+            }
+        }
+        // image state only. end
 
         viewModel.viewStateLiveData.observe(viewLifecycleOwner) { viewState: StegoViewState? ->
             viewState ?: return@observe
@@ -84,13 +110,41 @@ class StegoDialog : AbsArchBottomSheetDialogFragment(R.layout.dialog_stego) {
                 stegoContainer.visibility = View.GONE
             }
 
-            sendButton.isEnabled = viewState.isSendButtonEnabled
+            if (viewState.isProgressBarVisible) {
+                progressBar.visibility = View.VISIBLE
+                dialogContent.visibility = View.INVISIBLE
+            } else {
+                dialogContent.visibility = View.VISIBLE
+                progressBar.visibility = View.GONE
+            }
+
+            sendButton.isEnabled = true // viewState.isSendButtonEnabled
 
             when (viewState) {
                 is StegoViewState.Image -> {
                     contentEditText.visibility = View.GONE
+                    stegoContent.visibility = View.VISIBLE
+                    if (viewState.contentBitmapUriStr.isNullOrEmpty()) {
+                        addedContentImageView.visibility = View.GONE
+                        addContent.visibility = View.VISIBLE
+                    } else {
+                        addedContentImageView.visibility = View.VISIBLE
+                        requestManager
+                            .load(viewState.contentBitmapUriStr)
+                            .transform(
+                                MultiTransformation(
+                                    CenterCrop(),
+                                    RoundedCorners(
+                                        context.resources.getDimensionPixelSize(R.dimen.image_cornder_radius)
+                                    )
+                                )
+                            )
+                            .into(addedContentImageView)
+                        addContent.visibility = View.GONE
+                    }
                 }
                 is StegoViewState.Text -> {
+                    stegoContent.visibility = View.GONE
                     contentEditText.visibility = View.VISIBLE
                     if (contentEditText.text.toString().isEmpty()) {
                         contentEditText.setText(viewState.contentText)

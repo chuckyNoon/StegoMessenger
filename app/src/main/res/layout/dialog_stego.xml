@@ -7,6 +7,7 @@
     <FrameLayout style="@style/BottomSheetContainer">
 
         <LinearLayout
+            android:id="@+id/dialog_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -97,6 +98,51 @@
 
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:id="@+id/stego_content_block"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <TextView
+                            style="@style/Body1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="16dp"
+                            android:layout_marginTop="16dp"
+                            android:text="Image-content:" />
+
+                        <ImageView
+                            android:id="@+id/added_content_iv"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:adjustViewBounds="false"
+                            android:scaleType="centerCrop" />
+
+                        <FrameLayout
+                            android:id="@+id/add_content_block"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/bg_add_image">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="center"
+                                android:adjustViewBounds="false"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/ic_plus" />
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+
 
                     <EditText
                         android:id="@+id/content_et"
@@ -145,6 +191,13 @@
             </FrameLayout>
 
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/pb"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:progressTint="@color/black" />
 
 
     </FrameLayout>

@@ -50,6 +50,8 @@ class StegoReducer : Reducer<StegoState> {
             rebuildViewState(
                 oldState.copy(isStegoSelected = !oldState.isStegoSelected)
             )
+        is StegoAction.Close ->
+            oldState.copy(closeEvent = Event(Unit))
 
         else -> oldState
     }
@@ -68,6 +70,7 @@ class StegoReducer : Reducer<StegoState> {
             isStegoCheckBoxSelected = stegoState.isStegoSelected,
             containerBitmapUriStr = stegoState.containerUriStr,
             isSendButtonEnabled = !stegoState.contentText.isNullOrEmpty(),
+            isProgressBarVisible = stegoState.isInPgoress,
             contentText = stegoState.contentText
         )
 
@@ -77,6 +80,7 @@ class StegoReducer : Reducer<StegoState> {
             isStegoCheckBoxSelected = stegoState.isStegoSelected,
             containerBitmapUriStr = stegoState.containerUriStr,
             isSendButtonEnabled = !stegoState.contentUriStr.isNullOrEmpty(),
+            isProgressBarVisible = stegoState.isInPgoress,
             contentBitmapUriStr = stegoState.contentUriStr
         )
 }

@@ -28,7 +28,7 @@ class StegoMiddleware(
             is StegoAction.ClickSend -> {
                 when (newState.stateType) {
                     StegoStateType.IMAGE -> sendImage(dispatchable, newState, action)
-                    StegoStateType.TEXT -> sendText()
+                    StegoStateType.TEXT -> sendText(dispatchable, newState)
                 }
             }
             else -> {
@@ -36,7 +36,37 @@ class StegoMiddleware(
         }
     }
 
-    private fun sendText() {
+    private fun sendText(dispatchable: Dispatchable, newState: StegoState) {
+        val typedText = newState.contentText ?: return
+
+        if (typedText.isEmpty()) {
+            return
+        }
+
+        val userId = newState.receiverId ?: return
+
+        dispatchable.dispatch(StegoAction.TextSendingStarted)
+
+        launchBackgroundWork {
+            safeApiCall(
+                apiCall = {
+                    apiHelper.sendText(
+                        receiverId = userId,
+                        text = typedText
+                    )
+                },
+                onSuccess = {
+                    dispatchable.dispatch(StegoAction.TextSendingSuccess)
+                    dispatchable.dispatch(CoreAction.ReloadChats)
+                    dispatchable.dispatch(CoreAction.ShowToast("Message was successfully sent"))
+                    dispatchable.dispatch(StegoAction.Close)
+                },
+                onError = {
+                    dispatchable.dispatch(StegoAction.TextSendingFail)
+                    dispatchable.dispatch(CoreAction.ShowToast(it.message ?: "f2"))
+                }
+            )
+        }
     }
 
     private fun sendImage(

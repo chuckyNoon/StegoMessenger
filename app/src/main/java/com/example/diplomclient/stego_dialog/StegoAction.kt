@@ -23,4 +23,6 @@ sealed class StegoAction : Action {
     object TextSendingStarted : StegoAction()
     object TextSendingSuccess : StegoAction()
     object TextSendingFail : StegoAction()
+
+    object Close : StegoAction()
 }

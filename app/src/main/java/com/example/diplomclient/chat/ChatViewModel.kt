@@ -25,7 +25,7 @@ class ChatViewModel(app: Application, appDepsProvider: AppDepsProvider) :
             initialState = ChatState.EMPTY,
             reducer = ChatReducer(appDepsProvider.dateTimeFormatter),
             middleware = listOf(
-                ChatMiddleware(apiHelper)
+                ChatMiddleware()
             ),
         ) { newState: ChatState ->
             _viewStateLiveData.value = newState.viewState
