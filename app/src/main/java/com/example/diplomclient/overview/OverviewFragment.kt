@@ -17,7 +17,9 @@ import com.example.diplomclient.overview.model.ChatAdapterDelegate
 import com.example.diplomclient.overview.model.DividerAdapterDelegate
 import com.example.diplomclient.overview.model.TextMessageAdapterDelegate
 import com.example.diplomclient.overview.model.TextMessageCell
+import com.example.diplomclient.stego_dialog.StegoAction
 import com.example.diplomclient.stego_dialog.StegoDialog
+import com.example.diplomclient.stego_dialog.StegoStateType
 import com.google.android.material.navigation.NavigationView
 
 class OverviewFragment : AbsFragment(R.layout.fragment_overview) {
@@ -47,6 +49,7 @@ class OverviewFragment : AbsFragment(R.layout.fragment_overview) {
                 }
             }
         }
+        viewModel.dispatch(StegoAction.Init(stateType = StegoStateType.TEXT, "f"))
         StegoDialog().show(childFragmentManager, "f")
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler).apply {

@@ -116,7 +116,7 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
             val imageUri = data?.data ?: return
 
             dispatchable.dispatch(
-                StegoAction.HandleImagePicked(imageUri.toString())
+                StegoAction.HandleContentImagePicked(imageUri.toString())
             )
         } else if (requestCode == CONTAINER_REQUEST_CODE) {
             val dispatchable = dispatchble ?: return

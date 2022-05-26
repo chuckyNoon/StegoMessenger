@@ -11,28 +11,34 @@ class StegoReducer : Reducer<StegoState> {
     override fun reduce(oldState: StegoState, action: Action): StegoState = when (action) {
         is StegoAction.Init ->
             rebuildViewState(
-                oldState.copy(receiverId = action.receiverId)
+                oldState.copy(
+                    stateType = action.stateType,
+                    receiverId = action.receiverId,
+                )
             )
-        is StegoAction.HandleImagePicked ->
+        is StegoAction.HandleContentImagePicked ->
             rebuildViewState(
-                oldState.copy(imageUriStr = action.imageUriStr)
+                oldState.copy(contentUriStr = action.imageUriStr)
+            )
+        is StegoAction.HandleContentTextChanged ->
+            rebuildViewState(
+                oldState.copy(contentText = action.text)
             )
         is StegoAction.HandleContainerPicked ->
             rebuildViewState(
                 oldState.copy(containerUriStr = action.containerUriStr)
             )
-        is StegoAction.UpdateDisplayImage ->
-            rebuildViewState(
-                oldState.copy(displayBitmap = action.bitmap)
-            )
+        is StegoAction.TextSendingStarted,
         is StegoAction.ImageSendingStarted ->
             rebuildViewState(
                 oldState.copy(isInPgoress = true)
             )
+        is StegoAction.TextSendingFail,
         is StegoAction.ImageSendingFail ->
             rebuildViewState(
                 oldState.copy(isInPgoress = false)
             )
+        is StegoAction.TextSendingSuccess,
         is StegoAction.ImageSendingSuccess ->
             rebuildViewState(
                 oldState.copy(
@@ -40,26 +46,37 @@ class StegoReducer : Reducer<StegoState> {
                     isInPgoress = false,
                 )
             )
+        is StegoAction.ClickCheckBox ->
+            rebuildViewState(
+                oldState.copy(isStegoSelected = !oldState.isStegoSelected)
+            )
 
         else -> oldState
     }
 
     private fun rebuildViewState(state: StegoState): StegoState {
-        val viewState = StegoViewState(
-            isSendButtonAvailable = state.imageUriStr != null,
-            imageButtonText = if (state.imageUriStr != null) {
-                "Image selected"
-            } else {
-                "Select image"
-            },
-            containerButtonText = if (state.containerUriStr != null) {
-                "Container selected"
-            } else {
-                "Select container"
-            },
-            displayBitmap = state.displayBitmap,
-            isInPgoress = state.isInPgoress
-        )
+        val viewState = when (state.stateType) {
+            StegoStateType.TEXT -> buildTextViewState(state)
+            StegoStateType.IMAGE -> buildImageViewState(state)
+        }
         return state.copy(viewState = viewState)
     }
+
+    private fun buildTextViewState(stegoState: StegoState): StegoViewState =
+        StegoViewState.Text(
+            titleText = "Text message",
+            isStegoCheckBoxSelected = stegoState.isStegoSelected,
+            containerBitmapUriStr = stegoState.containerUriStr,
+            isSendButtonEnabled = !stegoState.contentText.isNullOrEmpty(),
+            contentText = stegoState.contentText
+        )
+
+    private fun buildImageViewState(stegoState: StegoState): StegoViewState =
+        StegoViewState.Image(
+            titleText = "Image",
+            isStegoCheckBoxSelected = stegoState.isStegoSelected,
+            containerBitmapUriStr = stegoState.containerUriStr,
+            isSendButtonEnabled = !stegoState.contentUriStr.isNullOrEmpty(),
+            contentBitmapUriStr = stegoState.contentUriStr
+        )
 }

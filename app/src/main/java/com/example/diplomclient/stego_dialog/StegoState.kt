@@ -1,44 +1,77 @@
 package com.example.diplomclient.stego_dialog
 
-import android.graphics.Bitmap
 import com.aita.arch.util.Event
 
 data class StegoState(
+    val stateType: StegoStateType,
     val viewState: StegoViewState,
     val receiverId: String?,
-    val imageUriStr: String?,
+    val contentText: String?,
+    val contentUriStr: String?,
     val containerUriStr: String?,
-    val displayBitmap: Bitmap?,
     val isInPgoress: Boolean,
-    val closeEvent: Event<Unit>?
+    val isStegoSelected: Boolean,
+    val closeEvent: Event<Unit>?,
 ) {
     companion object {
         val EMPTY = StegoState(
+            stateType = StegoStateType.TEXT,
             viewState = StegoViewState.EMPTY,
             receiverId = null,
-            imageUriStr = null,
-            containerUriStr = null,
-            displayBitmap = null,
             isInPgoress = false,
-            closeEvent = null
+            isStegoSelected = false,
+            contentUriStr = null,
+            contentText = null,
+            containerUriStr = null,
+            closeEvent = null,
         )
     }
 }
 
-data class StegoViewState(
-    val isSendButtonAvailable: Boolean,
-    val imageButtonText: String?,
-    val containerButtonText: String?,
-    val displayBitmap: Bitmap?,
-    val isInPgoress: Boolean
+enum class StegoStateType {
+    TEXT,
+    IMAGE
+}
+
+sealed class StegoViewState(
+    open val titleText: String?,
+    open val isStegoCheckBoxSelected: Boolean,
+    open val containerBitmapUriStr: String?,
+    open val isSendButtonEnabled: Boolean,
 ) {
+    data class Text(
+        override val titleText: String?,
+        override val isStegoCheckBoxSelected: Boolean,
+        override val containerBitmapUriStr: String?,
+        override val isSendButtonEnabled: Boolean,
+        val contentText: String?,
+    ) : StegoViewState(
+        titleText,
+        isStegoCheckBoxSelected,
+        containerBitmapUriStr,
+        isSendButtonEnabled
+    )
+
+    data class Image(
+        override val titleText: String?,
+        override val isStegoCheckBoxSelected: Boolean,
+        override val containerBitmapUriStr: String?,
+        override val isSendButtonEnabled: Boolean,
+        val contentBitmapUriStr: String?
+    ) : StegoViewState(
+        titleText,
+        isStegoCheckBoxSelected,
+        containerBitmapUriStr,
+        isSendButtonEnabled
+    )
+
     companion object {
-        val EMPTY = StegoViewState(
-            isSendButtonAvailable = false,
-            imageButtonText = null,
-            containerButtonText = null,
-            displayBitmap = null,
-            isInPgoress = false
+        val EMPTY = StegoViewState.Text(
+            titleText = null,
+            isSendButtonEnabled = false,
+            containerBitmapUriStr = null,
+            isStegoCheckBoxSelected = false,
+            contentText = null
         )
     }
 }

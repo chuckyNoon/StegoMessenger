@@ -1,9 +1,18 @@
 package com.example.diplomclient.stego_dialog
 
+import android.view.View
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.load.MultiTransformation
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.bottomsheets.AbsArchBottomSheetDialogFragment
+import com.example.diplomclient.chat.ChatFragment
 import com.example.diplomclient.chat.getPicassoInstance
+import com.example.diplomclient.common.PickImageRequest
 import com.example.diplomclient.common.view.MyCheckBox
 
 class StegoDialog : AbsArchBottomSheetDialogFragment(R.layout.dialog_stego) {
@@ -15,58 +24,85 @@ class StegoDialog : AbsArchBottomSheetDialogFragment(R.layout.dialog_stego) {
         val viewModel = viewModelProvider.get(StegoViewModel::class.java)
         val activity = requireActivity()
         val view = requireView()
+        val context = requireContext()
         val parentFragment = requireParentFragment()
         val requestManager = getPicassoInstance(this)
 
+        val titleTextView = view.findViewById<TextView>(R.id.title_tv)
         val checkBox = view.findViewById<MyCheckBox>(R.id.checkbox).apply {
             onClick = {
                 viewModel.dispatch(StegoAction.ClickCheckBox)
             }
-            setIsChecked(requestManager, true)
+            setIsChecked(requestManager, false)
             setText("Protect with steganography")
         }
-
-        /*val selectImageButton = view.findViewById<Button>(R.id.select_image).apply {
-            setOnClickListener {
-                PickImageRequest(ChatFragment.REQUEST_CODE).start(parentFragment)
-            }
-        }
-        val selectContainerButton = view.findViewById<Button>(R.id.select_container).apply {
+        val stegoContainer = view.findViewById<View>(R.id.stego_container_block)
+        val addStegoContainer = view.findViewById<View>(R.id.add_container_block).apply {
             setOnClickListener {
                 PickImageRequest(ChatFragment.CONTAINER_REQUEST_CODE).start(parentFragment)
             }
         }
-        val sendButton = view.findViewById<Button>(R.id.send).apply {
+        val addedStegoImageView = view.findViewById<ImageView>(R.id.added_container_iv).apply {
+            setOnClickListener {
+                PickImageRequest(ChatFragment.CONTAINER_REQUEST_CODE).start(parentFragment)
+            }
+        }
+        val contentEditText = view.findViewById<EditText>(R.id.content_et)
+
+        val sendButton = view.findViewById<View>(R.id.send_btn).apply {
             setOnClickListener {
                 viewModel.dispatch(StegoAction.ClickSend(activity.contentResolver))
             }
         }
-        val displayImageView = view.findViewById<ImageView>(R.id.display_iv)
-        val contentBlock = view.findViewById<View>(R.id.content_block)
-        val progressBar = view.findViewById<ProgressBar>(R.id.progress_block)
 
         viewModel.viewStateLiveData.observe(viewLifecycleOwner) { viewState: StegoViewState? ->
             viewState ?: return@observe
 
-            sendButton.isEnabled = viewState.isSendButtonAvailable
-            selectImageButton.text = viewState.imageButtonText
-            selectContainerButton.text = viewState.containerButtonText
-            if (viewState.displayBitmap != null) {
-                requestManager.load(viewState.displayBitmap).into(displayImageView)
-            }
-            if (viewState.isInPgoress) {
-                contentBlock.visibility = View.INVISIBLE
-                progressBar.visibility = View.VISIBLE
+            titleTextView.text = viewState.titleText
+            checkBox.setIsChecked(requestManager, viewState.isStegoCheckBoxSelected)
+            if (viewState.isStegoCheckBoxSelected) {
+                stegoContainer.visibility = View.VISIBLE
+                if (viewState.containerBitmapUriStr.isNullOrEmpty()) {
+                    addedStegoImageView.visibility = View.GONE
+                    addStegoContainer.visibility = View.VISIBLE
+                } else {
+                    addedStegoImageView.visibility = View.VISIBLE
+                    addStegoContainer.visibility = View.GONE
+                    requestManager
+                        .load(viewState.containerBitmapUriStr)
+                        .transform(
+                            MultiTransformation(
+                                CenterCrop(),
+                                RoundedCorners(
+                                    context.resources.getDimensionPixelSize(R.dimen.image_cornder_radius)
+                                )
+                            )
+                        )
+                        .into(addedStegoImageView)
+                }
             } else {
-                contentBlock.visibility = View.VISIBLE
-                progressBar.visibility = View.GONE
+                stegoContainer.visibility = View.GONE
+            }
+
+            sendButton.isEnabled = viewState.isSendButtonEnabled
+
+            when (viewState) {
+                is StegoViewState.Image -> {
+                    contentEditText.visibility = View.GONE
+                }
+                is StegoViewState.Text -> {
+                    contentEditText.visibility = View.VISIBLE
+                    if (contentEditText.text.toString().isEmpty()) {
+                        contentEditText.setText(viewState.contentText)
+                    }
+                }
             }
         }
 
         viewModel.closeLiveData.observe(viewLifecycleOwner) { unit: Unit? ->
             unit ?: return@observe
             dismiss()
-        }*/
+        }
     }
 
     override fun getRequestCode(): Int = 0

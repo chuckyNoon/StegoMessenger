@@ -14,6 +14,7 @@ import com.example.diplomclient.main.MainApplication
 import com.example.diplomclient.main.navigation.CoreAction
 import com.example.diplomclient.search.SearchAction
 import com.example.diplomclient.stego_dialog.StegoAction
+import com.example.diplomclient.stego_dialog.StegoStateType
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
@@ -29,14 +30,23 @@ class ChatMiddleware(
         newState: ChatState
     ) {
         when (action) {
-            is ChatAction.ClickSend -> sendTextMessage(newState, dispatchable)
             is ChatAction.ClickImage -> {
                 val receiverId = newState.chat!!.id
-                dispatchable.dispatch(StegoAction.Init(receiverId))
+                dispatchable.dispatch(
+                    StegoAction.Init(
+                        stateType = StegoStateType.IMAGE,
+                        receiverId = receiverId
+                    )
+                )
             }
             is ChatAction.ClickSendText -> {
                 val receiverId = newState.chat!!.id
-                dispatchable.dispatch(StegoAction.Init(receiverId))
+                dispatchable.dispatch(
+                    StegoAction.Init(
+                        stateType = StegoStateType.TEXT,
+                        receiverId = receiverId
+                    )
+                )
             }
         }
     }

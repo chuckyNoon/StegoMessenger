@@ -26,21 +26,27 @@ class StegoMiddleware(
     ) {
         when (action) {
             is StegoAction.ClickSend -> {
-                handleClickSend(dispatchable, newState, action)
+                when (newState.stateType) {
+                    StegoStateType.IMAGE -> sendImage(dispatchable, newState, action)
+                    StegoStateType.TEXT -> sendText()
+                }
             }
             else -> {
             }
         }
     }
 
-    private fun handleClickSend(
+    private fun sendText() {
+    }
+
+    private fun sendImage(
         dispatchable: Dispatchable,
         newState: StegoState,
         action: StegoAction.ClickSend
     ) {
         val userId = requireNotNull(newState.receiverId)
 
-        val imageUriStr = newState.imageUriStr
+        val imageUriStr = newState.containerUriStr
         val uri = Uri.parse(imageUriStr)
         val bitmap = MediaStore.Images.Media.getBitmap(action.contentResolver, uri)
 

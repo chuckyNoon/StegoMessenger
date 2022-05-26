@@ -25,7 +25,7 @@
 
                 <TextView
                     android:id="@+id/title_tv"
-                    style="@style/Title1"
+                    style="@style/Headline1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
@@ -53,21 +53,57 @@
                         android:layout_marginTop="24dp" />
 
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/TextInputLayoutStyle"
+                    <LinearLayout
+                        android:id="@+id/stego_container_block"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <TextView
+                            style="@style/Body1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="16dp"
+                            android:layout_marginTop="16dp"
+                            android:text="Image-container:" />
+
+                        <ImageView
+                            android:id="@+id/added_container_iv"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:adjustViewBounds="false"
+                            android:scaleType="centerCrop" />
+
+                        <FrameLayout
+                            android:id="@+id/add_container_block"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/bg_add_image">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="center"
+                                android:adjustViewBounds="false"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/ic_plus" />
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+
+                    <EditText
+                        android:id="@+id/content_et"
+                        style="@style/DefaultEditTextStyle"
                         android:layout_marginHorizontal="16dp"
                         android:layout_marginTop="16dp"
-                        android:hint="Content">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/password_et"
-                            style="@style/TextInputEditTextStyle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
+                        android:hint="Content" />
 
 
                 </LinearLayout>
@@ -83,7 +119,7 @@
                 tools:visibility="visible">
 
                 <LinearLayout
-                    android:id="@+id/login_btn"
+                    android:id="@+id/send_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
