@@ -25,7 +25,8 @@ data class TextMessageCell(
 
 class TextMessageHolder(
     parent: ViewGroup,
-    inflater: LayoutInflater
+    inflater: LayoutInflater,
+    private val onImageClick: (() -> Unit)
 ) : AbsDelegateViewHolder<TextMessageCell>(
     inflater.inflate(R.layout.item_text_message, parent, false)
 ) {
@@ -39,6 +40,12 @@ class TextMessageHolder(
     private val fromContainer = itemView.findViewById<View>(R.id.from_container)
 
     private var latestCell: TextMessageCell? = null
+
+    init {
+        itemView.setOnClickListener {
+            onImageClick()
+        }
+    }
 
     override fun bind(cell: TextMessageCell, payloads: List<Any>?) {
         latestCell = cell
@@ -70,7 +77,7 @@ class TextMessageHolder(
 class TextMessageAdapterDelegate(
     private val inflater: LayoutInflater,
     private val requestManager: RequestManager,
-    private val onImageClick: ((TextMessageCell) -> Unit)
+    private val onImageClick: (() -> Unit)
 ) : AdapterDelegate<TextMessageCell, TextMessageHolder> {
 
     override val cellClass: Class<TextMessageCell> = TextMessageCell::class.java
@@ -78,7 +85,8 @@ class TextMessageAdapterDelegate(
     override fun onCreateViewHolder(parent: ViewGroup): TextMessageHolder =
         TextMessageHolder(
             parent,
-            inflater
+            inflater,
+            onImageClick
         )
 
     override fun isUsingCellAsPayload(): Boolean = true

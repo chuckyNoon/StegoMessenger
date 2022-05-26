@@ -17,10 +17,11 @@ import com.example.diplomclient.arch.infra.AbsFragment
 import com.example.diplomclient.arch.util.hideKeyboard
 import com.example.diplomclient.common.InsetSide
 import com.example.diplomclient.common.ViewUtils
+import com.example.diplomclient.content_dialog.ContentAction
+import com.example.diplomclient.content_dialog.ContentDialog
 import com.example.diplomclient.main.MainApplication
 import com.example.diplomclient.overview.model.DividerAdapterDelegate
 import com.example.diplomclient.overview.model.TextMessageAdapterDelegate
-import com.example.diplomclient.overview.model.TextMessageCell
 import com.example.diplomclient.stego_dialog.StegoAction
 import com.example.diplomclient.stego_dialog.StegoDialog
 
@@ -83,7 +84,9 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
             TextMessageAdapterDelegate(
                 layoutInflater,
                 requestManager = getPicassoInstance(this),
-                onImageClick = { cell: TextMessageCell ->
+                onImageClick = {
+                    ContentDialog().show(childFragmentManager, "cont")
+                    viewModel.dispatch(ContentAction.Init(text = "Test content.Test contentTest contentTest contentTest contentTest contentTest contentTest contentTest contentTest contentTest content", image = null))
                     /* AppLogger.log("1")
                      launchBackgroundWork {
                          AppLogger.log("2")

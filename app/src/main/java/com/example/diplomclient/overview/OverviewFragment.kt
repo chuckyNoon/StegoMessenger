@@ -76,7 +76,7 @@ class OverviewFragment : AbsFragment(R.layout.fragment_overview) {
             TextMessageAdapterDelegate(
                 layoutInflater,
                 requestManager = getPicassoInstance(this),
-                onImageClick = { cell: TextMessageCell ->
+                onImageClick = {
                 }
             ),
             ChatAdapterDelegate(
