@@ -66,7 +66,7 @@ class StegoReducer : Reducer<StegoState> {
 
     private fun buildTextViewState(stegoState: StegoState): StegoViewState =
         StegoViewState.Text(
-            titleText = "Text message",
+            titleText = "Текстовое сообщение",
             isStegoCheckBoxSelected = stegoState.isStegoSelected,
             containerBitmapUriStr = stegoState.containerUriStr,
             isSendButtonEnabled = !stegoState.contentText.isNullOrEmpty(),
@@ -76,7 +76,7 @@ class StegoReducer : Reducer<StegoState> {
 
     private fun buildImageViewState(stegoState: StegoState): StegoViewState =
         StegoViewState.Image(
-            titleText = "Image",
+            titleText = "Визуальное зображение",
             isStegoCheckBoxSelected = stegoState.isStegoSelected,
             containerBitmapUriStr = stegoState.containerUriStr,
             isSendButtonEnabled = !stegoState.contentUriStr.isNullOrEmpty(),

@@ -96,7 +96,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:padding="10dp"
-                android:text="Send text"
+                android:text="Текст"
                 android:textColor="@color/white" />
         </LinearLayout>
 
@@ -129,7 +129,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:padding="10dp"
-                android:text="Send image"
+                android:text="Изображение"
                 android:textColor="@color/white" />
         </LinearLayout>
 

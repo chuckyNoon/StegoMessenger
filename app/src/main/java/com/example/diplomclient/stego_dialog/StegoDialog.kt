@@ -36,7 +36,7 @@ class StegoDialog : AbsArchBottomSheetDialogFragment(R.layout.dialog_stego) {
                 viewModel.dispatch(StegoAction.ClickCheckBox)
             }
             setIsChecked(requestManager, false)
-            setText("Protect with steganography")
+            setText("Защитить с использованием стеганографии")
         }
         val stegoContainer = view.findViewById<View>(R.id.stego_container_block)
         val addStegoContainer = view.findViewById<View>(R.id.add_container_block).apply {

@@ -30,7 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
-                    android:text="Text message" />
+                    android:text="Текстовое сообщение" />
 
             </LinearLayout>
 
@@ -67,7 +67,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
                             android:layout_marginTop="16dp"
-                            android:text="Image-container:" />
+                            android:text="Изображение-контейнер:" />
 
                         <ImageView
                             android:id="@+id/added_container_iv"
@@ -112,7 +112,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
                             android:layout_marginTop="16dp"
-                            android:text="Image-content:" />
+                            android:text="Изображение-цель:" />
 
                         <ImageView
                             android:id="@+id/added_content_iv"
@@ -149,7 +149,7 @@
                         style="@style/DefaultEditTextStyle"
                         android:layout_marginHorizontal="16dp"
                         android:layout_marginTop="16dp"
-                        android:hint="Content" />
+                        android:hint="Текст..." />
 
 
                 </LinearLayout>
@@ -184,7 +184,7 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:padding="10dp"
-                        android:text="Send"
+                        android:text="Отправить"
                         android:textColor="@color/white" />
                 </LinearLayout>
 
