@@ -96,7 +96,7 @@ class StegoMiddleware(
 
             val bitmapToSend = when {
                 containerBitmap != null && contentBitmap != null -> {
-                    Algorithm().lsbEncode(contentBitmap, containerBitmap)!!
+                    Algorithm().lsbEncode(contentBitmap, containerBitmap) ?: error("failed to gen")
                 }
                 contentBitmap != null -> {
                     contentBitmap

@@ -112,7 +112,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
                             android:layout_marginTop="16dp"
-                            android:text="Изображение-цель:" />
+                            android:text="Изображение:" />
 
                         <ImageView
                             android:id="@+id/added_content_iv"

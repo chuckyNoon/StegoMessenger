@@ -31,7 +31,7 @@ class SearchMiddleware(private val apiHelper: ApiHelper) : Middleware<SearchStat
                 apiCall = {
                     apiHelper.sendText(
                         receiverId = userId,
-                        text = "rr"
+                        text = ""
                     )
                 },
                 onSuccess = {

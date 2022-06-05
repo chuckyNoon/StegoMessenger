@@ -12,6 +12,14 @@ import org.junit.Test
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 class ExampleUnitTest {
+
+    @Test
+    fun byte_test{
+        for (x in Byte.MIN_VALUE..Byte.MAX_VALUE){
+            val a = x.setBit()
+        }
+    }
+
     @Test
     fun addition_isCorrect() {
         val x = 7

@@ -31,7 +31,7 @@ class OverviewReducer(
             val topMessage = chat.messages.maxByOrNull { it.createdAtUtcSeconds }!!
             val chatCell = ChatCell(
                 id = chat.id,
-                chatNameText = chat.id,
+                chatNameText = chat.name,
                 dateText = dateTimeFormatter.formatDateWithDefaultLocale(
                     pattern = "HH-mm",
                     millis = topMessage.createdAtUtcSeconds

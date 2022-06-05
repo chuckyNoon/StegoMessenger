@@ -76,7 +76,7 @@ class StegoReducer : Reducer<StegoState> {
 
     private fun buildImageViewState(stegoState: StegoState): StegoViewState =
         StegoViewState.Image(
-            titleText = "Визуальное зображение",
+            titleText = "Визуальное сообщение",
             isStegoCheckBoxSelected = stegoState.isStegoSelected,
             containerBitmapUriStr = stegoState.containerUriStr,
             isSendButtonEnabled = !stegoState.contentUriStr.isNullOrEmpty(),
