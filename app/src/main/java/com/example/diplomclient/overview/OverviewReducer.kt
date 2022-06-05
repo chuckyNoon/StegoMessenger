@@ -13,7 +13,7 @@ class OverviewReducer(
 
     override fun acceptsAction(action: Action): Boolean =
         action is OverviewAction ||
-                action is CoreAction.ChatsReloaded
+            action is CoreAction.ChatsReloaded
 
     override fun reduce(oldState: OverviewState, action: Action): OverviewState =
         when (action) {
@@ -36,7 +36,9 @@ class OverviewReducer(
                     pattern = "HH-mm",
                     millis = topMessage.createdAtUtcSeconds
                 ),
-                messageText = if (topMessage.text.isEmpty()) {
+                messageText = if (topMessage.imageUrl.isNotEmpty()) {
+                    "Изображение..."
+                } else if (topMessage.text.isEmpty()) {
                     "Новый диалог"
                 } else {
                     topMessage.text
