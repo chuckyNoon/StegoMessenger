@@ -20,9 +20,9 @@ data class OverviewState(
 
 data class OverviewViewState(
     val isLoading: Boolean,
-    val cells: List<DelegateDiffable<*>>
+    val cells: List<DelegateDiffable<*>>,
 ) {
     companion object {
-        val EMPTY = OverviewViewState(cells = emptyList(), isLoading = false)
+        val EMPTY = OverviewViewState(cells = emptyList(), isLoading = true)
     }
 }

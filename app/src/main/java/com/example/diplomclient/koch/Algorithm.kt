@@ -6,28 +6,22 @@ import android.graphics.Matrix
 import com.example.diplomclient.common.AppLogger
 import com.example.diplomclient.common.getBit
 import com.example.diplomclient.common.setBit
-import java.io.ByteArrayOutputStream
 import kotlin.math.sqrt
 
 class Algorithm {
 
     fun lsbEncode(
-        dataBitmap: Bitmap,
-        containerBitmap: Bitmap
+        dataByteArray: ByteArray,
+        containerBitmap: Bitmap,
+        startLabel: String,
+        endLabel: String
     ): Bitmap? {
         AppLogger.log("Image started")
-        val stream = ByteArrayOutputStream()
-
-        dataBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
-        val dataByteArray: ByteArray = stream.toByteArray()
-        AppLogger.log("compr=${dataByteArray.size} - ${dataBitmap.width * dataBitmap.height}")
-        encodedContentByteArray = dataByteArray
-        AppLogger.log("hash1=${dataByteArray.contentHashCode()}")
 
         val containerHeight = containerBitmap.height
         val containerWidth = containerBitmap.width
 
-        val estimatedDataLength = dataByteArray.size + LABEL_START.length + LABEL_END.length
+        val estimatedDataLength = dataByteArray.size + startLabel.length + endLabel.length
         val containerLength = containerHeight * containerWidth
 
         val scaleK = estimatedDataLength.toDouble() / containerLength
@@ -43,38 +37,18 @@ class Algorithm {
             newContainerWidth = containerWidth
         }
 
-        val resizedContainer1 = if (scaleSide > 1) {
-            getResizedBitmap(
+        val resizedContainer = if (scaleSide > 1) {
+            val resized = getResizedBitmap(
                 containerBitmap,
                 newWidth = newContainerWidth,
                 newHeight = newContainerHeight
             )!!
+            containerBitmap.recycle()
+            resized
         } else {
             containerBitmap
         }
-        val containerPixels1 = IntArray(newContainerWidth * newContainerHeight) { 0}
-        resizedContainer1.getPixels(
-            containerPixels1,
-            0,
-            newContainerWidth,
-            0,
-            0,
-            newContainerWidth,
-            newContainerHeight
-        )
-
-        val resizedContainer =
-            Bitmap.createBitmap(newContainerWidth, newContainerHeight, Bitmap.Config.ARGB_8888)
-        resizedContainer.setPixels(
-            containerPixels1,
-            0,
-            newContainerWidth,
-            0,
-            0,
-            newContainerWidth,
-            newContainerHeight
-        )
-        val containerPixels = IntArray(newContainerWidth * newContainerHeight) {0 }
+        val containerPixels = IntArray(newContainerWidth * newContainerHeight) { 0 }
         resizedContainer.getPixels(
             containerPixels,
             0,
@@ -84,9 +58,10 @@ class Algorithm {
             newContainerWidth,
             newContainerHeight
         )
+        resizedContainer.recycle()
 
-        val labelStartBytes = LABEL_START.map { it.code.toByte() }
-        val labelEndBytes = LABEL_END.map { it.code.toByte() }
+        val labelStartBytes = startLabel.map { it.code.toByte() }
+        val labelEndBytes = endLabel.map { it.code.toByte() }
 
         val messageBytes = ByteArray(estimatedDataLength)
 
@@ -94,36 +69,25 @@ class Algorithm {
             messageBytes[index] = value
         }
 
-        AppLogger.log("source form")
         dataByteArray.forEachIndexed { index, byte ->
-            if (index <= 10 || index > dataByteArray.size - 10) {
-                AppLogger.log(byte.toInt().toString())
-            }
             messageBytes[index + labelStartBytes.size] = byte
         }
 
         labelEndBytes.forEachIndexed { index, value ->
-            messageBytes[LABEL_START.length + dataByteArray.size + index] = value
+            messageBytes[startLabel.length + dataByteArray.size + index] = value
         }
-        encodedMessageByteArray = messageBytes
 
         AppLogger.log("s = $scaleK / $scaleSide d=${newContainerWidth * newContainerHeight} e=$estimatedDataLength")
-        messageBytes.take(10).forEach {
-            AppLogger.log(it.toChar().toString())
-        }
-        AppLogger.log("wr")
 
         for (i in 0 until newContainerWidth) {
             for (j in 0 until newContainerHeight) {
                 val pos = i * newContainerHeight + j
-                val dataPos = pos
 
-                if (dataPos >= estimatedDataLength) {
+                if (pos >= estimatedDataLength) {
                     break
                 }
 
-                val valueToHide = messageBytes[dataPos]
-                // originalSet.add(valueToHide)
+                val valueToHide = messageBytes[pos]
 
                 val bitPos1 = 0
                 val bitPos2 = 1
@@ -159,8 +123,7 @@ class Algorithm {
                 containerPixels[pos] = updatedColor
             }
         }
-        // AppLogger.log("cmp ${resultSet.size} ${originalSet.size}")
-        oldPixels = containerPixels
+
         val newBitmap =
             Bitmap.createBitmap(newContainerWidth, newContainerHeight, Bitmap.Config.ARGB_8888)
         newBitmap.setPixels(
@@ -173,120 +136,10 @@ class Algorithm {
             newContainerHeight
         )
 
-        val e = lsbDecode(newBitmap)
-        AppLogger.log("Image ended ${e?.height}- ${newBitmap.width}")
-/*
-        val outStream = ByteArrayOutputStream()
-        newBitmap.compress(Bitmap.CompressFormat.PNG, 100, outStream)
-
-        val outBytes = outStream.toByteArray()
-        val outBmp = BitmapFactory.decodeByteArray(outBytes, 0, outBytes.size)
-        val outPixels = IntArray(outBmp.width * outBmp.height) { Int.MIN_VALUE }
-        outBmp.getPixels(
-            outPixels,
-            0,
-            outBmp.width,
-            0,
-            0,
-            outBmp.width,
-            outBmp.height
-        )
-
-        AppLogger.log("cont_si = ${outPixels.size}/ ${containerPixels.size}")
-        for (i in outPixels.indices) {
-            val a = outPixels[i]
-            val b = containerPixels.getOrNull(i)
-
-            if (a != b) {
-                AppLogger.log("i = $i a = $a b= $b")
-            }
-        }
-        return null
-
-        //val f = lsbDecode(outBmp)
-        //AppLogger.log("${f == null}")*/
         return newBitmap
     }
 
-    fun test(bmp: Bitmap) {
-        val containerWidth = bmp.width
-        val containerHeight = bmp.height
-        AppLogger.log("Decode start $containerHeight - $containerWidth")
-
-        val pixels1 = IntArray(containerWidth * containerHeight, { 0 })
-        bmp.getPixels(
-            pixels1,
-            0,
-            containerWidth,
-            0,
-            0,
-            containerWidth,
-            containerHeight
-        )
-
-        for (i in pixels1.indices) {
-            pixels1[i] = pixels1[i] + 1
-        }
-
-        val bmp2 =
-            Bitmap.createBitmap(containerWidth, containerHeight, Bitmap.Config.ARGB_8888)
-        bmp2.setPixels(
-            pixels1,
-            0,
-            containerWidth,
-            0,
-            0,
-            containerWidth,
-            containerHeight
-        )
-
-        val pixels2 = IntArray(containerWidth * containerHeight, { 0 })
-        bmp2.getPixels(
-            pixels2,
-            0,
-            containerWidth,
-            0,
-            0,
-            containerWidth,
-            containerHeight
-        )
-
-        val bmp3 =
-            Bitmap.createBitmap(containerWidth, containerHeight, Bitmap.Config.ARGB_8888)
-        bmp3.setPixels(
-            pixels2,
-            0,
-            containerWidth,
-            0,
-            0,
-            containerWidth,
-            containerHeight
-        )
-        val pixels3 = IntArray(containerWidth * containerHeight, { 0 })
-        bmp3.getPixels(
-            pixels3,
-            0,
-            containerWidth,
-            0,
-            0,
-            containerWidth,
-            containerHeight
-        )
-        AppLogger.log("f1")
-        pixels3.forEachIndexed { index, i ->
-            val a = i
-            val b = pixels2[index]
-
-            if (a != b) {
-                AppLogger.log("$index $a $b")
-            } else{
-                AppLogger.log("f")
-            }
-        }
-        AppLogger.log("f2")
-    }
-
-    fun lsbDecode(containerBitmap: Bitmap): Bitmap? {
+    fun lsbDecode(containerBitmap: Bitmap): DecodeResult? {
         val containerWidth = containerBitmap.width
         val containerHeight = containerBitmap.height
         AppLogger.log("Decode start $containerHeight - $containerWidth")
@@ -301,12 +154,6 @@ class Algorithm {
             containerWidth,
             containerHeight
         )
-        containerPixels.forEachIndexed { index, v ->
-            if (oldPixels!!.get(index) != v) {
-                AppLogger.log("bbb ${oldPixels!!.get(index)} / $v")
-            }
-        }
-
         val messageBytes = ByteArray(containerWidth * containerHeight, { 0 })
 
         for (i in containerPixels.indices) {
@@ -336,19 +183,24 @@ class Algorithm {
         }
 
         val messageChars = messageBytes.map { it.toChar() }
+        AppLogger.log("size=${messageChars.size}")
         val messageStringBuilder = StringBuilder(messageChars.size)
         messageChars.forEach {
             messageStringBuilder.append(it)
         }
-        AppLogger.log("qqqqq" + messageStringBuilder.substring(0, 30).toString())
-        val hiddenStartIndex = messageStringBuilder.indexOf(LABEL_START) + LABEL_START.length
-        val hiddenEndIndex = messageStringBuilder.indexOf(LABEL_END) - 1
-        AppLogger.log("$hiddenStartIndex $hiddenEndIndex")
-        if (hiddenStartIndex < 0 && hiddenEndIndex < 0) {
+        return tryToParseImage(messageStringBuilder) ?: tryToParseText(messageStringBuilder)
+    }
+
+    private fun tryToParseImage(messageStringBuilder: StringBuilder): DecodeResult.Image? {
+        val hiddenStartIndex =
+            messageStringBuilder.indexOf(LABEL_START_IMG) + LABEL_START_IMG.length
+        val hiddenEndIndex = messageStringBuilder.indexOf(LABEL_END_IMG) - 1
+
+        if (hiddenStartIndex < 0 || hiddenEndIndex < 0) {
             AppLogger.log("nout found")
             return null
         }
-        AppLogger.log("extra form")
+
         val contentBytes = messageStringBuilder.mapIndexedNotNull { index, c ->
             if (index in hiddenStartIndex..hiddenEndIndex) {
                 c.toByte()
@@ -356,50 +208,29 @@ class Algorithm {
                 null
             }
         }.toByteArray()
-        compare(content = contentBytes, message = messageBytes)
-        AppLogger.log(
-            (contentBytes.take(10) + contentBytes.takeLast(10)).map {
-                it.toInt().toString()
-            }.toString()
+
+        return DecodeResult.Image(
+            bitmap = BitmapFactory.decodeByteArray(
+                contentBytes,
+                0,
+                contentBytes.size
+            )
         )
-        AppLogger.log("hash2=${contentBytes.contentHashCode()}")
-
-        val bmp = BitmapFactory.decodeByteArray(
-            contentBytes,
-            0,
-            contentBytes.size
-        )
-
-        return bmp/*
-
-        val dataBitmap = Bitmap.createBitmap(dataWidth, dataHeight, Bitmap.Config.ARGB_8888)
-        dataBitmap.setPixels(dataPixels, 0, dataWidth, 0, 0, dataWidth, dataHeight)
-        AppLogger.log("Image endedr")
-        AppLogger.log(dataPixels.take(20).toString())
-        return dataBitmap*/
     }
 
-    private fun compare(content: ByteArray, message: ByteArray) {
-        val oldContent = requireNotNull(encodedContentByteArray)
-        val oldMessage = requireNotNull(encodedMessageByteArray)
-        AppLogger.log("cmp")
-        AppLogger.log("con = ${oldContent.size} - ${content.size}")
-        AppLogger.log("mes = ${oldMessage.size} - ${message.size}")
+    private fun tryToParseText(messageStringBuilder: StringBuilder): DecodeResult.Text? {
+        val hiddenStartIndex =
+            messageStringBuilder.indexOf(LABEL_START_TEXT) + LABEL_START_TEXT.length
+        val hiddenEndIndex = messageStringBuilder.indexOf(LABEL_END_TEXT) - 1
 
-        var ok = 0
-        var ne_ok = 0
-        for (i in content.indices) {
-            val a = content[i]
-            val b = oldContent.getOrNull(i)
-
-            if (a != b) {
-                ne_ok += 1
-                // AppLogger.log("i = $i a = $a b= $b")
-            } else {
-                ok += 1
-            }
+        if (hiddenStartIndex < 0 || hiddenEndIndex < 0) {
+            AppLogger.log("nout found")
+            return null
         }
-        AppLogger.log("ok = $ok neok = $ne_ok")
+
+        return DecodeResult.Text(
+            text = messageStringBuilder.substring(hiddenStartIndex, hiddenEndIndex)
+        )
     }
 
     private fun getResizedBitmap(bm: Bitmap, newWidth: Int, newHeight: Int): Bitmap? {
@@ -420,13 +251,16 @@ class Algorithm {
         return resizedBitmap
     }
 
+    sealed class DecodeResult {
+        data class Image(val bitmap: Bitmap) : DecodeResult()
+        data class Text(val text: String) : DecodeResult()
+    }
+
     companion object {
-        val LABEL_START = "e1wfw"
-        val LABEL_END = "erver32c"
+        val LABEL_START_IMG = "e1wfw"
+        val LABEL_END_IMG = "erver32c"
 
-        var encodedMessageByteArray: ByteArray? = null
-        var encodedContentByteArray: ByteArray? = null
-
-        var oldPixels: IntArray? = null
+        val LABEL_START_TEXT = "rew3434czx"
+        val LABEL_END_TEXT = "34mf3.f/f34"
     }
 }

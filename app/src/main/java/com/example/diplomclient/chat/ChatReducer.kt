@@ -53,6 +53,7 @@ class ChatReducer(
                         millis = message.createdAtUtcSeconds
                     ),
                     isMine = message.isMine,
+                    isInProgress = false
                 )
             } else {
                 null

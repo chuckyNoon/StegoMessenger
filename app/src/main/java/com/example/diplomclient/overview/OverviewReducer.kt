@@ -13,7 +13,7 @@ class OverviewReducer(
 
     override fun acceptsAction(action: Action): Boolean =
         action is OverviewAction ||
-            action is CoreAction.ChatsReloaded
+                action is CoreAction.ChatsReloaded
 
     override fun reduce(oldState: OverviewState, action: Action): OverviewState =
         when (action) {
@@ -37,7 +37,7 @@ class OverviewReducer(
                     millis = topMessage.createdAtUtcSeconds
                 ),
                 messageText = if (topMessage.text.isEmpty()) {
-                    "Изображение..."
+                    "Новый диалог"
                 } else {
                     topMessage.text
                 }
@@ -45,7 +45,7 @@ class OverviewReducer(
             listOf(chatCell, DividerCell)
         }
         val viewState = OverviewViewState(
-            isLoading = state.isLoading,
+            isLoading = state.chats.isEmpty() && state.isLoading,
             cells = cells
         )
         return state.copy(viewState = viewState)

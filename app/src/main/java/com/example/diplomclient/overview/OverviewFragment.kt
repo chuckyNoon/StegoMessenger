@@ -1,5 +1,6 @@
 package com.example.diplomclient.overview
 
+import android.app.ProgressDialog.show
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
@@ -16,8 +17,8 @@ import com.example.diplomclient.main.navigation.CoreAction
 import com.example.diplomclient.overview.model.ChatAdapterDelegate
 import com.example.diplomclient.overview.model.DividerAdapterDelegate
 import com.example.diplomclient.overview.model.TextMessageAdapterDelegate
-import com.example.diplomclient.overview.model.TextMessageCell
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 
 class OverviewFragment : AbsFragment(R.layout.fragment_overview) {
 
@@ -72,6 +73,8 @@ class OverviewFragment : AbsFragment(R.layout.fragment_overview) {
             }
         }
 
+        val snackBar = Snackbar.make(view, "Loading messages...", Snackbar.LENGTH_INDEFINITE)
+
         val delegates = listOf(
             TextMessageAdapterDelegate(
                 layoutInflater,
@@ -97,6 +100,11 @@ class OverviewFragment : AbsFragment(R.layout.fragment_overview) {
             viewState ?: return@observe
 
             adapter.submitList(viewState.cells)
+            if (viewState.isLoading) {
+                snackBar.show()
+            } else {
+                snackBar.dismiss()
+            }
         }
     }
 

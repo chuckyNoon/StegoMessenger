@@ -5,20 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import com.aita.adapter.composable.AbsDelegateViewHolder
 import com.aita.adapter.composable.AdapterDelegate
 import com.aita.adapter.composable.DelegateDiffable
 import com.bumptech.glide.RequestManager
-import com.bumptech.glide.load.MultiTransformation
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.diplomclient.R
 
 data class ImageMessageCell(
     val id: String,
     val imageSource: ImageSource,
     val dateText: String = "",
-    val isMine: Boolean
+    val isMine: Boolean,
+    val isInProgress: Boolean
 ) : DelegateDiffable<ImageMessageCell> {
 
     sealed class ImageSource {
@@ -49,6 +48,8 @@ class ImageMessageHolder(
     private val context = itemView.context
     private var latestCell: ImageMessageCell? = null
 
+    private val progressbar = itemView.findViewById<ProgressBar>(R.id.pb)
+
     init {
         itemView.setOnClickListener {
             latestCell?.let(onImageClick)
@@ -78,6 +79,12 @@ class ImageMessageHolder(
                     .load(source.bitmap)
                     .into(targetImageView)
             }
+        }
+
+        if (cell.isInProgress) {
+            progressbar.visibility = View.VISIBLE
+        } else {
+            progressbar.visibility = View.GONE
         }
     }
 }

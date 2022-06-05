@@ -1,5 +1,7 @@
 package com.example.diplomclient.chat
 
+import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
@@ -131,6 +133,7 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
                                     resource: Bitmap,
                                     transition: Transition<in Bitmap>?
                                 ) {
+
                                     launchBackgroundWork {
                                         AppLogger.log("2")
                                         val decoded = Algorithm().lsbDecode(resource)
@@ -139,12 +142,22 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
                                             viewModel.dispatch(CoreAction.ShowToast("Failed to find hidden message"))
                                         } else {
                                             ContentDialog().show(childFragmentManager, "ff")
-                                            viewModel.dispatch(
-                                                ContentAction.Init(
-                                                    text = null,
-                                                    image = decoded
-                                                )
-                                            )
+                                            val action = when (decoded) {
+                                                is Algorithm.DecodeResult.Image -> {
+                                                    ContentAction.Init(
+                                                        text = null,
+                                                        image = decoded.bitmap
+                                                    )
+                                                }
+                                                is Algorithm.DecodeResult.Text -> {
+                                                    ContentAction.Init(
+                                                        text = decoded.text,
+                                                        image = null
+                                                    )
+                                                }
+                                                else -> return@launchBackgroundWork
+                                            }
+                                            viewModel.dispatch(action)
                                         }
                                     }
                                 }

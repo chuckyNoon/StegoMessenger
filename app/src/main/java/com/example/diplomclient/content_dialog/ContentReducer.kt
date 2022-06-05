@@ -33,7 +33,8 @@ class ContentReducer : Reducer<ContentState> {
                     id = "1",
                     imageSource = ImageMessageCell.ImageSource.LoadedBitmap(state.image!!),
                     dateText = "",
-                    isMine = false
+                    isMine = false,
+                    isInProgress = false
                 )
             )
             ContentStateType.TEXT -> cells.add(
@@ -41,7 +42,7 @@ class ContentReducer : Reducer<ContentState> {
                     id = "1",
                     contentText = state.text!!,
                     dateText = "",
-                    isMine = false
+                    isMine = false,
                 )
             )
         }
