@@ -221,7 +221,7 @@ class Algorithm {
     private fun tryToParseText(messageStringBuilder: StringBuilder): DecodeResult.Text? {
         val hiddenStartIndex =
             messageStringBuilder.indexOf(LABEL_START_TEXT) + LABEL_START_TEXT.length
-        val hiddenEndIndex = messageStringBuilder.indexOf(LABEL_END_TEXT) - 1
+        val hiddenEndIndex = messageStringBuilder.indexOf(LABEL_END_TEXT)
 
         if (hiddenStartIndex < 0 || hiddenEndIndex < 0) {
             AppLogger.log("nout found")
