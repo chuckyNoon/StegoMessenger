@@ -1,6 +1,6 @@
 package com.example.diplomclient.registration
 
-import com.aita.arch.store.Reducer
+import com.example.diplomclient.arch.flux.store.Reducer
 import com.example.diplomclient.arch.flux.Action
 
 class RegistrationReducer : Reducer<RegistrationState> {

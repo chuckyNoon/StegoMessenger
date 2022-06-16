@@ -7,7 +7,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.aita.adapter.composable.ComposableListAdapter
+import com.example.diplomclient.arch.adapter.composable.ComposableListAdapter
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.infra.AbsFragment
 import com.example.diplomclient.chat.getPicassoInstance

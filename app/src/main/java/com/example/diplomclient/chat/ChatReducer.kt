@@ -1,12 +1,12 @@
 package com.example.diplomclient.chat
 
 import com.aita.arch.di.regular.DateTimeFormatter
-import com.aita.arch.store.Reducer
 import com.example.diplomclient.arch.flux.Action
+import com.example.diplomclient.arch.flux.store.Reducer
 import com.example.diplomclient.chat.items.ImageMessageCell
+import com.example.diplomclient.chat.items.TextMessageCell
 import com.example.diplomclient.common.AppLogger
 import com.example.diplomclient.main.navigation.CoreAction
-import com.example.diplomclient.overview.model.TextMessageCell
 
 class ChatReducer(
     private val dateTimeFormatter: DateTimeFormatter
@@ -31,8 +31,7 @@ class ChatReducer(
 
     private fun rebuildViewState(state: ChatState): ChatState {
         val chat = state.chat!!
-        AppLogger.log("rrr")
-        AppLogger.log(state.chat?.messages?.size?.toString())
+
         val cells = chat.messages.mapNotNull { message ->
             if (message.text.isNotEmpty()) {
                 TextMessageCell(

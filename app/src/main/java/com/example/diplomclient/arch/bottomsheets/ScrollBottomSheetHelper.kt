@@ -1,4 +1,4 @@
-package com.aita.base.bottomsheets
+package com.example.diplomclient.arch.bottomsheets
 
 import android.view.View
 import androidx.core.widget.NestedScrollView
@@ -49,6 +49,4 @@ class ScrollBottomSheetHelper {
         recyclerView.post(updateElevationsRunnable)
     }
 
-    fun updateElevations(): Unit =
-        updateElevationsRunnable.run()
 }

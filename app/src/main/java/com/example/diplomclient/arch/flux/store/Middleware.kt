@@ -1,7 +1,7 @@
-package com.aita.arch.store
+package com.example.diplomclient.arch.flux.store
 
 import com.example.diplomclient.arch.flux.Action
-import com.aita.arch.dispatcher.Dispatchable
+import com.example.diplomclient.arch.flux.dispatcher.Dispatchable
 
 fun interface Middleware<T : Any> {
 

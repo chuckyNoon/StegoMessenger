@@ -1,7 +1,7 @@
 package com.example.diplomclient.login
 
-import com.aita.arch.dispatcher.Dispatchable
-import com.aita.arch.store.Middleware
+import com.example.diplomclient.arch.flux.dispatcher.Dispatchable
+import com.example.diplomclient.arch.flux.store.Middleware
 import com.example.diplomclient.arch.flux.Action
 import com.example.diplomclient.arch.network.ApiHelper
 import com.example.diplomclient.common.PrefsContract

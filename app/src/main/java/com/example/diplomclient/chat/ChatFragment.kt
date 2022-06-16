@@ -1,7 +1,5 @@
 package com.example.diplomclient.chat
 
-import android.app.AlertDialog
-import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
@@ -12,17 +10,18 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.aita.adapter.composable.ComposableListAdapter
-import com.aita.arch.dispatcher.Dispatchable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.diplomclient.R
+import com.example.diplomclient.arch.adapter.composable.ComposableListAdapter
+import com.example.diplomclient.arch.flux.dispatcher.Dispatchable
 import com.example.diplomclient.arch.infra.AbsFragment
 import com.example.diplomclient.arch.util.hideKeyboard
 import com.example.diplomclient.chat.items.ImageMessageCell
 import com.example.diplomclient.chat.items.ImageMessageDelegate
+import com.example.diplomclient.chat.items.TextMessageAdapterDelegate
 import com.example.diplomclient.common.AppLogger
 import com.example.diplomclient.common.InsetSide
 import com.example.diplomclient.common.ViewUtils
@@ -33,7 +32,6 @@ import com.example.diplomclient.koch.Algorithm
 import com.example.diplomclient.main.MainApplication
 import com.example.diplomclient.main.navigation.CoreAction
 import com.example.diplomclient.overview.model.DividerAdapterDelegate
-import com.example.diplomclient.overview.model.TextMessageAdapterDelegate
 import com.example.diplomclient.stego_dialog.StegoAction
 import com.example.diplomclient.stego_dialog.StegoDialog
 

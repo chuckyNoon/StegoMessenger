@@ -2,9 +2,9 @@ package com.example.diplomclient.overview.model
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.aita.adapter.composable.AbsDelegateViewHolder
-import com.aita.adapter.composable.AdapterDelegate
-import com.aita.adapter.composable.DelegateDiffable
+import com.example.diplomclient.arch.adapter.composable.AbsDelegateViewHolder
+import com.example.diplomclient.arch.adapter.composable.AdapterDelegate
+import com.example.diplomclient.arch.adapter.composable.DelegateDiffable
 import com.example.diplomclient.R
 
 object DividerCell : DelegateDiffable<DividerCell> {

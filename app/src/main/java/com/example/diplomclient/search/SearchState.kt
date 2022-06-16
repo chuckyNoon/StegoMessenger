@@ -1,7 +1,7 @@
 package com.example.diplomclient.search
 
-import com.aita.adapter.composable.DelegateDiffable
-import com.aita.arch.util.Event
+import com.example.diplomclient.arch.adapter.composable.DelegateDiffable
+import com.example.diplomclient.arch.flux.util.Event
 import com.example.diplomclient.search.model.MatchingUser
 
 data class SearchState(

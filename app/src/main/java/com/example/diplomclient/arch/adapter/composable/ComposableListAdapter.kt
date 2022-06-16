@@ -1,12 +1,12 @@
-package com.aita.adapter.composable
+package com.example.diplomclient.arch.adapter.composable
 
 import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.aita.adapter.AbsBlockingDiffableListAdapter
-import com.aita.adapter.AbsDiffableListAdapter
+import com.example.diplomclient.arch.adapter.AbsBlockingDiffableListAdapter
+import com.example.diplomclient.arch.adapter.AbsDiffableListAdapter
 
 private typealias Cell = DelegateDiffable<*>
 private typealias CellDiffable = DelegateDiffable<Cell>

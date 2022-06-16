@@ -1,7 +1,7 @@
 package com.example.diplomclient.search
 
-import com.aita.arch.store.Reducer
-import com.aita.arch.util.Event
+import com.example.diplomclient.arch.flux.store.Reducer
+import com.example.diplomclient.arch.flux.util.Event
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.flux.Action
 import com.example.diplomclient.common.ColoredText

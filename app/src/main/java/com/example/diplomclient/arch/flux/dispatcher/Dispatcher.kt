@@ -1,12 +1,12 @@
-package com.aita.arch.dispatcher
+package com.example.diplomclient.arch.flux.dispatcher
 
 import androidx.annotation.CheckResult
 import androidx.annotation.WorkerThread
 import com.example.diplomclient.arch.flux.Action
-import com.aita.arch.ErrorListener
-import com.aita.arch.disposable.Disposable
-import com.aita.arch.disposable.ManagedDisposable
-import com.aita.arch.store.Store
+import com.example.diplomclient.arch.ErrorListener
+import com.example.diplomclient.arch.flux.disposable.Disposable
+import com.example.diplomclient.arch.flux.disposable.ManagedDisposable
+import com.example.diplomclient.arch.flux.store.Store
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.RejectedExecutionException
 import java.util.concurrent.atomic.AtomicBoolean

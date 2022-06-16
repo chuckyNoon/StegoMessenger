@@ -1,4 +1,4 @@
-package com.aita.adapter
+package com.example.diplomclient.arch.adapter
 
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil

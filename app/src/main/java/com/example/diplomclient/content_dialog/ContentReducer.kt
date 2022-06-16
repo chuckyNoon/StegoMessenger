@@ -1,10 +1,10 @@
 package com.example.diplomclient.content_dialog
 
-import com.aita.adapter.composable.DelegateDiffable
-import com.aita.arch.store.Reducer
+import com.example.diplomclient.arch.adapter.composable.DelegateDiffable
+import com.example.diplomclient.arch.flux.store.Reducer
 import com.example.diplomclient.arch.flux.Action
 import com.example.diplomclient.chat.items.ImageMessageCell
-import com.example.diplomclient.overview.model.TextMessageCell
+import com.example.diplomclient.chat.items.TextMessageCell
 
 class ContentReducer : Reducer<ContentState> {
     override fun acceptsAction(action: Action): Boolean = action is ContentAction

@@ -1,8 +1,8 @@
-package com.aita.arch.dispatcher
+package com.example.diplomclient.arch.flux.dispatcher
 
-import com.aita.arch.disposable.Disposable
-import com.aita.arch.disposable.ManagedDisposable
-import com.aita.arch.util.MainThreadExecutorService
+import com.example.diplomclient.arch.flux.disposable.Disposable
+import com.example.diplomclient.arch.flux.disposable.ManagedDisposable
+import com.example.diplomclient.arch.flux.util.MainThreadExecutorService
 import java.util.concurrent.Executors
 
 object Dispatchers {

@@ -1,8 +1,9 @@
-package com.aita.arch.util
+package com.example.diplomclient.arch.flux.util
 
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
+import com.example.diplomclient.arch.flux.util.AbsDummyExecutorService
 
 internal class MainThreadExecutorService : AbsDummyExecutorService() {
 

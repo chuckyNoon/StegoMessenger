@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.aita.adapter.composable.AbsDelegateViewHolder
-import com.aita.adapter.composable.AdapterDelegate
-import com.aita.adapter.composable.DelegateDiffable
+import com.example.diplomclient.arch.adapter.composable.AbsDelegateViewHolder
+import com.example.diplomclient.arch.adapter.composable.AdapterDelegate
+import com.example.diplomclient.arch.adapter.composable.DelegateDiffable
 import com.bumptech.glide.RequestManager
 import com.example.diplomclient.R
 import com.example.diplomclient.common.ColoredText
@@ -57,7 +57,7 @@ class SearchUserHolder(
             firstInitial
         }
         requestManager.load(
-            LettersAvatarDrawable(itemView.context, fullText)
+            LettersAvatarDrawable(fullText)
         ).into(avatarImageView)
     }
 }

@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
-import com.aita.adapter.composable.AbsDelegateViewHolder
-import com.aita.adapter.composable.AdapterDelegate
-import com.aita.adapter.composable.DelegateDiffable
 import com.bumptech.glide.RequestManager
 import com.example.diplomclient.R
+import com.example.diplomclient.arch.adapter.composable.AbsDelegateViewHolder
+import com.example.diplomclient.arch.adapter.composable.AdapterDelegate
+import com.example.diplomclient.arch.adapter.composable.DelegateDiffable
 
 data class ImageMessageCell(
     val id: String,

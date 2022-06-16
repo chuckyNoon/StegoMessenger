@@ -1,4 +1,4 @@
-package com.aita.arch.util
+package com.example.diplomclient.arch.flux.util
 
 import androidx.annotation.CheckResult
 

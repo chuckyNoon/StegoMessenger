@@ -1,4 +1,4 @@
-package com.aita.adapter
+package com.example.diplomclient.arch.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import java.util.concurrent.Executor

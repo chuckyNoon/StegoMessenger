@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitBuilder {
 
-    private const val BASE_URL = "https://331d-79-104-7-120.eu.ngrok.io/api/"
+    private const val BASE_URL = "https://2d92-79-104-7-120.eu.ngrok.io/api/"
 
     private fun getRetrofit(): Retrofit {
         val gson = GsonBuilder()
@@ -29,7 +29,6 @@ object RetrofitBuilder {
             .writeTimeout(600, TimeUnit.SECONDS)
             .addInterceptor { chain ->
                 val token = prefs.getString(PrefsContract.TOKEN, null)
-                Log.d("intercepter", "here2 $token ")
                 val request: Request = chain
                     .request()
                     .newBuilder()

@@ -1,7 +1,7 @@
 package com.example.diplomclient.content_dialog
 
 import android.graphics.Bitmap
-import com.aita.adapter.composable.DelegateDiffable
+import com.example.diplomclient.arch.adapter.composable.DelegateDiffable
 
 data class ContentState(
     val type: ContentStateType,

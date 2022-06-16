@@ -1,6 +1,6 @@
 package com.example.diplomclient.main.navigation
 
-import com.aita.arch.util.Event
+import com.example.diplomclient.arch.flux.util.Event
 
 data class CoreNavState(
     val navigationEvent: Event<CoreNav>?,

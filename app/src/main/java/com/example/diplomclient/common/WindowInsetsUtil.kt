@@ -1,6 +1,5 @@
 package com.example.diplomclient.common
 
-import android.view.View
 import androidx.core.view.WindowInsetsCompat
 
 val WindowInsetsCompat.leftSystemWindowInset: Int
@@ -14,4 +13,3 @@ val WindowInsetsCompat.rightSystemWindowInset: Int
 
 val WindowInsetsCompat.bottomSystemWindowInset: Int
     get() = getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime()).bottom
-

@@ -1,7 +1,7 @@
 package com.example.diplomclient.stego_dialog
 
-import com.aita.arch.store.Reducer
-import com.aita.arch.util.Event
+import com.example.diplomclient.arch.flux.store.Reducer
+import com.example.diplomclient.arch.flux.util.Event
 import com.example.diplomclient.arch.flux.Action
 
 class StegoReducer : Reducer<StegoState> {

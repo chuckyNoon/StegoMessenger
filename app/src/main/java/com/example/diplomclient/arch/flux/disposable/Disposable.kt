@@ -1,4 +1,4 @@
-package com.aita.arch.disposable
+package com.example.diplomclient.arch.flux.disposable
 
 fun interface Disposable {
 

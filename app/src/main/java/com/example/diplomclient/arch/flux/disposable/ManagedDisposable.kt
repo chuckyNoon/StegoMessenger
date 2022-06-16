@@ -1,4 +1,6 @@
-package com.aita.arch.disposable
+package com.example.diplomclient.arch.flux.disposable
+
+import com.example.diplomclient.arch.flux.disposable.Disposable
 
 class ManagedDisposable(private val disposable: Disposable) : Disposable {
 

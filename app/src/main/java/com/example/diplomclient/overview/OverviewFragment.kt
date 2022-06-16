@@ -1,6 +1,5 @@
 package com.example.diplomclient.overview
 
-import android.app.ProgressDialog.show
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
@@ -8,15 +7,15 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.aita.adapter.composable.ComposableListAdapter
+import com.example.diplomclient.arch.adapter.composable.ComposableListAdapter
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.infra.AbsFragment
 import com.example.diplomclient.chat.getPicassoInstance
 import com.example.diplomclient.common.*
 import com.example.diplomclient.main.navigation.CoreAction
-import com.example.diplomclient.overview.model.ChatAdapterDelegate
+import com.example.diplomclient.overview.model.items.ChatAdapterDelegate
 import com.example.diplomclient.overview.model.DividerAdapterDelegate
-import com.example.diplomclient.overview.model.TextMessageAdapterDelegate
+import com.example.diplomclient.chat.items.TextMessageAdapterDelegate
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 

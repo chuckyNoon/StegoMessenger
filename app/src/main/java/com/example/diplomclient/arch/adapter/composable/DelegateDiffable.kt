@@ -1,4 +1,4 @@
-package com.aita.adapter.composable
+package com.example.diplomclient.arch.adapter.composable
 
 interface DelegateDiffable<in C> {
 

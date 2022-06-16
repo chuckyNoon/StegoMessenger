@@ -1,6 +1,7 @@
-package com.aita.arch.dispatcher
+package com.example.diplomclient.arch.flux.dispatcher
 
 import com.example.diplomclient.arch.flux.Action
+import com.example.diplomclient.arch.flux.dispatcher.Dispatchable
 
 fun interface PreDispatchHook {
 

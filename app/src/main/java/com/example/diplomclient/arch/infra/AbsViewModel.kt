@@ -5,13 +5,13 @@ import androidx.annotation.CallSuper
 import androidx.annotation.MainThread
 import androidx.lifecycle.AndroidViewModel
 import com.aita.arch.di.regular.AppDepsProvider
-import com.aita.arch.dispatcher.Dispatchable
-import com.aita.arch.dispatcher.NewStateListener
-import com.aita.arch.dispatcher.PreDispatchHook
-import com.aita.arch.disposable.Disposable
-import com.aita.arch.store.Middleware
-import com.aita.arch.store.Reducer
-import com.aita.arch.store.Store
+import com.example.diplomclient.arch.flux.dispatcher.Dispatchable
+import com.example.diplomclient.arch.flux.dispatcher.NewStateListener
+import com.example.diplomclient.arch.flux.dispatcher.PreDispatchHook
+import com.example.diplomclient.arch.flux.disposable.Disposable
+import com.example.diplomclient.arch.flux.store.Middleware
+import com.example.diplomclient.arch.flux.store.Reducer
+import com.example.diplomclient.arch.flux.store.Store
 
 abstract class AbsViewModel(
     app: Application,

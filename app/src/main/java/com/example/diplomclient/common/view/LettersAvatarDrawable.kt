@@ -1,12 +1,10 @@
 package com.example.diplomclient.common.view
 
-import android.content.Context
 import android.graphics.*
 import android.graphics.drawable.Drawable
 import androidx.annotation.ColorInt
 
 class LettersAvatarDrawable @JvmOverloads constructor(
-    context: Context,
     letters: String?,
     @ColorInt textColor: Int = Color.WHITE,
     @ColorInt backgroundColor: Int = PLACEHOLDER_COLOR
@@ -30,7 +28,6 @@ class LettersAvatarDrawable @JvmOverloads constructor(
         textPaint.isAntiAlias = true
         textPaint.textAlign = Paint.Align.CENTER
         textPaint.color = textColor
-        // No locale setting. System locale will used
 
         backgroundPaint = Paint()
         backgroundPaint.isAntiAlias = true

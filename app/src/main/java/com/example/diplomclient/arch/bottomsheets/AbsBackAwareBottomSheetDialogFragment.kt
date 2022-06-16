@@ -1,4 +1,4 @@
-package com.aita.base.bottomsheets
+package com.example.diplomclient.arch.bottomsheets
 
 import android.app.Dialog
 import android.os.Bundle

@@ -19,10 +19,3 @@ fun Byte.setBit(position: Int, value: Boolean) =
 fun Byte.getBit(position: Int) =
     this.toInt().getBit(position)
 
-fun Int.setBits(startPosition: Int, endPosition: Int, value: Boolean): Int {
-    var result = this
-    for (i in startPosition..endPosition) {
-        result = result.setBit(i, value)
-    }
-    return result
-}

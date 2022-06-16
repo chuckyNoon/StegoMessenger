@@ -1,9 +1,9 @@
-package com.aita.arch.store
+package com.example.diplomclient.arch.flux.store
 
 import androidx.annotation.CheckResult
 import com.example.diplomclient.arch.flux.Action
-import com.aita.arch.ErrorListener
-import com.aita.arch.dispatcher.Dispatchable
+import com.example.diplomclient.arch.ErrorListener
+import com.example.diplomclient.arch.flux.dispatcher.Dispatchable
 import com.example.diplomclient.common.AppLogger
 
 class Store<T : Any>(

@@ -8,8 +8,6 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LifecycleRegistry;
 
-import com.aita.base.bottomsheets.AbsBackAwareBottomSheetDialogFragment;
-
 public abstract class AbsLifecycleBottomSheetDialogFragment extends AbsBackAwareBottomSheetDialogFragment {
 
     private LifecycleOwner viewLifecycleOwner;

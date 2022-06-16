@@ -1,14 +1,14 @@
-package com.example.diplomclient.overview.model
+package com.example.diplomclient.chat.items
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.aita.adapter.composable.AbsDelegateViewHolder
-import com.aita.adapter.composable.AdapterDelegate
-import com.aita.adapter.composable.DelegateDiffable
 import com.bumptech.glide.RequestManager
 import com.example.diplomclient.R
+import com.example.diplomclient.arch.adapter.composable.AbsDelegateViewHolder
+import com.example.diplomclient.arch.adapter.composable.AdapterDelegate
+import com.example.diplomclient.arch.adapter.composable.DelegateDiffable
 
 data class TextMessageCell(
     val id: String,

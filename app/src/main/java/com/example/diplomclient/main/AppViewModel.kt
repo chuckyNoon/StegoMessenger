@@ -4,8 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.aita.arch.di.regular.AppDepsProvider
 import com.aita.arch.di.regular.DateTimeFormatter
-import com.aita.arch.di.regular.StringsProvider
-import com.aita.arch.dispatcher.Dispatchers
+import com.example.diplomclient.arch.flux.dispatcher.Dispatchers
 import com.example.diplomclient.arch.flux.util.AppViewModelFactory
 
 class AppViewModel(app: Application) : AndroidViewModel(app) {
@@ -19,7 +18,6 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
 
         appDepsProvider = AppDepsProvider(
             dispatcher = dispatcher,
-            stringsProvider = StringsProvider(app),
             dateTimeFormatter = DateTimeFormatter(app)
         )
         appViewModelFactory = AppViewModelFactory(app, appDepsProvider)
