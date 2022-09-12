@@ -16,7 +16,7 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.adapter.composable.ComposableListAdapter
-import com.example.diplomclient.arch.flux.dispatcher.Dispatchable
+import com.example.diplomclient.arch.redux.dispatcher.Dispatchable
 import com.example.diplomclient.arch.infra.AbsFragment
 import com.example.diplomclient.arch.util.hideKeyboard
 import com.example.diplomclient.chat.items.ImageMessageCell

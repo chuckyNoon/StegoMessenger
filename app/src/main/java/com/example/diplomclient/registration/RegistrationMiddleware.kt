@@ -1,8 +1,8 @@
 package com.example.diplomclient.registration
 
-import com.example.diplomclient.arch.flux.dispatcher.Dispatchable
-import com.example.diplomclient.arch.flux.store.Middleware
-import com.example.diplomclient.arch.flux.Action
+import com.example.diplomclient.arch.redux.dispatcher.Dispatchable
+import com.example.diplomclient.arch.redux.store.Middleware
+import com.example.diplomclient.arch.redux.Action
 import com.example.diplomclient.arch.network.ApiHelper
 import com.example.diplomclient.common.PrefsContract
 import com.example.diplomclient.common.PrefsHelper

@@ -1,6 +1,6 @@
 package com.example.diplomclient.search
 
-import com.example.diplomclient.arch.flux.Action
+import com.example.diplomclient.arch.redux.Action
 import com.example.diplomclient.search.item.SearchUserCell
 import com.example.diplomclient.search.model.MatchingUser
 

@@ -6,8 +6,5 @@ import androidx.recyclerview.widget.RecyclerView
 abstract class AbsDelegateViewHolder<C : DelegateDiffable<C>>(itemView: View) :
     RecyclerView.ViewHolder(itemView) {
 
-    abstract fun bind(
-        cell: C,
-        payloads: List<Any>? = null,
-    )
+    abstract fun bind(cell: C, payloads: List<Any>? = null)
 }

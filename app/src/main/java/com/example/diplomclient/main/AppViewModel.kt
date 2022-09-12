@@ -2,10 +2,10 @@ package com.example.diplomclient.main
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import com.aita.arch.di.regular.AppDepsProvider
-import com.aita.arch.di.regular.DateTimeFormatter
-import com.example.diplomclient.arch.flux.dispatcher.Dispatchers
-import com.example.diplomclient.arch.flux.util.AppViewModelFactory
+import com.example.diplomclient.arch.util.AppDepsProvider
+import com.example.diplomclient.arch.util.DateTimeFormatter
+import com.example.diplomclient.arch.redux.dispatcher.Dispatchers
+import com.example.diplomclient.arch.redux.util.AppViewModelFactory
 
 class AppViewModel(app: Application) : AndroidViewModel(app) {
 
@@ -18,7 +18,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
 
         appDepsProvider = AppDepsProvider(
             dispatcher = dispatcher,
-            dateTimeFormatter = DateTimeFormatter(app)
+            dateTimeFormatter = DateTimeFormatter()
         )
         appViewModelFactory = AppViewModelFactory(app, appDepsProvider)
     }

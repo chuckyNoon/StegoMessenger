@@ -16,10 +16,7 @@ interface AdapterDelegate<C : DelegateDiffable<C>, H : AbsDelegateViewHolder<C>>
         payloads: List<Any>? = null,
     ) {
         if (!isUsingCellAsPayload()) {
-            holder.bind(
-                cell = cell,
-                payloads = payloads,
-            )
+            holder.bind(cell = cell, payloads = payloads)
             return
         }
 

@@ -1,9 +1,9 @@
 package com.example.diplomclient.search
 
-import com.example.diplomclient.arch.flux.store.Reducer
-import com.example.diplomclient.arch.flux.util.Event
+import com.example.diplomclient.arch.redux.store.Reducer
+import com.example.diplomclient.arch.redux.util.Event
 import com.example.diplomclient.R
-import com.example.diplomclient.arch.flux.Action
+import com.example.diplomclient.arch.redux.Action
 import com.example.diplomclient.common.ColoredText
 import com.example.diplomclient.overview.model.DividerCell
 import com.example.diplomclient.search.item.SearchUserCell

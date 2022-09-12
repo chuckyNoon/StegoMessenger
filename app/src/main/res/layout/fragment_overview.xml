@@ -21,12 +21,12 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
-                style="@style/Toolbar.Generic"
+                style="@style/ToolbarGeneric"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <LinearLayout
-                    style="@style/Toolbar.Container"
+                    style="@style/ToolbarContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -40,11 +40,11 @@
                         android:adjustViewBounds="false"
                         android:background="@null"
                         android:scaleType="centerInside"
-                        android:src="@drawable/ic__52270_close_icon"
+                        android:src="@drawable/ic_24_close"
                         app:tint="@color/black" />
 
                     <TextView
-                        style="@style/Toolbar.Title.Generic.Small"
+                        style="@style/ToolbarTitle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -61,7 +61,7 @@
                         android:adjustViewBounds="false"
                         android:background="@null"
                         android:scaleType="centerInside"
-                        android:src="@drawable/ic__669253_ic_search_icon" />
+                        android:src="@drawable/ic_24_search" />
 
                 </LinearLayout>
 

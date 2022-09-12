@@ -26,7 +26,7 @@
 
                 <TextView
                     android:id="@+id/title_tv"
-                    style="@style/Headline1"
+                    style="@style/Headline2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"

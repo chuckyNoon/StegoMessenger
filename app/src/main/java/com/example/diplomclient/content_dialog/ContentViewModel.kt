@@ -3,7 +3,7 @@ package com.example.diplomclient.content_dialog
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.aita.arch.di.regular.AppDepsProvider
+import com.example.diplomclient.arch.util.AppDepsProvider
 import com.example.diplomclient.arch.infra.AbsViewModel
 
 class ContentViewModel(app: Application, appDepsProvider: AppDepsProvider) :

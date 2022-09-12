@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
                         fragmentTransition = FragmentTransition.EMERGE
                     )
                 is CoreNav.StegoDialog ->
-                    StegoDialog().show(supportFragmentManager, "stego")
+                    StegoDialog().showAfterKeyboardHides(supportFragmentManager, "stego", this)
             }
         }
 

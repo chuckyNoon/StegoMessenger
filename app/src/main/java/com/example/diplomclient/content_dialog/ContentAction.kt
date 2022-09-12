@@ -1,7 +1,7 @@
 package com.example.diplomclient.content_dialog
 
 import android.graphics.Bitmap
-import com.example.diplomclient.arch.flux.Action
+import com.example.diplomclient.arch.redux.Action
 
 sealed class ContentAction : Action{
     data class Init(

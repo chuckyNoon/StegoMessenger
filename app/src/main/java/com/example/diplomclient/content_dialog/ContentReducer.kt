@@ -1,8 +1,8 @@
 package com.example.diplomclient.content_dialog
 
 import com.example.diplomclient.arch.adapter.composable.DelegateDiffable
-import com.example.diplomclient.arch.flux.store.Reducer
-import com.example.diplomclient.arch.flux.Action
+import com.example.diplomclient.arch.redux.store.Reducer
+import com.example.diplomclient.arch.redux.Action
 import com.example.diplomclient.chat.items.ImageMessageCell
 import com.example.diplomclient.chat.items.TextMessageCell
 

@@ -1,6 +1,6 @@
 package com.example.diplomclient.login
 
-import com.example.diplomclient.arch.flux.Action
+import com.example.diplomclient.arch.redux.Action
 
 sealed class LoginAction() : Action {
     data class OnLoginClick(

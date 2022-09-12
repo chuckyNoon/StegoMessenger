@@ -1,11 +1,10 @@
-package com.aita.arch.di.regular
+package com.example.diplomclient.arch.util
 
-import android.content.Context
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
 
-class DateTimeFormatter(private val context: Context) {
+class DateTimeFormatter {
 
     fun formatDateWithDefaultLocale(pattern: String, millis: Long): String {
         val formatter = SimpleDateFormat(pattern, Locale.getDefault()).apply {

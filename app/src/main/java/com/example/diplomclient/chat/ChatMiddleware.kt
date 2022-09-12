@@ -1,8 +1,8 @@
 package com.example.diplomclient.chat
 
-import com.example.diplomclient.arch.flux.Action
-import com.example.diplomclient.arch.flux.dispatcher.Dispatchable
-import com.example.diplomclient.arch.flux.store.Middleware
+import com.example.diplomclient.arch.redux.Action
+import com.example.diplomclient.arch.redux.dispatcher.Dispatchable
+import com.example.diplomclient.arch.redux.store.Middleware
 import com.example.diplomclient.stego_dialog.StegoAction
 import com.example.diplomclient.stego_dialog.StegoStateType
 

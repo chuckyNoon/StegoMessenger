@@ -1,8 +1,8 @@
 package com.example.diplomclient.overview
 
-import com.aita.arch.di.regular.DateTimeFormatter
-import com.example.diplomclient.arch.flux.store.Reducer
-import com.example.diplomclient.arch.flux.Action
+import com.example.diplomclient.arch.util.DateTimeFormatter
+import com.example.diplomclient.arch.redux.store.Reducer
+import com.example.diplomclient.arch.redux.Action
 import com.example.diplomclient.main.navigation.CoreAction
 import com.example.diplomclient.overview.model.items.ChatCell
 import com.example.diplomclient.overview.model.DividerCell

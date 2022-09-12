@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitBuilder {
 
-    private const val BASE_URL = "https://2d92-79-104-7-120.eu.ngrok.io/api/"
+    private const val BASE_URL = "https://fcdd-178-155-4-77.eu.ngrok.io/stego/api/"
 
     private fun getRetrofit(): Retrofit {
         val gson = GsonBuilder()

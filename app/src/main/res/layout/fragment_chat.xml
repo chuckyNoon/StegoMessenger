@@ -9,12 +9,12 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        style="@style/Toolbar.Generic"
+        style="@style/ToolbarGeneric"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
-            style="@style/Toolbar.Container"
+            style="@style/ToolbarContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -28,12 +28,12 @@
                 android:adjustViewBounds="false"
                 android:background="@null"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_back_24"
+                android:src="@drawable/ic_24_back"
                 app:tint="@color/black" />
 
             <TextView
                 android:id="@+id/chat_name_tv"
-                style="@style/Toolbar.Title.Generic.Small"
+                style="@style/ToolbarTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -85,7 +85,7 @@
                 android:layout_height="24dp"
                 android:adjustViewBounds="false"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_text"
+                android:src="@drawable/ic_24_message"
                 android:tint="@color/white"
                 android:translationY="2dp" />
 
@@ -119,7 +119,7 @@
                 android:layout_height="24dp"
                 android:adjustViewBounds="false"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_image"
+                android:src="@drawable/ic_24_image"
                 android:tint="@color/white" />
 
             <TextView

@@ -3,7 +3,7 @@ package com.example.diplomclient.result
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.aita.arch.di.regular.AppDepsProvider
+import com.example.diplomclient.arch.util.AppDepsProvider
 import com.example.diplomclient.arch.infra.AbsViewModel
 
 class ResultViewModel(app: Application, appDepsProvider: AppDepsProvider) :

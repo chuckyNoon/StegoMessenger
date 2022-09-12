@@ -18,10 +18,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.Toolbar style="@style/Toolbar.Generic.NoElev" />
+        <androidx.appcompat.widget.Toolbar style="@style/ToolbarGeneric" android:elevation="0dp"/>
 
         <TextView
-            style="@style/Big1"
+            style="@style/Headline1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"

@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="toolbar_height">56dp</dimen>
     <dimen name="toolbar_default_elevation">4dp</dimen>
-    <dimen name="toolbar_big_elevation">8dp</dimen>
     <dimen name="toolbar_default_height">56dp</dimen>
     <dimen name="toolbar_default_content_inset_start">0dp</dimen>
     <dimen name="toolbar_title_margin_start">16dp</dimen>
     <dimen name="toolbar_small_title_text_size">16sp</dimen>
-    <dimen name="image_cornder_radius">12dp</dimen>
-    <dimen name="chat_image_cornder_radius">20dp</dimen>
+    <dimen name="send_image_corner_radius">12dp</dimen>
+    <dimen name="chat_image_corner_radius">20dp</dimen>
 </resources>

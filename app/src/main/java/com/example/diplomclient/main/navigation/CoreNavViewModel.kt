@@ -2,7 +2,7 @@ package com.example.diplomclient.main.navigation
 
 import android.app.Application
 import androidx.lifecycle.LiveData
-import com.aita.arch.di.regular.AppDepsProvider
+import com.example.diplomclient.arch.util.AppDepsProvider
 import com.example.diplomclient.arch.SingleEventLiveData
 import com.example.diplomclient.arch.infra.AbsViewModel
 import com.example.diplomclient.arch.network.ApiHelper

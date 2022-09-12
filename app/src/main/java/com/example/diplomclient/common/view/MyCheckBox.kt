@@ -32,7 +32,7 @@ class MyCheckBox @JvmOverloads constructor(
 
     fun setIsChecked(requestManager: RequestManager, isChecked: Boolean) {
         requestManager
-            .load(if (isChecked) R.drawable.icon_24_checkbox_on else R.drawable.icon_24_checkbox_off)
+            .load(if (isChecked) R.drawable.ic_24_checkbox_on else R.drawable.ic_24_checkbox_off)
             .into(iconImageView)
     }
 

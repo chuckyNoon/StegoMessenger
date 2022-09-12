@@ -20,10 +20,10 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            style="@style/Toolbar.Generic">
+            style="@style/ToolbarGeneric">
 
             <LinearLayout
-                style="@style/Toolbar.Container"
+                style="@style/ToolbarContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -37,14 +37,14 @@
                     android:adjustViewBounds="false"
                     android:background="@null"
                     android:scaleType="centerInside"
-                    android:src="@drawable/ic__52020_arrow_back_icon" />
+                    android:src="@drawable/ic_24_back" />
 
             </LinearLayout>
 
         </androidx.appcompat.widget.Toolbar>
 
         <TextView
-            style="@style/Big1"
+            style="@style/Headline1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"

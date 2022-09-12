@@ -2,9 +2,9 @@ package com.example.diplomclient.main.navigation
 
 import android.os.Handler
 import android.os.Looper
-import com.example.diplomclient.arch.flux.dispatcher.Dispatchable
-import com.example.diplomclient.arch.flux.store.Middleware
-import com.example.diplomclient.arch.flux.Action
+import com.example.diplomclient.arch.redux.dispatcher.Dispatchable
+import com.example.diplomclient.arch.redux.store.Middleware
+import com.example.diplomclient.arch.redux.Action
 import com.example.diplomclient.arch.network.ApiHelper
 import com.example.diplomclient.common.AppLogger
 import com.example.diplomclient.common.launchBackgroundWork
@@ -52,12 +52,12 @@ class CoreMiddleware(
                 apiCall = { apiHelper.getChats(isForced) },
                 onSuccess = {
                     AppLogger.log("chats scu")
+                    AppLogger.log(it.chats.toString())
                     dispatchable.dispatch(CoreAction.ChatsReloaded(it.chats))
                 },
                 onError = {
                     AppLogger.log("chats f")
                     AppLogger.log(it.message  ?: "hz")
-                    //dispatchable.dispatch(CoreAction.ShowError(it.message ?: "f2"))
                 }
             )
         }

@@ -1,7 +1,7 @@
 package com.example.diplomclient.stego_dialog
 
 import android.content.ContentResolver
-import com.example.diplomclient.arch.flux.Action
+import com.example.diplomclient.arch.redux.Action
 
 sealed class StegoAction : Action {
     data class Init(

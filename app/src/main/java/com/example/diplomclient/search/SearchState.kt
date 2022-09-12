@@ -1,7 +1,7 @@
 package com.example.diplomclient.search
 
 import com.example.diplomclient.arch.adapter.composable.DelegateDiffable
-import com.example.diplomclient.arch.flux.util.Event
+import com.example.diplomclient.arch.redux.util.Event
 import com.example.diplomclient.search.model.MatchingUser
 
 data class SearchState(

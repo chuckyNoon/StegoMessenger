@@ -1,7 +1,7 @@
 package com.example.diplomclient.login
 
-import com.example.diplomclient.arch.flux.store.Reducer
-import com.example.diplomclient.arch.flux.Action
+import com.example.diplomclient.arch.redux.store.Reducer
+import com.example.diplomclient.arch.redux.Action
 
 class LoginReducer : Reducer<LoginState> {
 

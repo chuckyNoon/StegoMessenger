@@ -1,6 +1,6 @@
 package com.example.diplomclient.registration
 
-import com.example.diplomclient.arch.flux.Action
+import com.example.diplomclient.arch.redux.Action
 
 sealed class RegistrationAction() : Action {
     data class OnRegisterClick(

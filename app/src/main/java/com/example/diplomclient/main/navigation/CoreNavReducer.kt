@@ -1,8 +1,8 @@
 package com.example.diplomclient.main.navigation
 
-import com.example.diplomclient.arch.flux.store.Reducer
-import com.example.diplomclient.arch.flux.util.Event
-import com.example.diplomclient.arch.flux.Action
+import com.example.diplomclient.arch.redux.store.Reducer
+import com.example.diplomclient.arch.redux.util.Event
+import com.example.diplomclient.arch.redux.Action
 
 class CoreNavReducer : Reducer<CoreNavState> {
 

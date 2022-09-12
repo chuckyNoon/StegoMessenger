@@ -6,8 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.adapter.composable.ComposableListAdapter
-import com.example.diplomclient.arch.bottomsheets.AbsArchBottomSheetDialogFragment
-import com.example.diplomclient.arch.bottomsheets.ScrollBottomSheetHelper
+import com.example.diplomclient.arch.infra.AbsBottomSheetDialog
 import com.example.diplomclient.chat.getPicassoInstance
 import com.example.diplomclient.chat.items.ImageMessageCell
 import com.example.diplomclient.chat.items.ImageMessageDelegate
@@ -15,17 +14,15 @@ import com.example.diplomclient.chat.items.TextMessageAdapterDelegate
 import com.example.diplomclient.common.InsetSide
 import com.example.diplomclient.common.ViewUtils
 
-class ContentDialog : AbsArchBottomSheetDialogFragment(R.layout.dialog_content) {
+class ContentDialog : AbsBottomSheetDialog(R.layout.dialog_content) {
 
     override fun onStart() {
         super.onStart()
 
         val viewModelProvider = ViewModelProvider(this, appViewModelFactory)
         val viewModel = viewModelProvider.get(ContentViewModel::class.java)
-        val activity = requireActivity()
         val view = requireView()
         val context = requireContext()
-        val parentFragment = requireParentFragment()
         val requestManager = getPicassoInstance(this)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler).apply {
@@ -41,12 +38,6 @@ class ContentDialog : AbsArchBottomSheetDialogFragment(R.layout.dialog_content) 
             setOnClickListener {
             }
         }
-
-        ScrollBottomSheetHelper(
-            recyclerView,
-            view.findViewById(R.id.button_block),
-            view.findViewById(R.id.title_block),
-        )
 
         val delegates = listOf(
             TextMessageAdapterDelegate(
@@ -79,8 +70,4 @@ class ContentDialog : AbsArchBottomSheetDialogFragment(R.layout.dialog_content) 
             }
         }
     }
-
-    override fun getRequestCode(): Int = 0
-
-    override fun isExpandFull(): Boolean = true
 }

@@ -1,6 +1,6 @@
 package com.example.diplomclient.stego_dialog
 
-import com.example.diplomclient.arch.flux.util.Event
+import com.example.diplomclient.arch.redux.util.Event
 
 data class StegoState(
     val stateType: StegoStateType,

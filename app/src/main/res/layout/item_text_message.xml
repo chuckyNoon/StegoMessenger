@@ -23,7 +23,7 @@
 
             <TextView
                 android:id="@+id/from_content_tv"
-                style="@style/Body1"
+                style="@style/Body"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
@@ -38,7 +38,7 @@
 
                 <TextView
                     android:id="@+id/from_date_tv"
-                    style="@style/Caption1"
+                    style="@style/Caption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|bottom"
@@ -70,7 +70,7 @@
 
             <TextView
                 android:id="@+id/to_content_tv"
-                style="@style/Body1"
+                style="@style/Body"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -85,7 +85,7 @@
 
                 <TextView
                     android:id="@+id/to_date_tv"
-                    style="@style/Caption1"
+                    style="@style/Caption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|bottom"

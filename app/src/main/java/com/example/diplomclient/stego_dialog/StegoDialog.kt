@@ -11,13 +11,13 @@ import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.diplomclient.R
-import com.example.diplomclient.arch.bottomsheets.AbsArchBottomSheetDialogFragment
+import com.example.diplomclient.arch.infra.AbsBottomSheetDialog
 import com.example.diplomclient.chat.ChatFragment
 import com.example.diplomclient.chat.getPicassoInstance
 import com.example.diplomclient.common.PickImageRequest
 import com.example.diplomclient.common.view.MyCheckBox
 
-class StegoDialog : AbsArchBottomSheetDialogFragment(R.layout.dialog_stego) {
+class StegoDialog : AbsBottomSheetDialog(R.layout.dialog_stego) {
 
     override fun onStart() {
         super.onStart()
@@ -100,7 +100,7 @@ class StegoDialog : AbsArchBottomSheetDialogFragment(R.layout.dialog_stego) {
                             MultiTransformation(
                                 CenterCrop(),
                                 RoundedCorners(
-                                    context.resources.getDimensionPixelSize(R.dimen.image_cornder_radius)
+                                    context.resources.getDimensionPixelSize(R.dimen.send_image_corner_radius)
                                 )
                             )
                         )
@@ -135,7 +135,7 @@ class StegoDialog : AbsArchBottomSheetDialogFragment(R.layout.dialog_stego) {
                                 MultiTransformation(
                                     CenterCrop(),
                                     RoundedCorners(
-                                        context.resources.getDimensionPixelSize(R.dimen.image_cornder_radius)
+                                        context.resources.getDimensionPixelSize(R.dimen.send_image_corner_radius)
                                     )
                                 )
                             )
@@ -158,8 +158,4 @@ class StegoDialog : AbsArchBottomSheetDialogFragment(R.layout.dialog_stego) {
             dismiss()
         }
     }
-
-    override fun getRequestCode(): Int = 0
-
-    override fun isExpandFull(): Boolean = true
 }

@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 
 fun TextView.setColoredText(coloredText: ColoredText) {
     val context = context ?: return
+
     val colorRes = coloredText.colorRes
     val startIndex = coloredText.startIndex
     val endIndex = coloredText.endIndex

@@ -26,7 +26,7 @@
 
                 <TextView
                     android:id="@+id/title_tv"
-                    style="@style/Headline1"
+                    style="@style/Headline2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
@@ -62,7 +62,7 @@
                         android:visibility="visible">
 
                         <TextView
-                            style="@style/Body1"
+                            style="@style/Body"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -92,7 +92,7 @@
                                 android:layout_gravity="center"
                                 android:adjustViewBounds="false"
                                 android:scaleType="centerInside"
-                                android:src="@drawable/ic_plus" />
+                                android:src="@drawable/ic_24_plus" />
 
                         </FrameLayout>
 
@@ -107,7 +107,7 @@
                         android:visibility="visible">
 
                         <TextView
-                            style="@style/Body1"
+                            style="@style/Body"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -137,7 +137,7 @@
                                 android:layout_gravity="center"
                                 android:adjustViewBounds="false"
                                 android:scaleType="centerInside"
-                                android:src="@drawable/ic_plus" />
+                                android:src="@drawable/ic_24_plus" />
 
                         </FrameLayout>
 

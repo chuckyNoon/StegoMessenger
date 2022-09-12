@@ -12,12 +12,12 @@
         android:layout_height="24dp"
         android:adjustViewBounds="false"
         android:scaleType="centerInside"
-        android:src="@drawable/icon_24_checkbox_off"
+        android:src="@drawable/ic_24_checkbox_off"
         app:tint="@color/system_blue" />
 
     <TextView
         android:id="@+id/tv"
-        style="@style/Body1"
+        style="@style/Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"

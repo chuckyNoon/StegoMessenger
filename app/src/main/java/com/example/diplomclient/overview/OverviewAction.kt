@@ -1,6 +1,6 @@
 package com.example.diplomclient.overview
 
-import com.example.diplomclient.arch.flux.Action
+import com.example.diplomclient.arch.redux.Action
 import com.example.diplomclient.overview.model.Chat
 import com.example.diplomclient.overview.model.items.ChatCell
 

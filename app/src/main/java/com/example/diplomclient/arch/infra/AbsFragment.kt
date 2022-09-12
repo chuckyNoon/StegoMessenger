@@ -6,8 +6,8 @@ import androidx.activity.OnBackPressedCallback
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.aita.arch.di.regular.AppDepsProvider
-import com.example.diplomclient.arch.flux.util.AppViewModelFactory
+import com.example.diplomclient.arch.util.AppDepsProvider
+import com.example.diplomclient.arch.redux.util.AppViewModelFactory
 import com.example.diplomclient.main.AppViewModel
 
 abstract class AbsFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId) {
