@@ -8,7 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import java.util.*
 
 
-fun View.setViewPaddingLeft(@Px paddingLeftPx: Int): Boolean{
+fun View.setViewPaddingLeft(@Px paddingLeftPx: Int): Boolean {
     if (paddingLeft == paddingLeftPx) {
         return false
     }
@@ -16,7 +16,7 @@ fun View.setViewPaddingLeft(@Px paddingLeftPx: Int): Boolean{
     return true
 }
 
-fun View.setViewPaddingTop( @Px paddingTopPx: Int): Boolean {
+fun View.setViewPaddingTop(@Px paddingTopPx: Int): Boolean {
     if (paddingTop == paddingTopPx) {
         return false
     }

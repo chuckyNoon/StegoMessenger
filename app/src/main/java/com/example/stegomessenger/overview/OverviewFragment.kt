@@ -14,7 +14,7 @@ import com.example.stegomessenger.chat.getPicassoInstance
 import com.example.stegomessenger.common.*
 import com.example.stegomessenger.main.navigation.CoreAction
 import com.example.stegomessenger.overview.model.items.ChatAdapterDelegate
-import com.example.stegomessenger.overview.model.DividerAdapterDelegate
+import com.example.stegomessenger.overview.model.items.DividerAdapterDelegate
 import com.example.stegomessenger.chat.items.TextMessageAdapterDelegate
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
@@ -70,7 +70,7 @@ class OverviewFragment : AbsFragment(R.layout.fragment_overview) {
         }
 
         // TODO: make it controlled by liveData
-        Snackbar.make(view, R.string.loading_messages, Snackbar.LENGTH_INDEFINITE)
+        Snackbar.make(view, R.string.loading_messages, Snackbar.LENGTH_INDEFINITE).show()
 
         val delegates = listOf(
             TextMessageAdapterDelegate(

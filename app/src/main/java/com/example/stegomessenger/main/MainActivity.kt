@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
                     )
                 is CoreNav.StegoDialog ->
                     StegoDialog().showAfterKeyboardHides(supportFragmentManager, "stego", this)
-                is CoreNav.ContentDialog->
+                is CoreNav.ContentDialog ->
                     ContentDialog().showAfterKeyboardHides(supportFragmentManager, "content", this)
             }
         }

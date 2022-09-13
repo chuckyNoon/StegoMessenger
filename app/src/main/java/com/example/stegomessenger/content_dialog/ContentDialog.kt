@@ -42,7 +42,7 @@ class ContentDialog : AbsBottomSheetDialog(R.layout.dialog_content) {
         val delegates = listOf(
             TextMessageAdapterDelegate(
                 inflater = layoutInflater
-            ) ,
+            ),
             ImageMessageDelegate(
                 inflater = layoutInflater,
                 requestManager = requestManager,

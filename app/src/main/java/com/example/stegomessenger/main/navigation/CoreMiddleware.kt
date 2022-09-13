@@ -5,7 +5,7 @@ import android.os.Looper
 import com.example.stegomessenger.arch.redux.dispatcher.Dispatchable
 import com.example.stegomessenger.arch.redux.store.Middleware
 import com.example.stegomessenger.arch.redux.Action
-import com.example.stegomessenger.arch.network.ApiHelper
+import com.example.stegomessenger.common.network.ApiHelper
 import com.example.stegomessenger.common.launchBackgroundWork
 import com.example.stegomessenger.common.safeApiCall
 import com.example.stegomessenger.main.SyncHelper

@@ -1,6 +1,6 @@
-package com.example.stegomessenger.arch.network
+package com.example.stegomessenger.common.network
 
-import com.example.stegomessenger.arch.network.model.*
+import com.example.stegomessenger.common.network.model.*
 import okhttp3.MultipartBody
 import retrofit2.http.*
 

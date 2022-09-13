@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import com.example.stegomessenger.arch.util.AppDepsProvider
 import com.example.stegomessenger.arch.SingleEventLiveData
 import com.example.stegomessenger.arch.infra.AbsViewModel
-import com.example.stegomessenger.arch.network.ApiHelper
-import com.example.stegomessenger.arch.network.RetrofitBuilder
+import com.example.stegomessenger.common.network.ApiHelper
+import com.example.stegomessenger.common.network.RetrofitBuilder
 
 class SearchViewModel(app: Application, appDepsProvider: AppDepsProvider) :
     AbsViewModel(app, appDepsProvider) {
@@ -15,7 +15,7 @@ class SearchViewModel(app: Application, appDepsProvider: AppDepsProvider) :
     private val _viewStateLiveData: MutableLiveData<SearchViewState> = MutableLiveData()
     val viewStateLiveData: LiveData<SearchViewState> = _viewStateLiveData
 
-    private val _backLiveData: SingleEventLiveData<Unit> = SingleEventLiveData<Unit>()
+    private val _backLiveData: SingleEventLiveData<Unit> = SingleEventLiveData()
     val backLiveData: LiveData<Unit> = _backLiveData
 
     init {

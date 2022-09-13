@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import com.example.stegomessenger.arch.util.AppDepsProvider
 import com.example.stegomessenger.arch.SingleEventLiveData
 import com.example.stegomessenger.arch.infra.AbsViewModel
-import com.example.stegomessenger.arch.network.ApiHelper
-import com.example.stegomessenger.arch.network.RetrofitBuilder
+import com.example.stegomessenger.common.network.ApiHelper
+import com.example.stegomessenger.common.network.RetrofitBuilder
 import com.example.stegomessenger.main.MainApplication
 
 class StegoViewModel(app: Application, appDepsProvider: AppDepsProvider) :

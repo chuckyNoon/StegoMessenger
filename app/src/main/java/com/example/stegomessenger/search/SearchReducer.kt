@@ -5,7 +5,7 @@ import com.example.stegomessenger.arch.redux.store.Reducer
 import com.example.stegomessenger.arch.redux.util.Event
 import com.example.stegomessenger.arch.redux.Action
 import com.example.stegomessenger.common.ColoredText
-import com.example.stegomessenger.overview.model.DividerCell
+import com.example.stegomessenger.overview.model.items.DividerCell
 import com.example.stegomessenger.search.item.SearchUserCell
 
 class SearchReducer : Reducer<SearchState> {

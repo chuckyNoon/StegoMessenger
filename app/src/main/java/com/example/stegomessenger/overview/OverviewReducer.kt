@@ -7,7 +7,7 @@ import com.example.stegomessenger.arch.redux.Action
 import com.example.stegomessenger.arch.util.StringsProvider
 import com.example.stegomessenger.main.navigation.CoreAction
 import com.example.stegomessenger.overview.model.items.ChatCell
-import com.example.stegomessenger.overview.model.DividerCell
+import com.example.stegomessenger.overview.model.items.DividerCell
 
 class OverviewReducer(
     private val dateTimeFormatter: DateTimeFormatter,
@@ -16,7 +16,7 @@ class OverviewReducer(
 
     override fun acceptsAction(action: Action): Boolean =
         action is OverviewAction ||
-            action is CoreAction.ChatsReloaded
+                action is CoreAction.ChatsReloaded
 
     override fun reduce(oldState: OverviewState, action: Action): OverviewState =
         when (action) {
@@ -40,7 +40,7 @@ class OverviewReducer(
                     millis = topMessage.createdAtUtcSeconds
                 ),
                 messageText = if (topMessage.imageUrl.isNotEmpty()) {
-                   stringsProvider.getString(R.string.image___)
+                    stringsProvider.getString(R.string.image___)
                 } else if (topMessage.text.isEmpty()) {
                     stringsProvider.getString(R.string.new_conversation)
                 } else {
@@ -57,7 +57,7 @@ class OverviewReducer(
         return state.copy(viewState = viewState)
     }
 
-    private fun buildInitialsFromName(name:String) : String{
+    private fun buildInitialsFromName(name: String): String {
         val initials = name.split(" ")
         val firstInitial = initials[0].uppercase()
         return if (initials.size > 1) {

@@ -1,4 +1,4 @@
-package com.example.stegomessenger.arch.network.model
+package com.example.stegomessenger.common.network.model
 
 data class ErrorResponse(
     val code: Int? = null,

@@ -21,7 +21,7 @@ import com.example.stegomessenger.chat.items.TextMessageAdapterDelegate
 import com.example.stegomessenger.common.InsetSide
 import com.example.stegomessenger.common.handleInsetsWithPaddingForSides
 import com.example.stegomessenger.main.MainApplication
-import com.example.stegomessenger.overview.model.DividerAdapterDelegate
+import com.example.stegomessenger.overview.model.items.DividerAdapterDelegate
 import com.example.stegomessenger.stego_dialog.StegoAction
 
 class ChatFragment : AbsFragment(R.layout.fragment_chat) {

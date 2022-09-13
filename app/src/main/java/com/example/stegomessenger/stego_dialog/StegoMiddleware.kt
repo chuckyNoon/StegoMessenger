@@ -8,8 +8,8 @@ import com.example.stegomessenger.R
 import com.example.stegomessenger.arch.redux.dispatcher.Dispatchable
 import com.example.stegomessenger.arch.redux.store.Middleware
 import com.example.stegomessenger.arch.redux.Action
-import com.example.stegomessenger.arch.network.ApiHelper
-import com.example.stegomessenger.arch.network.model.ErrorResponse
+import com.example.stegomessenger.common.network.ApiHelper
+import com.example.stegomessenger.common.network.model.ErrorResponse
 import com.example.stegomessenger.arch.util.StringsProvider
 import com.example.stegomessenger.common.getName
 import com.example.stegomessenger.common.launchBackgroundWork
@@ -69,7 +69,8 @@ class StegoMiddleware(
             dispatchable.dispatch(StegoAction.SendingFail)
             dispatchable.dispatch(
                 CoreAction.ShowToast(
-                error.message ?: stringsProvider.getString(R.string.message_succefully_sent))
+                    error.message ?: stringsProvider.getString(R.string.message_succefully_sent)
+                )
             )
         }
 
@@ -162,7 +163,8 @@ class StegoMiddleware(
             contentBitmap
         }
 
-        val file = saveBitmapInFile(bitmapToSend, fileName = containerUri?.getName(context) ?: "tmp.img")
+        val file =
+            saveBitmapInFile(bitmapToSend, fileName = containerUri?.getName(context) ?: "tmp.img")
 
         safeApiCall(
             apiCall = { apiHelper.sendImage(receiverId = receiverId, imageFile = file) },

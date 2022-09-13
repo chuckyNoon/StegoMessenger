@@ -1,4 +1,4 @@
-package com.example.stegomessenger.overview.model
+package com.example.stegomessenger.overview.model.items
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -19,8 +19,7 @@ class DividerHolder(
 ) : AbsDelegateViewHolder<DividerCell>(
     inflater.inflate(R.layout.item_divider, parent, false)
 ) {
-    override fun bind(cell: DividerCell, payloads: List<Any>?) {
-    }
+    override fun bind(cell: DividerCell, payloads: List<Any>?) = Unit
 }
 
 class DividerAdapterDelegate(

@@ -6,99 +6,86 @@
     android:layout_marginHorizontal="4dp"
     android:layout_marginVertical="8dp">
 
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/received_container"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
+        android:background="@drawable/bg_message_from"
+        android:orientation="horizontal"
+        android:padding="8dp"
         android:visibility="visible">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/received_content_tv"
+            style="@style/Body"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:background="@drawable/bg_message_from"
-            android:orientation="horizontal"
-            android:padding="8dp">
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            tools:text="Nat2test12test12me" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom">
 
             <TextView
-                android:id="@+id/received_content_tv"
-                style="@style/Body"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                tools:text="Nat2test12test12me" />
-
-            <FrameLayout
+                android:id="@+id/received_date_tv"
+                style="@style/Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom">
+                android:layout_gravity="end|bottom"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/contentSecondary"
+                tools:text="test12" />
 
-                <TextView
-                    android:id="@+id/received_date_tv"
-                    style="@style/Caption"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end|bottom"
-                    android:layout_marginTop="8dp"
-                    android:textColor="@color/contentSecondary"
-                    tools:text="test12" />
+        </FrameLayout>
 
-            </FrameLayout>
 
-        </LinearLayout>
+    </LinearLayout>
 
-    </FrameLayout>
-
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/sent_container"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
+        android:background="@drawable/bg_message_to"
+        android:elevation="2dp"
+        android:orientation="horizontal"
+        android:padding="8dp"
         android:visibility="visible">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/sent_content_tv"
+            style="@style/Body"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:background="@drawable/bg_message_to"
-            android:elevation="2dp"
-            android:orientation="horizontal"
-            android:padding="8dp">
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            tools:text="Nate2me" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom">
 
             <TextView
-                android:id="@+id/sent_content_tv"
-                style="@style/Body"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                tools:text="Nate2me" />
-
-            <FrameLayout
+                android:id="@+id/sent_date_tv"
+                style="@style/Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom">
+                android:layout_gravity="end|bottom"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/contentSecondary"
+                tools:text="test12" />
 
-                <TextView
-                    android:id="@+id/sent_date_tv"
-                    style="@style/Caption"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end|bottom"
-                    android:layout_marginTop="8dp"
-                    android:textColor="@color/contentSecondary"
-                    tools:text="test12" />
-
-            </FrameLayout>
-
-        </LinearLayout>
+        </FrameLayout>
 
 
-    </FrameLayout>
+    </LinearLayout>
 
 
 </FrameLayout>

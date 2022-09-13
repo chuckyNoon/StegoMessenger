@@ -106,21 +106,18 @@
         <item name="android:minHeight">@dimen/toolbar_default_height</item>
     </style>
 
-    <style name="DefaultBottomSheetStyle"
-        parent="Widget.Design.BottomSheet.Modal">
+    <style name="DefaultBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@color/transparent</item>
     </style>
 
-    <style name="DefaultBottomSheetTheme"
-        parent="Theme.Design.Light.BottomSheetDialog">
+    <style name="DefaultBottomSheetTheme" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="android:windowIsFloating">false</item>
         <item name="android:statusBarColor">@color/transparent</item>
         <item name="android:windowSoftInputMode">adjustResize</item>
         <item name="bottomSheetStyle">@style/DefaultBottomSheetStyle</item>
     </style>
 
-    <style name="BottomSheetContainer"
-        parent="list_item_size_style">
+    <style name="BottomSheetContainer" parent="list_item_size_style">
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:background">@drawable/bottom_sheet_background</item>
         <item name="android:clickable">true</item>

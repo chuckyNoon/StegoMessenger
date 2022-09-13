@@ -3,15 +3,27 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/jju/Documents/StegoMessenger/app/src/main/res/drawable-v24/bottom_sheet_background.xml" value="0.1" />
         <entry key="..\:/Users/jju/Documents/StegoMessenger/app/src/main/res/drawable-v24/bottom_sheet_swiper_shape.xml" value="0.1" />
         <entry key="..\:/Users/jju/Documents/StegoMessenger/app/src/main/res/drawable/bg_add_image.xml" value="0.194" />
+        <entry key="..\:/Users/jju/Documents/StegoMessenger/app/src/main/res/drawable/bg_button_main.xml" value="0.1" />
         <entry key="..\:/Users/jju/Documents/StegoMessenger/app/src/main/res/drawable/bg_form_field.xml" value="0.1" />
         <entry key="..\:/Users/jju/Documents/StegoMessenger/app/src/main/res/drawable/bg_message_from.xml" value="0.194" />
+        <entry key="..\:/Users/jju/Documents/StegoMessenger/app/src/main/res/drawable/bg_message_to.xml" value="0.1" />
+        <entry key="..\:/Users/jju/Documents/StegoMessenger/app/src/main/res/drawable/ic_24_back.xml" value="0.1" />
+        <entry key="..\:/Users/jju/Documents/StegoMessenger/app/src/main/res/drawable/ic_24_checkbox_off.xml" value="0.1" />
+        <entry key="..\:/Users/jju/Documents/StegoMessenger/app/src/main/res/drawable/ic_24_checkbox_on.xml" value="0.1" />
+        <entry key="..\:/Users/jju/Documents/StegoMessenger/app/src/main/res/drawable/ic_24_close.xml" value="0.1" />
+        <entry key="..\:/Users/jju/Documents/StegoMessenger/app/src/main/res/drawable/ic_24_image.xml" value="0.1" />
+        <entry key="..\:/Users/jju/Documents/StegoMessenger/app/src/main/res/drawable/ic_24_message.xml" value="0.1" />
+        <entry key="..\:/Users/jju/Documents/StegoMessenger/app/src/main/res/drawable/ic_24_plus.xml" value="0.1" />
+        <entry key="..\:/Users/jju/Documents/StegoMessenger/app/src/main/res/drawable/ic_24_search.xml" value="0.1" />
         <entry key="..\:/Users/jju/Documents/StegoMessenger/app/src/main/res/drawable/ic__52020_arrow_back_icon.xml" value="0.194" />
         <entry key="..\:/Users/jju/Documents/StegoMessenger/app/src/main/res/drawable/ic__52270_close_icon.xml" value="0.1" />
         <entry key="..\:/Users/jju/Documents/StegoMessenger/app/src/main/res/drawable/ic__669253_ic_search_icon.xml" value="0.1" />
         <entry key="..\:/Users/jju/Documents/StegoMessenger/app/src/main/res/drawable/ic_back_24.xml" value="0.1" />
         <entry key="..\:/Users/jju/Documents/StegoMessenger/app/src/main/res/drawable/ic_image.xml" value="0.1" />
+        <entry key="..\:/Users/jju/Documents/StegoMessenger/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Users/jju/Documents/StegoMessenger/app/src/main/res/drawable/ic_plus.xml" value="0.1" />
         <entry key="..\:/Users/jju/Documents/StegoMessenger/app/src/main/res/drawable/ic_text.xml" value="0.194" />
         <entry key="..\:/Users/jju/Documents/StegoMessenger/app/src/main/res/drawable/icon_24_checkbox_off.xml" value="0.194" />

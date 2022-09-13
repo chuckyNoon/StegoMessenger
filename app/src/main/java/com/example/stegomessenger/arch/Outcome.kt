@@ -1,6 +1,6 @@
 package com.example.stegomessenger.arch
 
-import com.example.stegomessenger.arch.network.model.ErrorResponse
+import com.example.stegomessenger.common.network.model.ErrorResponse
 
 sealed class Outcome<out T : Any> {
 

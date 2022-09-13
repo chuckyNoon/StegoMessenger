@@ -1,4 +1,4 @@
-package com.example.stegomessenger.arch.network
+package com.example.stegomessenger.common.network
 
 import com.example.stegomessenger.common.PrefsContract
 import com.example.stegomessenger.common.PrefsHelper
@@ -12,7 +12,7 @@ object RetrofitBuilder {
 
     val apiService: ApiService = getRetrofit().create(ApiService::class.java)
 
-    private const val BASE_URL = "https://6a52-2a07-23c0-8-f000-00-ad2b.ngrok.io/stego/api/"
+    private const val BASE_URL = "https://0107-178-155-4-77.eu.ngrok.io/stego/api/"
 
     private const val TIME_OUT_SECONDS = 15L
 

@@ -13,7 +13,7 @@ import com.example.stegomessenger.arch.infra.AbsFragment
 import com.example.stegomessenger.chat.getPicassoInstance
 import com.example.stegomessenger.common.InsetSide
 import com.example.stegomessenger.common.handleInsetsWithPaddingForSides
-import com.example.stegomessenger.overview.model.DividerAdapterDelegate
+import com.example.stegomessenger.overview.model.items.DividerAdapterDelegate
 import com.example.stegomessenger.search.item.SearchUserDelegate
 
 class SearchFragment : AbsFragment(R.layout.fragment_search) {

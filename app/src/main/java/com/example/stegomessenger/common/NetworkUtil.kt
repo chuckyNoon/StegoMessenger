@@ -1,7 +1,7 @@
 package com.example.stegomessenger.common
 
 import com.example.stegomessenger.arch.Outcome
-import com.example.stegomessenger.arch.network.model.ErrorResponse
+import com.example.stegomessenger.common.network.model.ErrorResponse
 import retrofit2.HttpException
 
 suspend fun <T : Any> safeApiCall(

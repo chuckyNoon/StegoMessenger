@@ -64,7 +64,8 @@ class LoginFragment : AbsFragment(R.layout.fragment_login) {
             passwordEditText.isEnabled = viewState.isPasswordEditTextEnabled
             registrationButton.isEnabled = viewState.isRegistrationButtonEnabled
 
-            progressBar.visibility = if (viewState.isProgressBarVisible) View.VISIBLE else View.INVISIBLE
+            progressBar.visibility =
+                if (viewState.isProgressBarVisible) View.VISIBLE else View.INVISIBLE
         }
     }
 

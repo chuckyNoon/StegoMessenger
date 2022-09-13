@@ -1,4 +1,4 @@
-package com.example.stegomessenger.arch.network
+package com.example.stegomessenger.common.network
 
 import okhttp3.MediaType
 import okhttp3.MultipartBody

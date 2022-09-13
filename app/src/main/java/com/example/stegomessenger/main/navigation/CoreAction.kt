@@ -11,7 +11,7 @@ sealed class CoreAction : Action {
     object ShowSearch : CoreAction()
     object ShowResult : CoreAction()
     object ShowStegoDialog : CoreAction()
-    object ShowContentDialog: CoreAction()
+    object ShowContentDialog : CoreAction()
     data class ShowToast(val text: String) : CoreAction()
     object ReloadChats : CoreAction()
     data class ChatsReloaded(val chats: List<Chat>) : CoreAction()

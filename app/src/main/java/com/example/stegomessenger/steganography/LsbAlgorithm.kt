@@ -8,6 +8,7 @@ import com.example.stegomessenger.common.getBit
 import com.example.stegomessenger.common.setBit
 import kotlin.math.sqrt
 
+// TODO: refactor and optimize logic
 class LsbAlgorithm {
 
     fun lsbEncode(
