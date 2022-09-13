@@ -2,7 +2,7 @@ package com.example.stegomessenger.arch.redux.util
 
 import androidx.annotation.CheckResult
 
-data class Event<T>(private val value: T?) {
+class Event<T>(private val value: T?) {
 
     private var isRead = false
 
@@ -14,4 +14,7 @@ data class Event<T>(private val value: T?) {
         isRead = true
         return value
     }
+
+    override fun toString(): String =
+        "Event(value=$value, isRead=$isRead)"
 }
