@@ -1,6 +1,7 @@
 package com.example.diplomclient.main.navigation
 
 import android.app.Application
+import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import com.example.diplomclient.arch.util.AppDepsProvider
 import com.example.diplomclient.arch.SingleEventLiveData
@@ -24,6 +25,8 @@ class CoreNavViewModel(app: Application, appDepsProvider: AppDepsProvider) :
 
     init {
         val apiService = ApiHelper(RetrofitBuilder.apiService)
+        val prefs = PrefsHelper.getPrefs()
+
         attachManagedStore(
             initialState = CoreNavState.EMPTY,
             reducer = CoreNavReducer(),
@@ -41,16 +44,16 @@ class CoreNavViewModel(app: Application, appDepsProvider: AppDepsProvider) :
                 _errorLiveData.value = it
             }
         }
-        dispatch(CoreAction.ReloadChats)
         launchBackgroundWork {
-            delay(5000)
+            dispatch(CoreAction.ReloadChats)
+            delay(5000) // TODO: delete
             dispatch(CoreAction.SyncWithServer)
         }
-        performInitialNavigation()
+        performInitialNavigation(prefs)
     }
 
-    private fun performInitialNavigation() {
-        val savedToken = PrefsHelper.getPrefs().getString(PrefsContract.TOKEN, null)
+    private fun performInitialNavigation(prefs: SharedPreferences) {
+        val savedToken = prefs.getString(PrefsContract.TOKEN, null)
         if (savedToken == null) {
             dispatch(CoreAction.ShowLogin)
         } else {

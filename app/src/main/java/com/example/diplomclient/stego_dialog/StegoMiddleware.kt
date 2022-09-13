@@ -1,5 +1,6 @@
 package com.example.diplomclient.stego_dialog
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
 import android.provider.MediaStore
@@ -7,11 +8,12 @@ import com.example.diplomclient.arch.redux.dispatcher.Dispatchable
 import com.example.diplomclient.arch.redux.store.Middleware
 import com.example.diplomclient.arch.redux.Action
 import com.example.diplomclient.arch.network.ApiHelper
+import com.example.diplomclient.arch.network.model.ErrorResponse
 import com.example.diplomclient.common.AppLogger
 import com.example.diplomclient.common.getName
 import com.example.diplomclient.common.launchBackgroundWork
 import com.example.diplomclient.common.safeApiCall
-import com.example.diplomclient.koch.Algorithm
+import com.example.diplomclient.steganography.LsbAlgorithm
 import com.example.diplomclient.main.MainApplication
 import com.example.diplomclient.main.navigation.CoreAction
 import java.io.BufferedOutputStream
@@ -20,7 +22,8 @@ import java.io.File
 import java.io.FileOutputStream
 
 class StegoMiddleware(
-    private val apiHelper: ApiHelper
+    private val apiHelper: ApiHelper,
+    private val context: Context
 ) : Middleware<StegoState> {
 
     override fun onReduced(
@@ -30,153 +33,145 @@ class StegoMiddleware(
         newState: StegoState
     ) {
         when (action) {
-            is StegoAction.ClickSend -> {
-                when (newState.stateType) {
-                    StegoStateType.IMAGE -> sendImage(dispatchable, newState, action)
-                    StegoStateType.TEXT -> sendText(dispatchable, newState, action)
-                }
+            is StegoAction.ClickSend -> launchBackgroundWork {
+                handleClickSend(dispatchable, newState, action)
             }
-            else -> {
-            }
+            else -> {}
         }
     }
 
-    private fun sendText(
+    // TODO: rewrite this stuff, errors aren't handled properly
+    private suspend fun handleClickSend(
         dispatchable: Dispatchable,
         newState: StegoState,
         action: StegoAction.ClickSend
     ) {
-        val typedText = newState.contentText ?: return
+        val receiverId = newState.receiverId ?: return
 
-        if (typedText.isEmpty()) {
+        dispatchable.dispatch(StegoAction.SendingStarted)
+
+        val containerUri = newState.containerUriStr?.let { Uri.parse(it) }
+        val containerBitmap = containerUri?.let {
+            MediaStore.Images.Media.getBitmap(action.contentResolver, it)
+        }
+
+        val onSendingSuccess = { _: Unit ->
+            dispatchable.dispatch(StegoAction.SendingSuccess)
+            dispatchable.dispatch(CoreAction.ReloadChats)
+            dispatchable.dispatch(CoreAction.ShowToast("Message was successfully sent"))
+            dispatchable.dispatch(StegoAction.Close)
+        }
+
+        val onSendingFail = { error: ErrorResponse ->
+            dispatchable.dispatch(StegoAction.SendingFail)
+            dispatchable.dispatch(CoreAction.ShowToast(error.message ?: "some error occured"))
+        }
+
+        when (newState.stateType) {
+            StegoStateType.IMAGE -> {
+                val contentUri = newState.contentUriStr?.let { Uri.parse(it) }
+                val contentBitmap = contentUri?.let {
+                    MediaStore.Images.Media.getBitmap(action.contentResolver, it)
+                } ?: error("failed to parse content image")
+
+                sendImage(
+                    receiverId = receiverId,
+                    containerUri = containerUri,
+                    containerBitmap = containerBitmap,
+                    contentBitmap = contentBitmap,
+                    successCallback = onSendingSuccess,
+                    failCallback = onSendingFail
+                )
+            }
+            StegoStateType.TEXT -> {
+                val text = newState.contentText ?: return
+                sendText(
+                    receiverId = receiverId,
+                    text = text,
+                    containerUri = containerUri,
+                    containerBitmap = containerBitmap,
+                    successCallback = onSendingSuccess,
+                    failCallback = onSendingFail
+                )
+            }
+        }
+    }
+
+    private suspend fun sendText(
+        receiverId: String,
+        text: String,
+        containerUri: Uri?,
+        containerBitmap: Bitmap?,
+        successCallback: (Unit) -> Unit,
+        failCallback: (ErrorResponse) -> Unit
+    ) {
+        if (containerBitmap == null) {
+            safeApiCall(
+                apiCall = { apiHelper.sendText(receiverId = receiverId, text = text) },
+                onSuccess = successCallback,
+                onError = failCallback
+            )
             return
         }
 
-        val userId = newState.receiverId ?: return
+        val file = saveBitmapInFile(
+            bitmap = LsbAlgorithm().lsbEncode(
+                dataByteArray = text.toByteArray(Charsets.UTF_8),
+                containerBitmap = containerBitmap,
+                startLabel = LsbAlgorithm.LABEL_START_TEXT,
+                endLabel = LsbAlgorithm.LABEL_END_TEXT
+            ) ?: error("failed to generate stego-image"),
+            fileName = containerUri?.getName(context) ?: "tmp.img"
+        )
 
-        dispatchable.dispatch(StegoAction.TextSendingStarted)
-
-        val containerUri = newState.containerUriStr?.let { Uri.parse(it) }
-        val containerBitmap = containerUri?.let {
-            MediaStore.Images.Media.getBitmap(action.contentResolver, it)
-        }
-
-        val context = MainApplication.getInstance()
-
-        launchBackgroundWork {
-            safeApiCall(
-                apiCall = {
-                    if (containerBitmap == null) {
-                        apiHelper.sendText(
-                            receiverId = userId,
-                            text = typedText
-                        )
-                    } else {
-                        val bitmap = Algorithm().lsbEncode(
-                            dataByteArray = typedText.toByteArray(Charsets.UTF_8),
-                            containerBitmap = containerBitmap,
-                            startLabel = Algorithm.LABEL_START_TEXT,
-                            endLabel = Algorithm.LABEL_END_TEXT
-                        ) ?: error("failed to gen")
-
-                        val file = File(
-                            context.getCacheDir(),
-                            containerUri.getName(context) ?: "wtf"
-                        )
-                        val os = BufferedOutputStream(FileOutputStream(file))
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, os)
-                        os.close()
-
-                        apiHelper.sendImage(
-                            receiverId = userId,
-                            imageFile = file
-                        )
-                    }
-                },
-                onSuccess = {
-                    dispatchable.dispatch(StegoAction.TextSendingSuccess)
-                    dispatchable.dispatch(CoreAction.ReloadChats)
-                    dispatchable.dispatch(CoreAction.ShowToast("Message was successfully sent"))
-                    dispatchable.dispatch(StegoAction.Close)
-                },
-                onError = {
-                    dispatchable.dispatch(StegoAction.TextSendingFail)
-                    dispatchable.dispatch(CoreAction.ShowToast(it.message ?: "f2"))
-                }
-            )
-        }
+        safeApiCall(
+            apiCall = { apiHelper.sendImage(receiverId = receiverId, imageFile = file) },
+            onSuccess = successCallback,
+            onError = failCallback
+        )
     }
 
-    private fun sendImage(
-        dispatchable: Dispatchable,
-        newState: StegoState,
-        action: StegoAction.ClickSend
+    private suspend fun sendImage(
+        receiverId: String,
+        containerUri: Uri?,
+        containerBitmap: Bitmap?,
+        contentBitmap: Bitmap,
+        successCallback: ((Unit) -> Unit),
+        failCallback: ((ErrorResponse) -> Unit)
     ) {
-        val context = MainApplication.getInstance()
-        val userId = requireNotNull(newState.receiverId)
 
-        val containerUri = newState.containerUriStr?.let { Uri.parse(it) }
-        val containerBitmap = containerUri?.let {
-            MediaStore.Images.Media.getBitmap(action.contentResolver, it)
+        val bitmapToSend = if (containerBitmap != null) {
+            val stream = ByteArrayOutputStream()
+            contentBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+            val dataByteArray: ByteArray = stream.toByteArray()
+            contentBitmap.recycle()
+
+            LsbAlgorithm().lsbEncode(
+                dataByteArray = dataByteArray,
+                containerBitmap = containerBitmap,
+                startLabel = LsbAlgorithm.LABEL_START_IMG,
+                endLabel = LsbAlgorithm.LABEL_END_IMG
+            ) ?: error("failed to generate stego-image")
+        } else {
+            contentBitmap
         }
 
-        val contentUri = newState.contentUriStr?.let { Uri.parse(it) }
-        val contentBitmap = contentUri?.let {
-            MediaStore.Images.Media.getBitmap(action.contentResolver, it)
-        }
+        val file = saveBitmapInFile(bitmapToSend, fileName = containerUri?.getName(context) ?: "tmp.img")
 
-        launchBackgroundWork {
-            dispatchable.dispatch(StegoAction.ImageSendingStarted)
+        safeApiCall(
+            apiCall = { apiHelper.sendImage(receiverId = receiverId, imageFile = file) },
+            onSuccess = successCallback,
+            onError = failCallback
+        )
+    }
 
-            val bitmapToSend = when {
-                containerBitmap != null && contentBitmap != null -> {
-                    val stream = ByteArrayOutputStream()
+    private fun saveBitmapInFile(bitmap: Bitmap, fileName: String): File {
+        val file = File(context.cacheDir, fileName)
 
-                    contentBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
-                    val dataByteArray: ByteArray = stream.toByteArray()
-                    contentBitmap.recycle()
+        val os = BufferedOutputStream(FileOutputStream(file))
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, os)
+        os.close()
 
-                    Algorithm().lsbEncode(
-                        dataByteArray = dataByteArray,
-                        containerBitmap = containerBitmap,
-                        startLabel = Algorithm.LABEL_START_IMG,
-                        endLabel = Algorithm.LABEL_END_IMG
-                    ) ?: error("failed to gen")
-                }
-                contentBitmap != null -> {
-                    contentBitmap
-                }
-                else -> {
-                    error("No valid bitmap")
-                }
-            }
-            val file = File(
-                context.getCacheDir(),
-                contentUri.getName(context) ?: "wtf"
-            )
-            val os = BufferedOutputStream(FileOutputStream(file))
-            bitmapToSend.compress(Bitmap.CompressFormat.PNG, 100, os)
-            os.close()
-
-            safeApiCall(
-                apiCall = {
-                    apiHelper.sendImage(
-                        receiverId = userId,
-                        imageFile = file
-                    )
-                },
-                onSuccess = {
-                    AppLogger.log("file send s")
-                    dispatchable.dispatch(StegoAction.ImageSendingSuccess)
-                    dispatchable.dispatch(CoreAction.ReloadChats)
-                    dispatchable.dispatch(CoreAction.ShowToast("Image was successfully sent"))
-                },
-                onError = {
-                    AppLogger.log("file send f")
-                    dispatchable.dispatch(StegoAction.ImageSendingFail)
-                    dispatchable.dispatch(CoreAction.ShowToast(it.message ?: "no m"))
-                }
-            )
-        }
+        return file
     }
 }

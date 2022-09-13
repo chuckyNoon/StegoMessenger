@@ -44,11 +44,6 @@ abstract class AbsViewModel(
     )
 
     @MainThread
-    protected fun attachManagedPreDispatchHook(hook: PreDispatchHook): Unit = keepTrackOf(
-        disposable = appDepsProvider.dispatcher.attachPreDispatchHook(hook)
-    )
-
-    @MainThread
     protected fun keepTrackOf(disposable: Disposable) {
         disposables.add(disposable)
     }

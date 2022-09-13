@@ -13,12 +13,20 @@ data class LoginState(
 }
 
 data class LoginViewState(
-    val isLoading: Boolean
+    val isLoginButtonEnabled: Boolean,
+    val isRegistrationButtonEnabled: Boolean,
+    val isNameEditTextEnabled: Boolean,
+    val isPasswordEditTextEnabled: Boolean,
+    val isProgressBarVisible: Boolean
 ) {
     companion object {
         val EMPTY =
             LoginViewState(
-                isLoading = false
+                isLoginButtonEnabled = true,
+                isRegistrationButtonEnabled = true,
+                isNameEditTextEnabled = true,
+                isPasswordEditTextEnabled = true,
+                isProgressBarVisible = false
             )
     }
 }

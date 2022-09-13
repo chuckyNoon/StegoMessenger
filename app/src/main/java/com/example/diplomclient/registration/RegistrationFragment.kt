@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.infra.AbsFragment
 import com.example.diplomclient.common.InsetSide
-import com.example.diplomclient.common.ViewUtils
+import com.example.diplomclient.common.handleInsetsWithPaddingForSides
 
 class RegistrationFragment : AbsFragment(R.layout.fragment_registration) {
 
@@ -34,16 +34,14 @@ class RegistrationFragment : AbsFragment(R.layout.fragment_registration) {
             }
         }
         view.findViewById<View>(R.id.btn_block).apply {
-            ViewUtils.handleInsetsWithPaddingForSides(
-                this,
+            handleInsetsWithPaddingForSides(
                 InsetSide.BOTTOM,
                 InsetSide.START,
                 InsetSide.END
             )
         }
         view.findViewById<View>(R.id.toolbar).apply {
-            ViewUtils.handleInsetsWithPaddingForSides(
-                this,
+            handleInsetsWithPaddingForSides(
                 InsetSide.TOP,
                 InsetSide.START,
                 InsetSide.END

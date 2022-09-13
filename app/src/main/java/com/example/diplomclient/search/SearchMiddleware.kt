@@ -17,7 +17,7 @@ class SearchMiddleware(private val apiHelper: ApiHelper) : Middleware<SearchStat
         newState: SearchState
     ) {
         when (action) {
-            is SearchAction.ClickStartChat -> loadChatForUser(dispatchable, action.cell.idText.value.drop(1))
+            is SearchAction.ClickStartChat -> loadChatForUser(dispatchable, userId = action.cell.id)
             is SearchAction.TextTyped -> loadMatchingUsers(dispatchable, action.text)
         }
     }
@@ -25,30 +25,26 @@ class SearchMiddleware(private val apiHelper: ApiHelper) : Middleware<SearchStat
     private fun loadChatForUser(
         dispatchable: Dispatchable,
         userId: String
-    ) {
+    ) =
         launchBackgroundWork {
             safeApiCall(
                 apiCall = {
-                    apiHelper.sendText(
-                        receiverId = userId,
-                        text = ""
-                    )
+                    apiHelper.sendText(receiverId = userId, text = "") // serverside workaround
                 },
                 onSuccess = {
                     dispatchable.dispatch(CoreAction.ReloadChats)
                     dispatchable.dispatch(SearchAction.Back)
                 },
                 onError = {
-                    dispatchable.dispatch(CoreAction.ShowToast(it.message ?: "f2"))
+                    dispatchable.dispatch(CoreAction.ShowToast(it.message ?: "Some error occured"))
                 }
             )
         }
-    }
 
     private fun loadMatchingUsers(
         dispatchable: Dispatchable,
         typedText: String
-    ) {
+    ) =
         launchBackgroundWork {
             safeApiCall(
                 apiCall = { apiHelper.search(typedText) },
@@ -57,10 +53,7 @@ class SearchMiddleware(private val apiHelper: ApiHelper) : Middleware<SearchStat
                         SearchAction.UsersLoaded(matchingUsers = it.matchingUsers)
                     )
                 },
-                onError = {
-                    //dispatchable.dispatch(CoreAction.ShowToast(it.message ?: "f2"))
-                }
+                onError = {}
             )
         }
-    }
 }

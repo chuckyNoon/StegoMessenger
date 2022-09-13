@@ -8,4 +8,5 @@ sealed class CoreNav {
     object Search : CoreNav()
     object Result : CoreNav()
     object StegoDialog : CoreNav()
+    object ContentDialog: CoreNav()
 }

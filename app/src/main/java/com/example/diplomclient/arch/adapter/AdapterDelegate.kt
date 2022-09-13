@@ -1,4 +1,4 @@
-package com.example.diplomclient.arch.adapter.composable
+package com.example.diplomclient.arch.adapter
 
 import android.view.ViewGroup
 

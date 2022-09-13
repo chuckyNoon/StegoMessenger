@@ -18,11 +18,14 @@ class LoginReducer : Reducer<LoginState> {
         }
 
     private fun rebuildViewState(state: LoginState): LoginState {
+        val isLoading = state.isLoading
         val viewState = LoginViewState(
-            isLoading = state.isLoading
+            isLoginButtonEnabled = !isLoading,
+            isRegistrationButtonEnabled = !isLoading,
+            isNameEditTextEnabled = !isLoading,
+            isPasswordEditTextEnabled = !isLoading,
+            isProgressBarVisible = isLoading
         )
-        return state.copy(
-            viewState = viewState
-        )
+        return state.copy(viewState = viewState)
     }
 }

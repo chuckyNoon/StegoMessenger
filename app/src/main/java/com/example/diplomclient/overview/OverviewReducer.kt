@@ -31,7 +31,7 @@ class OverviewReducer(
             val topMessage = chat.messages.maxByOrNull { it.createdAtUtcSeconds }!!
             val chatCell = ChatCell(
                 id = chat.id,
-                chatNameText = chat.name,
+                chatTitleText = chat.name,
                 dateText = dateTimeFormatter.formatDateWithDefaultLocale(
                     pattern = "HH-mm",
                     millis = topMessage.createdAtUtcSeconds
@@ -42,7 +42,8 @@ class OverviewReducer(
                     "Новый диалог"
                 } else {
                     topMessage.text
-                }
+                },
+                initialsText = buildInitialsFromName(chat.name)
             )
             listOf(chatCell, DividerCell)
         }
@@ -51,5 +52,15 @@ class OverviewReducer(
             cells = cells
         )
         return state.copy(viewState = viewState)
+    }
+
+    private fun buildInitialsFromName(name:String) : String{
+        val initials = name.split(" ")
+        val firstInitial = initials[0].uppercase()
+        return if (initials.size > 1) {
+            firstInitial + initials[1].uppercase()
+        } else {
+            firstInitial
+        }
     }
 }

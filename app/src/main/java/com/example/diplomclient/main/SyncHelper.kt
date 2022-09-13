@@ -5,6 +5,7 @@ import com.example.diplomclient.common.PrefsContract
 import java.util.concurrent.TimeUnit
 
 class SyncHelper(private val prefs: SharedPreferences) {
+
     fun shouldSync(): Boolean {
         val lastSyncMillis = prefs.getLong(PrefsContract.LAST_SYNC, 0)
         if (prefs.getString(PrefsContract.TOKEN, null) == null) {

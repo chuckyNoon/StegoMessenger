@@ -8,14 +8,14 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import com.bumptech.glide.RequestManager
 import com.example.diplomclient.R
-import com.example.diplomclient.arch.adapter.composable.AbsDelegateViewHolder
-import com.example.diplomclient.arch.adapter.composable.AdapterDelegate
-import com.example.diplomclient.arch.adapter.composable.DelegateDiffable
+import com.example.diplomclient.arch.adapter.AbsDelegateViewHolder
+import com.example.diplomclient.arch.adapter.AdapterDelegate
+import com.example.diplomclient.arch.adapter.DelegateDiffable
 
 data class ImageMessageCell(
     val id: String,
     val imageSource: ImageSource,
-    val dateText: String = "",
+    val dateText: String,
     val isMine: Boolean,
     val isInProgress: Boolean
 ) : DelegateDiffable<ImageMessageCell> {
@@ -39,16 +39,15 @@ class ImageMessageHolder(
 ) : AbsDelegateViewHolder<ImageMessageCell>(
     inflater.inflate(R.layout.item_image_message, parent, false)
 ) {
-    private val toImageView = itemView.findViewById<ImageView>(R.id.to_iv)
-    private val toContainer = itemView.findViewById<View>(R.id.to_container)
+    private val sendedImageView = itemView.findViewById<ImageView>(R.id.sended_iv)
+    private val sendedContainer = itemView.findViewById<View>(R.id.sent_container)
 
-    private val fromImageView = itemView.findViewById<ImageView>(R.id.from_iv)
-    private val fromContainer = itemView.findViewById<View>(R.id.from_container)
-
-    private val context = itemView.context
-    private var latestCell: ImageMessageCell? = null
+    private val receivedImageView = itemView.findViewById<ImageView>(R.id.received_iv)
+    private val receivedContainer = itemView.findViewById<View>(R.id.received_container)
 
     private val progressbar = itemView.findViewById<ProgressBar>(R.id.pb)
+
+    private var latestCell: ImageMessageCell? = null
 
     init {
         itemView.setOnClickListener {
@@ -60,25 +59,25 @@ class ImageMessageHolder(
         latestCell = cell
 
         if (cell.isMine) {
-            toContainer.visibility = View.VISIBLE
-            fromContainer.visibility = View.GONE
+            sendedContainer.visibility = View.VISIBLE
+            receivedContainer.visibility = View.GONE
         } else {
-            toContainer.visibility = View.GONE
-            fromContainer.visibility = View.VISIBLE
+            sendedContainer.visibility = View.GONE
+            receivedContainer.visibility = View.VISIBLE
         }
 
-        val targetImageView = if (cell.isMine) toImageView else fromImageView
+        val targetImageView = if (cell.isMine) sendedImageView else receivedImageView
         when (val source = cell.imageSource) {
-            is ImageMessageCell.ImageSource.Url -> {
+            is ImageMessageCell.ImageSource.Url ->
                 requestManager
                     .load(source.url)
                     .into(targetImageView)
-            }
-            is ImageMessageCell.ImageSource.LoadedBitmap -> {
+
+            is ImageMessageCell.ImageSource.LoadedBitmap ->
                 requestManager
                     .load(source.bitmap)
                     .into(targetImageView)
-            }
+
         }
 
         if (cell.isInProgress) {

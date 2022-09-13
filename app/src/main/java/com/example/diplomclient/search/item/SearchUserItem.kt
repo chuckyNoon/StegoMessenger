@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.diplomclient.arch.adapter.composable.AbsDelegateViewHolder
-import com.example.diplomclient.arch.adapter.composable.AdapterDelegate
-import com.example.diplomclient.arch.adapter.composable.DelegateDiffable
+import com.example.diplomclient.arch.adapter.AbsDelegateViewHolder
+import com.example.diplomclient.arch.adapter.AdapterDelegate
+import com.example.diplomclient.arch.adapter.DelegateDiffable
 import com.bumptech.glide.RequestManager
 import com.example.diplomclient.R
 import com.example.diplomclient.common.ColoredText
@@ -14,12 +14,13 @@ import com.example.diplomclient.common.setColoredText
 import com.example.diplomclient.common.view.LettersAvatarDrawable
 
 data class SearchUserCell(
+    val id: String,
     val nameText: ColoredText,
     val idText: ColoredText
 ) : DelegateDiffable<SearchUserCell> {
 
     override fun isSame(other: DelegateDiffable<*>): Boolean =
-        other is SearchUserCell
+        other is SearchUserCell && id == other.id
 }
 
 class SearchUserHolder(

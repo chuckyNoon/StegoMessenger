@@ -14,6 +14,7 @@ import com.example.diplomclient.arch.FragmentTransition
 import com.example.diplomclient.arch.infra.AbsFragment
 import com.example.diplomclient.chat.ChatFragment
 import com.example.diplomclient.common.SystemUiUtils
+import com.example.diplomclient.content_dialog.ContentDialog
 import com.example.diplomclient.login.LoginFragment
 import com.example.diplomclient.main.navigation.CoreNav
 import com.example.diplomclient.main.navigation.CoreNavViewModel
@@ -74,6 +75,8 @@ class MainActivity : AppCompatActivity() {
                     )
                 is CoreNav.StegoDialog ->
                     StegoDialog().showAfterKeyboardHides(supportFragmentManager, "stego", this)
+                is CoreNav.ContentDialog->
+                    ContentDialog().showAfterKeyboardHides(supportFragmentManager, "content", this)
             }
         }
 

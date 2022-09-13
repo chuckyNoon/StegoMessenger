@@ -9,7 +9,6 @@ import androidx.core.view.WindowInsetsControllerCompat
 import com.example.diplomclient.R
 
 object SystemUiUtils {
-    @JvmStatic
     fun makeStatusAndNavBarsTransparent(context: Context, window: Window) {
         val insetsController = window.getWindowInsetsControllerCompat()
 

@@ -1,6 +1,6 @@
 package com.example.diplomclient.overview
 
-import com.example.diplomclient.arch.adapter.composable.DelegateDiffable
+import com.example.diplomclient.arch.adapter.DelegateDiffable
 import com.example.diplomclient.overview.model.Chat
 
 data class OverviewState(

@@ -32,7 +32,6 @@ suspend fun <T : Any> safeApiCall(
 private fun convertErrorBody(throwable: HttpException): String? {
     return try {
         val source = throwable.response()?.errorBody()?.source()?.toString()
-        AppLogger.log("here1 $source")
         if (source == null) {
             null
         } else {

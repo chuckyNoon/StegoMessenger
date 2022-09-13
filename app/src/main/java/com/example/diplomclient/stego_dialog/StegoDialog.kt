@@ -27,7 +27,6 @@ class StegoDialog : AbsBottomSheetDialog(R.layout.dialog_stego) {
         val activity = requireActivity()
         val view = requireView()
         val context = requireContext()
-        val parentFragment = requireParentFragment()
         val requestManager = getPicassoInstance(this)
 
         val titleTextView = view.findViewById<TextView>(R.id.title_tv)
@@ -41,12 +40,12 @@ class StegoDialog : AbsBottomSheetDialog(R.layout.dialog_stego) {
         val stegoContainer = view.findViewById<View>(R.id.stego_container_block)
         val addStegoContainer = view.findViewById<View>(R.id.add_container_block).apply {
             setOnClickListener {
-                PickImageRequest(ChatFragment.CONTAINER_REQUEST_CODE).start(parentFragment)
+                PickImageRequest(ChatFragment.CONTAINER_REQUEST_CODE).start(activity)
             }
         }
         val addedStegoImageView = view.findViewById<ImageView>(R.id.added_container_iv).apply {
             setOnClickListener {
-                PickImageRequest(ChatFragment.CONTAINER_REQUEST_CODE).start(parentFragment)
+                PickImageRequest(ChatFragment.CONTAINER_REQUEST_CODE).start(activity)
             }
         }
         // text state only. start
@@ -57,7 +56,7 @@ class StegoDialog : AbsBottomSheetDialog(R.layout.dialog_stego) {
                 viewModel.dispatch(StegoAction.HandleContentTextChanged(text))
             }
         }
-        // text state only. ned
+        // text state only. end
 
         val sendButton = view.findViewById<View>(R.id.send_btn).apply {
             setOnClickListener {
@@ -71,12 +70,12 @@ class StegoDialog : AbsBottomSheetDialog(R.layout.dialog_stego) {
         val stegoContent = view.findViewById<View>(R.id.stego_content_block)
         val addedContentImageView = view.findViewById<ImageView>(R.id.added_content_iv).apply {
             setOnClickListener {
-                PickImageRequest(ChatFragment.CONTENT_REQUEST_CODE).start(parentFragment)
+                PickImageRequest(ChatFragment.CONTENT_REQUEST_CODE).start(activity)
             }
         }
         val addContent = view.findViewById<View>(R.id.add_content_block).apply {
             setOnClickListener {
-                PickImageRequest(ChatFragment.CONTENT_REQUEST_CODE).start(parentFragment)
+                PickImageRequest(ChatFragment.CONTENT_REQUEST_CODE).start(activity)
             }
         }
         // image state only. end
@@ -86,6 +85,7 @@ class StegoDialog : AbsBottomSheetDialog(R.layout.dialog_stego) {
 
             titleTextView.text = viewState.titleText
             checkBox.setIsChecked(requestManager, viewState.isStegoCheckBoxSelected)
+
             if (viewState.isStegoCheckBoxSelected) {
                 stegoContainer.visibility = View.VISIBLE
                 if (viewState.containerBitmapUriStr.isNullOrEmpty()) {

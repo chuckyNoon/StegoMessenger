@@ -9,6 +9,7 @@ import com.example.diplomclient.arch.infra.AbsFragment
 import com.example.diplomclient.chat.getPicassoInstance
 import com.example.diplomclient.common.AppLogger
 
+// TODO: implement
 class ResultFragment : AbsFragment(R.layout.fragment_result) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -23,10 +24,9 @@ class ResultFragment : AbsFragment(R.layout.fragment_result) {
         viewModel.viewStateLiveData.observe(viewLifecycleOwner) { viewState: ResultViewState? ->
             viewState ?: return@observe
 
-            AppLogger.log("here ${viewState.bitmap == null}")
             requestManager.load(viewState.bitmap).into(imageView)
         }
     }
 
-    override fun getBackStackTag(): String = "OverviewFragment"
+    override fun getBackStackTag(): String = "ResultFragment"
 }

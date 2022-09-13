@@ -93,7 +93,7 @@ abstract class AbsBottomSheetDialog() : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.setOnClickListener { v: View? -> dismiss() }
+        view.setOnClickListener { dismiss() }
     }
 
     private fun showInternal(fragmentManager: FragmentManager, tag: String?) {

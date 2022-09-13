@@ -61,32 +61,6 @@ class Dispatcher internal constructor(
         return ManagedDisposable(disposable)
     }
 
-    @CheckResult
-    fun attachPreDispatchHook(hook: PreDispatchHook): Disposable {
-        val hookHolder = HookHolder(hook, DisposableDispatchable(this))
-        synchronized(HOOKS_LOCK) { hookHolders.add(hookHolder) }
-
-        val disposable = Disposable {
-            synchronized(HOOKS_LOCK) { hookHolders.remove(hookHolder) }
-            try {
-                hookHolder.onDetached()
-            } catch (t: Throwable) {
-                notifyError(t)
-            }
-        }
-        return ManagedDisposable(disposable)
-    }
-
-    @CheckResult
-    fun attachErrorListener(onError: ErrorListener): Disposable {
-        this.onError = onError
-
-        val disposable = Disposable {
-            this@Dispatcher.onError = null
-        }
-        return ManagedDisposable(disposable)
-    }
-
     override fun dispatch(action: Action): Unit =
         workerExecutorService.executeSafe {
             val dispatchResults = try {
@@ -181,10 +155,6 @@ class Dispatcher internal constructor(
                 unconsumedActionsIterator.remove()
             }
         }
-        /*
-         * Explicitly saying that oldState != newState because
-         * NewStateListener should always be notified on Store attach
-         */
         return newDispatchResult.setIsNewStateSameAsOld(false)
     }
 
@@ -212,7 +182,6 @@ class Dispatcher internal constructor(
             try {
                 execute(runnable)
             } catch (e: RejectedExecutionException) {
-                // The best we can do in this case for now
                 System.err.println("Dispatcher: ExecutorService.executeSafe caught something: $e")
                 e.printStackTrace()
             }
@@ -289,11 +258,6 @@ private class HookHolder(
     private val hook: PreDispatchHook,
     private val disposableDispatchable: DisposableDispatchable,
 ) {
-
-    fun onDetached() {
-        hook.onDetached(disposableDispatchable)
-        disposableDispatchable.dispose()
-    }
 
     fun shouldDispatchAction(action: Action): Boolean =
         hook.shouldDispatchAction(disposableDispatchable, action)

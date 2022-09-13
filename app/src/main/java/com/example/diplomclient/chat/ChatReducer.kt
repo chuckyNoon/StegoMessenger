@@ -22,43 +22,39 @@ class ChatReducer(
                 rebuildViewState(oldState.copy(chat = action.chat))
             is CoreAction.ChatsReloaded -> {
                 val oldChat = requireNotNull(oldState.chat)
-                val updatedChat = action.chats.firstOrNull { it.id == oldChat.id }!!
-                AppLogger.log("reload chat ins ${oldChat.messages.size}-${updatedChat.messages.size}")
+                val updatedChat = action.chats.firstOrNull { it.id == oldChat.id }
                 rebuildViewState(oldState.copy(chat = updatedChat))
             }
             else -> oldState
         }
 
     private fun rebuildViewState(state: ChatState): ChatState {
-        val chat = state.chat!!
+        val chat = state.chat ?: return state
 
         val cells = chat.messages.mapNotNull { message ->
-            if (message.text.isNotEmpty()) {
-                TextMessageCell(
-                    id = message.createdAtUtcSeconds.toString(),
-                    contentText = message.text,
-                    dateText = dateTimeFormatter.formatDateWithDefaultLocale(
-                        pattern = "HH-mm",
-                        millis = message.createdAtUtcSeconds
-                    ),
-                    isMine = message.isMine,
-                )
-            } else if (message.imageUrl.isNotEmpty()) {
-                ImageMessageCell(
-                    id = message.createdAtUtcSeconds.toString() + Math.random().toInt(),
-                    imageSource = ImageMessageCell.ImageSource.Url(message.imageUrl),
-                    dateText = dateTimeFormatter.formatDateWithDefaultLocale(
-                        pattern = "HH-mm",
-                        millis = message.createdAtUtcSeconds
-                    ),
-                    isMine = message.isMine,
-                    isInProgress = false
-                )
-            } else {
-                null
+            val dateText = dateTimeFormatter.formatDateWithDefaultLocale(
+                pattern = "HH-mm",
+                millis = message.createdAtUtcSeconds
+            )
+            when {
+                message.text.isNotEmpty() ->
+                    TextMessageCell(
+                        id = message.createdAtUtcSeconds.toString(),
+                        contentText = message.text,
+                        dateText = dateText,
+                        isMine = message.isMine,
+                    )
+                message.imageUrl.isNotEmpty() ->
+                    ImageMessageCell(
+                        id = message.createdAtUtcSeconds.toString() + "img",
+                        imageSource = ImageMessageCell.ImageSource.Url(message.imageUrl),
+                        dateText = dateText,
+                        isMine = message.isMine,
+                        isInProgress = false
+                    )
+                else -> null
             }
         }
-        AppLogger.log(cells.size.toString())
         val viewState = ChatViewState(
             chatName = chat.name,
             cells = cells,

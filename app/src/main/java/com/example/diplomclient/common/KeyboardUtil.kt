@@ -1,4 +1,4 @@
-package com.example.diplomclient.arch.util
+package com.example.diplomclient.common
 
 import android.app.Activity
 import android.content.Context

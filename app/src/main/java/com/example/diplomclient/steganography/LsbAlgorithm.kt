@@ -1,4 +1,4 @@
-package com.example.diplomclient.koch
+package com.example.diplomclient.steganography
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -8,7 +8,7 @@ import com.example.diplomclient.common.getBit
 import com.example.diplomclient.common.setBit
 import kotlin.math.sqrt
 
-class Algorithm {
+class LsbAlgorithm {
 
     fun lsbEncode(
         dataByteArray: ByteArray,
@@ -16,8 +16,6 @@ class Algorithm {
         startLabel: String,
         endLabel: String
     ): Bitmap? {
-        AppLogger.log("Image started")
-
         val containerHeight = containerBitmap.height
         val containerWidth = containerBitmap.width
 
@@ -76,8 +74,6 @@ class Algorithm {
         labelEndBytes.forEachIndexed { index, value ->
             messageBytes[startLabel.length + dataByteArray.size + index] = value
         }
-
-        AppLogger.log("s = $scaleK / $scaleSide d=${newContainerWidth * newContainerHeight} e=$estimatedDataLength")
 
         for (i in 0 until newContainerWidth) {
             for (j in 0 until newContainerHeight) {
@@ -183,7 +179,7 @@ class Algorithm {
         }
 
         val messageChars = messageBytes.map { it.toChar() }
-        AppLogger.log("size=${messageChars.size}")
+
         val messageStringBuilder = StringBuilder(messageChars.size)
         messageChars.forEach {
             messageStringBuilder.append(it)
@@ -197,7 +193,6 @@ class Algorithm {
         val hiddenEndIndex = messageStringBuilder.indexOf(LABEL_END_IMG) - 1
 
         if (hiddenStartIndex < 0 || hiddenEndIndex < 0) {
-            AppLogger.log("nout found")
             return null
         }
 
@@ -224,7 +219,6 @@ class Algorithm {
         val hiddenEndIndex = messageStringBuilder.indexOf(LABEL_END_TEXT)
 
         if (hiddenStartIndex < 0 || hiddenEndIndex < 0) {
-            AppLogger.log("nout found")
             return null
         }
 
@@ -238,12 +232,11 @@ class Algorithm {
         val height = bm.height
         val scaleWidth = newWidth.toFloat() / width
         val scaleHeight = newHeight.toFloat() / height
-        // CREATE A MATRIX FOR THE MANIPULATION
+
         val matrix = Matrix()
-        // RESIZE THE BIT MAP
+
         matrix.postScale(scaleWidth, scaleHeight)
 
-        // "RECREATE" THE NEW BITMAP
         val resizedBitmap = Bitmap.createBitmap(
             bm, 0, 0, width, height, matrix, false
         )
@@ -257,10 +250,11 @@ class Algorithm {
     }
 
     companion object {
-        val LABEL_START_IMG = "e1wfw"
-        val LABEL_END_IMG = "erver32c"
+        // TODO: generate labels from user data
+        const val LABEL_START_IMG = "e1wfw"
+        const val LABEL_END_IMG = "erver32c"
 
-        val LABEL_START_TEXT = "rew3434czx"
-        val LABEL_END_TEXT = "34mf3.f/f34"
+        const val LABEL_START_TEXT = "rew3434czx"
+        const val LABEL_END_TEXT = "34mf3.f/f34"
     }
 }

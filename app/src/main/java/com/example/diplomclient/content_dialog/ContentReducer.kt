@@ -1,6 +1,6 @@
 package com.example.diplomclient.content_dialog
 
-import com.example.diplomclient.arch.adapter.composable.DelegateDiffable
+import com.example.diplomclient.arch.adapter.DelegateDiffable
 import com.example.diplomclient.arch.redux.store.Reducer
 import com.example.diplomclient.arch.redux.Action
 import com.example.diplomclient.chat.items.ImageMessageCell
@@ -26,29 +26,34 @@ class ContentReducer : Reducer<ContentState> {
     }
 
     private fun rebuildViewState(state: ContentState): ContentState {
-        val cells = mutableListOf<DelegateDiffable<*>>()
-        when (state.type) {
-            ContentStateType.IMAGE -> cells.add(
+        val displayCell = when (state.type) {
+            ContentStateType.IMAGE -> {
+                requireNotNull(state.image) {
+                    "state.image should not be null when state.type is ContentStateType.IMAGE"
+                }
                 ImageMessageCell(
-                    id = "1",
-                    imageSource = ImageMessageCell.ImageSource.LoadedBitmap(state.image!!),
+                    id = "hidden_image",
+                    imageSource = ImageMessageCell.ImageSource.LoadedBitmap(state.image),
                     dateText = "",
                     isMine = false,
                     isInProgress = false
                 )
-            )
-            ContentStateType.TEXT -> cells.add(
+            }
+            ContentStateType.TEXT -> {
+                requireNotNull(state.text) {
+                    "state.text should not be null when state.type is ContentStateType.TEXT"
+                }
                 TextMessageCell(
-                    id = "1",
-                    contentText = state.text!!,
+                    id = "hidden_text",
+                    contentText = state.text,
                     dateText = "",
                     isMine = false,
                 )
-            )
+            }
         }
         return state.copy(
             viewState = ContentViewState(
-                cells = cells
+                cells = listOf(displayCell)
             )
         )
     }

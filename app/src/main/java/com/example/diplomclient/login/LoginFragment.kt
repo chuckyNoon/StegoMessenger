@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.infra.AbsFragment
 import com.example.diplomclient.common.InsetSide
-import com.example.diplomclient.common.ViewUtils
+import com.example.diplomclient.common.handleInsetsWithPaddingForSides
 import com.example.diplomclient.main.navigation.CoreAction
 
 class LoginFragment : AbsFragment(R.layout.fragment_login) {
@@ -26,7 +26,7 @@ class LoginFragment : AbsFragment(R.layout.fragment_login) {
         val loginButton = view.findViewById<View>(R.id.login_btn).apply {
             setOnClickListener {
                 viewModel.dispatch(
-                    LoginAction.OnLoginClick(
+                    LoginAction.ClickLogin(
                         login = nameEditText.text.toString(),
                         password = passwordEditText.text.toString()
                     )
@@ -41,8 +41,7 @@ class LoginFragment : AbsFragment(R.layout.fragment_login) {
         }
 
         view.findViewById<View>(R.id.content).apply {
-            ViewUtils.handleInsetsWithPaddingForSides(
-                this,
+            handleInsetsWithPaddingForSides(
                 InsetSide.TOP,
                 InsetSide.START,
                 InsetSide.END
@@ -50,8 +49,7 @@ class LoginFragment : AbsFragment(R.layout.fragment_login) {
         }
 
         view.findViewById<View>(R.id.btn_block).apply {
-            ViewUtils.handleInsetsWithPaddingForSides(
-                this,
+            handleInsetsWithPaddingForSides(
                 InsetSide.BOTTOM,
                 InsetSide.START,
                 InsetSide.END
@@ -61,21 +59,12 @@ class LoginFragment : AbsFragment(R.layout.fragment_login) {
         viewModel.viewStateLiveData.observe(viewLifecycleOwner) { viewState: LoginViewState? ->
             viewState ?: return@observe
 
-            if (viewState.isLoading) {
-                loginButton.isEnabled = false
-                nameEditText.isEnabled = false
-                passwordEditText.isEnabled = false
-                registrationButton.isEnabled = false
+            loginButton.isEnabled = viewState.isLoginButtonEnabled
+            nameEditText.isEnabled = viewState.isNameEditTextEnabled
+            passwordEditText.isEnabled = viewState.isPasswordEditTextEnabled
+            registrationButton.isEnabled = viewState.isRegistrationButtonEnabled
 
-                progressBar.visibility = View.VISIBLE
-            } else {
-                loginButton.isEnabled = true
-                nameEditText.isEnabled = true
-                passwordEditText.isEnabled = true
-                registrationButton.isEnabled = true
-
-                progressBar.visibility = View.INVISIBLE
-            }
+            progressBar.visibility = if (viewState.isProgressBarVisible) View.VISIBLE else View.INVISIBLE
         }
     }
 

@@ -10,117 +10,84 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="faf22c57-5c34-4ce0-93ca-2056a77aa94f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/infra/AbsBottomSheetDialog.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/SingleEventLiveData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/adapter/composable/AbsDelegateViewHolder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/adapter/composable/AbsDelegateViewHolder.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/adapter/composable/AdapterDelegate.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/adapter/composable/AdapterDelegate.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/bottomsheets/AbsArchBottomSheetDialogFragment.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/bottomsheets/AbsBackAwareBottomSheetDialogFragment.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/bottomsheets/AbsBottomSheetDialogFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/bottomsheets/AbsLifecycleBottomSheetDialogFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/bottomsheets/AbsListenablePeekHeightDialogFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/bottomsheets/BottomSheetViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/bottomsheets/ScrollBottomSheetHelper.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/flux/Action.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/flux/dispatcher/Dispatchable.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/flux/dispatcher/Dispatcher.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/flux/dispatcher/Dispatchers.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/flux/dispatcher/DisposableDispatchable.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/flux/dispatcher/NewStateListener.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/flux/dispatcher/PreDispatchHook.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/flux/disposable/Disposable.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/flux/disposable/ManagedDisposable.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/flux/store/Middleware.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/flux/store/Reducer.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/flux/store/Store.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/flux/util/AbsDummyExecutorService.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/flux/util/AppViewModelFactory.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/flux/util/Event.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/flux/util/MainThreadExecutorService.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/infra/AbsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/infra/AbsFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/adapter/AbsBlockingDiffableListAdapter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/adapter/AbsDiffableListAdapter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/adapter/Diffable.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/adapter/DiffableItemCallback.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/adapter/composable/AbsDelegateViewHolder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/adapter/AbsDelegateViewHolder.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/adapter/composable/AdapterDelegate.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/adapter/AdapterDelegate.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/adapter/composable/ComposableListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/adapter/ComposableListAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/adapter/composable/DelegateDiffable.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/adapter/DelegateDiffable.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/infra/AbsBottomSheetDialog.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/infra/AbsBottomSheetDialog.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/infra/AbsViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/infra/AbsViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/network/RetrofitBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/network/RetrofitBuilder.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/util/AppDepsProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/util/AppDepsProvider.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/util/DateTimeFormatter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/util/DateTimeFormatter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/util/KeyboardUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/common/KeyboardUtil.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/redux/dispatcher/Dispatcher.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/redux/dispatcher/Dispatcher.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/redux/dispatcher/PreDispatchHook.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/arch/redux/dispatcher/PreDispatchHook.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/chat/ChatAction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/chat/ChatAction.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/chat/ChatFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/chat/ChatFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/chat/ChatMiddleware.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/chat/ChatMiddleware.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/chat/ChatReducer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/chat/ChatReducer.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/chat/ChatState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/chat/ChatState.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/chat/ChatViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/chat/ChatViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/common/ColoredTestUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/common/ColoredTestUtils.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/chat/items/ImageMessageItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/chat/items/ImageMessageItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/chat/items/TextMessageItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/chat/items/TextMessageItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/common/BitUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/common/BitUtil.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/common/CoroutineUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/common/CoroutineUtil.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/common/KeyboardUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/common/KeyboardUtil.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/common/NetworkUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/common/NetworkUtil.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/common/PickFileRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/common/PickFileRequest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/common/SystemUiUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/common/SystemUiUtils.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/common/UriUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/common/UriUtils.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/common/ViewUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/common/ViewUtils.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/common/view/LettersAvatarDrawable.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/common/view/LettersAvatarDrawable.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/common/view/MyCheckBox.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/common/view/MyCheckBox.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/content_dialog/ContentAction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/content_dialog/ContentAction.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/content_dialog/ContentDialog.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/content_dialog/ContentDialog.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/content_dialog/ContentMiddleware.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/content_dialog/ContentMiddleware.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/content_dialog/ContentReducer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/content_dialog/ContentReducer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/content_dialog/ContentViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/content_dialog/ContentViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/content_dialog/ContentState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/content_dialog/ContentState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/koch/Algorithm.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/steganography/LsbAlgorithm.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/login/LoginAction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/login/LoginAction.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/login/LoginFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/login/LoginFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/login/LoginMiddleware.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/login/LoginMiddleware.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/login/LoginReducer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/login/LoginReducer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/login/LoginState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/login/LoginState.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/login/LoginViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/login/LoginViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/main/AppViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/main/AppViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/main/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/main/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/main/SyncHelper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/main/SyncHelper.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/main/navigation/CoreAction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/main/navigation/CoreAction.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/main/navigation/CoreMiddleware.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/main/navigation/CoreMiddleware.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/main/navigation/CoreNav.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/main/navigation/CoreNav.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/main/navigation/CoreNavReducer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/main/navigation/CoreNavReducer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/main/navigation/CoreNavState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/main/navigation/CoreNavState.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/main/navigation/CoreNavViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/main/navigation/CoreNavViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/overview/OverviewAction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/overview/OverviewAction.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/overview/OverviewMiddleware.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/overview/OverviewMiddleware.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/overview/OverviewFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/overview/OverviewFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/overview/OverviewReducer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/overview/OverviewReducer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/overview/OverviewViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/overview/OverviewViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/overview/OverviewState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/overview/OverviewState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/overview/model/items/ChatItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/overview/model/items/ChatItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/overview/model/items/DividerItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/overview/model/items/DividerItem.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/registration/RegistrationAction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/registration/RegistrationAction.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/registration/RegistrationMiddleware.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/registration/RegistrationMiddleware.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/registration/RegistrationReducer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/registration/RegistrationReducer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/registration/RegistrationViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/registration/RegistrationViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/result/ResultAction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/result/ResultAction.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/result/ResultMiddleware.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/result/ResultMiddleware.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/result/ResultReducer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/result/ResultReducer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/result/ResultViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/result/ResultViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/registration/RegistrationFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/registration/RegistrationFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/result/ResultFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/result/ResultFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/search/SearchAction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/search/SearchAction.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/search/SearchFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/search/SearchFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/search/SearchMiddleware.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/search/SearchMiddleware.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/search/SearchReducer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/search/SearchReducer.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/search/SearchState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/search/SearchState.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/search/SearchViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/search/SearchViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/search/item/SearchUserItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/search/item/SearchUserItem.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/stego_dialog/StegoAction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/stego_dialog/StegoAction.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/stego_dialog/StegoDialog.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/stego_dialog/StegoDialog.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/stego_dialog/StegoMiddleware.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/stego_dialog/StegoMiddleware.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/stego_dialog/StegoReducer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/stego_dialog/StegoReducer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/stego_dialog/StegoState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/stego_dialog/StegoState.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/stego_dialog/StegoViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/diplomclient/stego_dialog/StegoViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bg_form_field.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_form_field.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic__52020_arrow_back_icon.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic__52270_close_icon.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_24_close.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic__669253_ic_search_icon.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_24_search.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_back_24.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_24_back.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_image.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_24_image.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_plus.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_24_plus.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_text.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_24_message.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/icon_24_checkbox_off.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_24_checkbox_off.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/icon_24_checkbox_on.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_24_checkbox_on.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/icon_24_radio_button_off.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/font/roboto_bold.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/font/roboto_medium.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/font/roboto_regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_content.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_content.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_stego.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_stego.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_chat.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_chat.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_overview.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_overview.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_registration.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_registration.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_chat.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_chat.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_search_user.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_search_user.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_image_message.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_image_message.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_text_message.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_text_message.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/view_my_checkbox.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/view_my_checkbox.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/diplomclient/ExampleUnitTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/example/diplomclient/ExampleUnitTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,6 +121,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Class" />
+        <option value="Kotlin Interface" />
       </list>
     </option>
   </component>
@@ -183,6 +151,9 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jju\Documents\StegoMessenger\app\src\main\java\com\example\diplomclient\arch\adapter" />
+    </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="com.example.diplomclient.arch.infra" />
     </key>

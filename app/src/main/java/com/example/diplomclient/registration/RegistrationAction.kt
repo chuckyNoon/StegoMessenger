@@ -2,7 +2,7 @@ package com.example.diplomclient.registration
 
 import com.example.diplomclient.arch.redux.Action
 
-sealed class RegistrationAction() : Action {
+sealed class RegistrationAction : Action {
     data class OnRegisterClick(
         val id: String,
         val password: String,

@@ -5,14 +5,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.diplomclient.R
-import com.example.diplomclient.arch.adapter.composable.ComposableListAdapter
+import com.example.diplomclient.arch.adapter.ComposableListAdapter
 import com.example.diplomclient.arch.infra.AbsBottomSheetDialog
 import com.example.diplomclient.chat.getPicassoInstance
 import com.example.diplomclient.chat.items.ImageMessageCell
 import com.example.diplomclient.chat.items.ImageMessageDelegate
 import com.example.diplomclient.chat.items.TextMessageAdapterDelegate
 import com.example.diplomclient.common.InsetSide
-import com.example.diplomclient.common.ViewUtils
+import com.example.diplomclient.common.handleInsetsWithPaddingForSides
 
 class ContentDialog : AbsBottomSheetDialog(R.layout.dialog_content) {
 
@@ -27,8 +27,7 @@ class ContentDialog : AbsBottomSheetDialog(R.layout.dialog_content) {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler).apply {
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-            ViewUtils.handleInsetsWithPaddingForSides(
-                this,
+            handleInsetsWithPaddingForSides(
                 InsetSide.START,
                 InsetSide.END,
                 InsetSide.BOTTOM
@@ -36,19 +35,19 @@ class ContentDialog : AbsBottomSheetDialog(R.layout.dialog_content) {
         }
         val downloadButton = view.findViewById<View>(R.id.download_btn).apply {
             setOnClickListener {
+                // TODO: implement
             }
         }
 
         val delegates = listOf(
             TextMessageAdapterDelegate(
-                inflater = layoutInflater,
-                requestManager = requestManager,
-                onImageClick = {}
-            ),
+                inflater = layoutInflater
+            ) ,
             ImageMessageDelegate(
                 inflater = layoutInflater,
                 requestManager = requestManager,
                 onImageClick = {
+                    // Nothing to do here
                 }
             )
         )

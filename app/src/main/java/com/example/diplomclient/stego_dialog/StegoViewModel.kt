@@ -8,6 +8,7 @@ import com.example.diplomclient.arch.SingleEventLiveData
 import com.example.diplomclient.arch.infra.AbsViewModel
 import com.example.diplomclient.arch.network.ApiHelper
 import com.example.diplomclient.arch.network.RetrofitBuilder
+import com.example.diplomclient.main.MainApplication
 
 class StegoViewModel(app: Application, appDepsProvider: AppDepsProvider) :
     AbsViewModel(app, appDepsProvider) {
@@ -20,12 +21,13 @@ class StegoViewModel(app: Application, appDepsProvider: AppDepsProvider) :
 
     init {
         val apiHelper = ApiHelper(RetrofitBuilder.apiService)
+        val context = MainApplication.getInstance()
 
         attachManagedStore(
             initialState = StegoState.EMPTY,
             reducer = StegoReducer(),
             middleware = listOf(
-                StegoMiddleware(apiHelper)
+                StegoMiddleware(apiHelper, context)
             ),
         ) { newState: StegoState ->
             _viewStateLiveData.value = newState.viewState

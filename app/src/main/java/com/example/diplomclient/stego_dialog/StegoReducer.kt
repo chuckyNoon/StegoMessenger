@@ -28,18 +28,15 @@ class StegoReducer : Reducer<StegoState> {
             rebuildViewState(
                 oldState.copy(containerUriStr = action.containerUriStr)
             )
-        is StegoAction.TextSendingStarted,
-        is StegoAction.ImageSendingStarted ->
+        is StegoAction.SendingStarted ->
             rebuildViewState(
                 oldState.copy(isInPgoress = true)
             )
-        is StegoAction.TextSendingFail,
-        is StegoAction.ImageSendingFail ->
+        is StegoAction.SendingFail ->
             rebuildViewState(
                 oldState.copy(isInPgoress = false)
             )
-        is StegoAction.TextSendingSuccess,
-        is StegoAction.ImageSendingSuccess ->
+        is StegoAction.SendingSuccess ->
             rebuildViewState(
                 oldState.copy(
                     closeEvent = Event(Unit),

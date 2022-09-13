@@ -1,12 +1,11 @@
-package com.example.diplomclient.arch.adapter.composable
+package com.example.diplomclient.arch.adapter
 
 import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.example.diplomclient.arch.adapter.AbsBlockingDiffableListAdapter
-import com.example.diplomclient.arch.adapter.AbsDiffableListAdapter
+import java.util.concurrent.Executors
 
 private typealias Cell = DelegateDiffable<*>
 private typealias CellDiffable = DelegateDiffable<Cell>
@@ -15,18 +14,10 @@ private typealias Holder = AbsDelegateViewHolder<CellDiffable>
 class ComposableListAdapter @JvmOverloads constructor(
     delegates: List<AdapterDelegate<*, *>>,
     cells: List<Cell> = emptyList(),
-    private val isUsedForNestedRecyclerView: Boolean = false,
-    isDiffCalculationAsync: Boolean = true,
 ) :
     ListAdapter<Cell, Holder>(
         AsyncDifferConfig.Builder(DelegateDiffableItemCallback.newInstance())
-            .setBackgroundThreadExecutor(
-                if (isDiffCalculationAsync) {
-                    AbsDiffableListAdapter.DIFF_EXECUTOR
-                } else {
-                    AbsBlockingDiffableListAdapter.BlockingExecutor
-                }
-            )
+            .setBackgroundThreadExecutor(Executors.newSingleThreadExecutor())
             .build()
     ) {
 
@@ -97,23 +88,6 @@ class ComposableListAdapter @JvmOverloads constructor(
             "No viewType found for cellClass=$cellClass. This should not happen!"
         }
         return viewType
-    }
-
-    override fun submitList(list: List<Cell>?) {
-        require(!isUsedForNestedRecyclerView) { ERR_NOT_SUPPORTED }
-        super.submitList(list)
-    }
-
-    override fun submitList(list: List<Cell>?, commitCallback: Runnable?) {
-        require(!isUsedForNestedRecyclerView) { ERR_NOT_SUPPORTED }
-        super.submitList(list, commitCallback)
-    }
-
-    companion object {
-        private const val ERR_NOT_SUPPORTED: String =
-            "submitList(...) method is not supported for " +
-                "ComposableListAdapter with isUsedForNestedRecyclerView=true. " +
-                "Use RecyclerView.swapAdapter(ComposableListAdapter(...), false) instead."
     }
 }
 

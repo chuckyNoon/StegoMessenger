@@ -16,13 +16,9 @@ sealed class StegoAction : Action {
     data class HandleContentTextChanged(val text: String) : StegoAction()
     data class HandleContentImagePicked(val imageUriStr: String) : StegoAction()
 
-    object ImageSendingStarted : StegoAction()
-    object ImageSendingSuccess : StegoAction()
-    object ImageSendingFail : StegoAction()
-
-    object TextSendingStarted : StegoAction()
-    object TextSendingSuccess : StegoAction()
-    object TextSendingFail : StegoAction()
+    object SendingStarted : StegoAction()
+    object SendingSuccess : StegoAction()
+    object SendingFail : StegoAction()
 
     object Close : StegoAction()
 }

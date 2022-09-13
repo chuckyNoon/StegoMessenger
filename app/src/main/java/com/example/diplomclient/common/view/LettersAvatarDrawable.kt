@@ -70,8 +70,8 @@ class LettersAvatarDrawable @JvmOverloads constructor(
     }
 
     companion object {
-        const val DEFAULT_PLACEHOLDER_STRING = "-"
-        const val RELATIVE_TEXT_SIZE = 0.4f
+        private const val DEFAULT_PLACEHOLDER_STRING = "-"
+        private const val RELATIVE_TEXT_SIZE = 0.4f
         private const val PLACEHOLDER_COLOR = -0x3400
     }
 }

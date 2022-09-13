@@ -7,12 +7,12 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.diplomclient.arch.adapter.composable.ComposableListAdapter
+import com.example.diplomclient.arch.adapter.ComposableListAdapter
 import com.example.diplomclient.R
 import com.example.diplomclient.arch.infra.AbsFragment
 import com.example.diplomclient.chat.getPicassoInstance
 import com.example.diplomclient.common.InsetSide
-import com.example.diplomclient.common.ViewUtils
+import com.example.diplomclient.common.handleInsetsWithPaddingForSides
 import com.example.diplomclient.overview.model.DividerAdapterDelegate
 import com.example.diplomclient.search.item.SearchUserDelegate
 
@@ -25,9 +25,8 @@ class SearchFragment : AbsFragment(R.layout.fragment_search) {
         val viewModel = viewModelProvider.get(SearchViewModel::class.java)
         val activity = requireActivity()
 
-        val toolbarBlock = view.findViewById<View>(R.id.toolbar_block).apply {
-            ViewUtils.handleInsetsWithPaddingForSides(
-                this,
+        view.findViewById<View>(R.id.toolbar_block).apply {
+            handleInsetsWithPaddingForSides(
                 InsetSide.TOP,
                 InsetSide.START,
                 InsetSide.END
@@ -40,8 +39,7 @@ class SearchFragment : AbsFragment(R.layout.fragment_search) {
         }
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler).apply {
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-            ViewUtils.handleInsetsWithPaddingForSides(
-                this,
+            handleInsetsWithPaddingForSides(
                 InsetSide.BOTTOM,
                 InsetSide.START,
                 InsetSide.END
@@ -79,5 +77,5 @@ class SearchFragment : AbsFragment(R.layout.fragment_search) {
         }
     }
 
-    override fun getBackStackTag(): String = "LoginFragment"
+    override fun getBackStackTag(): String = "SearchFragment"
 }

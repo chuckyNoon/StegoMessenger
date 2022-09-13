@@ -7,9 +7,6 @@ fun Int.setBit(position: Int, value: Boolean) =
         this and (1 shl (position)).inv()
     }
 
-fun Int.setLowestBit(value: Boolean) =
-    this.setBit(position = 0, value = value)
-
 fun Int.getBit(position: Int) =
     ((this shr position) and 1) == 1
 

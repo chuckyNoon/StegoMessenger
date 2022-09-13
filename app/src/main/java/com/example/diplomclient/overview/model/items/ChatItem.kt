@@ -6,16 +6,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.RequestManager
 import com.example.diplomclient.R
-import com.example.diplomclient.arch.adapter.composable.AbsDelegateViewHolder
-import com.example.diplomclient.arch.adapter.composable.AdapterDelegate
-import com.example.diplomclient.arch.adapter.composable.DelegateDiffable
+import com.example.diplomclient.arch.adapter.AbsDelegateViewHolder
+import com.example.diplomclient.arch.adapter.AdapterDelegate
+import com.example.diplomclient.arch.adapter.DelegateDiffable
 import com.example.diplomclient.common.view.LettersAvatarDrawable
 
 data class ChatCell(
     val id: String,
-    val chatNameText: String,
+    val chatTitleText: String,
     val messageText: String,
-    val dateText: String
+    val dateText: String,
+    val initialsText: String
 ) : DelegateDiffable<ChatCell> {
 
     override fun isSame(other: DelegateDiffable<*>): Boolean =
@@ -47,19 +48,12 @@ class ChatHolder(
     override fun bind(cell: ChatCell, payloads: List<Any>?) {
         latestCell = cell
 
-        chatTextView.text = cell.chatNameText
+        chatTextView.text = cell.chatTitleText
         dateTextView.text = cell.dateText
         messageTextView.text = cell.messageText
 
-        val initials = cell.chatNameText.split(" ")
-        val firstInitial = initials[0].uppercase()
-        val fullText = if (initials.size > 1) {
-            firstInitial + initials[1].uppercase()
-        } else {
-            firstInitial
-        }
         requestManager
-            .load(LettersAvatarDrawable(letters = fullText))
+            .load(LettersAvatarDrawable(letters = cell.initialsText))
             .into(avatarImageView)
     }
 }

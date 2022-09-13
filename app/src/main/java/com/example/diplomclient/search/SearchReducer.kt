@@ -35,6 +35,7 @@ class SearchReducer : Reducer<SearchState> {
                     val idText = "@" + matchingUser.id
                     listOf(
                         SearchUserCell(
+                            id = matchingUser.id,
                             nameText = ColoredText(
                                 value = matchingUser.name,
                                 colorRes = R.color.black
@@ -52,6 +53,7 @@ class SearchReducer : Reducer<SearchState> {
                 matchingUser.name.startsWith(typedText) -> {
                     listOf(
                         SearchUserCell(
+                            id = matchingUser.id,
                             nameText = ColoredText(
                                 value = matchingUser.name,
                                 endIndex = typedText.length,

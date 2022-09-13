@@ -1,6 +1,6 @@
 package com.example.diplomclient.chat
 
-import com.example.diplomclient.arch.adapter.composable.DelegateDiffable
+import com.example.diplomclient.arch.adapter.DelegateDiffable
 import com.example.diplomclient.arch.redux.util.Event
 import com.example.diplomclient.overview.model.Chat
 
@@ -23,10 +23,6 @@ data class ChatViewState(
     val cells: List<DelegateDiffable<*>>
 ) {
     companion object {
-        val EMPTY =
-            ChatViewState(
-                chatName = null,
-                cells = emptyList()
-            )
+        val EMPTY = ChatViewState(chatName = null, cells = emptyList())
     }
 }

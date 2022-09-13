@@ -7,6 +7,7 @@ import com.example.diplomclient.arch.util.AppDepsProvider
 import com.example.diplomclient.arch.infra.AbsViewModel
 import com.example.diplomclient.arch.network.ApiHelper
 import com.example.diplomclient.arch.network.RetrofitBuilder
+import com.example.diplomclient.common.PrefsHelper
 
 class LoginViewModel(app: Application, appDepsProvider: AppDepsProvider) :
     AbsViewModel(app, appDepsProvider) {
@@ -16,12 +17,13 @@ class LoginViewModel(app: Application, appDepsProvider: AppDepsProvider) :
 
     init {
         val apiHelper = ApiHelper(RetrofitBuilder.apiService)
+        val prefsEditor = PrefsHelper.getEditor()
 
         attachManagedStore(
             initialState = LoginState.EMPTY,
             reducer = LoginReducer(),
             middleware = listOf(
-                LoginMiddleware(apiHelper)
+                LoginMiddleware(apiHelper, prefsEditor)
             ),
         ) { newState: LoginState ->
             _viewStateLiveData.value = newState.viewState

@@ -46,19 +46,13 @@ class CoreMiddleware(
         syncHelper.saveSyncTime()
 
         dispatchable.dispatch(OverviewAction.ChatsLoadingStarted)
-        AppLogger.log("chats st")
         launchBackgroundWork {
             safeApiCall(
                 apiCall = { apiHelper.getChats(isForced) },
                 onSuccess = {
-                    AppLogger.log("chats scu")
-                    AppLogger.log(it.chats.toString())
                     dispatchable.dispatch(CoreAction.ChatsReloaded(it.chats))
                 },
-                onError = {
-                    AppLogger.log("chats f")
-                    AppLogger.log(it.message  ?: "hz")
-                }
+                onError = {}
             )
         }
     }

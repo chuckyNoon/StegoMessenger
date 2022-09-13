@@ -4,7 +4,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+// TODO: get rid of it, b.c. it leaks
 fun launchBackgroundWork(runnable: suspend () -> Unit) =
     GlobalScope.launch(Dispatchers.Default) {
-        runnable()
+        try {
+            runnable()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
