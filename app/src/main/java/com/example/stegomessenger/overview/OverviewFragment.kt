@@ -69,9 +69,6 @@ class OverviewFragment : AbsFragment(R.layout.fragment_overview) {
             }
         }
 
-        // TODO: make it controlled by liveData
-        Snackbar.make(view, R.string.loading_messages, Snackbar.LENGTH_INDEFINITE).show()
-
         val delegates = listOf(
             TextMessageAdapterDelegate(
                 layoutInflater
