@@ -1,3 +1,28 @@
 <resources>
-    <string name="app_name">DiplomClient</string>
+    <string name="app_name">StegoMessenger</string>
+    <string name="hidden_message">Hidden message</string>
+    <string name="download">Download</string>
+    <string name="text">Text</string>
+    <string name="image">Image</string>
+    <string name="lets_get_started">Let\'s get started</string>
+    <string name="user_name">User name</string>
+    <string name="password">Password</string>
+    <string name="log_in">Log in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="chats">Chats</string>
+    <string name="registration">Registration</string>
+    <string name="displayble_name">Displayable name</string>
+    <string name="search">Search</string>
+    <string name="text_message">Text message</string>
+    <string name="visual_message">Visual message</string>
+    <string name="error">Some error occurred</string>
+    <string name="loading_messages">Loading messages…</string>
+    <string name="image...">Image…</string>
+    <string name="new_conversation">New conversation</string>
+    <string name="secure_using_staganography">Secure using steganography</string>
+    <string name="message_succefully_sent">Message has been sent successfully</string>
+    <string name="image_container_colon">Image-container:</string>
+    <string name="image_colon">Image:</string>
+    <string name="text_colon">Text:</string>
+    <string name="send">Send</string>
 </resources>

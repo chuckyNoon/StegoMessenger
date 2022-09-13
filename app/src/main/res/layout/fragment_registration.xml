@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
-            android:text="Регистрация" />
+            android:text="@string/registration" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/TextInputLayoutStyle"
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="24dp"
-            android:hint="Имя пользователя">
+            android:hint="@string/user_name">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/id_et"
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
-            android:hint="Пароль">
+            android:hint="@string/password">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password_et"
@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
-            android:hint="Отображаемое имя"
+            android:hint="@string/displayble_name"
             android:visibility="visible">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -150,7 +150,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:padding="10dp"
-                android:text="Зарегистрироваться"
+                android:text="@string/sign_up"
                 android:textColor="@color/white" />
         </LinearLayout>
 

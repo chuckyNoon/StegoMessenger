@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
@@ -26,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
-            android:text="Давайте, начнем" />
+            android:text="@string/lets_get_started" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/TextInputLayoutStyle"
@@ -34,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="24dp"
-            android:hint="Имя пользователя">
+            android:hint="@string/user_name">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/name_et"
@@ -52,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
-            android:hint="Пароль">
+            android:hint="@string/password">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password_et"
@@ -109,7 +108,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:padding="10dp"
-                android:text="Войти"
+                android:text="@string/log_in"
                 android:textColor="@color/white" />
         </LinearLayout>
 
@@ -119,7 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Создать аккаунт"
+            android:text="@string/sign_up"
             android:textColor="@color/black" />
 
     </LinearLayout>

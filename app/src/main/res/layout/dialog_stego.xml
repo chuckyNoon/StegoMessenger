@@ -30,7 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
-                    android:text="Текстовое сообщение" />
+                    android:text="@string/text_message" />
 
             </LinearLayout>
 
@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <com.example.diplomclient.common.view.MyCheckBox
+                    <com.example.stegomessenger.common.view.MyCheckBox
                         android:id="@+id/checkbox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
                             android:layout_marginTop="16dp"
-                            android:text="Изображение-контейнер:" />
+                            android:text="@string/image_container_colon" />
 
                         <ImageView
                             android:id="@+id/added_container_iv"
@@ -112,7 +112,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
                             android:layout_marginTop="16dp"
-                            android:text="Изображение:" />
+                            android:text="@string/image_colon" />
 
                         <ImageView
                             android:id="@+id/added_content_iv"
@@ -149,7 +149,7 @@
                         style="@style/DefaultEditTextStyle"
                         android:layout_marginHorizontal="16dp"
                         android:layout_marginTop="16dp"
-                        android:hint="Текст..." />
+                        android:hint="@string/text_colon" />
 
 
                 </LinearLayout>
@@ -184,7 +184,7 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:padding="10dp"
-                        android:text="Отправить"
+                        android:text="@string/send"
                         android:textColor="@color/white" />
                 </LinearLayout>
 
@@ -198,7 +198,6 @@
             android:layout_height="48dp"
             android:layout_gravity="center"
             android:progressTint="@color/black" />
-
 
     </FrameLayout>
 

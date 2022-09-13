@@ -30,7 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
-                    android:text="Скрытое сообщение" />
+                    android:text="@string/hidden_message" />
 
             </LinearLayout>
 
@@ -72,7 +72,7 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:padding="10dp"
-                        android:text="Скачать"
+                        android:text="@string/download"
                         android:textColor="@color/white" />
                 </LinearLayout>
 

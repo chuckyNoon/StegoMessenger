@@ -86,8 +86,8 @@
                 android:adjustViewBounds="false"
                 android:scaleType="centerInside"
                 android:src="@drawable/ic_24_message"
-                android:tint="@color/white"
-                android:translationY="2dp" />
+                android:translationY="2dp"
+                app:tint="@color/white" />
 
             <TextView
                 style="@style/Subtitle1"
@@ -96,7 +96,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:padding="10dp"
-                android:text="Текст"
+                android:text="@string/text"
                 android:textColor="@color/white" />
         </LinearLayout>
 
@@ -113,14 +113,13 @@
             android:orientation="horizontal"
             android:visibility="visible">
 
-
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:adjustViewBounds="false"
                 android:scaleType="centerInside"
                 android:src="@drawable/ic_24_image"
-                android:tint="@color/white" />
+                app:tint="@color/white" />
 
             <TextView
                 style="@style/Subtitle1"
@@ -129,7 +128,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:padding="10dp"
-                android:text="Изображение"
+                android:text="@string/image"
                 android:textColor="@color/white" />
         </LinearLayout>
 
