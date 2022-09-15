@@ -1,10 +1,10 @@
 package com.example.stegomessenger.main
 
-import android.content.SharedPreferences
+import com.example.stegomessenger.arch.util.Prefs
 import com.example.stegomessenger.common.PrefsContract
 import java.util.concurrent.TimeUnit
 
-class SyncHelper(private val prefs: SharedPreferences) {
+class SyncHelper(private val prefs: Prefs) {
 
     fun shouldSync(): Boolean {
         val lastSyncMillis = prefs.getLong(PrefsContract.LAST_SYNC, 0)
@@ -17,9 +17,8 @@ class SyncHelper(private val prefs: SharedPreferences) {
         return secondsPassed > 0L
     }
 
-    fun saveSyncTime() {
-        prefs.edit().putLong(PrefsContract.LAST_SYNC, System.currentTimeMillis()).commit()
-    }
+    fun saveSyncTime() =
+        prefs.saveLong(PrefsContract.LAST_SYNC, System.currentTimeMillis())
 
     companion object {
         const val SYNC_DELAY_SECONDS = 10L

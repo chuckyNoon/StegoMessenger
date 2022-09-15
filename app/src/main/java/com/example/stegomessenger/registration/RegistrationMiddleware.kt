@@ -3,15 +3,16 @@ package com.example.stegomessenger.registration
 import com.example.stegomessenger.arch.redux.dispatcher.Dispatchable
 import com.example.stegomessenger.arch.redux.store.Middleware
 import com.example.stegomessenger.arch.redux.Action
-import com.example.stegomessenger.common.network.ApiHelper
+import com.example.stegomessenger.arch.util.Prefs
 import com.example.stegomessenger.common.PrefsContract
-import com.example.stegomessenger.common.PrefsHelper
 import com.example.stegomessenger.common.launchBackgroundWork
+import com.example.stegomessenger.common.network.ApiService
 import com.example.stegomessenger.common.safeApiCall
 import com.example.stegomessenger.main.navigation.CoreAction
 
 class RegistrationMiddleware(
-    private val apiHelper: ApiHelper
+    private val apiService: ApiService,
+    private val prefs: Prefs
 ) : Middleware<RegistrationState> {
 
     override fun onReduced(
@@ -38,16 +39,14 @@ class RegistrationMiddleware(
             launchBackgroundWork {
                 safeApiCall(
                     apiCall = {
-                        apiHelper.doRegister(
+                        apiService.doRegister(
                             password = password,
                             id = id,
                             name = name
                         )
                     },
                     onSuccess = {
-                        PrefsHelper.getEditor()
-                            .putString(PrefsContract.TOKEN, it.value)
-                            .commit()
+                        prefs.saveString(PrefsContract.TOKEN, it.value)
                         dispatchable.dispatch(RegistrationAction.RegistrationSuccess)
                         dispatchable.dispatch(CoreAction.ShowOverviewFragment)
                     },

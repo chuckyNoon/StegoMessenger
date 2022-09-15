@@ -1,15 +1,12 @@
 package com.example.stegomessenger.main.navigation
 
 import android.app.Application
-import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import com.example.stegomessenger.arch.util.AppDepsProvider
 import com.example.stegomessenger.arch.SingleEventLiveData
 import com.example.stegomessenger.arch.infra.AbsViewModel
-import com.example.stegomessenger.common.network.ApiHelper
-import com.example.stegomessenger.common.network.RetrofitBuilder
+import com.example.stegomessenger.arch.util.Prefs
 import com.example.stegomessenger.common.PrefsContract
-import com.example.stegomessenger.common.PrefsHelper
 import com.example.stegomessenger.common.launchBackgroundWork
 import com.example.stegomessenger.main.SyncHelper
 import kotlinx.coroutines.delay
@@ -24,16 +21,16 @@ class CoreNavViewModel(app: Application, appDepsProvider: AppDepsProvider) :
     val errorLiveData: LiveData<String> = _errorLiveData
 
     init {
-        val apiService = ApiHelper(RetrofitBuilder.apiService)
-        val prefs = PrefsHelper.getPrefs()
+        val apiService = appDepsProvider.apiService
+        val prefs = appDepsProvider.prefs
 
         attachManagedStore(
             initialState = CoreNavState.EMPTY,
             reducer = CoreNavReducer(),
             middleware = listOf(
                 CoreMiddleware(
-                    apiHelper = apiService,
-                    syncHelper = SyncHelper(prefs = PrefsHelper.getPrefs())
+                    apiService = apiService,
+                    syncHelper = SyncHelper(prefs)
                 )
             ),
         ) { newState: CoreNavState ->
@@ -52,7 +49,7 @@ class CoreNavViewModel(app: Application, appDepsProvider: AppDepsProvider) :
         performInitialNavigation(prefs)
     }
 
-    private fun performInitialNavigation(prefs: SharedPreferences) {
+    private fun performInitialNavigation(prefs: Prefs) {
         val savedToken = prefs.getString(PrefsContract.TOKEN, null)
         if (savedToken == null) {
             dispatch(CoreAction.ShowLogin)

@@ -5,9 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.stegomessenger.arch.util.AppDepsProvider
 import com.example.stegomessenger.arch.infra.AbsViewModel
-import com.example.stegomessenger.common.network.ApiHelper
-import com.example.stegomessenger.common.network.RetrofitBuilder
-import com.example.stegomessenger.common.PrefsHelper
 
 class LoginViewModel(app: Application, appDepsProvider: AppDepsProvider) :
     AbsViewModel(app, appDepsProvider) {
@@ -16,15 +13,15 @@ class LoginViewModel(app: Application, appDepsProvider: AppDepsProvider) :
     val viewStateLiveData: LiveData<LoginViewState> = _viewStateLiveData
 
     init {
-        val apiHelper = ApiHelper(RetrofitBuilder.apiService)
-        val prefsEditor = PrefsHelper.getEditor()
+        val apiService = appDepsProvider.apiService
         val stringsProvider = appDepsProvider.stringsProvider
+        val prefs = appDepsProvider.prefs
 
         attachManagedStore(
             initialState = LoginState.EMPTY,
             reducer = LoginReducer(),
             middleware = listOf(
-                LoginMiddleware(apiHelper, prefsEditor, stringsProvider)
+                LoginMiddleware(apiService, prefs, stringsProvider)
             ),
         ) { newState: LoginState ->
             _viewStateLiveData.value = newState.viewState

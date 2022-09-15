@@ -1,27 +1,21 @@
 package com.example.stegomessenger.common.network
 
+import com.example.stegomessenger.arch.util.Prefs
 import com.example.stegomessenger.common.PrefsContract
-import com.example.stegomessenger.common.PrefsHelper
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-object RetrofitBuilder {
+class RetrofitBuilder(private val prefs: Prefs) {
 
     val apiService: ApiService = getRetrofit().create(ApiService::class.java)
-
-    private const val BASE_URL = "https://0107-178-155-4-77.eu.ngrok.io/stego/api/"
-
-    private const val TIME_OUT_SECONDS = 15L
 
     private fun getRetrofit(): Retrofit {
         val gson = GsonBuilder()
             .setLenient()
             .create()
-
-        val prefs = PrefsHelper.getPrefs()
 
         val httpClient = OkHttpClient.Builder()
             .readTimeout(TIME_OUT_SECONDS, TimeUnit.SECONDS)
@@ -43,5 +37,10 @@ object RetrofitBuilder {
             .client(httpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
+    }
+
+    companion object{
+        private const val BASE_URL = "https://c8f5-178-155-4-69.eu.ngrok.io/stego/api/"
+        private const val TIME_OUT_SECONDS = 15L
     }
 }

@@ -1,9 +1,9 @@
 package com.example.stegomessenger.overview
 
 import com.example.stegomessenger.R
-import com.example.stegomessenger.arch.util.DateTimeFormatter
 import com.example.stegomessenger.arch.redux.store.Reducer
 import com.example.stegomessenger.arch.redux.Action
+import com.example.stegomessenger.arch.util.DateTimeFormatter
 import com.example.stegomessenger.arch.util.StringsProvider
 import com.example.stegomessenger.main.navigation.CoreAction
 import com.example.stegomessenger.overview.model.items.ChatCell

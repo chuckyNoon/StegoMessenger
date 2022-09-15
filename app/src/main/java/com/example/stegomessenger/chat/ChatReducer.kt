@@ -1,8 +1,8 @@
 package com.example.stegomessenger.chat
 
-import com.example.stegomessenger.arch.util.DateTimeFormatter
 import com.example.stegomessenger.arch.redux.Action
 import com.example.stegomessenger.arch.redux.store.Reducer
+import com.example.stegomessenger.arch.util.DateTimeFormatter
 import com.example.stegomessenger.chat.items.ImageMessageCell
 import com.example.stegomessenger.chat.items.TextMessageCell
 import com.example.stegomessenger.main.navigation.CoreAction

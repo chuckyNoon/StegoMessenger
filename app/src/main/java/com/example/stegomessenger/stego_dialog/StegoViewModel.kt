@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import com.example.stegomessenger.arch.util.AppDepsProvider
 import com.example.stegomessenger.arch.SingleEventLiveData
 import com.example.stegomessenger.arch.infra.AbsViewModel
-import com.example.stegomessenger.common.network.ApiHelper
 import com.example.stegomessenger.common.network.RetrofitBuilder
 import com.example.stegomessenger.main.MainApplication
 
@@ -20,15 +19,15 @@ class StegoViewModel(app: Application, appDepsProvider: AppDepsProvider) :
     val closeLiveData: LiveData<Unit> = _closeLiveData
 
     init {
-        val apiHelper = ApiHelper(RetrofitBuilder.apiService)
-        val context = MainApplication.getInstance()
+        val apiService = appDepsProvider.apiService
         val stringsProvider = appDepsProvider.stringsProvider
+        val context = MainApplication.getInstance()
 
         attachManagedStore(
             initialState = StegoState.EMPTY,
             reducer = StegoReducer(stringsProvider),
             middleware = listOf(
-                StegoMiddleware(apiHelper, context, stringsProvider)
+                StegoMiddleware(context, apiService, stringsProvider)
             ),
         ) { newState: StegoState ->
             _viewStateLiveData.value = newState.viewState
