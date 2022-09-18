@@ -4,14 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@color/white"
     android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -111,7 +109,7 @@
                 android:maxLines="1"
                 android:padding="10dp"
                 android:text="@string/log_in"
-                android:textColor="@color/white" />
+                android:textColor="@color/inverse" />
         </LinearLayout>
 
         <Button
