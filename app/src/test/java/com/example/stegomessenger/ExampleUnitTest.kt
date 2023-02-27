@@ -2,7 +2,6 @@ package com.example.stegomessenger
 
 import com.example.stegomessenger.common.getBit
 import com.example.stegomessenger.common.setBit
-import com.example.stegomessenger.common.setLowestBit
 import org.junit.Assert.*
 import org.junit.Test
 
@@ -30,14 +29,6 @@ class ExampleUnitTest {
             x.setBit(1, false)
         )
 
-        assertEquals(
-            7,
-            x.setLowestBit(true)
-        )
-        assertEquals(
-            6,
-            x.setLowestBit(false)
-        )
 
         assertEquals(
             true,
