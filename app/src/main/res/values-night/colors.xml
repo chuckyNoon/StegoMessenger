@@ -3,7 +3,6 @@
     <color name="primaryColor">@color/black</color>
     <color name="primaryDarkColor">@color/dark_grey_50</color>
 
-    <color name="primary_text">@color/light_grey</color>
     <color name="windowBackground">@color/dark_grey</color>
 
     <color name="accent">@color/white</color>

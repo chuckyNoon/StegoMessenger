@@ -1,22 +1,42 @@
 package com.example.stegomessenger.login
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
+import androidx.compose.ui.platform.ComposeView
 import androidx.lifecycle.ViewModelProvider
 import com.example.stegomessenger.R
 import com.example.stegomessenger.arch.infra.AbsFragment
 import com.example.stegomessenger.common.InsetSide
 import com.example.stegomessenger.common.handleInsetsWithPaddingForSides
 import com.example.stegomessenger.main.navigation.CoreAction
+import com.example.stegomessenger.compose.LoginScreen
 
 class LoginFragment : AbsFragment(R.layout.fragment_login) {
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View =
+        ComposeView(requireContext()).apply {
+            setContent {
+                LoginScreen()
+            }
+        }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
+        return
         val viewModelProvider = ViewModelProvider(this, appViewModelFactory)
         val viewModel = viewModelProvider.get(LoginViewModel::class.java)
 

@@ -16,3 +16,4 @@ fun Byte.setBit(position: Int, value: Boolean) =
 fun Byte.getBit(position: Int) =
     this.toInt().getBit(position)
 
+

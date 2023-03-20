@@ -17,6 +17,7 @@ import com.example.stegomessenger.common.safeApiCall
 import com.example.stegomessenger.steganography.LsbAlgorithm
 import com.example.stegomessenger.main.navigation.CoreAction
 import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.BufferedOutputStream
@@ -181,7 +182,7 @@ class StegoMiddleware(
             file = MultipartBody.Part.createFormData(
                 "image",
                 imageFile.name,
-                RequestBody.create(MediaType.parse("image/*"), imageFile)
+                RequestBody.create("image/*".toMediaTypeOrNull(), imageFile)
             ),
             receiverId = MultipartBody.Part.createFormData("receiverId", receiverId)
         )
