@@ -4,7 +4,7 @@ import com.example.stegomessenger.arch.redux.dispatcher.Dispatchable
 import com.example.stegomessenger.arch.redux.store.Middleware
 import com.example.stegomessenger.arch.redux.Action
 import com.example.stegomessenger.chat.ChatAction
-import com.example.stegomessenger.common.network.ApiService
+import com.example.stegomessenger.compose.model.OverviewState
 import com.example.stegomessenger.main.navigation.CoreAction
 
 class OverviewMiddleware : Middleware<OverviewState> {

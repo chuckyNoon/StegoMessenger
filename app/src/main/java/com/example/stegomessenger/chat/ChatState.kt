@@ -10,9 +10,9 @@ data class ChatState(
     val completeEvent: Event<Unit>?
 ) {
     companion object {
-        val EMPTY = ChatState(
+        val INITIAL = ChatState(
             chat = null,
-            viewState = ChatViewState.EMPTY,
+            viewState = ChatViewState.INITIAL,
             completeEvent = null
         )
     }
@@ -23,6 +23,6 @@ data class ChatViewState(
     val cells: List<DelegateDiffable<*>>
 ) {
     companion object {
-        val EMPTY = ChatViewState(chatName = null, cells = emptyList())
+        val INITIAL = ChatViewState(chatName = null, cells = emptyList())
     }
 }

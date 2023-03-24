@@ -5,9 +5,9 @@ data class RegistrationState(
     val viewState: RegistrationViewState
 ) {
     companion object {
-        val EMPTY = RegistrationState(
+        val INITIAL = RegistrationState(
             isLoading = false,
-            viewState = RegistrationViewState.EMPTY
+            viewState = RegistrationViewState.INITIAL
         )
     }
 }
@@ -16,7 +16,7 @@ data class RegistrationViewState(
     val isLoading: Boolean
 ) {
     companion object {
-        val EMPTY =
+        val INITIAL =
             RegistrationViewState(
                 isLoading = false
             )

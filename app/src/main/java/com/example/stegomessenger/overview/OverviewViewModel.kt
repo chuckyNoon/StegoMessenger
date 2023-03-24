@@ -5,7 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.stegomessenger.arch.util.AppDepsProvider
 import com.example.stegomessenger.arch.infra.AbsViewModel
-import com.example.stegomessenger.common.network.RetrofitBuilder
+import com.example.stegomessenger.compose.model.OverviewState
+import com.example.stegomessenger.compose.model.OverviewViewState
 
 class OverviewViewModel(app: Application, appDepsProvider: AppDepsProvider) :
     AbsViewModel(app, appDepsProvider) {
@@ -18,7 +19,7 @@ class OverviewViewModel(app: Application, appDepsProvider: AppDepsProvider) :
         val stringsProvider = appDepsProvider.stringsProvider
 
         attachManagedStore(
-            initialState = OverviewState.EMPTY,
+            initialState = OverviewState.INITIAL,
             reducer = OverviewReducer(
                 dateTimeFormatter,
                 stringsProvider
@@ -27,7 +28,7 @@ class OverviewViewModel(app: Application, appDepsProvider: AppDepsProvider) :
                 OverviewMiddleware()
             ),
         ) { newState: OverviewState ->
-            _viewStateLiveData.value = newState.viewState
+            _viewStateLiveData.value = newState.viewState!!
         }
     }
 }

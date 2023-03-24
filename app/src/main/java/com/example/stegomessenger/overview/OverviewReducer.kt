@@ -5,6 +5,8 @@ import com.example.stegomessenger.arch.redux.store.Reducer
 import com.example.stegomessenger.arch.redux.Action
 import com.example.stegomessenger.arch.util.DateTimeFormatter
 import com.example.stegomessenger.arch.util.StringsProvider
+import com.example.stegomessenger.compose.model.OverviewState
+import com.example.stegomessenger.compose.model.OverviewViewState
 import com.example.stegomessenger.main.navigation.CoreAction
 import com.example.stegomessenger.overview.model.items.ChatCell
 import com.example.stegomessenger.overview.model.items.DividerCell
@@ -34,19 +36,19 @@ class OverviewReducer(
             val topMessage = chat.messages.maxByOrNull { it.createdAtUtcSeconds }!!
             val chatCell = ChatCell(
                 id = chat.id,
-                chatTitleText = chat.name,
-                dateText = dateTimeFormatter.formatDateWithDefaultLocale(
+                title = chat.name,
+                date = dateTimeFormatter.formatDateWithDefaultLocale(
                     pattern = "HH-mm",
                     millis = topMessage.createdAtUtcSeconds
                 ),
-                messageText = if (topMessage.imageUrl.isNotEmpty()) {
+                message = if (topMessage.imageUrl.isNotEmpty()) {
                     stringsProvider.getString(R.string.image___)
                 } else if (topMessage.text.isEmpty()) {
                     stringsProvider.getString(R.string.new_conversation)
                 } else {
                     topMessage.text
                 },
-                initialsText = buildInitialsFromName(chat.name)
+                initials = buildInitialsFromName(chat.name)
             )
             listOf(chatCell, DividerCell)
         }

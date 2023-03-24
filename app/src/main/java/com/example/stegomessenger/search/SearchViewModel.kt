@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import com.example.stegomessenger.arch.util.AppDepsProvider
 import com.example.stegomessenger.arch.SingleEventLiveData
 import com.example.stegomessenger.arch.infra.AbsViewModel
-import com.example.stegomessenger.common.network.RetrofitBuilder
 
 class SearchViewModel(app: Application, appDepsProvider: AppDepsProvider) :
     AbsViewModel(app, appDepsProvider) {
@@ -22,7 +21,7 @@ class SearchViewModel(app: Application, appDepsProvider: AppDepsProvider) :
         val stringsProvider = appDepsProvider.stringsProvider
 
         attachManagedStore(
-            initialState = SearchState.EMPTY,
+            initialState = SearchState.INITIAL,
             reducer = SearchReducer(),
             middleware = listOf(
                 SearchMiddleware(apiService, stringsProvider)

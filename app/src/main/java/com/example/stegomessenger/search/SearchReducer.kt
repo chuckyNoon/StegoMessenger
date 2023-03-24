@@ -26,7 +26,7 @@ class SearchReducer : Reducer<SearchState> {
     private fun rebuildViewState(state: SearchState): SearchState {
         val typedText = state.typedText
         if (typedText.isNullOrEmpty()) {
-            return state.copy(viewState = SearchViewState.EMPTY)
+            return state.copy(viewState = SearchViewState.INITIAL)
         }
 
         val cells = state.matchingUsers.flatMap { matchingUser ->

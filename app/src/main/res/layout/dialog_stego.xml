@@ -53,7 +53,6 @@
                         android:layout_marginHorizontal="16dp"
                         android:layout_marginTop="24dp" />
 
-
                     <LinearLayout
                         android:id="@+id/stego_container_block"
                         android:layout_width="match_parent"

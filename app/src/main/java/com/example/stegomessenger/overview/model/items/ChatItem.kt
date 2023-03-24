@@ -13,10 +13,10 @@ import com.example.stegomessenger.common.view.LettersAvatarDrawable
 
 data class ChatCell(
     val id: String,
-    val chatTitleText: String,
-    val messageText: String,
-    val dateText: String,
-    val initialsText: String
+    val title: String,
+    val message: String,
+    val date: String,
+    val initials: String
 ) : DelegateDiffable<ChatCell> {
 
     override fun isSame(other: DelegateDiffable<*>): Boolean =
@@ -48,12 +48,12 @@ class ChatHolder(
     override fun bind(cell: ChatCell, payloads: List<Any>?) {
         latestCell = cell
 
-        chatTextView.text = cell.chatTitleText
-        dateTextView.text = cell.dateText
-        messageTextView.text = cell.messageText
+        chatTextView.text = cell.title
+        dateTextView.text = cell.date
+        messageTextView.text = cell.message
 
         requestManager
-            .load(LettersAvatarDrawable(letters = cell.initialsText))
+            .load(LettersAvatarDrawable(letters = cell.initials))
             .into(avatarImageView)
     }
 }

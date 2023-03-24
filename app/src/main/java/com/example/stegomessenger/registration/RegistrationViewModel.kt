@@ -17,7 +17,7 @@ class RegistrationViewModel(app: Application, appDepsProvider: AppDepsProvider) 
         val prefs = appDepsProvider.prefs
 
         attachManagedStore(
-            initialState = RegistrationState.EMPTY,
+            initialState = RegistrationState.INITIAL,
             reducer = RegistrationReducer(),
             middleware = listOf(
                 RegistrationMiddleware(apiService, prefs)

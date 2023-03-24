@@ -1,4 +1,4 @@
-package com.example.stegomessenger.overview
+package com.example.stegomessenger.compose.model
 
 import com.example.stegomessenger.arch.adapter.DelegateDiffable
 import com.example.stegomessenger.overview.model.Chat
@@ -6,14 +6,14 @@ import com.example.stegomessenger.overview.model.Chat
 data class OverviewState(
     val chats: List<Chat>,
     val isLoading: Boolean,
-    val viewState: OverviewViewState,
+    val viewState: OverviewViewState? = null,
 ) {
     companion object {
-        val EMPTY =
+        val INITIAL =
             OverviewState(
                 chats = emptyList(),
                 isLoading = false,
-                viewState = OverviewViewState.EMPTY
+                viewState = OverviewViewState.INITIAL
             )
     }
 }
@@ -23,6 +23,6 @@ data class OverviewViewState(
     val cells: List<DelegateDiffable<*>>,
 ) {
     companion object {
-        val EMPTY = OverviewViewState(cells = emptyList(), isLoading = true)
+        val INITIAL = OverviewViewState(cells = emptyList(), isLoading = true)
     }
 }

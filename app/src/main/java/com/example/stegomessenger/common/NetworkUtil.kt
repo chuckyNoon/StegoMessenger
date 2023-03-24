@@ -2,13 +2,32 @@ package com.example.stegomessenger.common
 
 import com.example.stegomessenger.arch.Outcome
 import com.example.stegomessenger.common.network.model.ErrorResponse
+import kotlinx.coroutines.CoroutineScope
 import retrofit2.HttpException
+
+suspend fun <T: Any> safeExecute(
+    block: suspend () -> T,
+    onSuccess: (T) -> Unit,
+    onError: (errorResponse: ErrorResponse) -> Unit
+){
+    val outcome = try {
+        Outcome.Success(block.invoke())
+    } catch (throwable: Throwable) {
+        Outcome.Failure(ErrorResponse())
+    }
+
+    when (outcome) {
+        is Outcome.Success -> onSuccess(outcome.value)
+        is Outcome.Failure -> onError(outcome.errorResponse)
+    }
+}
 
 suspend fun <T : Any> safeApiCall(
     apiCall: suspend () -> T,
     onSuccess: (T) -> Unit,
     onError: (errorResponse: ErrorResponse) -> Unit
 ) {
+
     val outcome = try {
         Outcome.Success(apiCall.invoke())
     } catch (throwable: Throwable) {

@@ -43,6 +43,7 @@ class StegoDialog : AbsBottomSheetDialog(R.layout.dialog_stego) {
                 PickImageRequest(ChatFragment.CONTAINER_REQUEST_CODE).start(activity)
             }
         }
+
         val addedStegoImageView = view.findViewById<ImageView>(R.id.added_container_iv).apply {
             setOnClickListener {
                 PickImageRequest(ChatFragment.CONTAINER_REQUEST_CODE).start(activity)

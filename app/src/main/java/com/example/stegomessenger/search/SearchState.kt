@@ -11,10 +11,10 @@ data class SearchState(
     val backEvent: Event<Unit>?
 ) {
     companion object {
-        val EMPTY = SearchState(
+        val INITIAL = SearchState(
             typedText = null,
             matchingUsers = emptyList(),
-            viewState = SearchViewState.EMPTY,
+            viewState = SearchViewState.INITIAL,
             backEvent = null
         )
     }
@@ -25,7 +25,7 @@ data class SearchViewState(
     val cells: List<DelegateDiffable<*>>
 ) {
     companion object {
-        val EMPTY = SearchViewState(
+        val INITIAL = SearchViewState(
             searchText = null,
             cells = emptyList()
         )

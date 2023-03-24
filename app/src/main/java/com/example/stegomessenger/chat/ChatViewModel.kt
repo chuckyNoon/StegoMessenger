@@ -22,7 +22,7 @@ class ChatViewModel(app: Application, appDepsProvider: AppDepsProvider) :
         val requestManager = Glide.with(MainApplication.getInstance())
 
         attachManagedStore(
-            initialState = ChatState.EMPTY,
+            initialState = ChatState.INITIAL,
             reducer = ChatReducer(appDepsProvider.dateTimeFormatter),
             middleware = listOf(
                 ChatMiddleware(requestManager)

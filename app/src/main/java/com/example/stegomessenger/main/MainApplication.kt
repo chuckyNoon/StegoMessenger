@@ -1,7 +1,9 @@
 package com.example.stegomessenger.main
 
 import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class MainApplication : Application() {
 
     override fun onCreate() {

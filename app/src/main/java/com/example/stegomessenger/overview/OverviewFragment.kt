@@ -18,6 +18,7 @@ import com.example.stegomessenger.main.navigation.CoreAction
 import com.example.stegomessenger.overview.model.items.ChatAdapterDelegate
 import com.example.stegomessenger.overview.model.items.DividerAdapterDelegate
 import com.example.stegomessenger.chat.items.TextMessageAdapterDelegate
+import com.example.stegomessenger.compose.model.OverviewViewState
 import com.google.android.material.navigation.NavigationView
 
 class OverviewFragment : AbsFragment(R.layout.fragment_overview) {
