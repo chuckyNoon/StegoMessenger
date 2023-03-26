@@ -54,7 +54,9 @@ fun OverviewScreen(
                         )
                     },
                     navigationIcon = {
-                        IconButton(onClick = {}) {
+                        IconButton(onClick = {
+                            navHostController.popBackStack()
+                        }) {
                             Icon(
                                 modifier = Modifier.size(24.dp),
                                 contentDescription = "",
