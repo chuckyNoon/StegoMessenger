@@ -21,14 +21,15 @@ import com.example.stegomessenger.v2.compose.StegoTheme
 import com.example.stegomessenger.v2.features.sign_up.SignUpIntent
 import com.example.stegomessenger.v2.common.model.RegistrationViewState
 import com.example.stegomessenger.v2.features.sign_up.NewSignUpViewModel
-import com.example.stegomessenger.v2.ui.views.OutlineButtonStyle
-import com.example.stegomessenger.v2.ui.views.OutlinedStegoButton
+import com.example.stegomessenger.v2.core.design.views.OutlineButtonStyle
+import com.example.stegomessenger.v2.core.design.views.OutlinedStegoButton
+import org.koin.androidx.compose.koinViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Preview(showBackground = true)
 @Composable
 fun SignUpScreen(
-    viewModel: NewSignUpViewModel = hiltViewModel(),
+    viewModel: NewSignUpViewModel = koinViewModel(),
     navHostController: NavHostController = rememberNavController()
 ) {
     val scaffoldState = rememberScaffoldState()
@@ -108,7 +109,7 @@ fun SignUpScreen(
                 TextField(
                     value = "",
                     onValueChange = {
-                       // viewModel.obtainIntent(LoginIntent.UserNameChanged(it))
+                        // viewModel.obtainIntent(LoginIntent.UserNameChanged(it))
                     },
                     label = { Text("User name") },
                     enabled = !viewState.isLoading,
@@ -118,7 +119,7 @@ fun SignUpScreen(
                 )
 
                 TextField(
-                    value ="",
+                    value = "",
                     onValueChange = {
 
                     },
@@ -130,7 +131,7 @@ fun SignUpScreen(
                 )
 
                 TextField(
-                    value ="",
+                    value = "",
                     onValueChange = {
 
                     },

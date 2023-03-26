@@ -3,9 +3,9 @@ package com.example.stegomessenger.stash.old
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
-import com.example.stegomessenger.v2.common.AppLogger
-import com.example.stegomessenger.v2.common.getBit
-import com.example.stegomessenger.v2.common.setBit
+import com.example.stegomessenger.v2.core.AppLogger
+import com.example.stegomessenger.v2.core.util.getBit
+import com.example.stegomessenger.v2.core.util.setBit
 import kotlin.math.sqrt
 
 // TODO: refactor and optimize logic
@@ -139,7 +139,7 @@ class LsbAlgorithm {
     fun lsbDecode(containerBitmap: Bitmap): DecodeResult? {
         val containerWidth = containerBitmap.width
         val containerHeight = containerBitmap.height
-        com.example.stegomessenger.v2.common.AppLogger.log("Decode start $containerHeight - $containerWidth")
+        AppLogger.log("Decode start $containerHeight - $containerWidth")
 
         val containerPixels = IntArray(containerWidth * containerHeight, { 0 })
         containerBitmap.getPixels(

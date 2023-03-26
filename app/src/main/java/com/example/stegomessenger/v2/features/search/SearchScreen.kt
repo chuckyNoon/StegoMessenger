@@ -18,16 +18,17 @@ import androidx.navigation.compose.rememberNavController
 import com.example.stegomessenger.R
 import com.example.stegomessenger.v2.compose.StegoTheme
 import com.example.stegomessenger.v2.features.search.SearchIntent
-import com.example.stegomessenger.v2.common.model.SearchUserCell
+import com.example.stegomessenger.v2.core.design.items.user.SearchUserCell
 import com.example.stegomessenger.v2.common.model.SearchViewState
 import com.example.stegomessenger.v2.features.search.NewSearchViewModel
-import com.example.stegomessenger.v2.compose.views.UserItem
+import com.example.stegomessenger.v2.compose.views.SearchUserItem
+import org.koin.androidx.compose.koinViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun SearchScreen(
     navHostController: NavHostController = rememberNavController(),
-    viewModel: NewSearchViewModel = hiltViewModel()
+    viewModel: NewSearchViewModel = koinViewModel()
 ) {
 
     val viewState by viewModel.viewStateLiveData.observeAsState(initial = SearchViewState.INITIAL)
@@ -62,7 +63,7 @@ fun SearchScreen(
                 items(viewState.cells) {
                     when (it) {
                         is SearchUserCell -> {
-                            UserItem(cell = it)
+                            SearchUserItem(cell = it)
                         }
                     }
                 }

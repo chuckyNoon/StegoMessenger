@@ -92,4 +92,18 @@ dependencies {
     implementation "androidx.hilt:hilt-navigation-compose:$hilt_version"
 
     implementation 'androidx.work:work-runtime-ktx:2.8.1'
+
+    def koin_version = "3.4.0"
+    def koin_android_version = "3.4.0"
+    def koin_android_compose_version = "3.4.3"
+
+    implementation "io.insert-koin:koin-core:$koin_version"
+    implementation "io.insert-koin:koin-android:$koin_android_version"
+    // Java Compatibility
+    implementation "io.insert-koin:koin-android-compat:$koin_android_version"
+    // Jetpack WorkManager
+    implementation "io.insert-koin:koin-androidx-workmanager:$koin_android_version"
+    // Navigation Graph
+    implementation "io.insert-koin:koin-androidx-navigation:$koin_android_version"
+    implementation "io.insert-koin:koin-androidx-compose:$koin_android_compose_version"
 }

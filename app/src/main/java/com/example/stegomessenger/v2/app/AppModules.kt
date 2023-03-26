@@ -1,9 +1,9 @@
 package com.example.stegomessenger.v2.app
 
 import android.content.Context
-import com.example.stegomessenger.v2.common.infra.*
-import com.example.stegomessenger.v2.common.network.ApiService
-import com.example.stegomessenger.v2.common.network.FakeApiService
+import com.example.stegomessenger.v2.core.network.ApiService
+import com.example.stegomessenger.v2.core.network.FakeApiService
+import com.example.stegomessenger.v2.core.infra.*
 import com.example.stegomessenger.v2.data.chat.ChatsRepository
 import com.example.stegomessenger.v2.data.chat.ChatsRepositoryImpl
 import com.example.stegomessenger.v2.data.matching_user.MatchingUsersRepository

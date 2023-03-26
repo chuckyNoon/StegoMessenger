@@ -1,7 +1,7 @@
 package com.example.stegomessenger
 
-import com.example.stegomessenger.v2.common.getBit
-import com.example.stegomessenger.v2.common.setBit
+import com.example.stegomessenger.v2.core.util.getBit
+import com.example.stegomessenger.v2.core.util.setBit
 import org.junit.Assert.*
 import org.junit.Test
 

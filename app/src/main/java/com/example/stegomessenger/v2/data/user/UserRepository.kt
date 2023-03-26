@@ -1,6 +1,6 @@
 package com.example.stegomessenger.v2.data.user
 
-import com.example.stegomessenger.v2.common.network.ApiService
+import com.example.stegomessenger.v2.core.network.ApiService
 
 
 class UserRepository(

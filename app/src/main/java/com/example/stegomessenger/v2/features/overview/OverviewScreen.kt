@@ -19,19 +19,20 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.rememberNavController
 import com.example.stegomessenger.R
 import com.example.stegomessenger.v2.compose.StegoTheme
-import com.example.stegomessenger.v2.common.model.ChatCell
+import com.example.stegomessenger.v2.core.design.items.chat.ChatCell
 import com.example.stegomessenger.v2.common.model.OverviewViewState
 import com.example.stegomessenger.v2.app.Screens
 import com.example.stegomessenger.v2.features.overview.NewOverviewViewModel
 import com.example.stegomessenger.v2.compose.views.ChatItem
-import com.example.stegomessenger.v2.ui.views.OutlineButtonStyle
-import com.example.stegomessenger.v2.ui.views.OutlinedStegoButton
+import com.example.stegomessenger.v2.core.design.views.OutlineButtonStyle
+import com.example.stegomessenger.v2.core.design.views.OutlinedStegoButton
+import org.koin.androidx.compose.koinViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Preview(showBackground = true)
 @Composable
 fun OverviewScreen(
-    viewModel: NewOverviewViewModel = hiltViewModel(),
+    viewModel: NewOverviewViewModel = koinViewModel(),
     navHostController: NavHostController = rememberNavController()
 ) {
     val scaffoldState = rememberScaffoldState()

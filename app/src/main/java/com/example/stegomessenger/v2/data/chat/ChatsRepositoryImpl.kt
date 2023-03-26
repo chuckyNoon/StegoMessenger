@@ -1,7 +1,6 @@
 package com.example.stegomessenger.v2.data.chat
 
-import com.example.stegomessenger.v2.common.network.ApiService
-import com.example.stegomessenger.v2.common.model.Chat
+import com.example.stegomessenger.v2.core.network.ApiService
 
 class ChatsRepositoryImpl(
     val apiService: ApiService

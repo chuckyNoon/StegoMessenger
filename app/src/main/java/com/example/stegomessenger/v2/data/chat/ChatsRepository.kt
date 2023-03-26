@@ -1,7 +1,5 @@
 package com.example.stegomessenger.v2.data.chat
 
-import com.example.stegomessenger.v2.common.model.Chat
-
 
 interface ChatsRepository {
 

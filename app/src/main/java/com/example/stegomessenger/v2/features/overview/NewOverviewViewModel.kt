@@ -4,18 +4,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.stegomessenger.R
-import com.example.stegomessenger.v2.common.infra.DateTimeFormatter
-import com.example.stegomessenger.v2.common.infra.StringsProvider
-import com.example.stegomessenger.v2.common.model.ChatCell
+import com.example.stegomessenger.v2.core.infra.DateTimeFormatter
+import com.example.stegomessenger.v2.core.infra.StringsProvider
+import com.example.stegomessenger.v2.core.design.items.chat.ChatCell
 import com.example.stegomessenger.v2.common.model.OverviewState
 import com.example.stegomessenger.v2.common.model.OverviewViewState
 import com.example.stegomessenger.v2.data.chat.ChatsRepository
-import com.example.stegomessenger.v2.arch.IntentHandler
+import com.example.stegomessenger.v2.core.arch.IntentHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
 class NewOverviewViewModel @Inject constructor(
     val chatsRepository: ChatsRepository,
     val dateTimeFormatter: DateTimeFormatter,

@@ -4,17 +4,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.stegomessenger.R
-import com.example.stegomessenger.v2.common.ColoredText
+import com.example.stegomessenger.v2.core.util.ColoredText
 import com.example.stegomessenger.v2.common.model.SearchState
-import com.example.stegomessenger.v2.common.model.SearchUserCell
+import com.example.stegomessenger.v2.core.design.items.user.SearchUserCell
 import com.example.stegomessenger.v2.common.model.SearchViewState
 import com.example.stegomessenger.v2.data.matching_user.MatchingUsersRepository
-import com.example.stegomessenger.v2.arch.IntentHandler
+import com.example.stegomessenger.v2.core.arch.IntentHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
 class NewSearchViewModel @Inject constructor(
     val matchingUsersRepository: MatchingUsersRepository
 ) : ViewModel(), IntentHandler<SearchIntent> {

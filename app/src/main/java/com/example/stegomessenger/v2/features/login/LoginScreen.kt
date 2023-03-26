@@ -19,18 +19,19 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.stegomessenger.v2.compose.StegoTheme
 import com.example.stegomessenger.v2.features.login.LoginIntent
-import com.example.stegomessenger.v2.common.model.LoginState
+import com.example.stegomessenger.v2.features.login.LoginState
 import com.example.stegomessenger.v2.app.Screens
 import com.example.stegomessenger.v2.features.login.NewLoginViewModel
-import com.example.stegomessenger.v2.ui.views.OutlineButtonStyle
-import com.example.stegomessenger.v2.ui.views.OutlinedStegoButton
+import com.example.stegomessenger.v2.core.design.views.OutlineButtonStyle
+import com.example.stegomessenger.v2.core.design.views.OutlinedStegoButton
+import org.koin.androidx.compose.koinViewModel
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Preview(showBackground = true)
 @Composable
 fun LoginScreen(
-    viewModel: NewLoginViewModel = hiltViewModel(),
+    viewModel: NewLoginViewModel = koinViewModel(),
     navHostController: NavHostController = rememberNavController()
 ) {
     val state by viewModel.state.observeAsState(LoginState.INITIAL)

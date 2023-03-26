@@ -4,15 +4,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.stegomessenger.R
-import com.example.stegomessenger.v2.common.PrefsContract
-import com.example.stegomessenger.v2.common.infra.Prefs
-import com.example.stegomessenger.v2.common.infra.StringsProvider
-import com.example.stegomessenger.v2.common.network.ApiService
-import com.example.stegomessenger.v2.common.safeExecute
-import com.example.stegomessenger.v2.features.login.LoginEvent
-import com.example.stegomessenger.v2.features.login.LoginIntent
-import com.example.stegomessenger.v2.common.model.LoginState
-import com.example.stegomessenger.v2.arch.IntentHandler
+import com.example.stegomessenger.v2.core.util.PrefsContract
+import com.example.stegomessenger.v2.core.infra.Prefs
+import com.example.stegomessenger.v2.core.infra.StringsProvider
+import com.example.stegomessenger.v2.core.network.ApiService
+import com.example.stegomessenger.v2.core.util.safeExecute
+import com.example.stegomessenger.v2.core.arch.IntentHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -21,7 +18,6 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
 class NewLoginViewModel @Inject constructor(
     val apiService: ApiService,
     val prefs: Prefs,
@@ -31,7 +27,6 @@ class NewLoginViewModel @Inject constructor(
     var state = MutableLiveData(LoginState.INITIAL)
 
     private val _viewActions = MutableSharedFlow<LoginEvent>(replay = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
-
     fun viewActions(): SharedFlow<LoginEvent> = _viewActions.asSharedFlow()
 
     override fun obtainIntent(intent: LoginIntent) {
