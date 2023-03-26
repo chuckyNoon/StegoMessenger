@@ -3,9 +3,9 @@ package com.example.stegomessenger.v2.common.network
 import com.example.stegomessenger.v2.common.network.model.ChatsResponse
 import com.example.stegomessenger.v2.common.network.model.SearchResponse
 import com.example.stegomessenger.v2.common.network.model.TokenResponse
-import com.example.stegomessenger.v2.compose.model.Chat
-import com.example.stegomessenger.v2.compose.model.MatchingUser
-import com.example.stegomessenger.v2.compose.model.Message
+import com.example.stegomessenger.v2.common.model.Chat
+import com.example.stegomessenger.v2.common.model.MatchingUser
+import com.example.stegomessenger.v2.common.model.Message
 import kotlinx.coroutines.delay
 import okhttp3.MultipartBody
 
