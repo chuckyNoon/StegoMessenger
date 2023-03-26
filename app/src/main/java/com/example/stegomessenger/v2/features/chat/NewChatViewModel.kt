@@ -3,16 +3,15 @@ package com.example.stegomessenger.v2.features.chat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.stegomessenger.v2.core.infra.DateTimeFormatter
-import com.example.stegomessenger.v2.core.infra.Prefs
-import com.example.stegomessenger.v2.core.infra.StringsProvider
+import com.example.core.infra.DateTimeFormatter
+import com.example.core.infra.Prefs
+import com.example.core.infra.StringsProvider
 import com.example.stegomessenger.v2.common.model.ChatState
 import com.example.stegomessenger.v2.common.model.ChatViewState
-import com.example.stegomessenger.v2.core.design.items.image_message.ImageMessageCell
-import com.example.stegomessenger.v2.core.design.items.text_message.TextMessageCell
+import com.example.core.design.items.image_message.ImageMessageCell
+import com.example.core.design.items.text_message.TextMessageCell
 import com.example.stegomessenger.v2.data.chat.ChatsRepository
-import com.example.stegomessenger.v2.core.arch.IntentHandler
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.example.core.arch.IntentHandler
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

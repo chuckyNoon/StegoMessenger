@@ -3,9 +3,9 @@ package com.example.stegomessenger.stash.old
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
-import com.example.stegomessenger.v2.core.AppLogger
-import com.example.stegomessenger.v2.core.util.getBit
-import com.example.stegomessenger.v2.core.util.setBit
+import com.example.core.AppLogger
+import com.example.core.util.getBit
+import com.example.core.util.setBit
 import kotlin.math.sqrt
 
 // TODO: refactor and optimize logic

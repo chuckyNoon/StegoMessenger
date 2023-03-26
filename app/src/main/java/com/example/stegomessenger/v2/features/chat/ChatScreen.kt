@@ -18,17 +18,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.stegomessenger.R
 import com.example.stegomessenger.v2.compose.StegoTheme
 import com.example.stegomessenger.v2.common.model.ChatViewState
-import com.example.stegomessenger.v2.core.design.items.text_message.TextMessageCell
+import com.example.core.design.items.text_message.TextMessageCell
 import com.example.stegomessenger.v2.features.chat.NewChatViewModel
 import com.example.stegomessenger.v2.compose.views.TextMessage
-import com.example.stegomessenger.v2.core.design.views.OutlineButtonStyle
-import com.example.stegomessenger.v2.core.design.views.OutlinedStegoButton
+import com.example.core.design.views.OutlineButtonStyle
+import com.example.core.design.views.OutlinedStegoButton
 import org.koin.androidx.compose.koinViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")

@@ -1,6 +1,6 @@
 package com.example.stegomessenger.v2.data.matching_user
 
-import com.example.stegomessenger.v2.core.network.ApiService
+import com.example.core.network.ApiService
 
 class MatchingUsersRepositoryImpl(
     private val apiService: ApiService

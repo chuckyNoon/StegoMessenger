@@ -14,7 +14,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.text.isDigitsOnly
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.stegomessenger.v2.compose.StegoTheme
@@ -22,8 +21,8 @@ import com.example.stegomessenger.v2.features.login.LoginIntent
 import com.example.stegomessenger.v2.features.login.LoginState
 import com.example.stegomessenger.v2.app.Screens
 import com.example.stegomessenger.v2.features.login.NewLoginViewModel
-import com.example.stegomessenger.v2.core.design.views.OutlineButtonStyle
-import com.example.stegomessenger.v2.core.design.views.OutlinedStegoButton
+import com.example.core.design.views.OutlineButtonStyle
+import com.example.core.design.views.OutlinedStegoButton
 import org.koin.androidx.compose.koinViewModel
 
 

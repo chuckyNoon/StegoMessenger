@@ -3,11 +3,11 @@ package com.example.stegomessenger.v2.features.sign_up
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.stegomessenger.v2.core.infra.StringsProvider
+import com.example.core.infra.StringsProvider
 import com.example.stegomessenger.v2.common.model.RegistrationState
 import com.example.stegomessenger.v2.common.model.RegistrationViewState
 import com.example.stegomessenger.v2.data.user.UserRepository
-import com.example.stegomessenger.v2.core.arch.IntentHandler
+import com.example.core.arch.IntentHandler
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject

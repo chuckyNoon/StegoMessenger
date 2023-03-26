@@ -13,7 +13,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.stegomessenger.R
@@ -21,8 +20,8 @@ import com.example.stegomessenger.v2.compose.StegoTheme
 import com.example.stegomessenger.v2.features.sign_up.SignUpIntent
 import com.example.stegomessenger.v2.common.model.RegistrationViewState
 import com.example.stegomessenger.v2.features.sign_up.NewSignUpViewModel
-import com.example.stegomessenger.v2.core.design.views.OutlineButtonStyle
-import com.example.stegomessenger.v2.core.design.views.OutlinedStegoButton
+import com.example.core.design.views.OutlineButtonStyle
+import com.example.core.design.views.OutlinedStegoButton
 import org.koin.androidx.compose.koinViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")

@@ -1,7 +1,7 @@
 package com.example.stegomessenger.stash.old
 
-import com.example.stegomessenger.v2.core.util.PrefsContract
-import com.example.stegomessenger.v2.core.infra.Prefs
+import com.example.core.util.PrefsContract
+import com.example.core.infra.Prefs
 import java.util.concurrent.TimeUnit
 
 class SyncHelper(private val prefs: Prefs) {

@@ -12,13 +12,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.stegomessenger.R
 import com.example.stegomessenger.v2.compose.StegoTheme
 import com.example.stegomessenger.v2.features.search.SearchIntent
-import com.example.stegomessenger.v2.core.design.items.user.SearchUserCell
+import com.example.core.design.items.user.SearchUserCell
 import com.example.stegomessenger.v2.common.model.SearchViewState
 import com.example.stegomessenger.v2.features.search.NewSearchViewModel
 import com.example.stegomessenger.v2.compose.views.SearchUserItem

@@ -1,6 +1,6 @@
 package com.example.stegomessenger.v2.features.chat
 
-import com.example.stegomessenger.v2.core.design.items.image_message.ImageMessageCell
+import com.example.core.design.items.image_message.ImageMessageCell
 
 
 sealed class ChatIntent {
