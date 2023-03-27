@@ -1,6 +1,6 @@
 package com.example.stegomessenger.v2.common.model
 
-import com.example.stegomessenger.v2.data.matching_user.MatchingUser
+import com.example.data.matching_user.MatchingUser
 
 data class SearchState(
     val typedText: String?,

@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.core.infra.StringsProvider
 import com.example.stegomessenger.v2.common.model.RegistrationState
 import com.example.stegomessenger.v2.common.model.RegistrationViewState
-import com.example.stegomessenger.v2.data.user.UserRepository
+import com.example.data.user.UserRepository
 import com.example.core.arch.IntentHandler
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

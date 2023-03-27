@@ -8,7 +8,7 @@ import com.example.core.util.ColoredText
 import com.example.stegomessenger.v2.common.model.SearchState
 import com.example.core.design.items.user.SearchUserCell
 import com.example.stegomessenger.v2.common.model.SearchViewState
-import com.example.stegomessenger.v2.data.matching_user.MatchingUsersRepository
+import com.example.data.matching_user.MatchingUsersRepository
 import com.example.core.arch.IntentHandler
 import kotlinx.coroutines.launch
 import javax.inject.Inject

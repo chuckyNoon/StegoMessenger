@@ -4,11 +4,11 @@ import android.app.Application
 import com.example.core.infra.*
 import com.example.core.network.ApiService
 import com.example.core.network.FakeApiService
-import com.example.stegomessenger.v2.data.chat.ChatsRepository
-import com.example.stegomessenger.v2.data.chat.ChatsRepositoryImpl
-import com.example.stegomessenger.v2.data.matching_user.MatchingUsersRepository
-import com.example.stegomessenger.v2.data.matching_user.MatchingUsersRepositoryImpl
-import com.example.stegomessenger.v2.data.user.UserRepository
+import com.example.data.chat.ChatsRepository
+import com.example.data.chat.ChatsRepositoryImpl
+import com.example.data.matching_user.MatchingUsersRepository
+import com.example.data.matching_user.MatchingUsersRepositoryImpl
+import com.example.data.user.UserRepository
 import com.example.stegomessenger.v2.features.chat.NewChatViewModel
 import com.example.stegomessenger.v2.features.login.NewLoginViewModel
 import com.example.stegomessenger.v2.features.overview.NewOverviewViewModel
@@ -57,6 +57,6 @@ val featureModule = module {
 
 val dataModule = module {
     single { ChatsRepositoryImpl(get()) as ChatsRepository }
-    single { MatchingUsersRepositoryImpl(get()) as MatchingUsersRepository}
+    single { MatchingUsersRepositoryImpl(get()) as MatchingUsersRepository }
     single { UserRepository(get()) }
 }

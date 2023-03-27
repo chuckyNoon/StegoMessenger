@@ -1,4 +1,4 @@
-package com.example.stegomessenger.v2.data.chat
+package com.example.data.chat
 
 
 interface ChatsRepository {

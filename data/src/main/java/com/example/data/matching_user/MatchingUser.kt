@@ -1,4 +1,4 @@
-package com.example.stegomessenger.v2.data.matching_user
+package com.example.data.matching_user
 
 import com.example.core.network.model.MatchingUserDTO
 

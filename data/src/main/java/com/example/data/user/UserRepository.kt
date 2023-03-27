@@ -1,4 +1,4 @@
-package com.example.stegomessenger.v2.data.user
+package com.example.data.user
 
 import com.example.core.network.ApiService
 

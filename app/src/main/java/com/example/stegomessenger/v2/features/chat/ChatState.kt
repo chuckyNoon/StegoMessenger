@@ -1,6 +1,6 @@
 package com.example.stegomessenger.v2.common.model
 
-import com.example.stegomessenger.v2.data.chat.Chat
+import com.example.data.chat.Chat
 
 data class ChatState(
     val chat: Chat?,

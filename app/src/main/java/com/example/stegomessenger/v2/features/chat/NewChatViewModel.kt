@@ -10,7 +10,7 @@ import com.example.stegomessenger.v2.common.model.ChatState
 import com.example.stegomessenger.v2.common.model.ChatViewState
 import com.example.core.design.items.image_message.ImageMessageCell
 import com.example.core.design.items.text_message.TextMessageCell
-import com.example.stegomessenger.v2.data.chat.ChatsRepository
+import com.example.data.chat.ChatsRepository
 import com.example.core.arch.IntentHandler
 import kotlinx.coroutines.launch
 import javax.inject.Inject
