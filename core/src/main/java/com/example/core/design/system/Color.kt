@@ -1,6 +1,7 @@
 package com.example.stegomessenger.v2.compose
 
 import androidx.compose.ui.graphics.Color
+import com.example.core.design.system.StegoColors
 
 internal val baseLightPalette = StegoColors(
     primaryBackground = Color(0xFFFFFFFF),

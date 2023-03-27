@@ -1,4 +1,4 @@
-package com.example.stegomessenger.v2.compose.views
+package com.example.core.design.items.text_message
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -14,9 +14,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.stegomessenger.v2.compose.StegoTheme
-import com.example.core.design.items.text_message.TextMessageCell
-
+import com.example.core.design.system.StegoTheme
 
 @Composable
 fun TextMessage(messageCell: TextMessageCell) {

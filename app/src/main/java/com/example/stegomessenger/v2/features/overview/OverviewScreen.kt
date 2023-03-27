@@ -17,12 +17,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.rememberNavController
 import com.example.stegomessenger.R
-import com.example.stegomessenger.v2.compose.StegoTheme
+import com.example.core.design.system.StegoTheme
 import com.example.core.design.items.chat.ChatCell
 import com.example.stegomessenger.v2.common.model.OverviewViewState
 import com.example.stegomessenger.v2.app.Screens
 import com.example.stegomessenger.v2.features.overview.NewOverviewViewModel
-import com.example.stegomessenger.v2.compose.views.ChatItem
+import com.example.core.design.items.chat.ChatItem
 import com.example.core.design.views.OutlineButtonStyle
 import com.example.core.design.views.OutlinedStegoButton
 import org.koin.androidx.compose.koinViewModel

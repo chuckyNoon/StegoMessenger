@@ -8,7 +8,7 @@ class ChatsRepositoryImpl(
 
     override suspend fun fetchChats(): List<Chat>? {
         return try {
-            apiService.getChats(true).chats
+            apiService.getChats(true).chats.map { Chat.fromDTO(it) }
         } catch (e: Exception) {
             println(e.message)
             null

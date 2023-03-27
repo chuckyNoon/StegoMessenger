@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.stegomessenger.R
-import com.example.stegomessenger.v2.compose.StegoTheme
+import com.example.core.design.system.StegoTheme
 import com.example.stegomessenger.v2.features.sign_up.SignUpIntent
 import com.example.stegomessenger.v2.common.model.RegistrationViewState
 import com.example.stegomessenger.v2.features.sign_up.NewSignUpViewModel

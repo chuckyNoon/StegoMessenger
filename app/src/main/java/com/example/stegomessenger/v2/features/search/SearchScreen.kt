@@ -15,12 +15,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.stegomessenger.R
-import com.example.stegomessenger.v2.compose.StegoTheme
+import com.example.core.design.system.StegoTheme
 import com.example.stegomessenger.v2.features.search.SearchIntent
 import com.example.core.design.items.user.SearchUserCell
 import com.example.stegomessenger.v2.common.model.SearchViewState
 import com.example.stegomessenger.v2.features.search.NewSearchViewModel
-import com.example.stegomessenger.v2.compose.views.SearchUserItem
+import com.example.core.design.items.user.SearchUserItem
 import org.koin.androidx.compose.koinViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")

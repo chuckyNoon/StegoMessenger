@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.text.isDigitsOnly
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.stegomessenger.v2.compose.StegoTheme
+import com.example.core.design.system.StegoTheme
 import com.example.stegomessenger.v2.features.login.LoginIntent
 import com.example.stegomessenger.v2.features.login.LoginState
 import com.example.stegomessenger.v2.app.Screens

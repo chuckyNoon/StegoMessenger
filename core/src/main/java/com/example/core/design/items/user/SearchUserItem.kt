@@ -1,4 +1,4 @@
-package com.example.stegomessenger.v2.compose.views
+package com.example.core.design.items.user
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -9,10 +9,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.stegomessenger.R
 import com.example.core.util.ColoredText
-import com.example.stegomessenger.v2.compose.StegoTheme
-import com.example.core.design.items.user.SearchUserCell
+import com.example.core.design.system.StegoTheme
+import com.example.core.R
 
 @Composable
 fun SearchUserItem(cell: SearchUserCell) {

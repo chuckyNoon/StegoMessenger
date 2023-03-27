@@ -10,7 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.stegomessenger.v2.compose.StegoTheme
+import com.example.core.design.system.StegoTheme
 
 @Composable
 internal fun StegoButton(

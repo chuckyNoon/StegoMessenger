@@ -10,70 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="faf22c57-5c34-4ce0-93ca-2056a77aa94f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/stash/old/LsbAlgorithm.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/stash/old/LsbAlgorithm.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/stash/old/SyncHelper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/stash/old/SyncHelper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/app/AppModules.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/app/MainApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/app/MainApplication.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/AppLogger.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/AppLogger.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/Outcome.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/Outcome.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/arch/AbsViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/arch/AbsViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/arch/IntentHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/arch/IntentHandler.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/design/items/chat/ChatCell.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/design/items/chat/ChatCell.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/design/items/chat/ChatItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/design/items/chat/ChatItem.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/design/items/image_message/ImageMessageCell.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/design/items/image_message/ImageMessageCell.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/design/items/text_message/TextMessageCell.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/design/items/text_message/TextMessageCell.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/design/items/text_message/TextMessageItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/design/items/text_message/TextMessageItem.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/design/items/user/SearchUserCell.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/design/items/user/SearchUserCell.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/design/items/user/SearchUserItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/design/items/user/SearchUserItem.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/design/system/Color.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/design/system/Color.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/design/system/Theme.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/design/system/Theme.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/design/views/StegoButton.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/design/views/StegoButton.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/infra/DateTimeFormatter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/infra/DateTimeFormatter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/infra/DefaultDateTimeFormatter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/infra/DefaultDateTimeFormatter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/infra/DefaultPrefs.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/infra/DefaultPrefs.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/infra/DefaultStringsProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/infra/DefaultStringsProvider.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/infra/Prefs.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/infra/Prefs.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/infra/StringsProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/infra/StringsProvider.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/network/ApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/network/ApiService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/network/FakeApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/network/FakeApiService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/network/RetrofitBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/network/RetrofitBuilder.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/network/model/ChatsResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/network/model/ChatsResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/network/model/ErrorResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/network/model/ErrorResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/network/model/SearchResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/network/model/SearchResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/network/model/TokenResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/network/model/TokenResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/util/BitUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/util/BitUtil.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/util/ColoredTestUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/util/ColoredTestUtils.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/util/NetworkUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/util/NetworkUtil.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/util/PickFileRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/util/PickFileRequest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/util/PrefsContract.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/util/PrefsContract.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/core/util/UriUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/util/UriUtils.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/data/chat/ChatsRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/data/chat/ChatsRepositoryImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/data/matching_user/MatchingUsersRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/data/matching_user/MatchingUsersRepositoryImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/data/user/UserRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/data/user/UserRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/features/chat/ChatIntent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/features/chat/ChatIntent.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/features/chat/ChatScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/features/chat/ChatScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/features/chat/NewChatViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/features/chat/NewChatViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/features/login/LoginScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/features/login/LoginScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/features/login/NewLoginViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/features/login/NewLoginViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/features/overview/NewOverviewViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/features/overview/NewOverviewViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/features/overview/OverviewScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/features/overview/OverviewScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/features/search/NewSearchViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/features/search/NewSearchViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/features/search/SearchIntent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/features/search/SearchIntent.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/features/search/SearchScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/features/search/SearchScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/features/sign_up/NewSignUpViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/features/sign_up/NewSignUpViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/features/sign_up/SignUpScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/stegomessenger/v2/features/sign_up/SignUpScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/stegomessenger/ExampleUnitTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/example/stegomessenger/ExampleUnitTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/design/items/chat/ChatItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/design/items/chat/ChatItem.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\wits\.android\avd\Pixel_5_API_30.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[RF8N73H294D]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -132,23 +78,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;android-custom-viewC:/Users/wits/AndroidStudioProjects/StegoMessenger/app/src/main/java/com/example/stegomessenger/v2/common/view/MyCheckBox.kt_SELECTED&quot;: &quot;MyCheckBox&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/wits/Downloads/StockTradeTracking-master/StockTradeTracking-master&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "android-custom-viewC:/Users/wits/AndroidStudioProjects/StegoMessenger/app/src/main/java/com/example/stegomessenger/v2/common/view/MyCheckBox.kt_SELECTED": "MyCheckBox",
+    "cidr.known.project.marker": "true",
+    "com.google.services.firebase.aqiPopupShown": "true",
+    "last_opened_file_path": "C:/Users/wits/AndroidStudioProjects/StegoMessenger/core/src/main/res/drawable",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="android.template.779949157">
       <recent name="com.example.stegomessenger.compose.screens" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\wits\AndroidStudioProjects\StegoMessenger\core\src\main\res\drawable" />
       <recent name="C:\Users\wits\AndroidStudioProjects\StegoMessenger\app\src\main\java\com\example\stegomessenger\compose" />
     </key>
     <key name="MoveFile.RECENT_KEYS">

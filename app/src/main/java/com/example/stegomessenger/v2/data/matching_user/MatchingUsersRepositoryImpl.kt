@@ -4,9 +4,9 @@ import com.example.core.network.ApiService
 
 class MatchingUsersRepositoryImpl(
     private val apiService: ApiService
-): MatchingUsersRepository {
+) : MatchingUsersRepository {
 
-    override suspend fun fetchUsersByText(text: String): List<MatchingUser> {
-        return apiService.search(text).matchingUsers
-    }
+    override suspend fun fetchUsersByText(text: String): List<MatchingUser> =
+        apiService.search(text).matchingUsers.map { MatchingUser.fromDTO(it) }
+
 }

@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.stegomessenger.v2.app.Screens
+import com.example.stegomessenger.v2.features.chat.ChatScreen
 
 @Preview
 @Composable

@@ -1,4 +1,4 @@
-package com.example.stegomessenger.v2.screens
+package com.example.stegomessenger.v2.features.chat
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
@@ -21,11 +21,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.stegomessenger.R
-import com.example.stegomessenger.v2.compose.StegoTheme
+import com.example.core.design.system.StegoTheme
 import com.example.stegomessenger.v2.common.model.ChatViewState
 import com.example.core.design.items.text_message.TextMessageCell
-import com.example.stegomessenger.v2.features.chat.NewChatViewModel
-import com.example.stegomessenger.v2.compose.views.TextMessage
+import com.example.core.design.items.text_message.TextMessage
 import com.example.core.design.views.OutlineButtonStyle
 import com.example.core.design.views.OutlinedStegoButton
 import org.koin.androidx.compose.koinViewModel

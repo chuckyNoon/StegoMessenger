@@ -1,36 +1,31 @@
 package com.example.core.network
 
-import com.example.core.network.model.ChatsResponse
-import com.example.core.network.model.SearchResponse
-import com.example.core.network.model.TokenResponse
-import com.example.stegomessenger.v2.data.chat.Chat
-import com.example.stegomessenger.v2.data.matching_user.MatchingUser
-import com.example.stegomessenger.v2.data.chat.Message
+import com.example.core.network.model.*
 import kotlinx.coroutines.delay
 import okhttp3.MultipartBody
 
 class FakeApiService : ApiService {
 
     private val messages = listOf(
-        Message(
+        MessageDTO(
             text = "First message",
             createdAtUtcSeconds = 1,
             isMine = true,
             imageUrl = ""
         ),
-        Message(
+        MessageDTO(
             text = "First1 message",
             createdAtUtcSeconds = 1,
             isMine = false,
             imageUrl = ""
         ),
-        Message(
+        MessageDTO(
             text = "First2 message",
             createdAtUtcSeconds = 1,
             isMine = false,
             imageUrl = ""
         ),
-        Message(
+        MessageDTO(
             text = "First3 message",
             createdAtUtcSeconds = 1,
             isMine = true,
@@ -41,7 +36,7 @@ class FakeApiService : ApiService {
     override suspend fun getChats(isForced: Boolean): ChatsResponse =
         ChatsResponse(
             chats = (0..30).map {
-                Chat(id = it.toString(), name = "Chat ${it}", messages = messages)
+                ChatDTO(id = it.toString(), name = "Chat ${it}", messages = messages)
             }
         )
 
@@ -63,15 +58,15 @@ class FakeApiService : ApiService {
     override suspend fun search(text: String): SearchResponse =
         SearchResponse(
             matchingUsers = listOf(
-                MatchingUser(
+                MatchingUserDTO(
                     id = "1",
                     name = "${text} 1"
                 ),
-                MatchingUser(
+                MatchingUserDTO(
                     id = "2",
                     name = "${text} 2"
                 ),
-                MatchingUser(
+                MatchingUserDTO(
                     id = "3",
                     name = "${text} 3"
                 )

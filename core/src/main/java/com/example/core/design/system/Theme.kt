@@ -1,4 +1,4 @@
-package com.example.stegomessenger.v2.compose
+package com.example.core.design.system
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,10 +12,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.stegomessenger.v2.compose.orangeDarkPalette
+import com.example.stegomessenger.v2.compose.orangeLightPalette
+import com.example.stegomessenger.v2.compose.purpleDarkPalette
+import com.example.stegomessenger.v2.compose.purpleLightPalette
 
 
 @Composable
-internal fun StegoTheme(
+fun StegoTheme(
     style: StegoStyle = StegoStyle.Purple,
     textSize: StegoSize = StegoSize.Medium,
     paddingSize: StegoSize = StegoSize.Medium,
@@ -128,21 +132,21 @@ data class StegoImage(
 )
 
 object StegoTheme {
-    internal val colors: StegoColors
+    val colors: StegoColors
         @Composable
-        internal get() = LocalStegoColors.current
+        get() = LocalStegoColors.current
 
-    internal val typography: StegoTypography
+    val typography: StegoTypography
         @Composable
-        internal get() = LocalStegoTypography.current
+        get() = LocalStegoTypography.current
 
-    internal val shapes: StegoShape
+    val shapes: StegoShape
         @Composable
-        internal get() = LocalStegoShape.current
+        get() = LocalStegoShape.current
 
-    internal val images: StegoImage
+    val images: StegoImage
         @Composable
-        internal get() = LocalStegoImage.current
+        get() = LocalStegoImage.current
 }
 
 enum class StegoStyle {
