@@ -9,11 +9,11 @@ import com.example.data.chat.ChatsRepositoryImpl
 import com.example.data.matching_user.MatchingUsersRepository
 import com.example.data.matching_user.MatchingUsersRepositoryImpl
 import com.example.data.user.UserRepository
-import com.example.stegomessenger.v2.features.chat.NewChatViewModel
-import com.example.stegomessenger.v2.features.login.NewLoginViewModel
-import com.example.stegomessenger.v2.features.overview.NewOverviewViewModel
-import com.example.stegomessenger.v2.features.search.NewSearchViewModel
-import com.example.stegomessenger.v2.features.sign_up.NewSignUpViewModel
+import com.example.features.chat.NewChatViewModel
+import com.example.features.login.NewLoginViewModel
+import com.example.features.overview.NewOverviewViewModel
+import com.example.features.search.NewSearchViewModel
+import com.example.features.sign_up.NewSignUpViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.androidx.viewmodel.dsl.viewModel
