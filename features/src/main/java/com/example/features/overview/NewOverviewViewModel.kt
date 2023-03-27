@@ -10,9 +10,8 @@ import com.example.data.chat.ChatsRepository
 import com.example.core.arch.IntentHandler
 import com.example.core.R
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-class NewOverviewViewModel @Inject constructor(
+class NewOverviewViewModel(
     val chatsRepository: ChatsRepository,
     val dateTimeFormatter: DateTimeFormatter,
     val stringsProvider: StringsProvider

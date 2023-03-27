@@ -15,9 +15,9 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-class NewLoginViewModel @Inject constructor(
+
+class NewLoginViewModel(
     val apiService: ApiService,
     val prefs: Prefs,
     val stringsProvider: StringsProvider

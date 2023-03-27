@@ -8,9 +8,8 @@ import com.example.data.user.UserRepository
 import com.example.core.arch.IntentHandler
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-class NewSignUpViewModel @Inject constructor(
+class NewSignUpViewModel(
     val stringsProvider: StringsProvider,
     val userRepository: UserRepository
 ) : ViewModel(), IntentHandler<SignUpIntent> {

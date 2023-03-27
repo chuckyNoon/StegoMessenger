@@ -1,14 +1,10 @@
 package com.example.data.chat
 
 import com.example.core.network.model.ChatDTO
-import com.google.gson.annotations.SerializedName
 
 data class Chat(
-    @SerializedName("id")
     val id: String,
-    @SerializedName("name")
     val name: String,
-    @SerializedName("messages")
     val messages: List<Message>
 ) {
     companion object {

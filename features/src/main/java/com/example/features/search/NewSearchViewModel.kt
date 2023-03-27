@@ -9,9 +9,8 @@ import com.example.core.design.items.user.SearchUserCell
 import com.example.data.matching_user.MatchingUsersRepository
 import com.example.core.arch.IntentHandler
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-class NewSearchViewModel @Inject constructor(
+class NewSearchViewModel(
     val matchingUsersRepository: MatchingUsersRepository
 ) : ViewModel(), IntentHandler<SearchIntent> {
 

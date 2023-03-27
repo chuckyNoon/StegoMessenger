@@ -11,9 +11,8 @@ import com.example.core.design.items.text_message.TextMessageCell
 import com.example.data.chat.ChatsRepository
 import com.example.core.arch.IntentHandler
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-class NewChatViewModel @Inject constructor(
+class NewChatViewModel(
     val prefs: Prefs,
     val stringsProvider: StringsProvider,
     val dateTimeFormatter: DateTimeFormatter,
