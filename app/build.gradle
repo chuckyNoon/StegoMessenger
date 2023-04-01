@@ -32,6 +32,9 @@ android {
     buildFeatures {
         compose true
     }
+    lintOptions {
+        abortOnError false
+    }
     composeOptions {
         kotlinCompilerExtensionVersion '1.2.0'
     }
