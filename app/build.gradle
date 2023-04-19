@@ -29,6 +29,23 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+<<<<<<< HEAD
+=======
+    buildFeatures {
+        compose true
+    }
+    lintOptions {
+        abortOnError false
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.2.0'
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+>>>>>>> 389d1f9db100e73da123ffeb3fe09cadc1be8640
 }
 
 dependencies {
