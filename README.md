@@ -1,6 +1,6 @@
 # StegoMessenger
 
-This is a mobile messenger project that uses [steganography] techniques (https://ru.wikipedia.org/wiki/%D0%A1%D1%82%D0%B5%D0%B3%D0%B0%D0%BD%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D1%8F). 
+This is a mobile messenger project that uses steganography techniques (https://ru.wikipedia.org/wiki/%D0%A1%D1%82%D0%B5%D0%B3%D0%B0%D0%BD%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D1%8F). 
 
 The project is not finished and is made for educational purposes.
 
