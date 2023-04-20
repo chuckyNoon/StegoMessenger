@@ -1,14 +1,13 @@
 # StegoMessenger
 
-This is a mobile messenger project that uses steganography techniques (https://ru.wikipedia.org/wiki/%D0%A1%D1%82%D0%B5%D0%B3%D0%B0%D0%BD%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D1%8F). 
+This is a mobile messenger project that uses [steganography](https://ru.wikipedia.org/wiki/%D0%A1%D1%82%D0%B5%D0%B3%D0%B0%D0%BD%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D1%8F) techniques.The project is not finished and is made for educational purposes. Text messages and pictures are transmitted over the network 'inside' images-containers, thereby not attracting attention.
 
-The project is not finished and is made for educational purposes.
-
-Text messages and pictures are transmitted over the network 'inside' images-containers, thereby not attracting attention.
-The server part is separate, it is also made only for educational purposes
+![2-72](https://user-images.githubusercontent.com/42358718/233506084-635f7577-d07f-4b5e-8ac7-8dc5902f83b0.png)
 
 
-## Features
+The server part is a separate project, it is also made only for educational purposes.
+
+## Features (rus)
 <p align="center">
 <img src= "https://user-images.githubusercontent.com/42358718/232999007-5606e5ea-25eb-439b-8d5c-33f58707bc1c.png" width = "256"/>
 <img src= "https://user-images.githubusercontent.com/42358718/232999302-d6e91319-f5fb-41a8-8304-f728f819fb4e.png" width = "256"/>
@@ -19,10 +18,12 @@ The server part is separate, it is also made only for educational purposes
 </p>
 
 
+
 ## Stack
 * Kotlin
 * Redux pattern
 * Coroutines
+* Hilt
 * Retrofit
 * Xml
 
