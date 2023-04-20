@@ -59,10 +59,9 @@ class ContentDialog : AbsBottomSheetDialog(R.layout.dialog_content) {
         viewModel.viewStateLiveData.observe(viewLifecycleOwner) { viewState: ContentViewState? ->
             viewState ?: return@observe
 
-            val cell = viewState.cells.firstOrNull()
             adapter.submitList(viewState.cells)
 
-            if (cell is ImageMessageCell) {
+            if (viewState.isDownloadButtonVisible) {
                 downloadButton.visibility = View.VISIBLE
             } else {
                 downloadButton.visibility = View.GONE

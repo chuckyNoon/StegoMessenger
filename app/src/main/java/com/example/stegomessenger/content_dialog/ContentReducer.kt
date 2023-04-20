@@ -52,7 +52,8 @@ class ContentReducer : Reducer<ContentState> {
         }
         return state.copy(
             viewState = ContentViewState(
-                cells = listOf(displayCell)
+                cells = listOf(displayCell),
+                isDownloadButtonVisible = state.type == ContentStateType.IMAGE
             )
         )
     }

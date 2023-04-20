@@ -25,9 +25,10 @@ enum class ContentStateType {
 }
 
 data class ContentViewState(
-    val cells: List<DelegateDiffable<*>>
+    val cells: List<DelegateDiffable<*>>,
+    val isDownloadButtonVisible: Boolean
 ) {
     companion object {
-        val EMPTY = ContentViewState(cells = emptyList())
+        val EMPTY = ContentViewState(cells = emptyList(), isDownloadButtonVisible = false)
     }
 }

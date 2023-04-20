@@ -20,8 +20,6 @@ class ChatMiddleware(
     private val requestManager: RequestManager
 ) : Middleware<ChatState> {
 
-    private var loadImageTarget: CustomTarget<Bitmap> ? = null
-
     override fun onReduced(
         dispatchable: Dispatchable,
         action: Action,
@@ -39,7 +37,6 @@ class ChatMiddleware(
         val imageUrl = (cell.imageSource as? ImageMessageCell.ImageSource.Url)
             ?.url
             ?: return
-        loadImageTarget ?: return
 
         val newTarget = object : CustomTarget<Bitmap>() {
             override fun onResourceReady(
@@ -65,7 +62,6 @@ class ChatMiddleware(
             }
 
             override fun onLoadCleared(placeholder: Drawable?) {
-                loadImageTarget = null
             }
         }
 

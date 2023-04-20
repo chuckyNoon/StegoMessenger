@@ -111,20 +111,19 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == CONTENT_REQUEST_CODE) {
-            val dispatchable = dispatchable ?: return
-            val imageUri = data?.data ?: return
+        when (requestCode) {
+            CONTENT_REQUEST_CODE -> {
+                val dispatchable = dispatchable ?: return
+                val imageUri = data?.data ?: return
 
-            dispatchable.dispatch(
-                StegoAction.HandleContentImagePicked(imageUri.toString())
-            )
-        } else if (requestCode == CONTAINER_REQUEST_CODE) {
-            val dispatchable = dispatchable ?: return
-            val imageUri = data?.data ?: return
+                dispatchable.dispatch(StegoAction.HandleContentImagePicked(imageUri.toString()))
+            }
+            CONTAINER_REQUEST_CODE -> {
+                val dispatchable = dispatchable ?: return
+                val imageUri = data?.data ?: return
 
-            dispatchable.dispatch(
-                StegoAction.HandleContainerPicked(imageUri.toString())
-            )
+                dispatchable.dispatch(StegoAction.HandleContainerPicked(imageUri.toString()))
+            }
         }
     }
 
