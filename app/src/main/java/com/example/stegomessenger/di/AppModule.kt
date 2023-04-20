@@ -6,11 +6,13 @@ import com.bumptech.glide.RequestManager
 import com.example.stegomessenger.arch.redux.dispatcher.Dispatcher
 import com.example.stegomessenger.arch.redux.dispatcher.Dispatchers
 import com.example.stegomessenger.arch.util.*
+import com.example.stegomessenger.common.Config
 import com.example.stegomessenger.common.PrefsContract
 import com.example.stegomessenger.common.network.ApiService
 import com.example.stegomessenger.common.network.FakeApiServiceImpl
 import com.example.stegomessenger.main.MainApplication
 import com.example.stegomessenger.main.SyncHelper
+import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -35,21 +37,18 @@ class AppModule {
     fun prefs(context: Context): Prefs = DefaultPrefs(context)
 
     @Provides
-    fun apiService(prefs: Prefs): ApiService = FakeApiServiceImpl()
-    /*
-    @Provides
-    fun apiService(prefs: Prefs): ApiService {
-        val BASE_URL = "https://c8f5-178-155-4-69.eu.ngrok.io/stego/api/"
-        val TIME_OUT_SECONDS = 15L
+    fun gson() = GsonBuilder().setLenient().create()
 
-        val gson = GsonBuilder()
-            .setLenient()
-            .create()
+    @Provides
+    fun apiService(prefs: Prefs, gson: Gson): ApiService = if (!Config.IS_SERVER_ENABLED) {
+        FakeApiServiceImpl()
+    } else {
+        val timeOutSeconds = 15L
 
         val httpClient = OkHttpClient.Builder()
-            .readTimeout(TIME_OUT_SECONDS, TimeUnit.SECONDS)
-            .connectTimeout(TIME_OUT_SECONDS, TimeUnit.SECONDS)
-            .writeTimeout(TIME_OUT_SECONDS, TimeUnit.SECONDS)
+            .readTimeout(timeOutSeconds, TimeUnit.SECONDS)
+            .connectTimeout(timeOutSeconds, TimeUnit.SECONDS)
+            .writeTimeout(timeOutSeconds, TimeUnit.SECONDS)
             .addInterceptor { chain ->
                 val token = prefs.getString(PrefsContract.TOKEN, null)
                 val request = chain
@@ -61,13 +60,13 @@ class AppModule {
             }
             .build()
 
-        return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+        Retrofit.Builder()
+            .baseUrl(Config.BASE_URL)
             .client(httpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(ApiService::class.java)
-    }*/
+    }
 
     @Provides
     @Singleton
