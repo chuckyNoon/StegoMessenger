@@ -2,7 +2,7 @@ package com.example.stegomessenger.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.stegomessenger.arch.infra.AbsViewModel1
+import com.example.stegomessenger.arch.infra.AbsViewModel
 import com.example.stegomessenger.arch.redux.dispatcher.Dispatcher
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -13,7 +13,7 @@ class LoginViewModel @Inject constructor(
     loginMiddleware: LoginMiddleware,
     loginReducer: LoginReducer
 ) :
-    AbsViewModel1(dispatcher) {
+    AbsViewModel(dispatcher) {
 
     private val _viewStateLiveData: MutableLiveData<LoginViewState> = MutableLiveData()
     val viewStateLiveData: LiveData<LoginViewState> = _viewStateLiveData

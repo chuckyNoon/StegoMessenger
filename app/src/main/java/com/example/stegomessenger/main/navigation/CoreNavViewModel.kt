@@ -2,12 +2,11 @@ package com.example.stegomessenger.main.navigation
 
 import androidx.lifecycle.LiveData
 import com.example.stegomessenger.arch.SingleEventLiveData
-import com.example.stegomessenger.arch.infra.AbsViewModel1
+import com.example.stegomessenger.arch.infra.AbsViewModel
 import com.example.stegomessenger.arch.redux.dispatcher.Dispatcher
 import com.example.stegomessenger.arch.util.Prefs
 import com.example.stegomessenger.common.PrefsContract
 import com.example.stegomessenger.common.launchBackgroundWork
-import com.example.stegomessenger.main.SyncHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import javax.inject.Inject
@@ -19,7 +18,7 @@ class CoreNavViewModel @Inject constructor(
     coreMiddleware: CoreMiddleware,
     prefs: Prefs
 ) :
-    AbsViewModel1(dispatcher) {
+    AbsViewModel(dispatcher) {
 
     private val _navigationLiveData = SingleEventLiveData<CoreNav>()
     val navigationLiveData: LiveData<CoreNav> = _navigationLiveData

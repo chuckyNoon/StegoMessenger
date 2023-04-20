@@ -5,10 +5,6 @@ import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.stegomessenger.arch.util.AppDepsProvider
-import com.example.stegomessenger.arch.redux.util.AppViewModelFactory
-import com.example.stegomessenger.main.AppViewModel
 
 abstract class AbsFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId) {
 

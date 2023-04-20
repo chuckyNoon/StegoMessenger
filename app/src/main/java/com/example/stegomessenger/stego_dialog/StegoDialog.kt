@@ -17,8 +17,9 @@ import com.example.stegomessenger.arch.infra.AbsBottomSheetDialog
 import com.example.stegomessenger.chat.ChatFragment
 import com.example.stegomessenger.common.imageChooserIntent
 import com.example.stegomessenger.common.view.MyCheckBox
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
-
+@AndroidEntryPoint
 class StegoDialog : AbsBottomSheetDialog(R.layout.dialog_stego) {
     private val viewModel: StegoViewModel by viewModels()
 

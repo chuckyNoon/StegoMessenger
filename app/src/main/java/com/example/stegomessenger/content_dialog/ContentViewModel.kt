@@ -2,7 +2,7 @@ package com.example.stegomessenger.content_dialog
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.stegomessenger.arch.infra.AbsViewModel1
+import com.example.stegomessenger.arch.infra.AbsViewModel
 import com.example.stegomessenger.arch.redux.dispatcher.Dispatcher
 
 class ContentViewModel(
@@ -10,7 +10,7 @@ class ContentViewModel(
     contentReducer: ContentReducer,
     contentMiddleware: ContentMiddleware
 ) :
-    AbsViewModel1(dispatcher) {
+    AbsViewModel(dispatcher) {
 
     private val _viewStateLiveData: MutableLiveData<ContentViewState> = MutableLiveData()
     val viewStateLiveData: LiveData<ContentViewState> = _viewStateLiveData

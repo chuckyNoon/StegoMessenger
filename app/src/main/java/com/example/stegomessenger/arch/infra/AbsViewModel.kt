@@ -11,7 +11,7 @@ import com.example.stegomessenger.arch.redux.store.Middleware
 import com.example.stegomessenger.arch.redux.store.Reducer
 import com.example.stegomessenger.arch.redux.store.Store
 
-abstract class AbsViewModel1(
+abstract class AbsViewModel(
     private val dispatcher: Dispatcher
 ) :
     ViewModel(),

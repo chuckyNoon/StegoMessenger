@@ -14,9 +14,6 @@ import androidx.activity.OnBackPressedDispatcher
 import androidx.annotation.ContentView
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.ViewModelProvider
-import com.example.stegomessenger.arch.redux.util.AppViewModelFactory
-import com.example.stegomessenger.main.AppViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.lang.ref.WeakReference
@@ -123,10 +120,4 @@ abstract class AbsBottomSheetDialog() : BottomSheetDialogFragment() {
         }
     }
 
-    protected val appViewModelFactory: AppViewModelFactory by lazy {
-        val activity = requireActivity()
-        val activityViewModelProvider = ViewModelProvider(activity)
-        val appViewModel = activityViewModelProvider.get(AppViewModel::class.java)
-        return@lazy appViewModel.appViewModelFactory
-    }
 }

@@ -5,12 +5,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.example.stegomessenger.arch.redux.dispatcher.Dispatcher
 import com.example.stegomessenger.arch.redux.dispatcher.Dispatchers
-import com.example.stegomessenger.arch.util.DefaultPrefs
-import com.example.stegomessenger.arch.util.DefaultStringsProvider
-import com.example.stegomessenger.arch.util.Prefs
-import com.example.stegomessenger.arch.util.StringsProvider
+import com.example.stegomessenger.arch.util.*
 import com.example.stegomessenger.common.PrefsContract
 import com.example.stegomessenger.common.network.ApiService
+import com.example.stegomessenger.common.network.FakeApiServiceImpl
 import com.example.stegomessenger.main.MainApplication
 import com.example.stegomessenger.main.SyncHelper
 import com.google.gson.GsonBuilder
@@ -36,6 +34,9 @@ class AppModule {
     @Provides
     fun prefs(context: Context): Prefs = DefaultPrefs(context)
 
+    @Provides
+    fun apiService(prefs: Prefs): ApiService = FakeApiServiceImpl()
+    /*
     @Provides
     fun apiService(prefs: Prefs): ApiService {
         val BASE_URL = "https://c8f5-178-155-4-69.eu.ngrok.io/stego/api/"
@@ -66,7 +67,7 @@ class AppModule {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(ApiService::class.java)
-    }
+    }*/
 
     @Provides
     @Singleton
@@ -77,5 +78,8 @@ class AppModule {
 
     @Provides
     fun syncHelper(prefs: Prefs): SyncHelper = SyncHelper(prefs)
+
+    @Provides
+    fun dateTimeFormatter(): DateTimeFormatter = DefaultDateTimeFormatter()
 
 }
