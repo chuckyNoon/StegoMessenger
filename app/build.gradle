@@ -29,30 +29,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-<<<<<<< HEAD
-=======
-    buildFeatures {
-        compose true
-    }
-    lintOptions {
-        abortOnError false
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion '1.2.0'
-    }
-    packagingOptions {
-        resources {
-            excludes += '/META-INF/{AL2.0,LGPL2.1}'
-        }
-    }
->>>>>>> 389d1f9db100e73da123ffeb3fe09cadc1be8640
 }
 
 dependencies {
     implementation 'androidx.core:core-ktx:1.9.0'
 
     implementation 'com.google.android.material:material:1.9.0-alpha02'
-    implementation 'androidx.activity:activity-compose:1.6.1'
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -76,8 +58,6 @@ dependencies {
     annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.5.1'
 
 
-
-    implementation "androidx.compose.runtime:runtime-livedata:$compose_ui_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
 
 //Network
