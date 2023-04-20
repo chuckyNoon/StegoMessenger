@@ -1,15 +1,18 @@
 package com.example.stegomessenger.search
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.stegomessenger.arch.util.AppDepsProvider
 import com.example.stegomessenger.arch.SingleEventLiveData
-import com.example.stegomessenger.arch.infra.AbsViewModel
-import com.example.stegomessenger.common.network.RetrofitBuilder
+import com.example.stegomessenger.arch.infra.AbsViewModel1
+import com.example.stegomessenger.arch.redux.dispatcher.Dispatcher
+import javax.inject.Inject
 
-class SearchViewModel(app: Application, appDepsProvider: AppDepsProvider) :
-    AbsViewModel(app, appDepsProvider) {
+class SearchViewModel @Inject constructor(
+    dispatcher: Dispatcher,
+    searchMiddleware: SearchMiddleware,
+    searchReducer: SearchReducer
+) :
+    AbsViewModel1(dispatcher) {
 
     private val _viewStateLiveData: MutableLiveData<SearchViewState> = MutableLiveData()
     val viewStateLiveData: LiveData<SearchViewState> = _viewStateLiveData
@@ -18,15 +21,10 @@ class SearchViewModel(app: Application, appDepsProvider: AppDepsProvider) :
     val backLiveData: LiveData<Unit> = _backLiveData
 
     init {
-        val apiService = appDepsProvider.apiService
-        val stringsProvider = appDepsProvider.stringsProvider
-
         attachManagedStore(
             initialState = SearchState.EMPTY,
-            reducer = SearchReducer(),
-            middleware = listOf(
-                SearchMiddleware(apiService, stringsProvider)
-            ),
+            reducer = searchReducer,
+            middleware = listOf(searchMiddleware),
         ) { newState: SearchState ->
             _viewStateLiveData.value = newState.viewState
             newState.backEvent?.readValue()?.let {

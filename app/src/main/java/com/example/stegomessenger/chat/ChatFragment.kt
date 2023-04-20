@@ -4,15 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.example.stegomessenger.R
 import com.example.stegomessenger.arch.adapter.ComposableListAdapter
-import com.example.stegomessenger.arch.redux.dispatcher.Dispatchable
 import com.example.stegomessenger.arch.infra.AbsFragment
 import com.example.stegomessenger.common.hideKeyboard
 import com.example.stegomessenger.chat.items.ImageMessageCell
@@ -20,22 +17,22 @@ import com.example.stegomessenger.chat.items.ImageMessageDelegate
 import com.example.stegomessenger.chat.items.TextMessageAdapterDelegate
 import com.example.stegomessenger.common.InsetSide
 import com.example.stegomessenger.common.handleInsetsWithPaddingForSides
-import com.example.stegomessenger.main.MainApplication
 import com.example.stegomessenger.overview.model.items.DividerAdapterDelegate
 import com.example.stegomessenger.stego_dialog.StegoAction
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class ChatFragment : AbsFragment(R.layout.fragment_chat) {
 
-    private var dispatchable: Dispatchable? = null
+    private val viewModel: ChatViewModel by viewModels()
+    @Inject
+    lateinit var requestManager: RequestManager
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val context = requireContext()
-        val viewModelProvider = ViewModelProvider(this, appViewModelFactory)
-        val viewModel = viewModelProvider.get(ChatViewModel::class.java)
-
-        this.dispatchable = viewModel
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler).apply {
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
@@ -74,8 +71,6 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
             }
         }
 
-        val requestManager = getPicassoInstance(this)
-
         val delegates = listOf(
             TextMessageAdapterDelegate(
                 layoutInflater
@@ -113,16 +108,14 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
 
         when (requestCode) {
             CONTENT_REQUEST_CODE -> {
-                val dispatchable = dispatchable ?: return
                 val imageUri = data?.data ?: return
 
-                dispatchable.dispatch(StegoAction.HandleContentImagePicked(imageUri.toString()))
+                viewModel.dispatch(StegoAction.HandleContentImagePicked(imageUri.toString()))
             }
             CONTAINER_REQUEST_CODE -> {
-                val dispatchable = dispatchable ?: return
                 val imageUri = data?.data ?: return
 
-                dispatchable.dispatch(StegoAction.HandleContainerPicked(imageUri.toString()))
+                viewModel.dispatch(StegoAction.HandleContainerPicked(imageUri.toString()))
             }
         }
     }
@@ -132,14 +125,5 @@ class ChatFragment : AbsFragment(R.layout.fragment_chat) {
     companion object {
         const val CONTENT_REQUEST_CODE = 1299
         const val CONTAINER_REQUEST_CODE = 1300
-    }
-}
-
-// TODO: move to separate class
-fun getPicassoInstance(fragment: Fragment): RequestManager {
-    return if (fragment.isAdded && fragment.activity != null) {
-        Glide.with(fragment)
-    } else {
-        Glide.with(MainApplication.getInstance())
     }
 }

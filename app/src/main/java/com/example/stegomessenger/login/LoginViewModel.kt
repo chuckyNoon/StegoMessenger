@@ -1,28 +1,28 @@
 package com.example.stegomessenger.login
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.stegomessenger.arch.util.AppDepsProvider
-import com.example.stegomessenger.arch.infra.AbsViewModel
+import com.example.stegomessenger.arch.infra.AbsViewModel1
+import com.example.stegomessenger.arch.redux.dispatcher.Dispatcher
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class LoginViewModel(app: Application, appDepsProvider: AppDepsProvider) :
-    AbsViewModel(app, appDepsProvider) {
+@HiltViewModel
+class LoginViewModel @Inject constructor(
+    dispatcher: Dispatcher,
+    loginMiddleware: LoginMiddleware,
+    loginReducer: LoginReducer
+) :
+    AbsViewModel1(dispatcher) {
 
     private val _viewStateLiveData: MutableLiveData<LoginViewState> = MutableLiveData()
     val viewStateLiveData: LiveData<LoginViewState> = _viewStateLiveData
 
     init {
-        val apiService = appDepsProvider.apiService
-        val stringsProvider = appDepsProvider.stringsProvider
-        val prefs = appDepsProvider.prefs
-
         attachManagedStore(
             initialState = LoginState.EMPTY,
-            reducer = LoginReducer(),
-            middleware = listOf(
-                LoginMiddleware(apiService, prefs, stringsProvider)
-            ),
+            reducer = loginReducer,
+            middleware = listOf(loginMiddleware),
         ) { newState: LoginState ->
             _viewStateLiveData.value = newState.viewState
         }

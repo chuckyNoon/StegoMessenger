@@ -2,8 +2,9 @@ package com.example.stegomessenger.registration
 
 import com.example.stegomessenger.arch.redux.store.Reducer
 import com.example.stegomessenger.arch.redux.Action
+import javax.inject.Inject
 
-class RegistrationReducer : Reducer<RegistrationState> {
+class RegistrationReducer @Inject constructor(): Reducer<RegistrationState> {
 
     override fun acceptsAction(action: Action): Boolean = action is RegistrationAction
 

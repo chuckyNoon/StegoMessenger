@@ -1,18 +1,25 @@
 package com.example.stegomessenger.main.navigation
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.example.stegomessenger.arch.util.AppDepsProvider
 import com.example.stegomessenger.arch.SingleEventLiveData
-import com.example.stegomessenger.arch.infra.AbsViewModel
+import com.example.stegomessenger.arch.infra.AbsViewModel1
+import com.example.stegomessenger.arch.redux.dispatcher.Dispatcher
 import com.example.stegomessenger.arch.util.Prefs
 import com.example.stegomessenger.common.PrefsContract
 import com.example.stegomessenger.common.launchBackgroundWork
 import com.example.stegomessenger.main.SyncHelper
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
+import javax.inject.Inject
 
-class CoreNavViewModel(app: Application, appDepsProvider: AppDepsProvider) :
-    AbsViewModel(app, appDepsProvider) {
+@HiltViewModel
+class CoreNavViewModel @Inject constructor(
+    dispatcher: Dispatcher,
+    coreNavReducer: CoreNavReducer,
+    coreMiddleware: CoreMiddleware,
+    prefs: Prefs
+) :
+    AbsViewModel1(dispatcher) {
 
     private val _navigationLiveData = SingleEventLiveData<CoreNav>()
     val navigationLiveData: LiveData<CoreNav> = _navigationLiveData
@@ -21,18 +28,10 @@ class CoreNavViewModel(app: Application, appDepsProvider: AppDepsProvider) :
     val errorLiveData: LiveData<String> = _errorLiveData
 
     init {
-        val apiService = appDepsProvider.apiService
-        val prefs = appDepsProvider.prefs
-
         attachManagedStore(
             initialState = CoreNavState.EMPTY,
-            reducer = CoreNavReducer(),
-            middleware = listOf(
-                CoreMiddleware(
-                    apiService = apiService,
-                    syncHelper = SyncHelper(prefs)
-                )
-            ),
+            reducer = coreNavReducer,
+            middleware = listOf(coreMiddleware),
         ) { newState: CoreNavState ->
             newState.navigationEvent?.readValue()?.let {
                 _navigationLiveData.value = it

@@ -5,8 +5,9 @@ import com.example.stegomessenger.arch.redux.store.Reducer
 import com.example.stegomessenger.arch.redux.util.Event
 import com.example.stegomessenger.arch.redux.Action
 import com.example.stegomessenger.arch.util.StringsProvider
+import javax.inject.Inject
 
-class StegoReducer(
+class StegoReducer @Inject constructor(
     private val stringsProvider: StringsProvider
 ) : Reducer<StegoState> {
 

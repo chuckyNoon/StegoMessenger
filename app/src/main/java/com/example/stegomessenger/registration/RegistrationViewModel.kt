@@ -1,26 +1,27 @@
 package com.example.stegomessenger.registration
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.stegomessenger.arch.util.AppDepsProvider
-import com.example.stegomessenger.arch.infra.AbsViewModel
+import com.example.stegomessenger.arch.infra.AbsViewModel1
+import com.example.stegomessenger.arch.redux.dispatcher.Dispatcher
+import javax.inject.Inject
 
-class RegistrationViewModel(app: Application, appDepsProvider: AppDepsProvider) :
-    AbsViewModel(app, appDepsProvider) {
+class RegistrationViewModel @Inject constructor(
+    dispatcher: Dispatcher,
+    registrationMiddleware: RegistrationMiddleware,
+    registrationReducer: RegistrationReducer
+) :
+    AbsViewModel1(dispatcher) {
 
     private val _viewStateLiveData: MutableLiveData<RegistrationViewState> = MutableLiveData()
     val viewStateLiveData: LiveData<RegistrationViewState> = _viewStateLiveData
 
     init {
-        val apiService = appDepsProvider.apiService
-        val prefs = appDepsProvider.prefs
-
         attachManagedStore(
             initialState = RegistrationState.EMPTY,
-            reducer = RegistrationReducer(),
+            reducer = registrationReducer,
             middleware = listOf(
-                RegistrationMiddleware(apiService, prefs)
+                registrationMiddleware
             ),
         ) { newState: RegistrationState ->
             _viewStateLiveData.value = newState.viewState

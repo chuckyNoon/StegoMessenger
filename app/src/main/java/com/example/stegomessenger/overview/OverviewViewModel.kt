@@ -1,31 +1,26 @@
 package com.example.stegomessenger.overview
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.stegomessenger.arch.util.AppDepsProvider
-import com.example.stegomessenger.arch.infra.AbsViewModel
-import com.example.stegomessenger.common.network.RetrofitBuilder
+import com.example.stegomessenger.arch.infra.AbsViewModel1
+import com.example.stegomessenger.arch.redux.dispatcher.Dispatcher
+import javax.inject.Inject
 
-class OverviewViewModel(app: Application, appDepsProvider: AppDepsProvider) :
-    AbsViewModel(app, appDepsProvider) {
+class OverviewViewModel @Inject constructor(
+    dispatcher: Dispatcher,
+    overviewReducer: OverviewReducer,
+    overviewMiddleware: OverviewMiddleware
+) :
+    AbsViewModel1(dispatcher) {
 
     private val _viewStateLiveData: MutableLiveData<OverviewViewState> = MutableLiveData()
     val viewStateLiveData: LiveData<OverviewViewState> = _viewStateLiveData
 
     init {
-        val dateTimeFormatter = appDepsProvider.dateTimeFormatter
-        val stringsProvider = appDepsProvider.stringsProvider
-
         attachManagedStore(
             initialState = OverviewState.EMPTY,
-            reducer = OverviewReducer(
-                dateTimeFormatter,
-                stringsProvider
-            ),
-            middleware = listOf(
-                OverviewMiddleware()
-            ),
+            reducer = overviewReducer,
+            middleware = listOf(overviewMiddleware),
         ) { newState: OverviewState ->
             _viewStateLiveData.value = newState.viewState
         }

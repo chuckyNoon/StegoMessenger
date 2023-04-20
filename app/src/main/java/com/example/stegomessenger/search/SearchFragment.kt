@@ -4,25 +4,29 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import androidx.core.widget.addTextChangedListener
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.RequestManager
 import com.example.stegomessenger.arch.adapter.ComposableListAdapter
 import com.example.stegomessenger.R
 import com.example.stegomessenger.arch.infra.AbsFragment
-import com.example.stegomessenger.chat.getPicassoInstance
 import com.example.stegomessenger.common.InsetSide
 import com.example.stegomessenger.common.handleInsetsWithPaddingForSides
 import com.example.stegomessenger.overview.model.items.DividerAdapterDelegate
 import com.example.stegomessenger.search.item.SearchUserDelegate
-
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+@AndroidEntryPoint
 class SearchFragment : AbsFragment(R.layout.fragment_search) {
+
+    private val viewModel: SearchViewModel by viewModels()
+    @Inject
+    lateinit var requestManager: RequestManager
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewModelProvider = ViewModelProvider(this, appViewModelFactory)
-        val viewModel = viewModelProvider.get(SearchViewModel::class.java)
         val activity = requireActivity()
 
         view.findViewById<View>(R.id.toolbar_block).apply {
@@ -49,7 +53,7 @@ class SearchFragment : AbsFragment(R.layout.fragment_search) {
         val delegates = listOf(
             SearchUserDelegate(
                 inflater = layoutInflater,
-                requestManager = getPicassoInstance(this),
+                requestManager = requestManager,
                 onClick = { cell ->
                     viewModel.dispatch(SearchAction.ClickStartChat(cell))
                 }

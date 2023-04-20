@@ -8,8 +8,9 @@ import com.example.stegomessenger.arch.util.StringsProvider
 import com.example.stegomessenger.main.navigation.CoreAction
 import com.example.stegomessenger.overview.model.items.ChatCell
 import com.example.stegomessenger.overview.model.items.DividerCell
+import javax.inject.Inject
 
-class OverviewReducer(
+class OverviewReducer @Inject constructor(
     private val dateTimeFormatter: DateTimeFormatter,
     private val stringsProvider: StringsProvider
 ) : Reducer<OverviewState> {

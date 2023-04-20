@@ -6,8 +6,9 @@ import com.example.stegomessenger.arch.redux.Action
 import com.example.stegomessenger.chat.ChatAction
 import com.example.stegomessenger.common.network.ApiService
 import com.example.stegomessenger.main.navigation.CoreAction
+import javax.inject.Inject
 
-class OverviewMiddleware : Middleware<OverviewState> {
+class OverviewMiddleware @Inject constructor() : Middleware<OverviewState> {
 
     override fun onReduced(
         dispatchable: Dispatchable,

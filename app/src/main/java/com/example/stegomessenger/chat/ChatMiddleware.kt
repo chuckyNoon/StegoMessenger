@@ -15,8 +15,9 @@ import com.example.stegomessenger.steganography.LsbAlgorithm
 import com.example.stegomessenger.main.navigation.CoreAction
 import com.example.stegomessenger.stego_dialog.StegoAction
 import com.example.stegomessenger.stego_dialog.StegoStateType
+import javax.inject.Inject
 
-class ChatMiddleware(
+class ChatMiddleware @Inject constructor(
     private val requestManager: RequestManager
 ) : Middleware<ChatState> {
 

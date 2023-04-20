@@ -6,8 +6,9 @@ import com.example.stegomessenger.arch.util.DateTimeFormatter
 import com.example.stegomessenger.chat.items.ImageMessageCell
 import com.example.stegomessenger.chat.items.TextMessageCell
 import com.example.stegomessenger.main.navigation.CoreAction
+import javax.inject.Inject
 
-class ChatReducer(
+class ChatReducer @Inject constructor(
     private val dateTimeFormatter: DateTimeFormatter
 ) : Reducer<ChatState> {
 

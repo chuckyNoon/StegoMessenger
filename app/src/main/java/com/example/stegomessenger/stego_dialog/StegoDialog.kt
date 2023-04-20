@@ -6,28 +6,31 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.stegomessenger.R
 import com.example.stegomessenger.arch.infra.AbsBottomSheetDialog
 import com.example.stegomessenger.chat.ChatFragment
-import com.example.stegomessenger.chat.getPicassoInstance
 import com.example.stegomessenger.common.imageChooserIntent
 import com.example.stegomessenger.common.view.MyCheckBox
+import javax.inject.Inject
 
 class StegoDialog : AbsBottomSheetDialog(R.layout.dialog_stego) {
+    private val viewModel: StegoViewModel by viewModels()
+
+    @Inject
+    lateinit var requestManager: RequestManager
 
     override fun onStart() {
         super.onStart()
 
-        val viewModelProvider = ViewModelProvider(this, appViewModelFactory)
-        val viewModel = viewModelProvider.get(StegoViewModel::class.java)
         val activity = requireActivity()
         val view = requireView()
         val context = requireContext()
-        val requestManager = getPicassoInstance(this)
 
         val titleTextView = view.findViewById<TextView>(R.id.title_tv)
         val checkBox = view.findViewById<MyCheckBox>(R.id.checkbox).apply {

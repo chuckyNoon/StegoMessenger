@@ -2,8 +2,9 @@ package com.example.stegomessenger.result
 
 import com.example.stegomessenger.arch.redux.store.Reducer
 import com.example.stegomessenger.arch.redux.Action
+import javax.inject.Inject
 
-class ResultReducer : Reducer<ResultState> {
+class ResultReducer @Inject constructor() : Reducer<ResultState> {
 
     override fun acceptsAction(action: Action): Boolean = action is ResultAction
 

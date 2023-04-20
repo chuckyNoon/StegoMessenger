@@ -1,29 +1,32 @@
 package com.example.stegomessenger.content_dialog
 
 import android.view.View
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.RequestManager
 import com.example.stegomessenger.R
 import com.example.stegomessenger.arch.adapter.ComposableListAdapter
 import com.example.stegomessenger.arch.infra.AbsBottomSheetDialog
-import com.example.stegomessenger.chat.getPicassoInstance
-import com.example.stegomessenger.chat.items.ImageMessageCell
 import com.example.stegomessenger.chat.items.ImageMessageDelegate
 import com.example.stegomessenger.chat.items.TextMessageAdapterDelegate
 import com.example.stegomessenger.common.InsetSide
 import com.example.stegomessenger.common.handleInsetsWithPaddingForSides
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class ContentDialog : AbsBottomSheetDialog(R.layout.dialog_content) {
+    private val viewModel: ContentViewModel by viewModels()
+
+    @Inject
+    lateinit var requestManager: RequestManager
 
     override fun onStart() {
         super.onStart()
 
-        val viewModelProvider = ViewModelProvider(this, appViewModelFactory)
-        val viewModel = viewModelProvider.get(ContentViewModel::class.java)
         val view = requireView()
         val context = requireContext()
-        val requestManager = getPicassoInstance(this)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler).apply {
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)

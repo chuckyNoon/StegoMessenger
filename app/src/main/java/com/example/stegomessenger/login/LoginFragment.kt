@@ -5,20 +5,20 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.example.stegomessenger.R
 import com.example.stegomessenger.arch.infra.AbsFragment
 import com.example.stegomessenger.common.InsetSide
 import com.example.stegomessenger.common.handleInsetsWithPaddingForSides
 import com.example.stegomessenger.main.navigation.CoreAction
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginFragment : AbsFragment(R.layout.fragment_login) {
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val viewModelProvider = ViewModelProvider(this, appViewModelFactory)
-        val viewModel = viewModelProvider.get(LoginViewModel::class.java)
 
         val progressBar = view.findViewById<ProgressBar>(R.id.pb)
         val nameEditText = view.findViewById<EditText>(R.id.name_et)

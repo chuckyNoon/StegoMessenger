@@ -3,8 +3,9 @@ package com.example.stegomessenger.main.navigation
 import com.example.stegomessenger.arch.redux.store.Reducer
 import com.example.stegomessenger.arch.redux.util.Event
 import com.example.stegomessenger.arch.redux.Action
+import javax.inject.Inject
 
-class CoreNavReducer : Reducer<CoreNavState> {
+class CoreNavReducer @Inject constructor(): Reducer<CoreNavState> {
 
     override fun acceptsAction(action: Action): Boolean =
         action is CoreAction

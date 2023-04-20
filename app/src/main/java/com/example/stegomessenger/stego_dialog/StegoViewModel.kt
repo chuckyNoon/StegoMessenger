@@ -1,16 +1,18 @@
 package com.example.stegomessenger.stego_dialog
 
-import android.app.Application
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.stegomessenger.arch.util.AppDepsProvider
 import com.example.stegomessenger.arch.SingleEventLiveData
-import com.example.stegomessenger.arch.infra.AbsViewModel
-import com.example.stegomessenger.common.network.RetrofitBuilder
-import com.example.stegomessenger.main.MainApplication
+import com.example.stegomessenger.arch.infra.AbsViewModel1
+import com.example.stegomessenger.arch.redux.dispatcher.Dispatcher
 
-class StegoViewModel(app: Application, appDepsProvider: AppDepsProvider) :
-    AbsViewModel(app, appDepsProvider) {
+class StegoViewModel(
+    dispatcher: Dispatcher,
+    stegoReducer: StegoReducer,
+    stegoMiddleware: StegoMiddleware
+) :
+    AbsViewModel1(dispatcher) {
 
     private val _viewStateLiveData: MutableLiveData<StegoViewState> = MutableLiveData()
     val viewStateLiveData: LiveData<StegoViewState> = _viewStateLiveData
@@ -19,16 +21,10 @@ class StegoViewModel(app: Application, appDepsProvider: AppDepsProvider) :
     val closeLiveData: LiveData<Unit> = _closeLiveData
 
     init {
-        val apiService = appDepsProvider.apiService
-        val stringsProvider = appDepsProvider.stringsProvider
-        val context = MainApplication.getInstance()
-
         attachManagedStore(
             initialState = StegoState.EMPTY,
-            reducer = StegoReducer(stringsProvider),
-            middleware = listOf(
-                StegoMiddleware(context, apiService, stringsProvider)
-            ),
+            reducer = stegoReducer,
+            middleware = listOf(stegoMiddleware),
         ) { newState: StegoState ->
             _viewStateLiveData.value = newState.viewState
             newState.closeEvent?.readValue()?.let {

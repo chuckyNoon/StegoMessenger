@@ -1,16 +1,18 @@
 package com.example.stegomessenger.chat
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.bumptech.glide.Glide
-import com.example.stegomessenger.arch.util.AppDepsProvider
 import com.example.stegomessenger.arch.SingleEventLiveData
-import com.example.stegomessenger.arch.infra.AbsViewModel
-import com.example.stegomessenger.main.MainApplication
+import com.example.stegomessenger.arch.infra.AbsViewModel1
+import com.example.stegomessenger.arch.redux.dispatcher.Dispatcher
+import javax.inject.Inject
 
-class ChatViewModel(app: Application, appDepsProvider: AppDepsProvider) :
-    AbsViewModel(app, appDepsProvider) {
+class ChatViewModel @Inject constructor(
+    dispatcher: Dispatcher,
+    chatReducer: ChatReducer,
+    chatMiddleware: ChatMiddleware
+) :
+    AbsViewModel1(dispatcher) {
 
     private val _viewStateLiveData: MutableLiveData<ChatViewState> = MutableLiveData()
     val viewStateLiveData: LiveData<ChatViewState> = _viewStateLiveData
@@ -19,14 +21,10 @@ class ChatViewModel(app: Application, appDepsProvider: AppDepsProvider) :
     val completeLiveData: LiveData<Unit> = _completeEventLiveData
 
     init {
-        val requestManager = Glide.with(MainApplication.getInstance())
-
         attachManagedStore(
             initialState = ChatState.EMPTY,
-            reducer = ChatReducer(appDepsProvider.dateTimeFormatter),
-            middleware = listOf(
-                ChatMiddleware(requestManager)
-            ),
+            reducer = chatReducer,
+            middleware = listOf(chatMiddleware),
         ) { newState: ChatState ->
             _viewStateLiveData.value = newState.viewState
             newState.completeEvent?.readValue()?.let {

@@ -11,8 +11,9 @@ import com.example.stegomessenger.common.safeApiCall
 import com.example.stegomessenger.main.SyncHelper
 import com.example.stegomessenger.overview.OverviewAction
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
-class CoreMiddleware(
+class CoreMiddleware @Inject constructor(
     private val apiService: ApiService,
     private val syncHelper: SyncHelper
 ) : Middleware<CoreNavState> {

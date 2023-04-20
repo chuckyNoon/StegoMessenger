@@ -7,8 +7,9 @@ import com.example.stegomessenger.arch.redux.Action
 import com.example.stegomessenger.common.ColoredText
 import com.example.stegomessenger.overview.model.items.DividerCell
 import com.example.stegomessenger.search.item.SearchUserCell
+import javax.inject.Inject
 
-class SearchReducer : Reducer<SearchState> {
+class SearchReducer @Inject constructor() : Reducer<SearchState> {
 
     override fun acceptsAction(action: Action): Boolean = action is SearchAction
 

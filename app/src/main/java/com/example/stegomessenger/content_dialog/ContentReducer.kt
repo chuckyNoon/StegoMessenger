@@ -4,8 +4,9 @@ import com.example.stegomessenger.arch.redux.store.Reducer
 import com.example.stegomessenger.arch.redux.Action
 import com.example.stegomessenger.chat.items.ImageMessageCell
 import com.example.stegomessenger.chat.items.TextMessageCell
+import javax.inject.Inject
 
-class ContentReducer : Reducer<ContentState> {
+class ContentReducer @Inject constructor(): Reducer<ContentState> {
     override fun acceptsAction(action: Action): Boolean = action is ContentAction
 
     override fun reduce(oldState: ContentState, action: Action): ContentState = when (action) {

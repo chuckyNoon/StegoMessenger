@@ -24,8 +24,9 @@ import java.io.BufferedOutputStream
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
+import javax.inject.Inject
 
-class StegoMiddleware(
+class StegoMiddleware @Inject constructor(
     private val context: Context,
     private val apiService: ApiService,
     private val stringsProvider: StringsProvider,

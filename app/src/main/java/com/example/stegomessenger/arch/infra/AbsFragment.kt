@@ -12,20 +12,6 @@ import com.example.stegomessenger.main.AppViewModel
 
 abstract class AbsFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId) {
 
-    val appViewModelFactory: AppViewModelFactory by lazy {
-        val activity = requireActivity()
-        val activityViewModelProvider = ViewModelProvider(activity)
-        val appViewModel = activityViewModelProvider.get(AppViewModel::class.java)
-        return@lazy appViewModel.appViewModelFactory
-    }
-
-    val appDepsProvider: AppDepsProvider by lazy {
-        val activity = requireActivity()
-        val activityViewModelProvider = ViewModelProvider(activity)
-        val appViewModel = activityViewModelProvider.get(AppViewModel::class.java)
-        return@lazy appViewModel.appDepsProvider
-    }
-
     abstract fun getBackStackTag(): String
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -4,19 +4,19 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.ProgressBar
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.example.stegomessenger.R
 import com.example.stegomessenger.arch.infra.AbsFragment
 import com.example.stegomessenger.common.InsetSide
 import com.example.stegomessenger.common.handleInsetsWithPaddingForSides
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegistrationFragment : AbsFragment(R.layout.fragment_registration) {
 
+    private val viewModel: RegistrationViewModel by viewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val viewModelProvider = ViewModelProvider(this, appViewModelFactory)
-        val viewModel = viewModelProvider.get(RegistrationViewModel::class.java)
 
         val progressBar = view.findViewById<ProgressBar>(R.id.pb)
         val nameEditText = view.findViewById<EditText>(R.id.name_et)

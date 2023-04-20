@@ -1,14 +1,12 @@
 package com.example.stegomessenger.main
 
-import android.app.Application
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.commit
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.example.stegomessenger.R
 import com.example.stegomessenger.arch.FragmentTransition
 import com.example.stegomessenger.arch.infra.AbsFragment
@@ -23,21 +21,17 @@ import com.example.stegomessenger.registration.RegistrationFragment
 import com.example.stegomessenger.result.ResultFragment
 import com.example.stegomessenger.search.SearchFragment
 import com.example.stegomessenger.stego_dialog.StegoDialog
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    private val mainViewModel: CoreNavViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val window = window!!
-        val sessionAppViewModelFactory = AppSessionViewModelFactory(application)
-        val appViewModelProvider = ViewModelProvider(this, sessionAppViewModelFactory)
-        val appViewModel = appViewModelProvider.get(AppViewModel::class.java)
-
-        val appViewModelFactory = appViewModel.appViewModelFactory
-        val thisFactoryViewModelProvider = ViewModelProvider(this, appViewModelFactory)
-        val mainViewModel = thisFactoryViewModelProvider.get(CoreNavViewModel::class.java)
 
         SystemUiUtils.makeStatusAndNavBarsTransparent(this, window)
 
@@ -128,12 +122,4 @@ class MainActivity : AppCompatActivity() {
     private val FragmentManager.isSafeToCommit: Boolean
         get() = !isStateSaved && !isDestroyed
 
-    private class AppSessionViewModelFactory(private val app: Application) :
-        ViewModelProvider.Factory {
-
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            @Suppress("UNCHECKED_CAST")
-            return AppViewModel(app) as T
-        }
-    }
 }

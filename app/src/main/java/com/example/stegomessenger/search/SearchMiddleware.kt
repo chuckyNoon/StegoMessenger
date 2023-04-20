@@ -9,8 +9,9 @@ import com.example.stegomessenger.common.launchBackgroundWork
 import com.example.stegomessenger.common.network.ApiService
 import com.example.stegomessenger.common.safeApiCall
 import com.example.stegomessenger.main.navigation.CoreAction
+import javax.inject.Inject
 
-class SearchMiddleware(
+class SearchMiddleware @Inject constructor(
     private val apiService: ApiService,
     private val stringsProvider: StringsProvider
 ) : Middleware<SearchState> {

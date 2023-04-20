@@ -3,20 +3,20 @@ package com.example.stegomessenger.result
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import com.bumptech.glide.RequestManager
 import com.example.stegomessenger.R
 import com.example.stegomessenger.arch.infra.AbsFragment
-import com.example.stegomessenger.chat.getPicassoInstance
-
-// TODO: implement
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+@AndroidEntryPoint
 class ResultFragment : AbsFragment(R.layout.fragment_result) {
 
+    private val viewModel: ResultViewModel by viewModels()
+    @Inject
+    lateinit var requestManager: RequestManager
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val viewModelProvider = ViewModelProvider(this, appViewModelFactory)
-        val viewModel = viewModelProvider.get(ResultViewModel::class.java)
-        val requestManager = getPicassoInstance(this)
 
         val imageView = view.findViewById<ImageView>(R.id.iv)
 

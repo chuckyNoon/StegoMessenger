@@ -1,23 +1,21 @@
 package com.example.stegomessenger.arch.infra
 
-import android.app.Application
 import androidx.annotation.CallSuper
 import androidx.annotation.MainThread
-import androidx.lifecycle.AndroidViewModel
-import com.example.stegomessenger.arch.util.AppDepsProvider
+import androidx.lifecycle.ViewModel
 import com.example.stegomessenger.arch.redux.dispatcher.Dispatchable
+import com.example.stegomessenger.arch.redux.dispatcher.Dispatcher
 import com.example.stegomessenger.arch.redux.dispatcher.NewStateListener
 import com.example.stegomessenger.arch.redux.disposable.Disposable
 import com.example.stegomessenger.arch.redux.store.Middleware
 import com.example.stegomessenger.arch.redux.store.Reducer
 import com.example.stegomessenger.arch.redux.store.Store
 
-abstract class AbsViewModel(
-    app: Application,
-    private val appDepsProvider: AppDepsProvider,
+abstract class AbsViewModel1(
+    private val dispatcher: Dispatcher
 ) :
-    AndroidViewModel(app),
-    Dispatchable by appDepsProvider.dispatcher {
+    ViewModel(),
+    Dispatchable by dispatcher {
 
     private val disposables = mutableListOf<Disposable>()
 
@@ -36,7 +34,7 @@ abstract class AbsViewModel(
         middleware: List<Middleware<T>> = emptyList(),
         newStateListener: NewStateListener<T>,
     ): Unit = keepTrackOf(
-        disposable = appDepsProvider.dispatcher.attachStore(
+        disposable = dispatcher.attachStore(
             Store(initialState, reducer, middleware),
             newStateListener,
         )

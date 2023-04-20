@@ -2,8 +2,9 @@ package com.example.stegomessenger.login
 
 import com.example.stegomessenger.arch.redux.store.Reducer
 import com.example.stegomessenger.arch.redux.Action
+import javax.inject.Inject
 
-class LoginReducer : Reducer<LoginState> {
+class LoginReducer @Inject constructor() : Reducer<LoginState> {
 
     override fun acceptsAction(action: Action): Boolean = action is LoginAction
 
