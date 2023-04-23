@@ -5,16 +5,16 @@ import com.example.stegomessenger.arch.redux.dispatcher.Dispatchable
 import com.example.stegomessenger.arch.redux.store.Middleware
 import com.example.stegomessenger.arch.redux.Action
 import com.example.stegomessenger.arch.util.StringsProvider
-import com.example.stegomessenger.common.launchBackgroundWork
 import com.example.stegomessenger.common.network.ApiService
 import com.example.stegomessenger.common.safeApiCall
 import com.example.stegomessenger.main.navigation.CoreAction
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SearchMiddleware @Inject constructor(
     private val apiService: ApiService,
     private val stringsProvider: StringsProvider
-) : Middleware<SearchState> {
+) : Middleware<SearchState>() {
 
     override fun onReduced(
         dispatchable: Dispatchable,
@@ -32,7 +32,7 @@ class SearchMiddleware @Inject constructor(
         dispatchable: Dispatchable,
         userId: String
     ) =
-        launchBackgroundWork {
+        middlewareScope.launch {
             safeApiCall(
                 apiCall = {
                     apiService.sendText(receiverId = userId, text = "") // serverside workaround
@@ -55,7 +55,7 @@ class SearchMiddleware @Inject constructor(
         dispatchable: Dispatchable,
         typedText: String
     ) =
-        launchBackgroundWork {
+        middlewareScope.launch {
             safeApiCall(
                 apiCall = { apiService.search(typedText) },
                 onSuccess = {

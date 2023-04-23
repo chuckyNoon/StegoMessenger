@@ -37,7 +37,7 @@ class AppModule {
     fun prefs(context: Context): Prefs = DefaultPrefs(context)
 
     @Provides
-    fun gson() = GsonBuilder().setLenient().create()
+    fun gson(): Gson = GsonBuilder().setLenient().create()
 
     @Provides
     fun apiService(prefs: Prefs, gson: Gson): ApiService = if (!Config.IS_SERVER_ENABLED) {

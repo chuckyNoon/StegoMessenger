@@ -1,14 +1,16 @@
 package com.example.stegomessenger.main.navigation
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
 import com.example.stegomessenger.arch.SingleEventLiveData
 import com.example.stegomessenger.arch.infra.AbsViewModel
 import com.example.stegomessenger.arch.redux.dispatcher.Dispatcher
 import com.example.stegomessenger.arch.util.Prefs
 import com.example.stegomessenger.common.PrefsContract
-import com.example.stegomessenger.common.launchBackgroundWork
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -39,7 +41,7 @@ class CoreNavViewModel @Inject constructor(
                 _errorLiveData.value = it
             }
         }
-        launchBackgroundWork {
+        viewModelScope.launch(Dispatchers.Default) {
             dispatch(CoreAction.ReloadChats)
             delay(5000) // TODO: delete
             dispatch(CoreAction.SyncWithServer)

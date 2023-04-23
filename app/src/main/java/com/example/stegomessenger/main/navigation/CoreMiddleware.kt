@@ -5,18 +5,17 @@ import android.os.Looper
 import com.example.stegomessenger.arch.redux.dispatcher.Dispatchable
 import com.example.stegomessenger.arch.redux.store.Middleware
 import com.example.stegomessenger.arch.redux.Action
-import com.example.stegomessenger.common.launchBackgroundWork
 import com.example.stegomessenger.common.network.ApiService
-import com.example.stegomessenger.common.safeApiCall
 import com.example.stegomessenger.main.SyncHelper
 import com.example.stegomessenger.overview.OverviewAction
+import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class CoreMiddleware @Inject constructor(
     private val apiService: ApiService,
     private val syncHelper: SyncHelper
-) : Middleware<CoreNavState> {
+) : Middleware<CoreNavState>() {
 
     private val handler = Handler(Looper.getMainLooper())
 
@@ -46,14 +45,9 @@ class CoreMiddleware @Inject constructor(
         syncHelper.saveSyncTime()
 
         dispatchable.dispatch(OverviewAction.ChatsLoadingStarted)
-        launchBackgroundWork {
-            safeApiCall(
-                apiCall = { apiService.getChats(isForced) },
-                onSuccess = {
-                    dispatchable.dispatch(CoreAction.ChatsReloaded(it.chats))
-                },
-                onError = {}
-            )
+        middlewareScope.launch {
+            runCatching { apiService.getChats(isForced) }
+                .onSuccess { dispatchable.dispatch(CoreAction.ChatsReloaded(it.chats)) }
         }
     }
 }

@@ -1,13 +1,16 @@
 package com.example.stegomessenger.stego_dialog
 
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.*
+import androidx.lifecycle.viewModelScope
 import com.example.stegomessenger.arch.SingleEventLiveData
 import com.example.stegomessenger.arch.infra.AbsViewModel
 import com.example.stegomessenger.arch.redux.dispatcher.Dispatcher
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import javax.inject.Inject
 
 @HiltViewModel

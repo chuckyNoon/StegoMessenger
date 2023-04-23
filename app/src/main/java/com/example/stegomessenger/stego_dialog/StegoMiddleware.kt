@@ -11,12 +11,11 @@ import com.example.stegomessenger.arch.redux.Action
 import com.example.stegomessenger.common.network.model.ErrorResponse
 import com.example.stegomessenger.arch.util.StringsProvider
 import com.example.stegomessenger.common.getName
-import com.example.stegomessenger.common.launchBackgroundWork
 import com.example.stegomessenger.common.network.ApiService
 import com.example.stegomessenger.common.safeApiCall
 import com.example.stegomessenger.steganography.LsbAlgorithm
 import com.example.stegomessenger.main.navigation.CoreAction
-import okhttp3.MediaType
+import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -30,7 +29,7 @@ class StegoMiddleware @Inject constructor(
     private val context: Context,
     private val apiService: ApiService,
     private val stringsProvider: StringsProvider,
-) : Middleware<StegoState> {
+) : Middleware<StegoState>() {
 
     override fun onReduced(
         dispatchable: Dispatchable,
@@ -39,7 +38,7 @@ class StegoMiddleware @Inject constructor(
         newState: StegoState
     ) {
         when (action) {
-            is StegoAction.ClickSend -> launchBackgroundWork {
+            is StegoAction.ClickSend -> middlewareScope.launch {
                 handleClickSend(dispatchable, newState, action)
             }
             else -> {}

@@ -9,17 +9,17 @@ import com.example.stegomessenger.arch.redux.Action
 import com.example.stegomessenger.arch.redux.dispatcher.Dispatchable
 import com.example.stegomessenger.arch.redux.store.Middleware
 import com.example.stegomessenger.chat.items.ImageMessageCell
-import com.example.stegomessenger.common.launchBackgroundWork
 import com.example.stegomessenger.content_dialog.ContentAction
 import com.example.stegomessenger.steganography.LsbAlgorithm
 import com.example.stegomessenger.main.navigation.CoreAction
 import com.example.stegomessenger.stego_dialog.StegoAction
 import com.example.stegomessenger.stego_dialog.StegoStateType
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ChatMiddleware @Inject constructor(
     private val requestManager: RequestManager
-) : Middleware<ChatState> {
+) : Middleware<ChatState>() {
 
     override fun onReduced(
         dispatchable: Dispatchable,
@@ -44,7 +44,7 @@ class ChatMiddleware @Inject constructor(
                 resource: Bitmap,
                 transition: Transition<in Bitmap>?
             ) {
-                launchBackgroundWork {
+                middlewareScope.launch {
                     val decoded = LsbAlgorithm().lsbDecode(resource)
                     if (decoded == null) {
                         dispatchable.dispatch(CoreAction.ShowToast("Failed to find hidden message"))
