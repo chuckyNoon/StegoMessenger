@@ -8,11 +8,9 @@ import com.example.stegomessenger.R
 import com.example.stegomessenger.arch.redux.dispatcher.Dispatchable
 import com.example.stegomessenger.arch.redux.store.Middleware
 import com.example.stegomessenger.arch.redux.Action
-import com.example.stegomessenger.common.network.model.ErrorResponse
 import com.example.stegomessenger.arch.util.StringsProvider
 import com.example.stegomessenger.common.getName
 import com.example.stegomessenger.common.network.ApiService
-import com.example.stegomessenger.common.safeApiCall
 import com.example.stegomessenger.steganography.LsbAlgorithm
 import com.example.stegomessenger.main.navigation.CoreAction
 import kotlinx.coroutines.launch
@@ -69,7 +67,7 @@ class StegoMiddleware @Inject constructor(
             dispatchable.dispatch(StegoAction.Close)
         }
 
-        val onSendingFail = { error: ErrorResponse ->
+        val onSendingFail = { error: Throwable ->
             dispatchable.dispatch(StegoAction.SendingFail)
             dispatchable.dispatch(
                 CoreAction.ShowToast(
@@ -114,14 +112,12 @@ class StegoMiddleware @Inject constructor(
         containerUri: Uri?,
         containerBitmap: Bitmap?,
         successCallback: (Unit) -> Unit,
-        failCallback: (ErrorResponse) -> Unit
+        failCallback: (Throwable) -> Unit
     ) {
         if (containerBitmap == null) {
-            safeApiCall(
-                apiCall = { apiService.sendText(receiverId = receiverId, text = text) },
-                onSuccess = successCallback,
-                onError = failCallback
-            )
+            runCatching { apiService.sendText(receiverId = receiverId, text = text) }
+                .onSuccess(successCallback)
+                .onFailure(failCallback)
             return
         }
 
@@ -135,11 +131,9 @@ class StegoMiddleware @Inject constructor(
             fileName = containerUri?.getName(context) ?: "tmp.img"
         )
 
-        safeApiCall(
-            apiCall = { startSendImageRequest(receiverId, file) },
-            onSuccess = successCallback,
-            onError = failCallback
-        )
+        runCatching { startSendImageRequest(receiverId, file) }
+            .onSuccess(successCallback)
+            .onFailure(failCallback)
     }
 
     private suspend fun startSendImageRequest(
@@ -148,9 +142,8 @@ class StegoMiddleware @Inject constructor(
         containerBitmap: Bitmap?,
         contentBitmap: Bitmap,
         successCallback: ((Unit) -> Unit),
-        failCallback: ((ErrorResponse) -> Unit)
+        failCallback: ((Throwable) -> Unit)
     ) {
-
         val bitmapToSend = if (containerBitmap != null) {
             val stream = ByteArrayOutputStream()
             contentBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
@@ -170,11 +163,9 @@ class StegoMiddleware @Inject constructor(
         val file =
             saveBitmapInFile(bitmapToSend, fileName = containerUri?.getName(context) ?: "tmp.img")
 
-        safeApiCall(
-            apiCall = { startSendImageRequest(receiverId = receiverId, imageFile = file) },
-            onSuccess = successCallback,
-            onError = failCallback
-        )
+        runCatching { startSendImageRequest(receiverId = receiverId, imageFile = file) }
+            .onSuccess(successCallback)
+            .onFailure(failCallback)
     }
 
     private suspend fun startSendImageRequest(receiverId: String, imageFile: File) =

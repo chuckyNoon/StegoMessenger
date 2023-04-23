@@ -6,7 +6,6 @@ import com.example.stegomessenger.arch.redux.store.Middleware
 import com.example.stegomessenger.arch.redux.Action
 import com.example.stegomessenger.arch.util.StringsProvider
 import com.example.stegomessenger.common.network.ApiService
-import com.example.stegomessenger.common.safeApiCall
 import com.example.stegomessenger.main.navigation.CoreAction
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -33,22 +32,19 @@ class SearchMiddleware @Inject constructor(
         userId: String
     ) =
         middlewareScope.launch {
-            safeApiCall(
-                apiCall = {
-                    apiService.sendText(receiverId = userId, text = "") // serverside workaround
-                },
-                onSuccess = {
-                    dispatchable.dispatch(CoreAction.ReloadChats)
-                    dispatchable.dispatch(SearchAction.Back)
-                },
-                onError = {
-                    dispatchable.dispatch(
-                        CoreAction.ShowToast(
-                            it.message ?: stringsProvider.getString(R.string.error)
-                        )
+            runCatching {
+                // server-side workaround
+                apiService.sendText(receiverId = userId, text = "")
+            }.onSuccess {
+                dispatchable.dispatch(CoreAction.ReloadChats)
+                dispatchable.dispatch(SearchAction.Back)
+            }.onFailure {
+                dispatchable.dispatch(
+                    CoreAction.ShowToast(
+                        it.message ?: stringsProvider.getString(R.string.error)
                     )
-                }
-            )
+                )
+            }
         }
 
     private fun loadMatchingUsers(
@@ -56,14 +52,11 @@ class SearchMiddleware @Inject constructor(
         typedText: String
     ) =
         middlewareScope.launch {
-            safeApiCall(
-                apiCall = { apiService.search(typedText) },
-                onSuccess = {
+            runCatching { apiService.search(typedText) }
+                .onSuccess {
                     dispatchable.dispatch(
                         SearchAction.UsersLoaded(matchingUsers = it.matchingUsers)
                     )
-                },
-                onError = {}
-            )
+                }
         }
 }
