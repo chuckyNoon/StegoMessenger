@@ -10,8 +10,16 @@ import com.example.stegomessenger.common.Config
 import com.example.stegomessenger.common.PrefsContract
 import com.example.stegomessenger.common.network.ApiService
 import com.example.stegomessenger.common.network.FakeApiServiceImpl
-import com.example.stegomessenger.main.MainApplication
-import com.example.stegomessenger.main.SyncHelper
+import com.example.stegomessenger.data.chat.ChatsRepository
+import com.example.stegomessenger.data.chat.ChatsRepositoryImpl
+import com.example.stegomessenger.data.search.SearchRepository
+import com.example.stegomessenger.data.search.SearchRepositoryImpl
+import com.example.stegomessenger.data.user.UserRepository
+import com.example.stegomessenger.data.user.UserRepositoryImpl
+import com.example.stegomessenger.domain.LsbAlgorithm
+import com.example.stegomessenger.domain.StegoAlgorithm
+import com.example.stegomessenger.app.MainApplication
+import com.example.stegomessenger.app.SyncHelper
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -80,5 +88,14 @@ class AppModule {
 
     @Provides
     fun dateTimeFormatter(): DateTimeFormatter = DefaultDateTimeFormatter()
+
+    @Provides
+    fun usersRep(apiService: ApiService, prefs: Prefs): UserRepository = UserRepositoryImpl(apiService, prefs)
+
+    @Provides
+    fun searchRep(apiService: ApiService): SearchRepository = SearchRepositoryImpl(apiService)
+
+    @Provides
+    fun chatsRep(apiService: ApiService): ChatsRepository = ChatsRepositoryImpl(apiService)
 
 }
