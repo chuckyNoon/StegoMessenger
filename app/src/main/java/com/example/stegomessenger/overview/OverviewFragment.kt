@@ -14,8 +14,8 @@ import com.example.stegomessenger.arch.infra.AbsFragment
 import com.example.stegomessenger.arch.util.Prefs
 import com.example.stegomessenger.common.*
 import com.example.stegomessenger.main.navigation.CoreAction
-import com.example.stegomessenger.overview.model.items.ChatAdapterDelegate
-import com.example.stegomessenger.overview.model.items.DividerAdapterDelegate
+import com.example.stegomessenger.overview.items.ChatAdapterDelegate
+import com.example.stegomessenger.overview.items.DividerAdapterDelegate
 import com.example.stegomessenger.chat.items.TextMessageAdapterDelegate
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint

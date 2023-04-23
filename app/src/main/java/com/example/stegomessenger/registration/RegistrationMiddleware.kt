@@ -6,13 +6,14 @@ import com.example.stegomessenger.arch.redux.Action
 import com.example.stegomessenger.arch.util.Prefs
 import com.example.stegomessenger.common.PrefsContract
 import com.example.stegomessenger.common.network.ApiService
+import com.example.stegomessenger.data.user.UserRepository
 import com.example.stegomessenger.main.navigation.CoreAction
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class RegistrationMiddleware @Inject constructor(
-    private val apiService: ApiService,
-    private val prefs: Prefs
+    private val userRepository: UserRepository,
+    private val prefs: Prefs,
 ) : Middleware<RegistrationState>() {
 
     override fun onReduced(
@@ -37,9 +38,8 @@ class RegistrationMiddleware @Inject constructor(
         if (password.isNotEmpty() && id.isNotEmpty() && name.isNotEmpty()) {
             dispatchable.dispatch(RegistrationAction.RegistrationStarted)
             middlewareScope.launch {
-                runCatching { apiService.doRegister(password = password, id = id, name = name) }
+                runCatching { userRepository.register(password = password, id = id, name = name) }
                     .onSuccess {
-                        prefs.saveString(PrefsContract.TOKEN, it.value)
                         dispatchable.dispatch(RegistrationAction.RegistrationSuccess)
                         dispatchable.dispatch(CoreAction.ShowOverviewFragment)
                     }

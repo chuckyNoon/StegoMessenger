@@ -2,7 +2,7 @@ package com.example.stegomessenger.chat
 
 import com.example.stegomessenger.arch.adapter.DelegateDiffable
 import com.example.stegomessenger.arch.redux.util.Event
-import com.example.stegomessenger.overview.model.Chat
+import com.example.stegomessenger.data.chat.Chat
 
 data class ChatState(
     val chat: Chat?,

@@ -5,7 +5,7 @@ import com.example.stegomessenger.arch.redux.store.Reducer
 import com.example.stegomessenger.arch.redux.util.Event
 import com.example.stegomessenger.arch.redux.Action
 import com.example.stegomessenger.common.ColoredText
-import com.example.stegomessenger.overview.model.items.DividerCell
+import com.example.stegomessenger.overview.items.DividerCell
 import com.example.stegomessenger.search.item.SearchUserCell
 import javax.inject.Inject
 
@@ -18,7 +18,7 @@ class SearchReducer @Inject constructor() : Reducer<SearchState> {
             is SearchAction.TextTyped ->
                 rebuildViewState(oldState.copy(typedText = action.text))
             is SearchAction.UsersLoaded ->
-                rebuildViewState(oldState.copy(matchingUsers = action.matchingUsers))
+                rebuildViewState(oldState.copy(searchResults = action.searchResults))
             is SearchAction.Back ->
                 oldState.copy(backEvent = Event(Unit))
             else -> oldState
@@ -30,7 +30,7 @@ class SearchReducer @Inject constructor() : Reducer<SearchState> {
             return state.copy(viewState = SearchViewState.EMPTY)
         }
 
-        val cells = state.matchingUsers.flatMap { matchingUser ->
+        val cells = state.searchResults.flatMap { matchingUser ->
             when {
                 matchingUser.id.startsWith(typedText) -> {
                     val idText = "@" + matchingUser.id

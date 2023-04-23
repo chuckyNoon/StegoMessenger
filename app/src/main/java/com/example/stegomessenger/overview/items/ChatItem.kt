@@ -1,4 +1,4 @@
-package com.example.stegomessenger.overview.model.items
+package com.example.stegomessenger.overview.items
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -13,7 +13,7 @@ import com.example.stegomessenger.R
 import com.example.stegomessenger.arch.infra.AbsFragment
 import com.example.stegomessenger.common.InsetSide
 import com.example.stegomessenger.common.handleInsetsWithPaddingForSides
-import com.example.stegomessenger.overview.model.items.DividerAdapterDelegate
+import com.example.stegomessenger.overview.items.DividerAdapterDelegate
 import com.example.stegomessenger.search.item.SearchUserDelegate
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

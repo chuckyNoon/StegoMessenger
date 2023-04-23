@@ -3,9 +3,9 @@ package com.example.stegomessenger.common.network
 import com.example.stegomessenger.common.network.model.ChatsResponse
 import com.example.stegomessenger.common.network.model.SearchResponse
 import com.example.stegomessenger.common.network.model.TokenResponse
-import com.example.stegomessenger.overview.model.Chat
-import com.example.stegomessenger.overview.model.Message
-import com.example.stegomessenger.search.model.MatchingUser
+import com.example.stegomessenger.data.chat.Chat
+import com.example.stegomessenger.data.chat.Message
+import com.example.stegomessenger.data.search.SearchResult
 import kotlinx.coroutines.delay
 import okhttp3.MultipartBody
 
@@ -39,12 +39,12 @@ class FakeApiServiceImpl : ApiService {
         return ChatsResponse(chats)
     }
 
-    override suspend fun doLogin(id: String, password: String): TokenResponse {
+    override suspend fun logIn(id: String, password: String): TokenResponse {
         delay(delayMillis)
         return TokenResponse("token")
     }
 
-    override suspend fun doRegister(id: String, password: String, name: String): TokenResponse {
+    override suspend fun register(id: String, password: String, name: String): TokenResponse {
         delay(delayMillis)
         return TokenResponse("token")
     }
@@ -68,16 +68,16 @@ class FakeApiServiceImpl : ApiService {
 
     override suspend fun search(text: String): SearchResponse {
         return SearchResponse(
-            matchingUsers = listOf(
-                MatchingUser(
+            searchResults = listOf(
+                SearchResult(
                     id = "{$text}1",
                     name = "User1"
                 ),
-                MatchingUser(
+                SearchResult(
                     id = "{$text}2",
                     name = "User2"
                 ),
-                MatchingUser(
+                SearchResult(
                     id = "{$text}3",
                     name = "User3"
                 )

@@ -17,7 +17,7 @@ import com.example.stegomessenger.chat.items.ImageMessageDelegate
 import com.example.stegomessenger.chat.items.TextMessageAdapterDelegate
 import com.example.stegomessenger.common.InsetSide
 import com.example.stegomessenger.common.handleInsetsWithPaddingForSides
-import com.example.stegomessenger.overview.model.items.DividerAdapterDelegate
+import com.example.stegomessenger.overview.items.DividerAdapterDelegate
 import com.example.stegomessenger.stego_dialog.StegoAction
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

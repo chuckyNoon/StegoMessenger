@@ -1,7 +1,7 @@
 package com.example.stegomessenger.overview
 
 import com.example.stegomessenger.arch.adapter.DelegateDiffable
-import com.example.stegomessenger.overview.model.Chat
+import com.example.stegomessenger.data.chat.Chat
 
 data class OverviewState(
     val chats: List<Chat>,

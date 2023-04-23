@@ -1,4 +1,4 @@
-package com.example.stegomessenger.overview.model
+package com.example.stegomessenger.data.chat
 
 import com.google.gson.annotations.SerializedName
 

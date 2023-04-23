@@ -6,12 +6,15 @@ import com.example.stegomessenger.arch.redux.store.Middleware
 import com.example.stegomessenger.arch.redux.Action
 import com.example.stegomessenger.arch.util.StringsProvider
 import com.example.stegomessenger.common.network.ApiService
+import com.example.stegomessenger.data.chat.ChatRepository
+import com.example.stegomessenger.data.search.SearchRepository
 import com.example.stegomessenger.main.navigation.CoreAction
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SearchMiddleware @Inject constructor(
-    private val apiService: ApiService,
+    private val searchRepository: SearchRepository,
+    private val chatRepository: ChatRepository,
     private val stringsProvider: StringsProvider
 ) : Middleware<SearchState>() {
 
@@ -30,33 +33,28 @@ class SearchMiddleware @Inject constructor(
     private fun loadChatForUser(
         dispatchable: Dispatchable,
         userId: String
-    ) =
-        middlewareScope.launch {
-            runCatching {
-                // server-side workaround
-                apiService.sendText(receiverId = userId, text = "")
-            }.onSuccess {
+    ) = middlewareScope.launch {
+        runCatching { chatRepository.startNewChat(userId) }
+            .onSuccess {
                 dispatchable.dispatch(CoreAction.ReloadChats)
                 dispatchable.dispatch(SearchAction.Back)
-            }.onFailure {
+            }
+            .onFailure {
                 dispatchable.dispatch(
                     CoreAction.ShowToast(
                         it.message ?: stringsProvider.getString(R.string.error)
                     )
                 )
             }
-        }
+    }
 
     private fun loadMatchingUsers(
         dispatchable: Dispatchable,
         typedText: String
-    ) =
-        middlewareScope.launch {
-            runCatching { apiService.search(typedText) }
-                .onSuccess {
-                    dispatchable.dispatch(
-                        SearchAction.UsersLoaded(matchingUsers = it.matchingUsers)
-                    )
-                }
-        }
+    ) = middlewareScope.launch {
+        runCatching { searchRepository.searchByQuery(typedText) }
+            .onSuccess {
+                dispatchable.dispatch(SearchAction.UsersLoaded(searchResults = it))
+            }
+    }
 }

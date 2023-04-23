@@ -12,20 +12,20 @@ interface ApiService {
 
     @POST("login")
     @FormUrlEncoded
-    suspend fun doLogin(
+    suspend fun logIn(
         @Field("id") id: String,
         @Field("password") password: String
     ): TokenResponse
 
-    @POST("registration")
+    @POST("register")
     @FormUrlEncoded
-    suspend fun doRegister(
+    suspend fun register(
         @Field("id") id: String,
         @Field("password") password: String,
         @Field("name") name: String
     ): TokenResponse
 
-    @POST("send")
+    @POST("sendText")
     @FormUrlEncoded
     suspend fun sendText(
         @Field("receiverId") receiverId: String,
@@ -33,7 +33,7 @@ interface ApiService {
     )
 
     @Multipart
-    @POST("sendimage")
+    @POST("sendImage")
     suspend fun sendImage(
         @Part file: MultipartBody.Part,
         @Part receiverId: MultipartBody.Part
@@ -41,5 +41,5 @@ interface ApiService {
 
     @POST("search")
     @FormUrlEncoded
-    suspend fun search(@Field("text") text: String): SearchResponse
+    suspend fun search(@Field("text") query: String): SearchResponse
 }

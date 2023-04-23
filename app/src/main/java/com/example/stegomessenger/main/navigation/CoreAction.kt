@@ -1,7 +1,7 @@
 package com.example.stegomessenger.main.navigation
 
 import com.example.stegomessenger.arch.redux.Action
-import com.example.stegomessenger.overview.model.Chat
+import com.example.stegomessenger.data.chat.Chat
 
 sealed class CoreAction : Action {
     object ShowOverviewFragment : CoreAction()
